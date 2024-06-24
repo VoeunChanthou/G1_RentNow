@@ -1,5 +1,4 @@
-<!-- <script setup lang="ts">
-</script> -->
+
 <template>
   <div
     class="modal fade"
@@ -71,20 +70,12 @@
               </div>
               <div class="col-12">
                 <div class="d-grid">
-                  <!-- <button
+                  <button
                     class="btn bsb-btn-2xl btn-primary"
-                    data-bs-dismiss="modal"
+                    :disabled="isSubmitting"
                   >
                     Log in now
-                  </button> -->
-                  <el-button
-            size="large"
-            class="mt-3 w-full"
-            :disabled="isSubmitting"
-            type="primary"
-            native-type="submit"
-            >Submit</el-button
-          >
+                  </button>
                 </div>
               </div>
             </div>
@@ -164,10 +155,10 @@ const { handleSubmit, isSubmitting } = useForm({
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-  alert (axiosInstance)
     const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
+    location.reload()
   } catch (error) {
     console.warn('Error')
   }
