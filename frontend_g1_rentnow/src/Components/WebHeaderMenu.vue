@@ -18,6 +18,9 @@ const onSubmit = (async () => {
 })
 </script>
 <template>
+  <!-- Button trigger modal -->
+<!-- Modal -->
+
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
@@ -41,7 +44,8 @@ const onSubmit = (async () => {
       </ul>
       <div v-if="!AuthUSer.user" class="btn-class" style="width: 200px; display: flex; justify-content: space-between;">
         <a type="button" class="btn btn-lg text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/login" style="background: #691BA5; font-weight: bold;">Login</a>
-        <a type="button" class="btn btn-lg text-white" href="/register" style="background: #FFD800; font-weight: bold;">Register</a>
+        <a type="button" class="btn btn-lg text-white" data-bs-toggle="modal" data-bs-target="#popupRegister" href="/register" style="background: #FFD800; font-weight: bold;">Register</a>
+        
       </div>
       <div class="dropdown ms-1 ms-lg-0" v-if="AuthUSer.user">
 				<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
@@ -57,7 +61,7 @@ const onSubmit = (async () => {
 							</div>
 							<div>
 								<a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
-								<p class="small m-0">{{ AuthUSer.user.eamil }}</p>
+								<p class="small m-0">{{ AuthUSer.user.email }}</p>
 							</div>
 						</div>
 						<hr>
@@ -66,17 +70,9 @@ const onSubmit = (async () => {
 					<li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-					<li><button class="dropdown-item bg-danger-soft-hover" @click ="onSubmit"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
+					<li><button class="dropdown-item " @click ="onSubmit"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
 					<li> <hr class="dropdown-divider"></li>
 					<!-- Dark mode switch START -->
-					<li>
-						<div class="modeswitch-wrap" id="darkModeSwitch">
-							<div class="modeswitch-item">
-								<div class="modeswitch-icon"></div>
-							</div>
-							<span>Dark mode</span>
-						</div>
-					</li> 
           <!-- Dark mode switch END -->
 				</ul>
 			</div>
