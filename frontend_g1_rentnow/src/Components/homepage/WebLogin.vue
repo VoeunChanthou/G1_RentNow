@@ -26,33 +26,20 @@
           <el-form @submit="onSubmit">
             <div class="row gy-3 overflow-hidden">
               <div class="col-12">
-                <div class="form-floating mb-3">
-                  <input
-                    type="email"
-                    class="form-control"
-                    name="email"
-                    id="email"
-                    v-model="email"
-                    placeholder="name@example.com"
-                    required
-                  />
-                  <label for="email" class="form-label">Email</label>
-                </div>
+                <el-form-item :error="emailError">
+                  <el-input placeholder="Email Address" v-model="email" size="large" />
+                </el-form-item>
               </div>
               <div class="col-12">
-                <div class="form-floating mb-3">
-                  <input
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    id="password"
-                    v-model="password"
-                    value=""
+                <el-form-item :error="nameError"  class="mt-8">
+                  <el-input
                     placeholder="Password"
-                    required
+                    v-model="password"
+                    size="large"
+                    type="password"
                   />
-                  <label for="password" class="form-label">Password</label>
-                </div>
+                  
+                </el-form-item>
               </div>
               <div class="col-12">
                 <div class="form-check">
@@ -70,10 +57,7 @@
               </div>
               <div class="col-12">
                 <div class="d-grid">
-                  <button
-                    class="btn bsb-btn-2xl btn-primary"
-                    :disabled="isSubmitting"
-                  >
+                  <button class="btn bsb-btn-2xl btn-primary" :disabled="isSubmitting">
                     Log in now
                   </button>
                 </div>
@@ -160,7 +144,7 @@ const onSubmit = handleSubmit(async (values) => {
     router.push('/')
     location.reload()
   } catch (error) {
-    console.warn('Error')
+    alert('You password is wrong !')
   }
 })
 
