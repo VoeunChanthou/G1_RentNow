@@ -1,6 +1,6 @@
 <!-- src/components/HeaderMenu.vue -->
 <template>
-  <header class="text-white px-50 py-3 bg-white flex justify-between items-center">
+  <header class="text-white px-50 py-3 flex justify-between items-center">
     <div class="flex items-center text-black font-bold">
       <Icon icon="skill-icons:devto-dark" style="font-size: 45px" />
       <div class="ml-5 flex font-semibold">
