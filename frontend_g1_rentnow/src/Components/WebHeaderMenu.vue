@@ -40,7 +40,7 @@ const onSubmit = (async () => {
         </li>
       </ul>
       <div v-if="!AuthUSer.user" class="btn-class" style="width: 200px; display: flex; justify-content: space-between;">
-        <a type="button" class="btn btn-lg text-white" data-bs-toggle="modal" data-bs-target="#exampleModal" href="/login" style="background: #691BA5; font-weight: bold;">Login</a>
+        <a type="button" class="btn btn-lg text-white" href="/login" style="background: #691BA5; font-weight: bold;">Login</a>
         <a type="button" class="btn btn-lg text-white" href="/register" style="background: #FFD800; font-weight: bold;">Register</a>
       </div>
       <div class="dropdown ms-1 ms-lg-0" v-if="AuthUSer.user">

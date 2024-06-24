@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
