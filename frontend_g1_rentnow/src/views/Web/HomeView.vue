@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
+import {useAuthStore} from '@/stores/auth-store.ts'
+const AuthUSer = useAuthStore()
 </script>
 <template>
+
   <WebLayout
     ><div
       class="max-w-2xl mt-2 rounded px-4 py-10 m-auto bg-white sm:px-8 dark:bg-gray-800 ring-1 ring-gray-200 dark:ring-gray-700"
