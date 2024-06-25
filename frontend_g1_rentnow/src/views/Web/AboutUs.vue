@@ -1,8 +1,4 @@
 <template>
-  <!-- <div class="container">
-      <img src="../../assets/contactUs.jpg" class="img-rounded rounded mx-auto bg-warning" style="width:100%" alt="Cinque Terre"  height="550">
-      <h6>Why buy if you can rant?</h6>
-  </div> -->
   <div class="px-5 py-3">
     <div class="container">
       <div class="row">
@@ -77,8 +73,8 @@
                   alt="Cinque Terre Hollywood Sign on The Hill"
                   height="60"
                 />
-                <h4 class="card-title"><B>Messenger</B></h4>
-                <p class="card-text">RentMe</p>
+                <h4 class="card-title"><B>Telegram</B></h4>
+                <a href="#" style="text-decoration: none;">RentMe</a>
               </div>
             </div>
             <div
@@ -123,7 +119,7 @@
                   height="50"
                 />
                 <h4 class="card-title"><b>Email</b></h4>
-                <p class="card-text">rentnow@gmail.com.kh</p>
+                <a href="#" style="text-decoration: none;">rentnow@gmail.com.kh</a>
               </div>
             </div>
           </div>
@@ -141,7 +137,7 @@
             <GMapMarker :position="markerPosition" />
           </GMapMap>
         </div>
-        
+        <messege-form ></messege-form>
       </div>
     </div>
   </div>
@@ -149,7 +145,9 @@
 
 
 <script>
+import messegeForm from "../../Components/AboutUs/messegeForm.vue"
 export default {
+  components: { messegeForm },
   name: 'App',
   data() {
     return {
