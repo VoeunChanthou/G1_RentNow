@@ -31,6 +31,11 @@ import { Icon } from '@iconify/vue'
         class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
         >Reports</a
       >
+      <a
+        href="/AboutUs"
+        class="font-bold px-3 py-2 text-slate-700 rounded-lg hover:bg-slate-100 hover:text-slate-900"
+        >About Us</a
+      >
     </nav>
 
     <!-- Sign In -->
