@@ -18,6 +18,7 @@ const onSubmit = (async () => {
 })
 </script>
 <template>
+  
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
@@ -86,8 +87,8 @@ const onSubmit = (async () => {
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: white; border-bottom: 2px solid black;">
   <div class="container-fluid px-5 py-2">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="width: 30%; display: flex; justify-content: space-between; align-items: center;">
-        <li class="nav-item"><a href="#">Home</a></li>
-        <li class="nav-item"><a href="#">Service</a></li>
+        <li class="nav-item"><a href="/">Home</a></li>
+        <li class="nav-item"><a href="/service">Service</a></li>
         <li class="nav-item"><a href="#">Contact Us</a></li>
     </ul>
   </div>

@@ -27,9 +27,9 @@ const router = createRouter({
       component: () => import('../views/Web/HomeView.vue')
     },
     {
-      path: '/post',
-      name: 'post',
-      component: () => import('../views/Web/Post/ListView.vue')
+      path: '/service',
+      name: 'service',
+      component: () => import('../views/Web/SeviceView.vue')
     },
     {
       path: '/register',
