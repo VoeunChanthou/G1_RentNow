@@ -1,5 +1,5 @@
 <template>
-  <div class="search-bar shadow p-5 mb-5 bg-white rounded" style="height: 100%">
+  <div class="search-bar shadow p-5 mb-5 bg-white rounded" style="height: 82%;">
     <div class="search" style="padding-left: 30px">
       <el-input v-model="product" style="width: 100%" size="large" placeholder="Please Input" />
     </div>
@@ -44,18 +44,22 @@
       </div>
     </div>
   </div>
+
+
 </template>
 
 
 <script>
 import { useProductStore } from '@/stores/category-list.ts'
 import { useShopStore } from '@/stores/shop-list.ts'
+// import { productStore } from '@/stores/product-list.ts'
 
 export default {
   data() {
     return {
       products: useProductStore(),
       shop: useShopStore(),
+      // proList: productStore(),
       product: '',
       shopValue: '',
       value: '',
@@ -70,13 +74,17 @@ export default {
     fetchData() {
       this.fetchProduct()
       this.fetchShop()
+      // this.fetchProductStore()
     },
     fetchProduct() {
       this.products.fetchProduct()
     },
     fetchShop() {
       this.shop.fetchShop()
-    }
+    },
+    // fetchProductStore() {
+    //   this.proList.fetchProductStore()
+    // }
   }
 }
 </script>

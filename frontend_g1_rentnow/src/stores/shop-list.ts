@@ -13,8 +13,6 @@ export const useShopStore = defineStore('get', {
         const response = await axiosInstance.get('/shop');
         this.shops = response.data;
       
-        // this.shop = [{ id: 1, name: 'Product'}];
-        // console.log('hello')
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
