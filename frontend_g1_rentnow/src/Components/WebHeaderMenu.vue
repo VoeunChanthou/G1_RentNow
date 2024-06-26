@@ -19,7 +19,7 @@ const onSubmit = (async () => {
 </script>
 <template>
   
-  <div class="content" style="width: 100%;">
+  <div class="content" style="width: 100%; position: sticky; top: 0; z-index: 100;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
     <img src="../assets/image 62.png" alt="" style="padding-right: 100px;">
