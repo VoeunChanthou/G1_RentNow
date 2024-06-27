@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Shop;
 use App\Models\Products;
 
 class Categories extends Model
@@ -15,11 +14,8 @@ class Categories extends Model
         'name'
     ];
 
-    public function shop(){
-        return $this->belongsTo(Shop::class);
-    }
 
     public function products(){
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Products::class, 'category_id');
     }
 }

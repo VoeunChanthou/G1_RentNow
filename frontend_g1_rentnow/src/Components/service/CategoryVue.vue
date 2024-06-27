@@ -1,7 +1,7 @@
 <template>
   <div class="search-bar shadow p-5 mb-5 bg-white rounded" style="height: 82%;">
     <div class="search" style="padding-left: 30px">
-      <el-input v-model="product" style="width: 100%" size="large" placeholder="Please Input" />
+      <el-input v-model="product" style="width: 100%" size="large" placeholder="Please Input" @input="handleSomeEvent" />
     </div>
     <div class="select" style="padding-left: 30px; margin-top: 30px">
       <div class="select-cate" style="display: flex; align-items: end">
@@ -21,6 +21,7 @@
           placeholder="Select catagories"
           style="width: 100%; margin-bottom: 10px"
           size="large"
+          @change="handleCateEvent"
         >
           <el-option-group v-for="product in products.product.categories" :key="product.id">
             <el-option :key="product.id" :label="product.name" :value="product.name" />
@@ -44,8 +45,6 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 
@@ -74,6 +73,8 @@ export default {
     fetchData() {
       this.fetchProduct()
       this.fetchShop()
+      this.handleSomeEvent()
+      this.handleCateEvent()
       // this.fetchProductStore()
     },
     fetchProduct() {
@@ -85,6 +86,15 @@ export default {
     // fetchProductStore() {
     //   this.proList.fetchProductStore()
     // }
+
+    handleSomeEvent() {
+      // Perform some logic
+        this.$emit('someEvent', this.product);
+    },
+    handleCateEvent() {
+      // Perform some logic
+      this.$emit('CateEvent', this.cate);
+    }
   }
 }
 </script>

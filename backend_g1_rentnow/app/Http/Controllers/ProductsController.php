@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProductResource;
 use App\Models\Products;
 use Illuminate\Http\Request;
+
 
 class ProductsController extends Controller
 {
@@ -12,7 +14,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return Products::all();
+        // return Products::all();
+        return ProductResource::collection(Products::all());
     }
 
     /**
@@ -21,6 +24,17 @@ class ProductsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->input('name');
+    
+        $products = Products::query()
+            ->where('name', 'like', '%' . $query . '%')
+            ->get();
+    
+        return ProductResource::collection($products);
     }
 
     /**

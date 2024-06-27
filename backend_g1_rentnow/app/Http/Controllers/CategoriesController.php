@@ -10,6 +10,7 @@ use Spatie\Permission\Models\Permission;
 use App\Models\model_has_role;
 use App\Models\role_has_permissions;
 use App\Http\Resources\RoleResource;
+use App\Http\Resources\CategoryResource;
 
 class CategoriesController extends Controller
 {
@@ -22,6 +23,12 @@ class CategoriesController extends Controller
         return response()->json([
             'categories' => $categories
         ]);
+        // return CategoryResource::collection(Categories::all());
+    }
+
+    public function searchCate(Request $request){
+        $categories = Categories::where('name', 'like', '%'.$request->search.'%')->get();
+        return CategoryResource::collection($categories);
     }
 
     /**

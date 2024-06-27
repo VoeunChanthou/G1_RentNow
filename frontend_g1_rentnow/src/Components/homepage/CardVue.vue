@@ -27,7 +27,7 @@
           <p class="card-name" style="font-weight: bold; color: black;">{{ product.name }}</p>
           <p class="card-price text-danger" style="font-weight: bold;">{{ product.price }}</p>
         </div>
-        <p style="color: black;">nini shop</p>
+        <p style="color: black;">{{ product.shop.name }}</p>
         <div class="button_card">
           <button
             type="button"

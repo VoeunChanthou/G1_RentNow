@@ -19,4 +19,20 @@ export const useProductStore = defineStore('post', {
   }
 });
 
+export const searchCateStore = defineStore('cateSearch', {
+  state: () => ({
+    categoriesSeach: []
+  }),
+  actions: {
+    async fetchCateSearch(search: string) {
+      try {
+        const response = await axiosInstance.get(`/category/select?search=${search}`);
+        this.categoriesSeach = response.data;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  }
+});
+
 
