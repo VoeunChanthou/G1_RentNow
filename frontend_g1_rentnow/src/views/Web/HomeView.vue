@@ -21,7 +21,7 @@ const AuthUSer = useAuthStore()
           height: 100%;
           display: flex;
           flex-direction: column;
-          justify-content: space-evenly;
+          justify-content: space-evenly
         "
       >
         <div
