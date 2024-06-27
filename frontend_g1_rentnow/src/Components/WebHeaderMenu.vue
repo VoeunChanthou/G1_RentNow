@@ -47,20 +47,23 @@ const onSubmit = (async () => {
         <a type="button" class="btn btn-lg text-white" data-bs-toggle="modal" data-bs-target="#popupRegister" href="/register" style="background: #FFD800; font-weight: bold;">Register</a>
         
       </div>
-      <div class="dropdown ms-1 ms-lg-0" v-if="AuthUSer.user">
-				<a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60">
+      
+      <div class="dropdown ms-1 ms-lg-0 " v-if="AuthUSer.user" >
+        <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
+          <h6 class="text-warning">Hi_</h6>
+          <h6> {{ AuthUSer.user.first_name  }}</h6>
+					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="40" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
-					<!-- Profile info -->
+          <!-- Profile info -->
 					<li class="px-3">
-						<div class="d-flex align-items-center">
-							<!-- Avatar -->
+            <div class="d-flex align-items-center">
+              <!-- Avatar -->
 							<div class="avatar me-3">
-								<img class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
+                <img class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
 							</div>
 							<div>
-								<a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
+                <a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
 								<p class="small m-0">{{ AuthUSer.user.email }}</p>
 							</div>
 						</div>
@@ -76,6 +79,7 @@ const onSubmit = (async () => {
           <!-- Dark mode switch END -->
 				</ul>
 			</div>
+      
     </div>
   </div>
 </header>
@@ -85,6 +89,7 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/">Home</a></li>
         <li class="nav-item"><a href="/service">Service</a></li>
         <li class="nav-item"><a href="#">Contact Us</a></li>
+        <li class="nav-item"><a href="/history">History</a></li>
     </ul>
   </div>
 </nav>
