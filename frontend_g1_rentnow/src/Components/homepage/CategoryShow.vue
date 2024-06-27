@@ -4,18 +4,19 @@
   <div
     style="
       width: 100%;
-      height: 30vh;
+      margin-top: 200px;
+      height: 40vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: white;
+      padding-bottom: 100px;
     "
   >
     <div
       id="myCarousel"
       class="carousel slide container"
       data-bs-ride="carousel"
-      style=" display: grid; grid-template-columns: 5% 90% 5%"
+      style="display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
     >
       <button
         type="button"
@@ -31,10 +32,10 @@
         "
       >
       
-      <span class="carousel-control-prev-icon" style="color: black; " aria-hidden="true"></span>
+      <span class="carousel-control-prev-icon" style="height: 50%;color: black; " aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
       </button>
-      <div class="carousel-inner">
+      <div class="carousel-inner" style="padding-top: 45px;">
         <div class="carousel-item active">
           <div class="col-md-3 px-3">
             <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
@@ -129,7 +130,7 @@
           align-items: center;
         "
       >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="carousel-control-next-icon" style="height: 50%;" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
     </div>

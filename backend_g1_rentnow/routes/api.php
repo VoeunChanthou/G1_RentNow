@@ -3,11 +3,13 @@
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductDtailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+
 
 
 /*
@@ -51,3 +53,6 @@ Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
+
+Route::post('/detail', [ProductDtailController::class,'putDetail']);
+Route::get('/product/{id}', [ProductsController::class,'show']);
