@@ -71,6 +71,7 @@ const onSubmit = (async () => {
 					</li>
 					<!-- Links -->
 					<li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
 					<li><button class="dropdown-item " @click ="onSubmit"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
@@ -89,7 +90,6 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/">Home</a></li>
         <li class="nav-item"><a href="/service">Service</a></li>
         <li class="nav-item"><a href="#">Contact Us</a></li>
-        <li class="nav-item"><a href="/history">History</a></li>
     </ul>
   </div>
 </nav>
@@ -99,12 +99,17 @@ const onSubmit = (async () => {
 </div>
 </template>
 
-<style>
+<style scoped>
 a{
   text-decoration: none;
   color: black;
   font-size: 20px;
   font-weight: bold;
+}
+
+.dropdown>ul>li>a,  button{
+  font-size: 15px;
+  font-weight: 400;
 }
 </style>
   

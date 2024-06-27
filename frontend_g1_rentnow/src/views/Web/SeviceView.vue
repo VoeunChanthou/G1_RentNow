@@ -64,7 +64,7 @@ const handleDayEvent = (data: any) => {
       <CategoryVue @someEvent="handleSomeEvent" @CateEvent="handleCateEvent" @ShopEvent="handleShopEvent" @DayEvent="handleDayEvent"></CategoryVue>
 
       <div style="height: 100%; display: grid; grid-template-rows: 100px 100vh; gap: 20px">
-        <div class="top shadow p-3 px-5 rounded bg-white" style="display:flex; justify-content: space-between; align-items: center; position: sticky; top: 0;  z-index: 99;">
+        <div class="top shadow p-3 px-5 rounded bg-white" style="display:flex; justify-content: space-between; align-items: center;">
           <h3>Result</h3>
           <div class="select-group">
             <el-select v-model="value" placeholder="Select" style="width: 200px;" size="large">
@@ -79,9 +79,7 @@ const handleDayEvent = (data: any) => {
             </el-select>
           </div>
         </div>
-        <!-- <div v-if="cateData != ''" class="top shadow p-3 rounded form_Card" style="height: 80%; background: #f4f2f2;display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; overflow-y: scroll;">
-          <CardVue v-for="product in cateSeach.categoriesSeach.data" :key="product.id" :product="product"></CardVue>
-        </div> -->
+       
         <div class="top shadow p-3 rounded form_Card" style="height: 80%; background: #f4f2f2;display: flex; flex-wrap: wrap; gap: 20px; overflow-y: scroll;">
           <div v-for="product in search.productSearch.data" :key="product.id">
             <!-- <CardVue v-if="(dayData <= product.day && dayData != '' && cateData == '' && shopData == '')" :product="product"></CardVue> -->
