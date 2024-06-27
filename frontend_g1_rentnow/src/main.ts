@@ -13,7 +13,7 @@ import 'uno.css'
 import { configure } from 'vee-validate'
 import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 const app = createApp(App)
 
