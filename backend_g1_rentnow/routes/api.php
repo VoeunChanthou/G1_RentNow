@@ -5,6 +5,10 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +34,24 @@ Route::middleware('auth:sanctum')->group(function () {
 
 // logout route
 Route::post('/logout', [RegisteredUserController::class, 'logout']); 
+    Route::post('/create/product', [PostController::class, 'create']);
+    Route::delete('/delete/product', [PostController::class, 'delete']);
+    Route::put('/update/product', [PostController::class, 'update']);
+    Route::get('/get/products', [PostController::class, 'index']);
+
+
+
+//--shop------
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/create/shop', [ShopController::class, 'create']);
+    Route::post('/create/category', [CategoriesController::class, 'create']);
+
+});
+
+
+Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
+Route::get('/product', [ProductsController::class, 'index']);
+Route::get('/category', [CategoriesController::class, 'index']);
+Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/search', [ProductsController::class, 'search']);
+Route::get('/category/select', [CategoriesController::class, 'searchCate']);

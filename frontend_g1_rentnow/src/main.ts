@@ -13,7 +13,7 @@ import 'uno.css'
 import { configure } from 'vee-validate'
 import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
-import $ from 'jquery'
+// import $ from 'jquery'
 
 const app = createApp(App)
 
@@ -26,14 +26,6 @@ app.use(router.router)
 app.use(ElementPlus)
 app.use(router.simpleAcl)
 app.use(bootstrap)
-
-// import gAuthPlugin from 'vue3-google-oauth2';
-// let gauthClientId = '676785461988-icoil0dtlld2fcp5kb22llst7t94mans.apps.googleusercontent.com';
-// app.use(gAuthPlugin, {
-//   clientId: gauthClientId,
-//   scope: 'email',
-//   prompt: 'consent',
-// })
 
 app.config.globalProperties.$axios = axios
 

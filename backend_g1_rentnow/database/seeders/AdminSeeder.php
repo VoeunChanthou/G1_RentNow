@@ -18,15 +18,26 @@ class AdminSeeder extends Seeder
     public function run()
     {
         $admin = User::create([
-            'name'=>'Admin',
+            'first_name'=>'Admin',
+            'last_name'=>'Admin',
+            'phone_number'=>'09837434',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
             'profile' => 'user.avif'
         ]);
 
         $writer = User::create([
-            'name'=>'User',
+            'first_name'=>'chanthou',
+            'last_name'=>'Voeun',
+            'phone_number'=>'090766633',
             'email'=>'user@gmail.com',
+            'password'=>bcrypt('password')
+        ]);
+        $shop = User::create([
+            'first_name'=>'Sothea',
+            'last_name'=>'Voeun',
+            'phone_number'=>'0979030443',
+            'email'=>'sothea@gmail.com',
             'password'=>bcrypt('password')
         ]);
         
@@ -34,6 +45,7 @@ class AdminSeeder extends Seeder
 
         $admin_role = Role::create(['name' => 'admin']);
         $writer_role = Role::create(['name' => 'user']);
+        $shopowner_role = Role::create(['name' => 'shop owner']);
 
         $permission = Permission::create(['name' => 'Post access']);
         $permission = Permission::create(['name' => 'Post edit']);
@@ -62,6 +74,7 @@ class AdminSeeder extends Seeder
 
         $admin->assignRole($admin_role);
         $writer->assignRole($writer_role);
+        $shop->assignRole($shopowner_role);
 
 
         $admin_role->givePermissionTo(Permission::all());
