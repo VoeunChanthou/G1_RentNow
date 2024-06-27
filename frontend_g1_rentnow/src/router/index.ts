@@ -17,11 +17,6 @@ const router = createRouter({
       }
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('../views/Admin/Auth/LoginView.vue')
-    },
-    {
       path: '/',
       name: 'home',
       component: () => import('../views/Web/HomeView.vue')
@@ -30,11 +25,6 @@ const router = createRouter({
       path: '/service',
       name: 'service',
       component: () => import('../views/Web/SeviceView.vue')
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('../views/Admin/Auth/RegisterView.vue')
     },
     {
       path: '/products',
