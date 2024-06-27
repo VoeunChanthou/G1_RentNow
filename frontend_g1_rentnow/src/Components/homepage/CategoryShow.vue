@@ -155,7 +155,7 @@
     height: 100%;
     outline: black;
     color: black;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: black;
 }
 
 .carousel-inner .carousel-item.active,

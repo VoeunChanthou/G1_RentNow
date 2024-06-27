@@ -1,7 +1,8 @@
 
 
 <template>
-  <id id="app">
+  
+  <id id="app" v-if="product != ''">
     <div class="cards" style="height: 18rem; width: 12rem">
       <div class="card-1">
         <div class="icon">
@@ -29,14 +30,14 @@
         </div>
         <p style="color: black;">{{ product.shop.name }}</p>
         <div class="button_card">
-          <button
+          <a
             type="button"
             class="btn btn-light"
             style="background: #f4e065"
-            @click="ButtonDetail()"
+            :href="/detail/+product.id"
           >
             Detail
-          </button>
+        </a>
           <button
             type="button"
             class="btn btn-light"
@@ -91,7 +92,7 @@ export default {
   }
 }
 </script>
-  <style>
+  <style scoped>
 .cards {
   /* border: 1px solid black; */
   border-radius: 10px;

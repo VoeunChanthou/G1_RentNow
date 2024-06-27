@@ -23,9 +23,10 @@
           size="large"
           @change="handleCateEvent"
         >
-          <el-option-group v-for="product in products.product.categories" :key="product.id">
+          <el-option-group v-for="(product, index) in products.product.categories" :key="product.id">
             <el-option :key="product.id" :label="product.name" :value="product.name" />
-          </el-option-group>
+            <el-option v-if="index+1 == products.product.categories.length" label="All categories" value="" />
+          </el-option-group> 
         </el-select>
       </div>
       <div class="select-group" style="margin-top: 20px">
@@ -34,14 +35,16 @@
           placeholder="select my shop"
           style="width: 100%; margin-bottom: 10px"
           size="large"
+          @change="handleShopEvent"
         >
-          <el-option-group v-for="subShop in shop.shops" :key="subShop.id">
+          <el-option-group v-for="(subShop, index) in shop.shops" :key="index">
             <el-option :key="subShop.id" :label="subShop.name" :value="subShop.name" />
+            <el-option v-if="(index+1 == shop.shops.length)" label="all shop" value="" />
           </el-option-group>
         </el-select>
       </div>
       <div class="select-group" style="margin-top: 20px">
-          <el-input v-model="day" style="width: 100%" size="large" placeholder="Day required" />
+          <el-input type="number" v-model="day" style="width: 100%" size="large" placeholder="Day required" @input="handleDayEvent"/>
       </div>
     </div>
   </div>
@@ -75,6 +78,8 @@ export default {
       this.fetchShop()
       this.handleSomeEvent()
       this.handleCateEvent()
+      this.handleShopEvent()
+      this.handleDayEvent()
       // this.fetchProductStore()
     },
     fetchProduct() {
@@ -94,6 +99,15 @@ export default {
     handleCateEvent() {
       // Perform some logic
       this.$emit('CateEvent', this.cate);
+    },
+
+    handleShopEvent() {
+      // Perform some logic
+      this.$emit('ShopEvent', this.shopValue);
+    },
+    handleDayEvent() {
+      // Perform some logic
+      this.$emit('DayEvent', this.day);
     }
   }
 }
