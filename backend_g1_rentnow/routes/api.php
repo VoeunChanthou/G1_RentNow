@@ -26,6 +26,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
 Route::middleware('auth:sanctum')->group(function () {
-    // logout route
 });
-Route::post('/logout', [RegisteredUserController::class, 'logout']);
+
+// logout route
+Route::post('/logout', [RegisteredUserController::class, 'logout']); 
