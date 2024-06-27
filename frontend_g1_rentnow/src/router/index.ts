@@ -35,13 +35,18 @@ const router = createRouter({
       path: '/register',
       name: 'register',
       component: () => import('../views/Admin/Auth/RegisterView.vue')
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: () => import('../views/Web/MessageView.vue')
     }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
   // const publicPages = ['/']
-  const publicPages = ['/login', '/', '/post', '/register', '/service']
+  const publicPages = ['/login', '/', '/post', '/register', '/service','/message']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 

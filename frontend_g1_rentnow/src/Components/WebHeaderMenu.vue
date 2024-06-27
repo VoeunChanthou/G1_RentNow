@@ -91,6 +91,7 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/service">Service</a></li>
         <li class="nav-item"><a href="#">Contact Us</a></li>
     </ul>
+    <li class="nav-item"><a href="/message">Message</a></li>
   </div>
 </nav>
 
