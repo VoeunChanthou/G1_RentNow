@@ -32,11 +32,6 @@ const router = createRouter({
       component: () => import('../views/Web/Post/ListView.vue')
     },
     {
-      path: '/register',
-      name: 'register',
-      component: () => import('../views/Admin/Auth/RegisterView.vue')
-    },
-    {
       path : '/history',
       name : 'history',
       component : ()=> import ('../views/Web/HistoryPage.vue')
@@ -46,7 +41,7 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
   // const publicPages = ['/']
-  const publicPages = ['/login', '/', '/post', '/register','/history']
+  const publicPages = ['/login', '/', '/post','/history']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
