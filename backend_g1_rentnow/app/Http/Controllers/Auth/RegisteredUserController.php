@@ -56,10 +56,11 @@ class RegisteredUserController extends Controller
         ]);
         // return $user;
         }
-        public function logout(){
-            $users = User::all();
-            return response()->json([
-                'users' => $users
-            ], 200);
-        }
+
+        public function logout(){ 
+            $users = User::all(); 
+            return response()->json([ 
+                'users' => $users 
+            ],200); 
+        } 
 }

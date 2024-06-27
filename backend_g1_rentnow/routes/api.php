@@ -32,11 +32,15 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
 Route::middleware('auth:sanctum')->group(function () {
+});
+
+// logout route
+Route::post('/logout', [RegisteredUserController::class, 'logout']); 
     Route::post('/create/product', [PostController::class, 'create']);
     Route::delete('/delete/product', [PostController::class, 'delete']);
     Route::put('/update/product', [PostController::class, 'update']);
     Route::get('/get/products', [PostController::class, 'index']);
-});
+
 
 
 //--shop------

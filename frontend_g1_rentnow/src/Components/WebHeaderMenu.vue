@@ -52,7 +52,7 @@ const onSubmit = (async () => {
         <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
           <h6 class="text-warning">Hi_</h6>
           <h6> {{ AuthUSer.user.first_name  }}</h6>
-					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="40" style="margin: 8px;">
+					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
           <!-- Profile info -->
