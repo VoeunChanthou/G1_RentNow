@@ -5,13 +5,12 @@
       <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
       <el-form @submit="onSubmit">
         <el-form-item :error="emailError">
-          <el-input placeholder="Email Address" v-model="email" size="large" />
+          <el-input placeholder="Email Address" v-model="email"/>
         </el-form-item>
 
         <el-form-item :error="nameError" class="mt-8">
-          <el-input placeholder="Password" v-model="password" size="large" type="password" />
+          <el-input placeholder="Password" v-model="password" type="password" />
         </el-form-item>
-
         <div>
           <el-button
             size="large"
@@ -53,11 +52,13 @@ const { handleSubmit, isSubmitting } = useForm({
 
 const onSubmit = handleSubmit(async (values) => {
   try {
+  alert (axiosInstance)
     const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
-    console.warn('Error')
+    // console.warn('Error')
+    console.log('hello');
   }
 })
 
