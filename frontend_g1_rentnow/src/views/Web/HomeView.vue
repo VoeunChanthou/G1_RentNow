@@ -4,6 +4,7 @@ import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
+import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
 import type { componentSizeMap } from 'element-plus';
 import {useAuthStore} from '@/stores/auth-store.ts'
 const AuthUSer = useAuthStore()
@@ -70,6 +71,9 @@ const AuthUSer = useAuthStore()
       </div>
       </div>
       </WebLayout>
+      
+  <!-- register popup  -->
+  <PopupRegisterVue></PopupRegisterVue>
 
   <!-- login form -->
   <WebLoginVue></WebLoginVue>
