@@ -18,7 +18,7 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid mt-5">
+  <div class="container-fluid px-5" style="margin-top: 100px;">
     <div class="row">
       <div class="col-md-5">
         <div class="card">
