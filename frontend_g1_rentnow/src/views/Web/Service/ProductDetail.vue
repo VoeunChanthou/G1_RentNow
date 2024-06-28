@@ -16,9 +16,9 @@
 
           <!-- product slide show product -->
           <el-carousel indicator-position="outside">
-            <el-carousel-item v-for="item in 4" :key="item">
+            <el-carousel-item v-for="item in image" :key="item.id">
               <div class="product-slide-show">
-                <img src="../../../assets/bike.png" alt="" />
+                <img :src="item.image" width="60%" height="50%"  alt="" />
               </div>
             </el-carousel-item>
           </el-carousel>
@@ -27,10 +27,10 @@
         <div class="product-detail-right">
           <div class="header-right-detail">
             <div class="name-detail">
-              <h4>Bianchi magma 9s</h4>
-              <p style="color: red">Battambong Shop</p>
+              <h4>{{ product.name }}</h4>
+              <p style="color: red">{{ shop.name }}</p>
             </div>
-            <h1 style="color: red">10 Day</h1>
+            <h1 style="color: red">{{ product.days }} Days</h1>
           </div>
 
           <p>
@@ -39,7 +39,7 @@
           </p>
 
           <div class="price-detail">
-            <h1 style="color: red">$ 30</h1>
+            <h1 style="color: red">$ {{ product.price }}</h1>
             <span>Stock: 10</span>
             <button class="btn">
               <Icon icon="codicon:dash" style="color: #eb0f0f" />
@@ -78,11 +78,13 @@
       </div>
     </div>
   </WebLayout>
+  
 </template>
 
 <script>
 import WebLayout from '../../../Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
+import axiosInstance from '@/plugins/axios';
 
 export default {
   components: {
@@ -90,12 +92,28 @@ export default {
     Icon
   },
   data() {
-    return {}
+    return {
+      product: {},
+      shop: {},
+      image: {}
+    }
   },
   mounted() {
-    console.log('mounted')
+    this.getProductDetail()
   },
-  methods: {}
+  methods: {
+    getProductDetail() {
+      axiosInstance.get(`product/${this.$route.params.id}`)
+       .then((response) => {
+          this.product = response.data.data
+          this.shop = response.data.data.shop
+          this.image = response.data.data.detail
+        })
+       .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
 }
 </script>
 
