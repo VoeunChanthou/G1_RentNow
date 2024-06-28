@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="px-5" >
     <h2>Popular Shop</h2>
     <div class="row">
       <!-- <template> -->
@@ -38,11 +38,11 @@ body {
   /* font-family: 'Raleway', sans-serif; */
 }
 
-.container {
+/* .contents {
   padding: 50px;
-}
+} */
 
-.container h2 {
+.px-5 h2 {
   text-align: center;
   margin-bottom: 10px;
   margin: 50px 0;
