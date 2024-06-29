@@ -51,15 +51,15 @@ const router = createRouter({
       name: 'aboutUs',
       component: () => import('../views/Web/AboutUs.vue')
     },
-    {
-      path: '/shop/dashboard',
-      name: 'shop',
-      component: () => import('../views/Shop/DashboardView.vue'),
-      meta: {
-        requiresAuth: true,
-        role: 'shop owner'
-      }
-    }
+    // {
+    //   path: '/shop/dashboard',
+    //   name: 'shop',
+    //   component: () => import('../views/Shop/DashboardView.vue'),
+    //   meta: {
+    //     requiresAuth: true,
+    //     role: 'shop owner'
+    //   }
+    // }
    
   ]
 })
