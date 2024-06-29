@@ -4,7 +4,7 @@
   <div
     style="
       width: 100%;
-      margin-top: 20px;
+      margin-top: 20px;   
       height: 40vh;
       display: flex;
       justify-content: center;
