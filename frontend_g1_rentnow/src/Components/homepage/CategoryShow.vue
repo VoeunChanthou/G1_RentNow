@@ -4,12 +4,13 @@
   <div
     style="
       width: 100%;
-      margin-top: 200px;
+      margin-top: 20px;
       height: 40vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding-bottom: 100px;
+      background: white;
     "
   >
     <div

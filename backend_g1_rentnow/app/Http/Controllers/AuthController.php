@@ -43,8 +43,8 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $permissions = $user->getAllPermissions();
-        // $roles = $user->getRoleNames();
+        $permissions = $user->getAllPermissions();
+        $roles = $user->getRoleNames();
         return response()->json([
             'message' => 'Login success',
             'data' =>$user,

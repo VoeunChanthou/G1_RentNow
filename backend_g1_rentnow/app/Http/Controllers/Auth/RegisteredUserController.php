@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 
 class RegisteredUserController extends Controller
@@ -36,6 +38,8 @@ class RegisteredUserController extends Controller
     public function register(RegisterRequest $request)
     {
         $user = User::createUser($request);
+        $writer_role = Role::where('id', '2')->first();
+        $user->assignRole($writer_role);
         $token = $user->createToken('auth_token')->plainTextToken;
         event(new Registered($user));
         $log = User::loingUser($request);
