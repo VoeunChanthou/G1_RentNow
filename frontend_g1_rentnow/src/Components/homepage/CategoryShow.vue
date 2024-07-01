@@ -15,9 +15,9 @@
   >
     <div
       id="myCarousel"
-      class="carousel slide container"
+      class="carousel slide px-5"
       data-bs-ride="carousel"
-      style="display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
+      style="width: 96%;display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
     >
       <button
         type="button"

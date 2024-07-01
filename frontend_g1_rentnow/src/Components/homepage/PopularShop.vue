@@ -1,9 +1,9 @@
 <template>
   <div class="px-5" >
     <h2>Popular Shop</h2>
-    <div class="row">
+    <div class="row px-4">
       <!-- <template> -->
-        <div v-for="(item, indext) in items" :key="indext" class="col-md-4">
+        <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
             <a href="#">
               <div class="content-overlay"></div>

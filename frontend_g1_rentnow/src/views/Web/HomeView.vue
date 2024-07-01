@@ -27,7 +27,7 @@ const AuthUSer = useAuthStore()
         "
       >
         <div
-          class="content-right"
+          class="content-right px-5"
           style="
             width: 75%;
             height: 45vh;

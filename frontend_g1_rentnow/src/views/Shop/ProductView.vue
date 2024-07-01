@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <el-container class="layout-container-demo" style="height: 100vh">
       <AdminLayout />
       <el-container>
@@ -37,7 +37,7 @@
     <script lang="ts" setup>
   import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
   import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
-  import ProductVue from '@/Components/Shop/products/ProductVue.vue'
+  
 
   
   import { computed, ref } from 'vue'
@@ -68,9 +68,4 @@
     height: 100%;
     right: 20px;
   }
-  </style> -->
-
-
-
-
-
+  </style>
