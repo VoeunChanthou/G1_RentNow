@@ -11,6 +11,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use App\Models\Comment;
 
 class User extends Authenticatable
 {
@@ -68,4 +69,8 @@ class User extends Authenticatable
            $users = User::where('email', $request -> email)->first();
             return $users;
     }
+    public function comments(){
+        return $this->hasMany(Comment::class);
+    }
+    
 }
