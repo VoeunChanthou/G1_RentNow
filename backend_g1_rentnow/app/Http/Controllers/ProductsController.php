@@ -23,7 +23,8 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+       
+
     }
 
     public function search(Request $request)
