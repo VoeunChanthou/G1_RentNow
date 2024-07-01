@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     MailSettingController,
 };
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +51,9 @@ Route::get('/admin/dashboard', function () {
 })->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/get', [PermissionController::class,'index']);
+Route::get('/get/user', [UserController::class,'index']);
 
 
 

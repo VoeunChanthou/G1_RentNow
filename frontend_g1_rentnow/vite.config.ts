@@ -8,6 +8,7 @@ import Unocss from 'unocss/vite'
 import { presetAttributify, presetUno } from 'unocss' // Presets
 
 // https://vitejs.dev/config/
+
 export default defineConfig({
   plugins: [
     vue(),
@@ -21,5 +22,12 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
-  }
+  },
+  optimizeDeps: {
+    include: ["@fawmi/vue-google-maps", "fast-deep-equal"],
+   },
 })
+
+
+
+

@@ -11,6 +11,9 @@ import 'element-plus/dist/index.css'
 import axios from './plugins/axios'
 import 'uno.css'
 import { configure } from 'vee-validate'
+import 'bootstrap/dist/css/bootstrap.css'
+import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
+// import $ from 'jquery'
 
 const app = createApp(App)
 
@@ -22,6 +25,7 @@ app.use(createPinia())
 app.use(router.router)
 app.use(ElementPlus)
 app.use(router.simpleAcl)
+app.use(bootstrap)
 
 app.config.globalProperties.$axios = axios
 
