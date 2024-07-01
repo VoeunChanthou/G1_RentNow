@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
@@ -41,7 +42,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
-
+    Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
+    Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
 });
 
 
