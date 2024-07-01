@@ -15,6 +15,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 import bootstrap from 'bootstrap/dist/js/bootstrap.bundle.js'
 // import $ from 'jquery'
 
+
+
 const app = createApp(App)
 
 configure({
@@ -26,6 +28,7 @@ app.use(router.router)
 app.use(ElementPlus)
 app.use(router.simpleAcl)
 app.use(bootstrap)
+
 
 app.config.globalProperties.$axios = axios
 

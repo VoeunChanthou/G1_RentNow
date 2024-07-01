@@ -1,57 +1,91 @@
-<!-- src/components/HeaderMenu.vue -->
 <template>
-  <header class="text-white px-50 py-3 bg-white flex justify-between items-center">
-    <!-- <div class="flex items-center text-black font-bold">
-      <Icon icon="skill-icons:devto-dark" style="font-size: 45px" />
-      <div class="ml-5 flex font-semibold">
-        <div
-          v-for="(item, index) in menu"
-          :key="index"
-          v-permission="item.meta.permission"
-          class="p-3 rounded hover:text-blue cursor-pointer"
-        >
-          {{ item.title }}
-        </div>
-      </div>
-    </div>
-    <nav :class="['flex', 'items-center', { hidden: !isMenuOpen, 'flex-col': isMenuOpen }]">
-      <ul class="flex space-x-4 text-black">
-        <Icon icon="pepicons-pencil:person-circle" style="font-size: 32px" />
-      </ul>
-    </nav> -->
-  </header>
+  <el-aside width="300px" style="overflow: hidden">
+    <el-header
+      style="
+        height: 80px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        background: linear-gradient(90deg, #722cb3 30%, #c49be9);
+      "
+    >
+      <el-image src="../../../src/assets/image 62.png" style="width: 150px"></el-image>
+    </el-header>
+    <el-scrollbar>
+      <el-menu :default-openeds="['1', '3']">
+        <el-menu-item><el-icon><Icon icon="material-symbols:team-dashboard-outline"></Icon></el-icon><el-link href="/shop/dashboard">Dashboard</el-link></el-menu-item>
+        <el-sub-menu index="1">
+          <template #title>
+            <el-icon><Icon icon="icon-park-outline:ad-product" width="20" height="20"></Icon></el-icon>Product
+          </template>
+            <el-menu-item><el-link href="/shop/product">All products</el-link></el-menu-item>
+        </el-sub-menu>
+
+        <el-sub-menu index="2">
+          <template #title>
+            <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Categories
+          </template>
+            <el-menu-item index="2-1">Bike</el-menu-item>
+            <el-menu-item index="2-2">Party</el-menu-item>
+            <el-menu-item index="2-2">Baby</el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="3">
+          <template #title>
+            <el-icon><message /></el-icon>Messages
+          </template>
+          <el-menu-item-group>
+            <template #title>Group 1</template>
+            <el-menu-item index="3-1">Option 1</el-menu-item>
+            <el-menu-item index="3-2">Option 2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item-group title="Group 2">
+            <el-menu-item index="3-3">Option 3</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="3-4">
+            <template #title>Option 4</template>
+            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+          </el-sub-menu>
+        </el-sub-menu>
+      </el-menu>
+    </el-scrollbar>
+  </el-aside>
 </template>
 
-<script setup lang="ts">
-// import { ref } from 'vue'
-// import { Icon } from '@iconify/vue'
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { Icon } from '@iconify/vue'
+import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 
-// const isMenuOpen = ref(false)
-// const menu = [
-//   {
-//     title: 'User',
-//     meta: {
-//       permission: 'view_users'
-//     },
-//     link: '/users'
-//   },
-//   {
-//     title: 'Role',
-//     meta: {
-//       permission: 'view_roles'
-//     },
-//     link: '/roles'
-//   },
-//   {
-//     title: 'Permission',
-//     meta: {
-//       permission: 'view_permissions'
-//     },
-//     link: '/permissions'
-//   }
-// ]
-
-// const toggleMenu = () => {
-//   isMenuOpen.value = !isMenuOpen.value
-// }
+const item = {
+  date: '2016-05-02',
+  name: 'Tom',
+  address: 'No. 189, Grove St, Los Angeles'
+}
+const tableData = ref(Array.from({ length: 20 }).fill(item))
+const url = '@/assets/image 62.png'
 </script>
+
+<style scoped>
+.layout-container-demo .el-header {
+  position: relative;
+  background-color: var(--el-color-primary-light-7);
+  color: var(--el-text-color-primary);
+}
+.layout-container-demo .el-aside {
+  color: var(--el-text-color-primary);
+  background: var(--el-color-primary-light-8);
+}
+.layout-container-demo .el-menu {
+  border-right: none;
+}
+.layout-container-demo .el-main {
+  padding: 0;
+}
+.layout-container-demo .toolbar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  right: 20px;
+}
+</style>
