@@ -1,9 +1,9 @@
 <template>
     <WebLayout >
-            <DeletePopup />
+            <DeletePopup @Deletehistory = "Deletehistory" />
             <Header />
-            <CardHistory v-for="product in listhistory.histories.data" :key="product.id" :product = "product" />
-            <h2 v-if="!listhistory.histories.data">
+            <CardHistory v-for="product in listhistory.histories.data" :key="product.id" :product = "product" @idproduct ="iddelete" />
+            <h2 v-if="!listhistory.histories.data" >
                 <LoadingView />
             </h2>
         </WebLayout>
@@ -21,4 +21,19 @@ import { log } from "console";
 const AuthUSer = useAuthStore()
 const listhistory = userHistory()
 const his = listhistory.fetchhistory()
+let id = null;
+const iddelete = (async (productid) => {
+   id = productid
+})
+const Deletehistory = (async () => {
+    console.log(id);
+    try {
+    await axiosInstance.delete('/delete/' + id)
+    location.reload();
+  } catch (error) {
+    console.warn('Error')
+  }
+    
+})
+
 </script>

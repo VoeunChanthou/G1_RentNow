@@ -1,5 +1,5 @@
 <template>
-  <PopupDelete :product = "product.id" />
+  <PopupDelete />
     <div class="row justify-content-center mb-2 bg-white">
       <div class="col-md-12 col-xl-11">
         <div class="card shadow-0 border rounded-3 ">
@@ -46,7 +46,7 @@
                 <h6 class="text-success">{{ product.id }}</h6>
                 <div class="d-flex flex-column mt-4">
                   <button data-mdb-button-init data-mdb-ripple-init class="btn btn-sm text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#detailhistory" aria-controls="offcanvasNavbar" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">Details</button>
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger btn-sm mt-2 " type="button" data-bs-toggle="modal" href="#exampleModalToggle" role="button" >
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger btn-sm mt-2 " type="button" data-bs-toggle="modal" href="#exampleModalToggle" role="button" @click="this.$emit('idproduct', product.id)" >
                      Delete 
                   </button>
                 </div>

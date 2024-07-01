@@ -11,7 +11,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" @click="$emit(Deletehistory)">Delete</button>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2"  @click="this.$emit('Deletehistory', product)" >Delete</button>
       </div>
     </div>
   </div>
