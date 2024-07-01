@@ -32,22 +32,41 @@ const router = createRouter({
       component: () => import('../views/Web/Post/ListView.vue')
     },
     {
+      path: '/products',
+      name: 'products',
+      component: () => import('../views/Web/Service/CategoryVue.vue')
+    },
+    {
+      path: '/detail/:id',
+      name: 'detail',
+      component: () => import('../views/Web/Service/ProductDetail.vue')
+    },
+    {
+      path : '/history',
+      name : 'history',
+      component : ()=> import ('../views/Web/HistoryPage.vue')
+    },
+    {
+      path: '/message',
+      name: 'message',
+      component: () => import('../views/Web/MessageView.vue')
+    },
+    {
       path: '/aboutUs',
-      name: 'AboutUs',
+      name: 'aboutUs',
       component: () => import('../views/Web/AboutUs.vue')
 
     },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import('../views/Admin/Auth/RegisterView.vue')
-    }
+    // {
+    //   path: '/register',
+    //   name: 'register',
+    //   component: () => import('../views/Admin/Auth/RegisterView.vue')
+    // }
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  // const publicPages = ['/']
-  const publicPages = ['/login', '/', '/post', '/register']
+  const publicPages = ['/', '/service', '/aboutUs']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
@@ -73,7 +92,7 @@ router.beforeEach(async (to, from, next) => {
   }
 
   if (authRequired && !store.isAuthenticated) {
-    next('/login')
+    next('/')
   } else {
     next()
   }

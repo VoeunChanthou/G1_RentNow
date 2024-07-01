@@ -48,9 +48,16 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Products $products)
+    public function show(String $id)
     {
-        //
+        // $product = Products::where('id', $id)->first();
+        $products = ProductResource::collection(Products::all());
+        foreach ($products as $product) {
+            if ($product->id == $id) {
+                return $product;
+            }
+        };
+
     }
 
     /**

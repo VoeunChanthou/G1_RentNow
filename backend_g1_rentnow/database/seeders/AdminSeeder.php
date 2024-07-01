@@ -20,16 +20,16 @@ class AdminSeeder extends Seeder
         $admin = User::create([
             'first_name'=>'Admin',
             'last_name'=>'Admin',
-            'phone_number'=>'087656789',
+            'phone_number'=>'09837434',
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('password'),
             'profile' => 'user.avif'
         ]);
 
         $writer = User::create([
-            'first_name'=>'User',
-            'last_name'=>'User',
-            'phone_number'=>'0878656789',
+            'first_name'=>'chanthou',
+            'last_name'=>'Voeun',
+            'phone_number'=>'090766633',
             'email'=>'user@gmail.com',
             'password'=>bcrypt('password')
         ]);

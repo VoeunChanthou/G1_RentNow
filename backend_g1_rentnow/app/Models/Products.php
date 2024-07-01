@@ -17,4 +17,8 @@ class Products extends Model
     public function shop(){
         return $this->belongsTo(Shop::class);
     }
+
+    public function detail(){
+        return $this->hasMany(Detail::class, 'product_id');
+    }
 }
