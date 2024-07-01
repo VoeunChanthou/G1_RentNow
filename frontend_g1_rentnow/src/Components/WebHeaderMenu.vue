@@ -20,11 +20,12 @@ const onSubmit = (async () => {
 <template>
   <!-- Button trigger modal -->
 <!-- Modal -->
+{{ AuthUSer }}
 
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
-    <img src="../assets/image 62.png" alt="" style="padding-right: 100px;">
+    <img src="../assets/image62.png" alt="" style="padding-right: 100px;">
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -107,7 +108,8 @@ a{
   font-weight: bold;
 }
 
-.dropdown>ul>li>a,  button{
+.dropdown > ul > li > a,
+button {
   font-size: 15px;
   font-weight: 400;
 }

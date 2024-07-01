@@ -8,15 +8,6 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/admin/dashboard',
-      name: 'dashboard',
-      component: () => import('../views/Admin/DashboardView.vue'),
-      meta: {
-        requiresAuth: true,
-        role: 'admin'
-      }
-    },
-    {
       path: '/',
       name: 'home',
       component: () => import('../views/Web/HomeView.vue')
@@ -24,44 +15,81 @@ const router = createRouter({
     {
       path: '/service',
       name: 'service',
-      component: () => import('../views/Web/SeviceView.vue')
+      component: () => import('../views/Web/SeviceView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
       path: '/products',
       name: 'products',
-      component: () => import('../views/Web/Service/CategoryVue.vue')
+      component: () => import('../views/Web/Service/CategoryVue.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
       path: '/detail/:id',
       name: 'detail',
-      component: () => import('../views/Web/Service/ProductDetail.vue')
+      component: () => import('../views/Web/Service/ProductDetail.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
-      path : '/history',
-      name : 'history',
-      component : ()=> import ('../views/Web/HistoryPage.vue')
+      path: '/history',
+      name: 'history',
+      component: () => import('../views/Web/HistoryPage.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
       path: '/message',
       name: 'message',
-      component: () => import('../views/Web/MessageView.vue')
+      component: () => import('../views/Web/MessageView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
       path: '/aboutUs',
       name: 'aboutUs',
-      component: () => import('../views/Web/AboutUs.vue')
-
+      component: () => import('../views/Web/AboutUs.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
-    // {
-    //   path: '/register',
-    //   name: 'register',
-    //   component: () => import('../views/Admin/Auth/RegisterView.vue')
-    // }
+    {
+      path: '/shop/dashboard',
+      name: 'shop',
+      component: () => import('../views/Shop/DashboardView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/shop/product',
+      name: 'product',
+      component: () => import('../views/Shop/ProductView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/', '/service', '/aboutUs']
+  const publicPages = ['/']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
@@ -71,6 +99,7 @@ router.beforeEach(async (to, from, next) => {
     store.isAuthenticated = true
     store.user = data.data
 
+    // console.log(data.dat);
     store.permissions = data.data.permissions.map((item: any) => item.name)
     store.roles = data.data.roles.map((item: any) => item.name)
 
@@ -88,7 +117,10 @@ router.beforeEach(async (to, from, next) => {
 
   if (authRequired && !store.isAuthenticated) {
     next('/')
-  } else {
+  } else if (to.meta.role && !store.roles.includes(to.meta.role)) {
+    // Redirect to home page if user doesn't have the required role
+    next('/')
+  }else {
     next()
   }
 })

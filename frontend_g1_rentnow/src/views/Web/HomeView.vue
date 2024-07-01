@@ -9,7 +9,8 @@ import type { componentSizeMap } from 'element-plus';
 import {useAuthStore} from '@/stores/auth-store.ts'
 import PopularShopVue from '@/Components/homepage/PopularShop.vue'
 import VideoWork from '@/Components/homepage/VideoWork.vue'
-import PeopleSay from '@/Components/homepage/PeopleSay.vue'
+// import PeopleSay from '@/Components/homepage/PeopleSay.vue'
+import FooterMenu from '@/Components/homepage/FooterMenu.vue'
 const AuthUSer = useAuthStore()
 </script>
 
@@ -27,7 +28,7 @@ const AuthUSer = useAuthStore()
         "
       >
         <div
-          class="content-right"
+          class="content-right px-5"
           style="
             width: 75%;
             height: 45vh;
@@ -91,8 +92,9 @@ const AuthUSer = useAuthStore()
   <VideoWork></VideoWork>
   
   <!-- PeopleSay -->
-  <PeopleSay></PeopleSay>
-  
+  <!-- <PeopleSay></PeopleSay> -->
+  <!-- footer -->
+  <FooterMenu></FooterMenu>
 </WebLayout>
 </template>
 

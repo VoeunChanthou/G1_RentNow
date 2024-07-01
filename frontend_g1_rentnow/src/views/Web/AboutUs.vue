@@ -106,15 +106,17 @@
       </div>
     </div>
   </div>
+  <FooterMenu></FooterMenu>
 </WebLayout>
 </template>
 
 
 <script>
+import FooterMenu from "@/Components/homepage/FooterMenu.vue";
 import messegeForm from "../../Components/AboutUs/messegeForm.vue"
 import WebLayout from "../../Components/Layouts/WebLayout.vue"
 export default {
-  components: { messegeForm, WebLayout },
+  components: { messegeForm, WebLayout, FooterMenu},
   name: 'App',
   data() {
     return {

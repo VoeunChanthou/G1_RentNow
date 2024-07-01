@@ -4,19 +4,20 @@
   <div
     style="
       width: 100%;
-      margin-top: 200px;
+      margin-top: 20px;   
       height: 40vh;
       display: flex;
       justify-content: center;
       align-items: center;
       padding-bottom: 100px;
+      /* background: rgb(31, 29, 29); */
     "
   >
     <div
       id="myCarousel"
-      class="carousel slide container"
+      class="carousel slide px-5"
       data-bs-ride="carousel"
-      style="display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
+      style="width: 100%; display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
     >
       <button
         type="button"

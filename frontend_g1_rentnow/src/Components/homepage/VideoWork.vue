@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="content px-5 py-5">
       <div class="text-section">
         <h2><span class="highlight"><b>See</b></span> <b>how it work</b> <span class="highlight"><b>?</b></span></h2>
         <p>
@@ -29,7 +29,7 @@
     padding: 0;
   }
    */
-  .container {
+  .content {
     display: flex;
     align-items: center;
     justify-content: space-between;
