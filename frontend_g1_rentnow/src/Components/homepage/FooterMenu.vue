@@ -3,7 +3,7 @@
     <div class="footer-content">
       <div class="impact">
         <div class="logo-footer">
-          <img src="../../assets/image 62.png" alt="" />
+          <img src="../../assets/image62.png" alt="" />
         </div>
         <div class="text-footer">
           <p>

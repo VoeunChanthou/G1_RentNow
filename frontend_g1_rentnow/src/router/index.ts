@@ -10,7 +10,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../views/Web/HomeView.vue')
+      component: () => import('../views/Web/HomeView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
     },
     {
       path: '/service',
@@ -115,12 +119,21 @@ router.beforeEach(async (to, from, next) => {
     /* empty */
   }
 
+
+  
+
+  // if(store.roles.includes('shop owner')){
+  //   publicPages = ['/shop/dashboard']
+  // }
+
+
   if (authRequired && !store.isAuthenticated) {
     next('/')
   } else if (to.meta.role && !store.roles.includes(to.meta.role)) {
     // Redirect to home page if user doesn't have the required role
     next('/')
-  }else {
+  }
+  else {
     next()
   }
 })
