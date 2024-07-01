@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
+    "@fawmi/vue-google-maps": "^0.9.79",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "element-plus": "^2.7.4",
@@ -26,6 +27,7 @@
     "vue-router": "^4.3.0",
     "vue-simple-acl": "^2.0.2",
     "vue3-google-login": "^2.0.26",
+    "vuelidate": "^0.7.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {
