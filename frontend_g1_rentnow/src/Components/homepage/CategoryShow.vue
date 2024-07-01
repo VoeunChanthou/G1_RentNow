@@ -10,14 +10,14 @@
       justify-content: center;
       align-items: center;
       padding-bottom: 100px;
-      background: white;
+      /* background: rgb(31, 29, 29); */
     "
   >
     <div
       id="myCarousel"
       class="carousel slide px-5"
       data-bs-ride="carousel"
-      style="width: 96%;display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
+      style="width: 100%; display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
     >
       <button
         type="button"

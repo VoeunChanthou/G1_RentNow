@@ -7,6 +7,7 @@ import CategoryVue from '@/Components/service/CategoryVue.vue'
 import CardVue from '@/Components/homepage/CardVue.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
 import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
+import FooterMenu from '@/Components/homepage/FooterMenu.vue';
 import type { componentSizeMap } from 'element-plus';
 import { ref } from 'vue';
 import { useAuthStore } from '@/stores/auth-store.ts'
@@ -99,6 +100,9 @@ const handleDayEvent = (data: any) => {
 
     <!-- register -->
     <PopupRegisterVue></PopupRegisterVue>
+    
+    <!-- footer -->
+    <FooterMenu></FooterMenu>
   </WebLayout>
 
 </template>

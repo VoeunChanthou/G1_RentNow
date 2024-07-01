@@ -1,5 +1,5 @@
 <template>
-    <div class="container mt-5" style="border-radius: 1px; background-color: #ffff; z-index: 3;">
+    <div class="container mt-5" style="border-radius: 1px; background-color: #ffff; z-index: 3; margin-bottom: 50px">
         <div class="d-flex flex-column" style="width: 100%">
             <form action="" class="d-flex justify-content-spece-between ">
                 <img src="../../assets/99aae0fc307961ad95c2a253867e8f9b.jpg" alt="" style="width: 47%; height: 480px;">

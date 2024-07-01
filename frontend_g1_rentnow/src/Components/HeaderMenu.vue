@@ -9,7 +9,7 @@
         background: linear-gradient(90deg, #722cb3 30%, #c49be9);
       "
     >
-      <el-image src="../../../src/assets/image 62.png" style="width: 150px"></el-image>
+      <el-image src="../../../src/assets/image62.png" style="width: 150px"></el-image>
     </el-header>
     <el-scrollbar>
       <el-menu :default-openeds="['1', '3']">

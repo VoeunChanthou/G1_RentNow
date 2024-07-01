@@ -26,25 +26,6 @@
         <div class="col-xs-12 col-sm-6 col-md-4">
           <div class="card shadow-lg">
             <div class="card-body text-center">
-              <div class="img-container blue-bg">
-                <img class="img-fluid" src="../../assets/userImg.jpg" alt="card image" />
-              </div>
-              <div class="card-title">
-                <h4>Jasmine</h4>
-                <p class="card-text">
-                  Skilline's school management software helps traditional and online schools manage
-                  scheduling.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- ./Testimonial item -->
-
-        <!-- Testimonial item -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card shadow-lg">
-            <div class="card-body text-center">
               <div class="img-container pink-bg">
                 <img class="img-fluid" src="../../assets/userImg.jpg" alt="card image" />
               </div>
