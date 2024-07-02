@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
-
-
+use App\Models\Products;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,10 +40,15 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
     Route::put('/update/product', [PostController::class, 'update']);
     Route::get('/get/products', [PostController::class, 'index']);
 
-
+// ----product---
+Route::middleware('auth:sanctum')->group(function () {
+    
+    
+});
 
 //--shop------
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/create_product', [ProductsController::class, 'create']);
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
 

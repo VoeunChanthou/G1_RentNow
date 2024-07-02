@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
+use App\Models\model_has_role;
 use App\Models\Products;
 use Illuminate\Http\Request;
-
+use Spatie\Permission\Models\Role;
 
 class ProductsController extends Controller
 {
@@ -21,10 +22,29 @@ class ProductsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-       
-
+        $userRole = model_has_role::where('model_id', $request->user()->id)->first();
+        $role = Role::where('id', $userRole->role_id)->first();
+        if ($role->name === 'admin') {
+            $validatedData = $request->validate([
+                'name' => 'required|string',
+                'price' => 'required|integer',
+                'days' => 'required|integer',
+                'category_id' => 'required',
+                'shop_id' => 'required',
+            ]);
+            $product = Products::create($validatedData);
+            return response()->json([
+                'message' => 'Product created successfully',
+                'product' => $product
+            ], 201);
+        } else {
+            return response()->json([
+                'message' => 'You do not have permission to create new products'
+            ], 403);
+        }
+        
     }
 
     public function search(Request $request)
@@ -38,13 +58,7 @@ class ProductsController extends Controller
         return ProductResource::collection($products);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  
 
     /**
      * Display the specified resource.
