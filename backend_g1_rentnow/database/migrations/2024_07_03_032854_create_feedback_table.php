@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("user_id")->references('id')->on ('user');
-            $table->foreignId("product_id")->references('id')->on ('products');
+            $table->foreignId("user_id")->references('id')->on('user')->onDelete('cascade');
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->text("comment");
             $table->softDeletes();
             $table->timestamps();
