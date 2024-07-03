@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Categories;
+use App\Models\Favorite;
 
 class Products extends Model
 {
@@ -20,5 +21,9 @@ class Products extends Model
 
     public function detail(){
         return $this->hasMany(Detail::class, 'product_id');
+    }
+    
+    public function favorite(){
+        return $this->belongsTo(Favorite::class);
     }
 }

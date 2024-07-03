@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\FavoriteController;
 
 
 
@@ -48,6 +49,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
 
+    Route::get('/favorites', [FavoriteController::class, 'index']);
+    Route::post('/favorite', [FavoriteController::class, 'create']);
+    Route::delete('/unfavorite/{id}', [FavoriteController::class, 'destroy']);   
 });
 
 

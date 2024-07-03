@@ -84,6 +84,15 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('../views/Web/FavoritePage.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    }
 
   ]
 })

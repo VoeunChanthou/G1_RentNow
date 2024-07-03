@@ -6,91 +6,70 @@
       <div class="card-1">
         <div class="icon">
           <p class="day">200 day</p>
-          <v-btn @click="favoSubmit(product.id)" style="cursor: pointer;">
+          <v-btn @click="unfavoSubmit(id)" style="cursor: pointer;">
             <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i >
           </v-btn>
         </div>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazjG1jTiHXRqdd7f4pNP1_K_PzyRuLXNIYw&usqp=CAU" class="card-img-top" alt="..." style="height: 9rem" />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazjG1jTiHXRqdd7f4pNP1_K_PzyRuLXNIYw&usqp=CAU"
+          class="card-img-top"
+          alt="..."
+          style="height: 9rem"
+        />
       </div>
       <div class="card-body">
         <div class="title">
-          <p class="card-name" style="font-weight: bold; color: black;">{{ product.name }}</p>
-          <p class="card-price text-danger" style="font-weight: bold;">{{ product.price }}</p>
+          <p class="card-name" style="font-weight: bold; color: black">{{ product.name }}</p>
+          <p class="card-price text-danger" style="font-weight: bold">{{ product.price }}</p>
         </div>
-        <p style="color: black;">{{ product.shop.name }}</p>
+        <p style="color: black">ksd</p>
         <div class="button_card">
           <a
             type="button"
             class="btn btn-light"
             style="background: #f4e065"
-            :href="/detail/+product.id"
+            :href="/detail/ + product.id"
           >
             Detail
-        </a>
-          <button
-            type="button"
-            class="btn btn-light"
-            style="background: #a083d5"
-            @click="ButtonBorrow()"
-          >
-            Borrow
-          </button>
-          <!-- <button><router-link to="/" exact>Borrow</router-link></button> -->
-          <!-- <button><router-link to="/CardBorrowVue" exact>Borrow</router-link></button> -->
+          </a>
+          <button type="button" alert="jej" class="btn btn-light" style="background: #a083d5">Borrow</button>
         </div>
       </div>
     </div>
   </id>
 </template>
-    
-<script>
-import CardBorrowVue from './CardBorrowVue.vue'
+  <script>
 import axiosInstance from '@/plugins/axios';
+
+  
 export default {
   name: 'CardVue',
-  components: {
-    CardBorrowVue
-  },
-  props: ['product'],
+  props: ['product', 'id'],
   data() {
     return {
       showNewForm: false,
       isFavorite: false,
-      isFavo: ''
+      isFavo: '',
+      isNotFavo: ''
     }
   },
-  methods: {
-    Select() {
-      this.selectedForm === !this.selectedForm
-    },
-    SelectCard() {
-      console.log(this.cards)
-    },
-    ButtonBorrow() {
-      this.showNewForm = !this.showNewForm
-    },
-    handleSubmitNewForm() {
-      console.log('New Form Data:', this.cards)
-    },
-    toggleIcon() {
-      this.isFavorite === !this.isFavorite
-    },
 
-    favoSubmit(value){
-      axiosInstance.post('/favorite', { product_id: value })
-       .then(response => {
-          console.log(response)
-        })
-       .catch(error => {
-          console.error(error)
-        })
-      // console.log(value)
+  methods: {
+    // ... other methods
+    unfavoSubmit(value) {
+      axiosInstance.delete(`/unfavorite/${value}`)
+      .then(response => {
+        location.reload();
+      })
+      .catch(error => {
+        console.error(error)
+      })
     },
-    
   }
 }
+
 </script>
-  <style scoped>
+    <style scoped>
 .cards {
   /* border: 1px solid black; */
   border-radius: 10px;

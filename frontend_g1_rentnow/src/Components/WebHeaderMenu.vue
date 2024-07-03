@@ -91,7 +91,7 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/service">Service</a></li>
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
-    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#"><Icon icon="ri:heart-fill" width="40" height="40"  style="color: #940065" /></a></li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="/favorite"><Icon icon="ri:heart-fill" width="40" height="40"  style="color: #940065" /></a></li>
     <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;"><a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a></li>
   </div>
 </nav>
