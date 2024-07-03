@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import ForForgotpassword from '@/Components/homepage/ForForgotpassword.vue'
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
@@ -76,7 +77,7 @@ const AuthUSer = useAuthStore()
       
   <!-- register popup  -->
   <PopupRegisterVue></PopupRegisterVue>
-    
+    <ForForgotpassword />
   
   <!-- login form -->
   <WebLoginVue></WebLoginVue>
