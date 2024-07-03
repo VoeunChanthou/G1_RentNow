@@ -28,6 +28,7 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
+<<<<<<< HEAD
         <StatisticCard />
         <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
@@ -38,6 +39,19 @@
           </el-col>
         </el-row>
         <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
+=======
+        <StatisticCard/>
+        <el-row :gutter="16" style="margin-top: 20px;">
+          <el-col :span="12">
+            <ChartComponent/>
+          </el-col>
+          <el-col :span="12">
+            <PolarArea/>
+          </el-col>
+        
+        </el-row>
+        <el-table :data="filterTableData" style="width: 100%; margin-top: 20px;">
+>>>>>>> shop_owner_dashboard
           <el-table-column label="Date" prop="date" />
           <el-table-column label="Name" prop="name" />
           <el-table-column align="right">
@@ -77,7 +91,13 @@ interface User {
 const search = ref('')
 const filterTableData = computed(() =>
   tableData.filter(
+<<<<<<< HEAD
     (data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase())
+=======
+    (data) =>
+      !search.value ||
+      data.name.toLowerCase().includes(search.value.toLowerCase())
+>>>>>>> shop_owner_dashboard
   )
 )
 const handleEdit = (index: number, row: User) => {
@@ -91,23 +111,40 @@ const tableData: User[] = [
   {
     date: '2016-05-03',
     name: 'Tom',
+<<<<<<< HEAD
     address: 'No. 189, Grove St, Los Angeles'
+=======
+    address: 'No. 189, Grove St, Los Angeles',
+>>>>>>> shop_owner_dashboard
   },
   {
     date: '2016-05-02',
     name: 'John',
+<<<<<<< HEAD
     address: 'No. 189, Grove St, Los Angeles'
+=======
+    address: 'No. 189, Grove St, Los Angeles',
+>>>>>>> shop_owner_dashboard
   },
   {
     date: '2016-05-04',
     name: 'Morgan',
+<<<<<<< HEAD
     address: 'No. 189, Grove St, Los Angeles'
+=======
+    address: 'No. 189, Grove St, Los Angeles',
+>>>>>>> shop_owner_dashboard
   },
   {
     date: '2016-05-01',
     name: 'Jessy',
+<<<<<<< HEAD
     address: 'No. 189, Grove St, Los Angeles'
   }
+=======
+    address: 'No. 189, Grove St, Los Angeles',
+  },
+>>>>>>> shop_owner_dashboard
 ]
 </script>
   

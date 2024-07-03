@@ -20,7 +20,6 @@ const onSubmit = (async () => {
 <template>
   <!-- Button trigger modal -->
 <!-- Modal -->
-{{ AuthUSer }}
 
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import CommentProduct from "@/Components/service/CommentProduct.vue"
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
@@ -16,6 +17,7 @@ const AuthUSer = useAuthStore()
 
 <template>
   <WebLayout>
+    
     <div style="height: 70vh; display: flex">
       <div
         class="head-right px-5"
@@ -74,6 +76,7 @@ const AuthUSer = useAuthStore()
         <img src="../../assets/image-removebg-preview.png" alt="" style="width: 70%" />
       </div>
       </div>
+      <CommentProduct />
       
   <!-- register popup  -->
   <PopupRegisterVue></PopupRegisterVue>

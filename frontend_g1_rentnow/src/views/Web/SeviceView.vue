@@ -46,6 +46,7 @@ const handleDayEvent = (data: any) => {
 </script>
 
 <template>
+  
   <!-- {{ cateSeach.categoriesSeach.data }} -->
   <WebLayout>
     <div

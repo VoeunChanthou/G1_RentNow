@@ -12,8 +12,13 @@
       <el-image src="../../../src/assets/image62.png" style="width: 150px"></el-image>
     </el-header>
     <el-scrollbar>
+<<<<<<< HEAD
       <el-menu :default-openeds="['1', '3']">
         <el-menu-item><el-icon><Icon icon="material-symbols:team-dashboard-outline"></Icon></el-icon><el-link href="/shop/dashboard">Dashboard</el-link></el-menu-item>
+=======
+      <el-menu :default-openeds="['1', '4']">
+        <el-menu-item><el-icon><Icon icon="material-symbols:team-dashboard-outline"></Icon></el-icon><el-link href="/">Dashboard</el-link></el-menu-item>
+>>>>>>> shop_owner_dashboard
         <el-sub-menu index="1">
           <template #title>
             <el-icon><Icon icon="icon-park-outline:ad-product" width="20" height="20"></Icon></el-icon>Product
@@ -31,6 +36,7 @@
         </el-sub-menu>
         <el-sub-menu index="3">
           <template #title>
+<<<<<<< HEAD
             <el-icon><message /></el-icon>Messages
           </template>
           <el-menu-item-group>
@@ -44,6 +50,23 @@
           <el-sub-menu index="3-4">
             <template #title>Option 4</template>
             <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+=======
+            <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Member
+          </template>
+            <el-menu-item index="2-1"><el-link href="/shop/member">Members</el-link> </el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="4">
+          <template #title>
+            <el-icon><message /></el-icon>Messages
+          </template>
+          <el-menu-item-group>
+            <el-menu-item index="3-1">To admin</el-menu-item>
+            <el-menu-item index="3-2">From client</el-menu-item>
+          </el-menu-item-group>
+          <el-sub-menu index="3-4">
+            <template #title>Feedback</template>
+            <el-menu-item index="3-4-1">My feedback</el-menu-item>
+>>>>>>> shop_owner_dashboard
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>

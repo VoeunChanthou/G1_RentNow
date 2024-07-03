@@ -1,5 +1,6 @@
 <template>
   <WebLayout>
+    <CommentProduct />
     <div class="content px-5">
       <!-- back button -->
       <div class="back-button" @click="$router.go(-1)">
@@ -71,7 +72,8 @@
           </div>
 
           <div class="button-action">
-            <button class="btn-comment">Comment</button>
+      
+            <button class="btn-rent" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Comment</button>
             <button class="btn-rent">Rent Now</button>
           </div>
         </div>
@@ -85,11 +87,13 @@
 import WebLayout from '../../../Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
+import CommentProduct from '@/Components/service/CommentProduct.vue';
 
 export default {
   components: {
     WebLayout,
-    Icon
+    Icon,
+    CommentProduct
   },
   data() {
     return {

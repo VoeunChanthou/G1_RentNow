@@ -3,9 +3,8 @@
   <div
     class="modal fade"
     id="exampleModal"
-    tabindex="-1"
     aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
+    aria-hidden="false"
   >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -142,7 +141,6 @@ const onSubmit = handleSubmit(async (values) => {
     const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
-    location.reload()
   } catch (error) {
     alert('You password is wrong !')
   }

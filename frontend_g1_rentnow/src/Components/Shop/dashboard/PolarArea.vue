@@ -10,7 +10,11 @@
 
 </template>
 
+<<<<<<< HEAD
   <<script>
+=======
+  <script>
+>>>>>>> shop_owner_dashboard
  import { Pie } from 'vue-chartjs'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js/auto'
 
@@ -22,10 +26,17 @@ ChartJS.register(ArcElement, Tooltip, Legend)
   data() {
     return {
       chartData: {
+<<<<<<< HEAD
         labels: ['Pink', 'Gray', 'Orange', 'Purple', 'Cyan'],
         datasets: [
           {
             data: [52, 16, 6, 2, 14],
+=======
+        labels: ['baby', 'bike', 'party', 'sport'],
+        datasets: [
+          {
+            data: [2, 4, 5, 2, 4],
+>>>>>>> shop_owner_dashboard
             backgroundColor: ['#FF69B4', '#808080', '#FFA500', '#800080', '#00FFFF']
           }
         ]

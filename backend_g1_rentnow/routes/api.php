@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\feedbackcontroller;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
@@ -47,6 +48,7 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
+    Route::get('/cemment', [feedbackcontroller::class, 'create']);
 
 });
 
@@ -60,3 +62,4 @@ Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
+Route::post('/create/product', [ProductsController::class,'create']);
