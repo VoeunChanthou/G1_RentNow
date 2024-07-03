@@ -60,3 +60,4 @@ Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
+Route::post('/create/product', [ProductsController::class,'create']);

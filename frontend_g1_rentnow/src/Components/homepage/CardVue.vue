@@ -21,7 +21,7 @@
             </span> -->
           </v-btn>
         </div>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazjG1jTiHXRqdd7f4pNP1_K_PzyRuLXNIYw&usqp=CAU" class="card-img-top" alt="..." style="height: 9rem" />
+        <img :src="product.image" class="card-img-top" alt="..." style="height: 9rem" />
       </div>
       <div class="card-body">
         <div class="title">

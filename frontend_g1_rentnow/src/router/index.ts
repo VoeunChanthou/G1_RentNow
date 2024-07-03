@@ -8,13 +8,9 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'home',
       component: () => import('../views/Web/HomeView.vue'),
-      meta: {
-        requiresAuth: true,
-        role: 'user'
-      }
     },
     {
       path: '/service',
@@ -71,7 +67,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/shop/dashboard',
+      path: '/',
       name: 'shop',
       component: () => import('../views/Shop/DashboardView.vue'),
       meta: {
@@ -88,12 +84,30 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/create/product',
+      name: 'createpro',
+      component: () => import('../views/Shop/product/CreateProduct.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/shop/member',
+      name: 'member',
+      component: () => import('../views/Shop/member/ListMember.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
 
   ]
 })
 
 router.beforeEach(async (to, from, next) => {
-  const publicPages = ['/']
+  var publicPages = ['/home']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
@@ -103,10 +117,10 @@ router.beforeEach(async (to, from, next) => {
     store.isAuthenticated = true
     store.user = data.data
 
-    // console.log(data.dat);
+    
     store.permissions = data.data.permissions.map((item: any) => item.name)
     store.roles = data.data.roles.map((item: any) => item.name)
-
+    
     const rules = () =>
       defineAclRules((setRule) => {
         store.permissions.forEach((permission: string) => {
@@ -115,6 +129,7 @@ router.beforeEach(async (to, from, next) => {
       })
 
     simpleAcl.rules = rules()
+
   } catch (error) {
     /* empty */
   }
@@ -123,15 +138,16 @@ router.beforeEach(async (to, from, next) => {
   
 
   // if(store.roles.includes('shop owner')){
-  //   publicPages = ['/shop/dashboard']
+  //   console.log('hello')
   // }
 
 
+
   if (authRequired && !store.isAuthenticated) {
-    next('/')
+    next('/home')
   } else if (to.meta.role && !store.roles.includes(to.meta.role)) {
     // Redirect to home page if user doesn't have the required role
-    next('/')
+    next('/home')
   }
   else {
     next()

@@ -16,8 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->integer('days');
-            $table->foreignId('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreignId('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->longText('image');
+            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->foreignId('shop_id')->references('id')->on('shops');
             $table->timestamps();
         });
     }
