@@ -1,144 +1,45 @@
 <script setup lang="ts">
+import { Icon } from '@iconify/vue'
 </script>
-<template>
-  <div
-    style="
-      width: 100%;
-      margin-top: 200px;
-      height: 40vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding-bottom: 100px;
-    "
-  >
-    <div
-      id="myCarousel"
-      class="carousel slide container"
-      data-bs-ride="carousel"
-      style="display: grid; grid-template-columns: 5% 90% 5%; justify-content: center; align-content: center;"
-    >
-      <button
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="prev"
-        style="
-          width: 100%;
-          border: none;
-          background: none;
-          display: flex;
-          justify-content: start;
-          align-items: center;
-        "
-      >
-      
-      <span class="carousel-control-prev-icon" style="height: 50%;color: black; " aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <div class="carousel-inner" style="padding-top: 45px;">
-        <div class="carousel-item active">
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        <div class="carousel-item">
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 px-3">
-            <div class="card card-body" style="display: grid; grid-template-columns: 30% 70%; background: linear-gradient(90deg, #C49BE9 30%, #F4E065); cursor: pointer;">
-              <div style="width: 60px; height: 60px; background: pink; border-radius: 50%"></div>
-              <div style=" width: 100%; display: flex; flex-direction: column;">
-                <span style="font-weight: bold;">Moto</span>
-                <span>This motor</span>
-              </div>
-            </div>
-          </div>
-         
-        </div>
-        
-      </div>
 
-      <button
-        type="button"
-        data-bs-target="#myCarousel"
-        data-bs-slide="next"
-        style="
-          width: 100%;
-          border: none;
-          display: flex;
-          background: none;
-          justify-content: end;
-          align-items: center;
-        "
-      >
-        <span class="carousel-control-next-icon" style="height: 50%;" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+<template>
+  <div class="container">
+    <div class="category-product">
+      <!-- left -->
+      <div class="category-left">
+        <h2><b style="color: #722CB3;">CATEGORIES OF PRODUCT</b></h2>
+      </div>
+      <!-- left -->
+
+      <!-- center -->
+       <div class="category-center">
+       </div>
+      <!-- center -->
+
+      <!-- right -->
+      <div class="category-right">
+        <div class="dropdown">
+        <a style="background: #ffd800; color: white; padding: 10px;" class="btn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <b>Categories of Product</b>
+        </a>
+
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#">Bike</a></li>
+          <li><a class="dropdown-item" href="#">Motor</a></li>
+          <li><a class="dropdown-item" href="#">Car</a></li>
+          <li><a class="dropdown-item" href="#">Camera</a></li>
+        </ul>
+      </div>
+      <!-- right -->
+
     </div>
+  </div>
   </div>
 </template>
 
+
 <style scoped>
-#myCarousel {
+/* #myCarousel {
   margin-top: 50px;
 }
 
@@ -157,6 +58,12 @@
     outline: black;
     color: black;
     background-color: rgba(0, 0, 0, 0.3);
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  height: 100%;
+  outline: black;
+  color: black;
+  background-color: black;
 }
 
 .carousel-inner .carousel-item.active,
@@ -189,6 +96,11 @@
   .carousel-item-prev:not(.carousel-item-end) {
     transform: translateX(-25%) !important;
   }
+} */
+
+.category-product{
+  display: flex;
+  justify-content: space-between;
 }
 </style>
 

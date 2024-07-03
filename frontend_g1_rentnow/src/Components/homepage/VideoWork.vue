@@ -1,7 +1,8 @@
 <template>
     <div class="container">
       <div class="text-section">
-        <h2><span class="highlight"><b>See</b></span> <b>how it work</b> <span class="highlight"><b>?</b></span></h2>
+        <h2><B>SEE HOW IT WORK ?</B></h2>
+        <!-- <h2><span class="highlight"><b>SEE</b></span> <b>HOW IT WORK</b> <span class="highlight"><b>?</b></span></h2> -->
         <p>
           Skilline’s school management software helps traditional and online schools manage scheduling. Skilline’s school management software helps traditional and online schools manage scheduling.
         </p>
@@ -22,67 +23,50 @@
   </script>
   
   <style scoped>
-  /* body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-  }
-   */
   .container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 50px;
-    background-color: white;
-    margin: 20px auto;
-    width: 90%;
-    /* max-width: 1200px; */
+    padding: 30px;
+    background-color:#eaeaea83;
     margin-top: 100px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.176);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.176); */
   }
   
   .text-section {
     flex: 1;
-    /* padding-right: 20px; */
   }
   
   .text-section h2 {
     font-size: 2em;
     margin: 0 0 20px 0;
+    color: #FFD800;
   }
   
-  .text-section .highlight {
-    color: #fbb034;
-  }
+  /* .text-section .highlight {
+    color: #FFD800;
+  } */
   
   .text-section p {
-    /* font-size: 1.2em; */
-    /* color: #555; */
-    /* line-height: 1.5; */
     margin: 0 0 20px 0;
   }
   
   .read-more {
-    background-color: #691BA5;
+    background-color: #FFD800;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 6px;
+    width: 170px;
     font-size: 1em;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 25px;
   }
   
-  .read-more:hover {
+  /* .read-more:hover {
     background-color: #FFD800;
-  }
+  } */
   
   .video-section {
     flex: 1;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
   }
   
   .video-section iframe {

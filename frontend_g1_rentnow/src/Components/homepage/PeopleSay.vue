@@ -1,151 +1,111 @@
 <template>
-  <section id="testimonials" class="pb-5">
-    <div class="container">
-      <h5 class="section-title h1">What people say !</h5>
-      <div class="row">
-        <!-- Testimonial item -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <div class="img-container yellow-bg">
-                <img class="img-fluid" src="../../assets/userImg.jpg" alt="card image" />
-              </div>
-              <div class="card-title">
-                <h4>Jasmine</h4>
-                <p class="card-text">
-                  Skilline's school management software helps traditional and online schools manage
-                  scheduling.
-                </p>
-              </div>
-            </div>
+  <div class="container">
+    <h2><B>WHAT PEOPLE SAYS !!</B></h2>
+    <div class="row g-2">
+      <div class="col-md-4">
+        <div class="card p-3 text-center px-4">
+          <div class="user-image">
+            <img src="https://i.imgur.com/PKHvlRS.jpg" class="rounded-circle" width="80" />
           </div>
-        </div>
-        <!-- ./Testimonial item -->
 
-        <!-- Testimonial item -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <div class="img-container blue-bg">
-                <img class="img-fluid" src="../../assets/userImg.jpg" alt="card image" />
-              </div>
-              <div class="card-title">
-                <h4>Jasmine</h4>
-                <p class="card-text">
-                  Skilline's school management software helps traditional and online schools manage
-                  scheduling.
-                </p>
-              </div>
-            </div>
+          <div class="user-content">
+            <h5 class="mb-0">Bruce Hardy</h5>
+            <!-- <span>Software Developer</span> -->
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
           </div>
-        </div>
-        <!-- ./Testimonial item -->
 
-        <!-- Testimonial item -->
-        <div class="col-xs-12 col-sm-6 col-md-4">
-          <div class="card">
-            <div class="card-body text-center">
-              <div class="img-container pink-bg">
-                <img class="img-fluid" src="../../assets/userImg.jpg" alt="card image" />
-              </div>
-              <div class="card-title">
-                <h4>Jasmine</h4>
-                <p class="card-text">
-                  Skilline's school management software helps traditional and online schools manage
-                  scheduling.
-                </p>
-              </div>
-            </div>
+          <div class="ratings">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
           </div>
         </div>
-        <!-- ./Testimonial item -->
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-3 text-center px-4">
+          <div class="user-image">
+            <img src="https://i.imgur.com/w2CKRB9.jpg" class="rounded-circle" width="80" />
+          </div>
+
+          <div class="user-content">
+            <h5 class="mb-0">Mark Smith</h5>
+            <!-- <span>Web Developer</span> -->
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+
+          <div class="ratings">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card p-3 text-center px-4">
+          <div class="user-image">
+            <img src="https://i.imgur.com/ACeArwY.jpg" class="rounded-circle" width="80" />
+          </div>
+
+          <div class="user-content">
+            <h5 class="mb-0">Veera Duncan</h5>
+            <!-- <span>Software Architect</span> -->
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+
+          <div class="ratings">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
-<script>
-export default {}
+<script scoped>
+// import { Icon } from '@iconify/vue'
+// export default {}
+// Icon
 </script>
 
-<style>
-@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-
-
-section {
-  padding: 10em 0;
+<style scoped>
+.container h2{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 0 20px 0;
+  color: #722cb3;
 }
-.container .row {
-  padding: 5em 0;
-}
-
-.section-title {
-  text-align: center;
-  /* margin-bottom: 70px; */
-  padding: 0 0 2.5em 0;
-
-}
-
 .card {
   border: none;
-  padding: 20px;
-  background: white;
-  box-shadow: 0 4px 8px #ffd900a4;
+  box-shadow:  2px 2px 2px 2px rgba(0, 0, 0, 0.1);
 }
 
-.card-body {
-  text-align: center;
-  margin-bottom: 50px;
+.user-content p {
+  margin-top: 5px;
+  font-size: 12px;
 }
 
-.img-container {
-  width: 140px;
-  height: 140px;
-  border-radius: 50%;
-  display: inline-block;
-  position: relative;
-  margin-bottom: 20px;
+.ratings i {
+  color: blue;
 }
-
-.img-container img {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  position: absolute;
-  top: -6em;
-  left: 10px;
-  box-shadow: 0 4px 8px #722cb397;
-}
-
-
-.card-title {
-  color: #333;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.card-text {
-  color: #555;
-  font-size: 16px;
-}
-
-.card-title::after{
-  content: '”';
-  font-size: 50px;
-  color: #691ba5;
-  position: absolute;
-  right: 40px;
-  font-family: Georgia, serif;
-}
-
-.card-title::before {
-  content: '“';
-  font-size: 50px;
-  color: #691ba5;
-  position: absolute;
-  left: 40px;
-  top: 180px;
-  font-family: Georgia, serif;
-}
-
 </style>
