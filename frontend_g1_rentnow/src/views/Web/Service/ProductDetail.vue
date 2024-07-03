@@ -31,7 +31,7 @@
               <h4>{{ product.name }}</h4>
               <p style="color: red">{{ shop.name }}</p>
             </div>
-            <h1 style="color: red">{{ product.days }} Days</h1>
+            <h1 style="color: red">{{ product.days }} {{product.id}} Days</h1>
           </div>
 
           <p>
@@ -73,7 +73,7 @@
 
           <div class="button-action">
       
-            <button class="btn-rent" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap">Comment</button>
+            <button class="btn-rent" data-bs-toggle="modal" data-bs-target="#formfeedback" data-bs-whatever="@getbootstrap">Comment</button>
             <button class="btn-rent">Rent Now</button>
           </div>
         </div>

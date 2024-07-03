@@ -1,16 +1,4 @@
 <template>
-<<<<<<< HEAD
-    <h1>Hello</h1>
-</template>
-
-<script>
-
-</script>
-
-<style>
-
-</style>
-=======
   <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
     <el-table-column align="center">
       <template #header>
@@ -96,4 +84,3 @@ const tableData: User[] = [
 
 
   
->>>>>>> shop_owner_dashboard
