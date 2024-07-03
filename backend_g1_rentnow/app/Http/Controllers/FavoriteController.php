@@ -14,9 +14,6 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        // $allFav = Favorite::all();
-        // return $allFav;
-
         return FavoriteResource::collection(Favorite::all());
     }
     
@@ -25,17 +22,14 @@ class FavoriteController extends Controller
      */
     public function create(Request $request)
     {
-        $creatfav = new Favorite();
-        $creatfav->user_id = $request->user()->id;
-        $creatfav->product_id = $request->product_id;
-        $creatfav->save();
-        
-
-         return response()->json([
-           'message' => 'Favorite created successfully',
-            'favorite' => $creatfav
-        ], 201);
-
+        $creatfav = new Favorite(); 
+        $creatfav->user_id = $request->user()->id; 
+        $creatfav->product_id = $request->product_id; 
+        $creatfav->save();  
+         return response()->json([ 
+           'message' => 'Favorite created successfully', 
+            'favorite' => $creatfav 
+        ], 201); 
     }
 
     /**

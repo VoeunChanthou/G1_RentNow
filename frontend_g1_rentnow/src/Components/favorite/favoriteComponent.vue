@@ -24,12 +24,7 @@
         </div>
         <p style="color: black">ksd</p>
         <div class="button_card">
-          <a
-            type="button"
-            class="btn btn-light"
-            style="background: #f4e065"
-            :href="/detail/ + product.id"
-          >
+          <a type="button" class="btn btn-light" style="background: #f4e065" :href="/detail/ + product.id" >
             Detail
           </a>
           <button type="button" alert="jej" class="btn btn-light" style="background: #a083d5">Borrow</button>
@@ -50,7 +45,6 @@ export default {
       showNewForm: false,
       isFavorite: false,
       isFavo: '',
-      isNotFavo: ''
     }
   },
 
