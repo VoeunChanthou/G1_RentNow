@@ -155,4 +155,3 @@ const { value: email, errorMessage: emailError } = useField('email')
   min-height: 100vh;
 }
 </style>
- 

@@ -34,6 +34,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
 Route::middleware('auth:sanctum')->group(function () {
+
 });
 
 // logout route
@@ -60,6 +61,7 @@ Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 
+
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
 Route::post('/create/product', [ProductsController::class,'create']);
@@ -71,3 +73,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/members', [MemberController::class, 'index']);
 
 });
+

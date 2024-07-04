@@ -40,48 +40,60 @@
                           <i class="fab fa-facebook-f"></i>
                         </button>
 
-                        <button  data-mdb-ripple-init type="button" class="btn  btn-floating mx-1">
-                            <i class="fab fa-google"></i>
-                        </button>
+            <button data-mdb-ripple-init type="button" class="btn btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
 
-                        <button  data-mdb-ripple-init type="button" class="btn btn-floating mx-1">
-                            <i class="fab fa-twitter"></i>
-                        </button>
-                    </div>
-                </div>
-            </form>
+            <button data-mdb-ripple-init type="button" class="btn btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+          </div>
         </div>
+      </form>
     </div>
+  </div>
 </template>
 
 <script>
 import { date } from 'yup';
+import { Icon } from '@iconify/vue'
+import axiosInstance from '@/plugins/axios'
+import { useAuthStore } from '@/stores/auth-store.ts'
+import router from '@/router';
 
 export default {
-    data() {
+  data() {
     return {
       users: {
-        FirstName: '',
-        LastName: '',
-        Email: '',
-        Comment: '',
+        user_id: useAuthStore().user.id,
+        first_name: '',
+        last_name: '',
+        email: '',
+        comment: '',
       },
     };
   },
+
+  mounted() {
+  },
+
   methods: {
     submitComment() {
-      // Perform any necessary validation or processing
-      if (this.Comment.trim() !== '') {
-        // Send the comment to a backend API or perform other actions
-        console.log('Submitting comment:', this.Comment);
-
-        // Reset the comment field
-        this.Comment = '';
-      }
-    }
+      try {
+        axiosInstance.post('/comment', this.users);
+             this.users.first_name = ''
+             this.users.last_name = ''
+             this.users.email = ''
+             this.users.comment = ''
+             alert('Your message has been sent')
+          } catch {
+        console.log('Failed to send comment')
+       
+      }  
+    },
+    
   }
 }
-
 </script>
 
 <style>

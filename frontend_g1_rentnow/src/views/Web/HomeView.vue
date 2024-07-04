@@ -4,7 +4,6 @@ import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
-import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
 import type { componentSizeMap } from 'element-plus';
 import {useAuthStore} from '@/stores/auth-store.ts'
 import PopularShopVue from '@/Components/homepage/PopularShop.vue'
@@ -74,19 +73,14 @@ const AuthUSer = useAuthStore()
         <img src="../../assets/image-removebg-preview.png" alt="" style="width: 70%" />
       </div>
       </div>
-      
-  <!-- register popup  -->
-  <PopupRegisterVue></PopupRegisterVue>
-    
-  
+
   <!-- login form -->
   <WebLoginVue></WebLoginVue>
-  
+
   <!-- category show -->
   <CategoryShow></CategoryShow>
   
   <!-- PopularShop -->
-  <PopularShopVue></PopularShopVue>
   
   <!-- VideoWork -->
   <VideoWork></VideoWork>
@@ -96,10 +90,5 @@ const AuthUSer = useAuthStore()
   <!-- footer -->
   <FooterMenu></FooterMenu>
 </WebLayout>
+
 </template>
-
-<style>
-
-</style>
-
-

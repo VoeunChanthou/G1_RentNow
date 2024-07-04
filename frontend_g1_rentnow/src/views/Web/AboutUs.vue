@@ -115,6 +115,8 @@
 import FooterMenu from "@/Components/homepage/FooterMenu.vue";
 import messegeForm from "../../Components/AboutUs/messegeForm.vue"
 import WebLayout from "../../Components/Layouts/WebLayout.vue"
+import { Icon } from '@iconify/vue'
+import axiosInstance from '@/plugins/axios'
 export default {
   components: { messegeForm, WebLayout, FooterMenu},
   name: 'App',
@@ -122,7 +124,8 @@ export default {
     return {
       mapCenter: { lat: 6.465422, lng: 3.406448 }, // Initial center
       mapZoom: 7, // Initial zoom level
-      markerPosition: null // Marker position will be set based on searched location
+      markerPosition: null,
+       // Marker position will be set based on searched location
     }
   },
   methods: {
