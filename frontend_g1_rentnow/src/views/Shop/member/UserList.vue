@@ -93,9 +93,7 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <div style="width: 100%; display: flex; justify-content: end; margin-bottom: 20px;">
-          <el-button  type="primary" :icon="Plus"><el-link href="/add/member" style="color: white;">add member</el-link></el-button>
-        </div>
+        <div style="width: 100%; display: flex; justify-content: end; margin-bottom: 20px"></div>
         <el-table :data="members.members" style="width: 100%">
           <el-table-column prop="member.id" label="ID" width="100" />
           <el-table-column prop="member.first_name" label="First Name" width="250" />
@@ -104,8 +102,9 @@
 
           <el-table-column fixed="right" label="Operations" min-width="200">
             <template #default>
-              <el-button  type="primary" ><el-link :icon="View" href="/view/member/profile" style="color: white;"></el-link></el-button>
-              <el-button  type="danger" :icon="Delete" ></el-button>
+                <!-- <el-button type="primary" :icon="View" circle /> -->
+                <el-button  type="primary" ><el-link :icon="View" href="/view/profile" style="color: white;"></el-link></el-button>
+              <el-button type="success" :icon="Plus" />
             </template>
           </el-table-column>
         </el-table>
@@ -115,9 +114,9 @@
     </el-container>
   </el-container>
 </template>
-    
-    <script lang="ts" setup>
-import { Search, Plus, Setting, View, Delete } from '@element-plus/icons-vue'
+      
+      <script lang="ts" setup>
+import { Search, Plus, Setting, View } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
 import { memberStore } from '@/stores/member-list.ts'
@@ -126,8 +125,8 @@ const members = memberStore()
 
 const memberList = members.fetchMemberStore()
 </script>
-    
-  <style scoped>
+      
+    <style scoped>
 .layout-container-demo .el-header {
   position: relative;
   background-color: var(--el-color-primary-light-7);

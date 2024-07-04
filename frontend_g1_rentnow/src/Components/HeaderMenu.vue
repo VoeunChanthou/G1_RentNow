@@ -45,7 +45,7 @@
           </el-menu-item-group>
           <el-sub-menu index="3-4">
             <template #title>Feedback</template>
-            <el-menu-item index="3-4-1">My feedback</el-menu-item>
+            <el-menu-item index="3-4-1"><el-link href="/feedback">My feedback</el-link></el-menu-item>
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>
