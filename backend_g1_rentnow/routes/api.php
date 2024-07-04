@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\Front\Auth\PasswordResetLinkController as AuthPasswordResetLinkController;
 use App\Http\Controllers\ProductsController;
 
 
@@ -35,8 +36,6 @@ Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
-Route::middleware('auth:sanctum')->group(function () {
-});
 
 // logout route
 Route::post('/logout', [RegisteredUserController::class, 'logout']); 
@@ -52,11 +51,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
     Route::post('/comment', [feedbackcontroller::class, 'create']);
-
     Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
     Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
-    Route::post('/reset', [PasswordResetLinkController::class, "store"]);
 });
+Route::post("/reset" , [PasswordResetLinkController::class, 'store']);
 
 
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
