@@ -19,11 +19,7 @@
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
-<<<<<<< HEAD
-    "element-plus": "^2.7.4",
-=======
     "element-plus": "^2.7.6",
->>>>>>> shop_owner_dashboard
     "jquery": "^3.7.1",
     "pinia": "^2.1.7",
     "primevue": "^3.53.0",

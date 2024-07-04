@@ -27,11 +27,7 @@ const setChartData = () => {
         datasets: [
             {
                 type: 'line',
-<<<<<<< HEAD
-                label: 'Dataset 1',
-=======
                 label: 'member',
->>>>>>> shop_owner_dashboard
                 borderColor: documentStyle.getPropertyValue('--p-orange-500'),
                 borderWidth: 2,
                 fill: false,
@@ -40,11 +36,7 @@ const setChartData = () => {
             },
             {
                 type: 'bar',
-<<<<<<< HEAD
-                label: 'Dataset 2',
-=======
                 label: 'borrow',
->>>>>>> shop_owner_dashboard
                 backgroundColor: documentStyle.getPropertyValue('--p-gray-500'),
                 data: [21, 84, 24, 75, 37, 65, 34],
                 borderColor: 'purple',
@@ -52,11 +44,7 @@ const setChartData = () => {
             },
             {
                 type: 'bar',
-<<<<<<< HEAD
-                label: 'Dataset 3',
-=======
                 label: 'stock',
->>>>>>> shop_owner_dashboard
                 backgroundColor: documentStyle.getPropertyValue('--p-cyan-500'),
                 data: [41, 52, 24, 74, 23, 21, 32]
             }

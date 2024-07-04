@@ -52,7 +52,7 @@
 
 
 <script>
-import { useProductStore } from '@/stores/history-list.ts'
+import { useProductStore } from '@/stores/category-list.ts'
 import { useShopStore } from '@/stores/shop-list.ts'
 // import { productStore } from '@/stores/product-list.ts'
 

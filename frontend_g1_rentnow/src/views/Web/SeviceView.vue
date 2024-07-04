@@ -1,12 +1,12 @@
 
 <script setup lang="ts">
-
 import { Icon } from '@iconify/vue'
+import LoadingViews from "@/Components/loading/LoadingView.vue";
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryVue from '@/Components/service/CategoryVue.vue'
 import CardVue from '@/Components/homepage/CardVue.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
-import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
+// import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
 import FooterMenu from '@/Components/homepage/FooterMenu.vue';
 import type { componentSizeMap } from 'element-plus';
 import { ref } from 'vue';
@@ -46,12 +46,11 @@ const handleDayEvent = (data: any) => {
 </script>
 
 <template>
-  
   <!-- {{ cateSeach.categoriesSeach.data }} -->
   <WebLayout>
     <div
-      class="px-5"
-      style="
+    class="px-5"
+    style="
         height: 100vh;
         display: grid;
         grid-template-columns: 25% 74%;
@@ -59,12 +58,10 @@ const handleDayEvent = (data: any) => {
         padding-top: 10px;
         padding-bottom: 20px;
         background: #f4f2f2;
-      "
+        "
     >
-
-   
       <CategoryVue @someEvent="handleSomeEvent" @CateEvent="handleCateEvent" @ShopEvent="handleShopEvent" @DayEvent="handleDayEvent"></CategoryVue>
-
+       <!-- <CategoryVue/> -->
       <div style="height: 100%; display: grid; grid-template-rows: 100px 100vh; gap: 20px">
         <div class="top shadow p-3 px-5 rounded bg-white" style="display:flex; justify-content: space-between; align-items: center;">
           <h3>Result</h3>
@@ -81,15 +78,13 @@ const handleDayEvent = (data: any) => {
             </el-select>
           </div>
         </div>
-       
-        <div class="top shadow p-3 rounded form_Card" style="height: 80%; background: #f4f2f2;display: flex; flex-wrap: wrap; gap: 20px; overflow-y: scroll;">
+        <div class="top shadow p-3 rounded form_Card" style="height: 80%; background: #f4f2f2;display: flex; flex-wrap: wrap; gap: 20px; overflow-y: scroll; background-color:white;">
+     <LoadingViews v-if="!proList.productList.data"/>
           <div v-for="product in search.productSearch.data" :key="product.id">
-            <!-- <CardVue v-if="(dayData <= product.day && dayData != '' && cateData == '' && shopData == '')" :product="product"></CardVue> -->
             <CardVue v-if="(product.category.name == cateData && cateData != '')" :product="product"></CardVue>
             <CardVue v-if="(product.shop.name == shopData && shopData != '')" :product="product"></CardVue>
             <CardVue v-if="(cateData == '' && shopData == '')" :product="product"></CardVue>
-            <!-- <CardVue v-else :product="''" style="display: none;"></CardVue> -->
-            <p v-else style="display: none; width: 0%;">hello</p>
+            <!-- <p v-else style="display: none; width: 0%;">hello</p> -->
           </div>
           <!-- <CardVue  v-for="product in search.productSearch.data" :key="product.id" :product="product"></CardVue> -->
         </div>

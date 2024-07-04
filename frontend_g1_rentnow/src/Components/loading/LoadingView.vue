@@ -1,8 +1,8 @@
 <template>
- <div class="loader">Loading...</div>
+ <div class="loader1">Loading...</div>
 </template>
 <style>
-.loader {
+.loader1 {
   font-size: 10px;
   margin: 50px auto;
   text-indent: -9999em;
@@ -22,7 +22,7 @@
   -ms-transform: translateZ(0);
   transform: translateZ(0);
 }
-.loader:before {
+.loader1:before {
   width: 50%;
   height: 50%;
   background: #4507ed;
@@ -32,7 +32,7 @@
   left: 0;
   content: '';
 }
-.loader:after {
+.loader1:after {
   background: #ffffff;
   width: 75%;
   height: 75%;

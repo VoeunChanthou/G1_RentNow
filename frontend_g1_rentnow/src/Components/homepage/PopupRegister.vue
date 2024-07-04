@@ -1,7 +1,7 @@
 <template>
     <div class="modal fade" id="popupRegister" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="main"></div> 
+    <div class="main d-flex justify-content-center "></div> 
     <div  class="modal-content">
       <div class="modal-header" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">Register Your Account</h1>
@@ -48,8 +48,8 @@
 </div>
 </template>
 <script setup lang="ts">
-import { inject } from 'vue';
 import axiosInstance from '@/plugins/axios'
+import LoaderPopup from '@/Components/loading/LoadingPopup'
 import { useField, useForm, validate } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
@@ -106,49 +106,4 @@ const { value: password, errorMessage: nameError } = useField('password')
 const { value: email, errorMessage: emailError } = useField('email')
 
 </script>
-<style>
-.loader {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  display: block;
-  margin:15px auto;
-  position: relative;
-  color: #FFF;
-  left: -100px;
-  box-sizing: border-box;
-  animation: shadowRolling 2s linear infinite;
-}
-
-@keyframes shadowRolling {
-  0% {
-    box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  12% {
-    box-shadow: 100px 0 white, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  25% {
-    box-shadow: 110px 0 white, 100px 0 white, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
-  }
-  36% {
-    box-shadow: 120px 0 white, 110px 0 white, 100px 0 white, 0px 0 rgba(255, 255, 255, 0);
-  }
-  50% {
-    box-shadow: 130px 0 white, 120px 0 white, 110px 0 white, 100px 0 white;
-  }
-  62% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 white, 120px 0 white, 110px 0 white;
-  }
-  75% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 white, 120px 0 white;
-  }
-  87% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 white;
-  }
-  100% {
-    box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
-  }
-}
-</style>
-
 

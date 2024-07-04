@@ -1,5 +1,5 @@
 <template>
-  <WebLayout>
+  <WebLayout><div class="bg-white">
     <CommentProduct />
     <div class="content px-5">
       <!-- back button -->
@@ -79,8 +79,9 @@
         </div>
       </div>
     </div>
+    <CardListComponent />
+  </div>
   </WebLayout>
-  
 </template>
 
 <script>
@@ -88,12 +89,13 @@ import WebLayout from '../../../Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
 import CommentProduct from '@/Components/service/CommentProduct.vue';
-
+import CardListComponent from '@/Components/service/CardListComment.vue'
 export default {
   components: {
     WebLayout,
     Icon,
-    CommentProduct
+    CommentProduct,
+    CardListComponent
   },
   data() {
     return {

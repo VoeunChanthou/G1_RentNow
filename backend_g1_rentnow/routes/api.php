@@ -57,6 +57,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
     Route::post('/reset', [PasswordResetLinkController::class, "store"]);
 });
+route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
 
 
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();

@@ -14,6 +14,9 @@ class Feedback extends Model
     public function product(){
         return $this->belongsTo(Products::class);
     }
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 
     public static function createOrUpdate ($request, $id = null){
        $feedback = [
@@ -23,5 +26,9 @@ class Feedback extends Model
        ];
        $feedback = self::updateOrCreate(['id' => $id], $feedback);
        return $feedback;
+    }
+    public static function list (string $product_id){
+        $user = self::where('product_id', $product_id)->get();
+        return $user;
     }
 }
