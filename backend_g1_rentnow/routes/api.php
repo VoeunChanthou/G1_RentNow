@@ -3,12 +3,14 @@
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductDtailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+// use App\Http\Controllers\MemberController;
 
 
 
@@ -61,3 +63,11 @@ Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
 Route::post('/create/product', [ProductsController::class,'create']);
+
+
+//shop owner//
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/add/member', [MemberController::class, 'create']);
+    Route::get('/members', [MemberController::class, 'index']);
+
+});

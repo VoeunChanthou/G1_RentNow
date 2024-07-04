@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')->references('id')->on('products');
+            $table->foreignId('user_id')->references('id')->on('users');
+            $table->date('borrow_date')->nullable();
+            $table->date('return_date')->nullable();
+            $table->enum('status', ['borrowed', 'available', 'returned'])->default('available');
+            $table->string('price');
             $table->timestamps();
         });
     }

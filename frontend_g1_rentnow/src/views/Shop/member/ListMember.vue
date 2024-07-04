@@ -93,28 +93,34 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column align="center">
-            <template #header > <el-table-column label="Image" />Image </template>
+        <el-table :data=" members.members" style="width: 100%">
+
+          
+          <el-table-column align="center" width="200">
+            <template #header > <el-table-column label="Image" />Profile</template>
             <template #default="scope">
               <img
-                src="../../../assets/bike.png"
+                :src="scope.member.image"
                 alt="Image"
                 style="max-width: 50px; max-height: 50px; border-radius: 50%;"
               />
             </template>
           </el-table-column>
-          <el-table-column prop="name" label="first name" width="150" />
-          <el-table-column prop="state" label="last name" width="150" />
-          <el-table-column prop="city" label="email" width="250" />
-          <el-table-column prop="zip" label="Zip" width="150" />
-          <el-table-column fixed="right" label="Operations" min-width="150">
+          <el-table-column prop="member.first_name" label="first name" width="250" />
+          <el-table-column prop="member.last_name" label="last name" width="250" />
+          <el-table-column prop="member.email" label="email" width="250" />
+          <!-- <el-table-column prop="member.first_name" label="product" width="250" /> -->
+          <el-table-column fixed="right" label="Operations" min-width="200">
             <template #default>
               <el-button link type="primary" size="small" @click="handleClick"> Detail </el-button>
               <el-button link type="primary" size="small">Edit</el-button>
+              <el-button link type="primary" size="small">Remove</el-button>
             </template>
           </el-table-column>
         </el-table>
+
+        <!-- {{ members.members }} -->
+      
       </el-main>
     </el-container>
   </el-container>
@@ -124,49 +130,15 @@
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
+import { memberStore } from '@/stores/member-list.ts';
 
-const handleClick = () => {
-  console.log('click')
-}
+const members = memberStore();
 
-const tableData = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Home'
-  },
-  {
-    date: '2016-05-02',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Office'
-  },
-  {
-    date: '2016-05-04',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Home'
-  },
-  {
-    date: '2016-05-01',
-    name: 'Tom',
-    state: 'California',
-    city: 'Los Angeles',
-    address: 'No. 189, Grove St, Los Angeles',
-    zip: 'CA 90036',
-    tag: 'Office'
-  }
-]
+const memberList = members.fetchMemberStore();
+
+
+
+
 </script>
     
   <style scoped>
