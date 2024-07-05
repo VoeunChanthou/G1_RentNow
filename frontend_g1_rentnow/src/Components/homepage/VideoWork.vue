@@ -35,7 +35,7 @@
     align-items: center;
     padding: 30px;
     background-color:#eaeaea83;
-    margin-top: 100px;
+    margin: 80px 34px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.176); */
   }
   

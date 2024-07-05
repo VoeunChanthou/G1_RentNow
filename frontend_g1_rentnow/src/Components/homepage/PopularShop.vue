@@ -1,7 +1,7 @@
 <template>
-  <div class="px-5">
+  <div class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
-    <div class="row">
+    <div class="row" >
       <!-- <template> -->
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
@@ -38,8 +38,15 @@ export default {
   <style scoped >
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
+.container {
+  /* background-color: gainsboro; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
  .h2 {
-  margin: 50px 20px 50px 20px;
+  margin: 50px 0px 100px 0px;
   color: #691BA5;
 }
 

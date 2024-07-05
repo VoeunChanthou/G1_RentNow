@@ -4,7 +4,7 @@ import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
 <template>
   <WebHeaderMenu />
   
-      <slot/>
+      <slot> </slot>
     
 </template>
 

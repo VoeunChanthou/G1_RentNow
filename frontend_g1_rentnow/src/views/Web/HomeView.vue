@@ -11,6 +11,8 @@ import PopularShopVue from '@/Components/homepage/PopularShop.vue'
 import VideoWork from '@/Components/homepage/VideoWork.vue'
 import PeopleSay from '@/Components/homepage/PeopleSay.vue'
 import ProductShow from '@/Components/homepage/ProductShow.vue'
+import FooterMenuVue from '../../Components/homepage/FooterMenu.vue'
+
 const AuthUSer = useAuthStore()
 </script>
 
@@ -98,6 +100,7 @@ const AuthUSer = useAuthStore()
     <PeopleSay></PeopleSay>
   </div>
   </WebLayout>
+  <FooterMenuVue></FooterMenuVue>
 </template>
 
 <style>

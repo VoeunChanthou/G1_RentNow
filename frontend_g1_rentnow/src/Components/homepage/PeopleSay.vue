@@ -1,5 +1,5 @@
 <template>
-  <div class="container py-5">
+  <div class="container">
     <h2><B>WHAT PEOPLE SAYS !!</B></h2>
     <div class="row g-2">
       <div class="col-md-4">
@@ -92,7 +92,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 100px 0 20px 0;
+  /* padding: 100px 0 20px 0; */
+  margin-top: 25px;
+  margin-bottom: 55px;
   color: #722cb3;
 }
 .card {
