@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
@@ -40,9 +41,9 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
     Route::put('/update/product', [PostController::class, 'update']);
     Route::get('/get/products', [PostController::class, 'index']);
 
-// ----product---
+// ----product admin---
 Route::middleware('auth:sanctum')->group(function () {
-    
+    Route::post('/create_product_admin', [ProductController::class, 'create']);
     
 });
 

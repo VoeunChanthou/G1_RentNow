@@ -4,16 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Categories;
 
-class Products extends Model
+class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
         'price',
-        'days',
         'category_id',
         'shop_id',
     ];

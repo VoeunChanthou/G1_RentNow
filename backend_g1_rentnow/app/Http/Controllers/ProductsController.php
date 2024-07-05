@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\model_has_role;
+use App\Models\Product;
 use App\Models\Products;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
@@ -30,11 +31,10 @@ class ProductsController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string',
                 'price' => 'required|integer',
-                'days' => 'required|integer',
                 'category_id' => 'required',
                 'shop_id' => 'required',
             ]);
-            $product = Products::create($validatedData);
+            $product = Product::create($validatedData);
             return response()->json([
                 'message' => 'Product created successfully',
                 'product' => $product
