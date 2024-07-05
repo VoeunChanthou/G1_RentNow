@@ -22,14 +22,23 @@ class FavoriteController extends Controller
      */
     public function create(Request $request)
     {
-        $creatfav = new Favorite(); 
-        $creatfav->user_id = $request->user()->id; 
-        $creatfav->product_id = $request->product_id; 
-        $creatfav->save();  
-         return response()->json([ 
-           'message' => 'Favorite created successfully', 
-            'favorite' => $creatfav 
-        ], 201); 
+        $proId = Favorite::where('product_id', $request->product_id)->first();
+
+        if(!$proId){
+            
+            $creatfav = new Favorite(); 
+            $creatfav->user_id = $request->user()->id; 
+            $creatfav->product_id = $request->product_id; 
+            $creatfav->save();  
+             return response()->json([ 
+               'message' => 'Favorite created successfully', 
+                'favorite' => $creatfav 
+            ], 201); 
+        }
+
+        return response()->json([
+           'message' => 'You have already added this product to your favorite list'
+        ], 409);
     }
 
     /**
