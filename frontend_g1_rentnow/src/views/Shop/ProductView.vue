@@ -41,6 +41,7 @@
 
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import ProductVue from '@/Components/Shop/products/ProductVue.vue'
+import CreateProduct from './product/CreateProduct.vue';
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
 
 </script>

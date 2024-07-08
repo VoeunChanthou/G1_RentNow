@@ -21,18 +21,20 @@ class ProductsController extends Controller
     
     public function create(Request $request)
     {
-        $product = new Products();
-        $product->name = $request->name;
-        $product->price = $request->price;
-        $product->days = $request->days;
-        $product->image = 'data:image/jpeg;base64,'.base64_encode(file_get_contents($request->image->path()));
-        $product->shop_id = $request->shop_id;
-        $product->category_id = $request->category_id;
-        $product->save();
+        // $product = new Products();
+        // $product->name = $request->name;
+        // $product->price = $request->price;
+        // $product->days = $request->days;
+        // $product->image = 'data:image/jpeg;base64,'.base64_encode(file_get_contents($request->image));
+        // $product->shop_id = $request->shop_id;
+        // $product->category_id = $request->category_id;
+        // $product->save();
 
-        return response()->json([
-            'data' => new ProductResource($product)
-        ], 201);
+        // return response()->json([
+        //     'data' => new ProductResource($product)
+        // ], 201);
+
+        return 'data:image/jpeg;base64,'.base64_encode(file_get_contents($request->image));
         
 
     }

@@ -32,34 +32,33 @@
           ref="ruleFormRef"
           style="max-width: 100%; background: white; padding: 20px"
           :model="ruleForm"
-          :rules="rules"
           label-width="auto"
           class="demo-ruleForm"
           :size="formSize"
           status-icon
+          @submit="submitForm"
         >
           <el-form-item prop="name">
-            <el-label>Name of product</el-label>
+            <el-label>Name of ruleForm</el-label>
             <el-input v-model="ruleForm.name" />
           </el-form-item>
           <el-form-item prop="price">
             <el-label>Price</el-label>
-            <el-input v-model="ruleForm.price" />
+            <el-input type="number" v-model="ruleForm.price" />
           </el-form-item>
           <el-form-item prop="region">
             <el-label>Select category</el-label>
-            <el-select v-model="ruleForm.region" placeholder="Activity zone">
-              <el-option label="Zone one" value="shanghai" />
-              <el-option label="Zone two" value="beijing" />
+            <el-select v-model="ruleForm.category_id" placeholder="Activity zone">
+              <el-option label="Zone one" value="1" />
+              <el-option label="Zone two" value="2" />
             </el-select>
           </el-form-item>
           <el-form-item required>
             <el-col :span="11">
               <el-label>Image</el-label>
-              <el-form-item prop="date1" style="width: 100%">
+              <el-form-item prop="image" style="width: 100%">
                 <el-upload
-                  class="upload-demo"
-                  v-model="ruleForm.image"
+                  ref="uploadRef"
                   style="
                     width: 100%;
                     height: 78%;
@@ -67,8 +66,11 @@
                     border: 1px solid rgb(228, 228, 228);
                     border-radius: 4px;
                   "
+                  :before-upload="beforeUpload"
+                  :on-change="handleChange"
+                  :auto-upload="false"
                 >
-                  Select file
+                  <el-button slot="trigger">Select file</el-button>
                 </el-upload>
               </el-form-item>
             </el-col>
@@ -76,9 +78,8 @@
               <span class="text-gray-500">-</span>
             </el-col>
             <el-col :span="11">
-              <el-label>user</el-label>
-
-              <el-select v-model="ruleForm.product" placeholder="Activity zone">
+              <el-label>User</el-label>
+              <el-select v-model="ruleForm.shop_id" placeholder="Activity zone">
                 <el-option label="Baby" value="1" />
                 <el-option label="Party" value="2" />
               </el-select>
@@ -86,92 +87,80 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="submitForm(ruleFormRef)"> Create </el-button>
-            <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
           </el-form-item>
         </el-form>
       </el-main>
     </el-container>
   </el-container>
 </template>
-  
-  <script lang="ts" setup>
-import { Search, Plus, Setting } from '@element-plus/icons-vue'
+
+<script lang="ts" setup>
+import { Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import { reactive, ref } from 'vue'
-import type { ComponentSize, FormInstance, FormRules } from 'element-plus'
-import type { UploadInstance } from 'element-plus'
-
-const uploadRef = ref<UploadInstance>()
-
-const submitUpload = () => {
-  uploadRef.value!.submit()
-}
+import type { ComponentSize, FormInstance } from 'element-plus'
+import axiosInstance from '@/plugins/axios'
+import type { UploadRawFile } from 'element-plus'
 
 interface RuleForm {
   name: string
-  region: string
+  category_id: number
   price: number
-  image: string
-  user: string
+  image: UploadRawFile | null
+  days: number
+  shop_id: number
 }
 
 const formSize = ref<ComponentSize>('large')
 const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<RuleForm>({
   name: '',
-  region: '',
-  price: '',
-  image: '',
-  user: ''
+  category_id: 0,
+  days: 4,
+  image: null,
+  price: 0,
+  shop_id: 1
 })
 
-const locationOptions = ['Home', 'Company', 'School']
+const beforeUpload = (file: UploadRawFile) => {
+  const isLt2M = file.size / 1024 / 1024 < 2
+  if (!isLt2M) {
+    console.error('File size exceeds 2MB')
+  }
+  return isLt2M
+}
 
-const rules = reactive<FormRules<RuleForm>>({
-  name: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' },
-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-  ],
-  region: [
-    {
-      required: true,
-      message: 'Please select Activity zone',
-      trigger: 'change'
-    }
-  ],
-  date2: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a time',
-      trigger: 'change'
-    }
-  ],
-
-  desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }]
-})
+const handleChange = (file: UploadRawFile) => {
+  // Rename the file
+  const renamedFile = new File([file], `${file.name}`)
+  ruleForm.image = renamedFile
+}
 
 const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return
-  await formEl.validate((valid, fields) => {
+  await formEl.validate(async (valid, fields) => {
     if (valid) {
-      console.log('submit!')
+      try {
+        const response = await axiosInstance.post(`http://127.0.0.1:8000/api/create/product`, {
+          name: ruleForm.name,
+          category: ruleForm.category_id,
+          price: ruleForm.price,
+          image: ruleForm.image,
+          days: ruleForm.days,
+          shop_id: ruleForm.shop_id
+        })
+        console.log('Form submitted successfully:', response.data)
+      } catch (error) {
+        console.error('Form submission error:', error)
+      }
     } else {
-      console.log('error submit!', fields)
+      console.log('Error submitting form:', fields)
     }
   })
+  console.log(ruleForm)
 }
-
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
-}
-
-const options = Array.from({ length: 10000 }).map((_, idx) => ({
-  value: `${idx + 1}`
-}))
 </script>
-  
+
 <style scoped>
 .layout-container-demo .el-header {
   position: relative;
