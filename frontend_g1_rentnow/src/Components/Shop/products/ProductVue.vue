@@ -64,16 +64,7 @@ const handleEdit = (index: number, row: Product) => {
 }
 
 const handleDelete = (index: number, row: Product) => {
-  // console.log(index, row)
-  delete productData.value[index]
-  productData.value = [...productData.value]
-  axiosInstance.delete(`/product/${row.id}`)
-   .then(() => {
-      console.log('Product deleted successfully')
-    })
-    .catch((error) => {
-      console.error(error)
-    })
+  console.log(index, row)
 }
 </script>
 
