@@ -64,7 +64,7 @@ const handleEdit = (index: number, row: Product) => {
 }
 
 const handleDelete = (index: number, row: Product) => {
-  console.log(index, row)
+  // console.log(index, row)
 }
 </script>
 
