@@ -102,6 +102,42 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/add/member',
+      name: 'addmember',
+      component: () => import('../views/Shop/member/UserList.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/view/profile',
+      name: 'viewProfile',
+      component: () => import('../views/Shop/member/DetailUser.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/view/member/profile',
+      name: 'viewMemberProfile',
+      component: () => import('../views/Shop/member/DetailMember.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/feedback',
+      name: 'feedback',
+      component: () => import('../views/Shop/feedback/FeedBack.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
 
   ]
 })
