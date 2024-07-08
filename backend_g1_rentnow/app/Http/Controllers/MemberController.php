@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\role;
 use App\Models\Shop;
 use App\Http\Resources\MemberResource;
+use App\Http\Resources\ShopResource;
 
 
 class MemberController extends Controller
@@ -14,9 +15,11 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return MemberResource::collection(Member::all());
+        $userId = $request->user()->id;
+        $shopId = Shop::where('user_id', $userId)->first();
+        return ShopResource::make($shopId);
     }
 
     /**

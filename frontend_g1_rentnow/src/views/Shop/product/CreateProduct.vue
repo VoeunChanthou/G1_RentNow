@@ -28,15 +28,10 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
+        <el-alert title="Success alert" type="success" center show-icon v-if="showSuccessAlert" />
         <el-form
-          ref="ruleFormRef"
+          @submit.prevent="submitForm"
           style="max-width: 100%; background: white; padding: 20px"
-          :model="ruleForm"
-          :rules="rules"
-          label-width="auto"
-          class="demo-ruleForm"
-          :size="formSize"
-          status-icon
         >
           <el-form-item prop="name">
             <el-label>Name of product</el-label>
@@ -48,151 +43,120 @@
           </el-form-item>
           <el-form-item prop="region">
             <el-label>Select category</el-label>
-            <el-select v-model="ruleForm.region" placeholder="Activity zone">
-              <el-option label="Zone one" value="shanghai" />
-              <el-option label="Zone two" value="beijing" />
+            <el-select v-model="ruleForm.category_id" placeholder="categories">
+              <el-option v-for="cate in cateData.product.categories" :key="cate.id" :label="cate.name" :value="cate.id" />
+              <!-- <el-option label="Zone two" value="1" /> -->
             </el-select>
           </el-form-item>
           <el-form-item required>
             <el-col :span="11">
               <el-label>Image</el-label>
               <el-form-item prop="date1" style="width: 100%">
-                <el-upload
-                  class="upload-demo"
-                  v-model="ruleForm.image"
-                  style="
+                <input type="file" @change="previewImage" accept="image/*" style="
                     width: 100%;
                     height: 78%;
                     padding-left: 11px;
                     border: 1px solid rgb(228, 228, 228);
                     border-radius: 4px;
-                  "
-                >
-                  Select file
-                </el-upload>
+                  " />
               </el-form-item>
             </el-col>
             <el-col class="text-center" :span="2">
-              <span class="text-gray-500">-</span>
             </el-col>
             <el-col :span="11">
               <el-label>user</el-label>
-
-              <el-select v-model="ruleForm.product" placeholder="Activity zone">
-                <el-option label="Baby" value="1" />
-                <el-option label="Party" value="2" />
+              <el-select v-model="ruleForm.user_id" placeholder="Select User">
+                <el-option v-for="member in memberData" :key="member.id" :label="member.member.first_name + member.member.last_name" value="1" />
               </el-select>
             </el-col>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm(ruleFormRef)"> Create </el-button>
-            <el-button @click="resetForm(ruleFormRef)">Reset</el-button>
+            <el-button type="primary" native-type="submit"> Create </el-button>
+            <el-button @click="resetForm">Reset</el-button>
           </el-form-item>
         </el-form>
       </el-main>
     </el-container>
   </el-container>
 </template>
-  
-  <script lang="ts" setup>
-import { Search, Plus, Setting } from '@element-plus/icons-vue'
+
+<script lang="ts" setup>
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import { reactive, ref } from 'vue'
+import { CreateProductStore } from '@/stores/product-list'
 import type { ComponentSize, FormInstance, FormRules } from 'element-plus'
-import type { UploadInstance } from 'element-plus'
+import { useAuthStore } from '@/stores/auth-store.ts'
+import { getShopStore } from '@/stores/shop-list.ts'
+import { useProductStore } from '@/stores/category-list.ts'
+import axiosInstance from '@/plugins/axios'
 
-const uploadRef = ref<UploadInstance>()
 
-const submitUpload = () => {
-  uploadRef.value!.submit()
-}
+const AuthUser = useAuthStore()
+const Shop = getShopStore()
+const shopId = Shop.fetchShopSpecific(AuthUser.user.id)
+const cateData = useProductStore()
 
+const cate = cateData.fetchProduct()
 interface RuleForm {
   name: string
-  region: string
+  category_id: string
   price: number
   image: string
-  user: string
+  user_id: string
 }
+
 
 const formSize = ref<ComponentSize>('large')
-const ruleFormRef = ref<FormInstance>()
 const ruleForm = reactive<RuleForm>({
   name: '',
-  region: '',
-  price: '',
+  category_id: '',
+  price: 0,
   image: '',
-  user: ''
+  user_id: '',
 })
+const memberData = ref()
+const createPro = CreateProductStore()
+const showSuccessAlert = ref(false)
 
-const locationOptions = ['Home', 'Company', 'School']
-
-const rules = reactive<FormRules<RuleForm>>({
-  name: [
-    { required: true, message: 'Please input Activity name', trigger: 'blur' },
-    { min: 3, max: 5, message: 'Length should be 3 to 5', trigger: 'blur' }
-  ],
-  region: [
-    {
-      required: true,
-      message: 'Please select Activity zone',
-      trigger: 'change'
-    }
-  ],
-  date2: [
-    {
-      type: 'date',
-      required: true,
-      message: 'Please pick a time',
-      trigger: 'change'
-    }
-  ],
-
-  desc: [{ required: true, message: 'Please input activity form', trigger: 'blur' }]
-})
-
-const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  await formEl.validate((valid, fields) => {
-    if (valid) {
-      console.log('submit!')
-    } else {
-      console.log('error submit!', fields)
-    }
-  })
+const previewImage = (event: Event) => {
+  const file = (event.target as HTMLInputElement).files?.[0]
+  if (file) {
+    convertImageToBase64(file)
+  }
 }
 
-const resetForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.resetFields()
+const convertImageToBase64 = (file: File) => {
+  const reader = new FileReader()
+  reader.onloadend = () => {
+    ruleForm.image = reader.result as string
+  }
+  reader.readAsDataURL(file)
 }
 
-const options = Array.from({ length: 10000 }).map((_, idx) => ({
-  value: `${idx + 1}`
-}))
+const submitForm = () => {
+  createPro.createProductShop(ruleForm)
+  showSuccessAlert.value = true
+  resetForm()
+}
+
+const resetForm = () => {
+  ruleForm.name = ''
+  ruleForm.category_id = ''
+  ruleForm.price = 0
+  ruleForm.image = ''
+  ruleForm.user_id = ''
+}
+
+
+async function fetchData() {
+  try {
+    const response = await axiosInstance.get('/members')
+    memberData.value = response.data.data.member
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+fetchData()
+
 </script>
-  
-<style scoped>
-.layout-container-demo .el-header {
-  position: relative;
-  background-color: var(--el-color-primary-light-7);
-  color: var(--el-text-color-primary);
-}
-.layout-container-demo .el-aside {
-  color: var(--el-text-color-primary);
-  background: var(--el-color-primary-light-8);
-}
-.layout-container-demo .el-menu {
-  border-right: none;
-}
-.layout-container-demo .el-main {
-  padding: 0;
-}
-.layout-container-demo .toolbar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  right: 20px;
-}
-</style>
