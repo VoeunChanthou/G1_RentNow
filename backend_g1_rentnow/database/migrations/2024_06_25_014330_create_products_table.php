@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('price');
-            $table->integer('days');
+            $table->integer('user_id')->nullable();
             $table->longText('image');
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->foreignId('shop_id')->references('id')->on('shops');

@@ -49,6 +49,10 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
+    Route::post('/create/product', [ProductsController::class,'create']);
+    Route::post('/shop/create/product', [ProductsController::class, 'store']);
+
+    Route::get('/product/shop', [ShopController::class, 'showProduct']);
 
 });
 
@@ -62,7 +66,6 @@ Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
-Route::post('/create/product', [ProductsController::class,'create']);
 
 
 //shop owner//
@@ -71,3 +74,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/members', [MemberController::class, 'index']);
 
 });
+
+
+Route::get('/get/shop/{id}', [ShopController::class, 'show']);
+
