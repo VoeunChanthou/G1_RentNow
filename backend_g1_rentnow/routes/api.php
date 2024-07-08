@@ -53,6 +53,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/shop/create/product', [ProductsController::class, 'store']);
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
+    Route::delete('/delete/product/{id}', [ProductsController::class, 'destroy']);
 
 });
 

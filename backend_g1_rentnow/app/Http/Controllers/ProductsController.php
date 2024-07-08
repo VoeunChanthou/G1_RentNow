@@ -19,7 +19,7 @@ class ProductsController extends Controller
         return ProductResource::collection(Products::all());
     }
 
-    
+
     public function create(Request $request)
     {
         $product = new Products();
@@ -27,12 +27,12 @@ class ProductsController extends Controller
         $product->shop_id = $request->shop_id;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
-        $product->image = 'data:image/jpeg;base64,'. base64_encode(file_get_contents($request->image->path()));
+        $product->image = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($request->image->path()));
         $product->save();
 
         return response()->json([
             'message' => 'create successfully',
-            'product'=>$product
+            'product' => $product
         ]);
         // return $shop;
 
@@ -41,11 +41,11 @@ class ProductsController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('name');
-    
+
         $products = Products::query()
             ->where('name', 'like', '%' . $query . '%')
             ->get();
-    
+
         return ProductResource::collection($products);
     }
 
@@ -58,7 +58,7 @@ class ProductsController extends Controller
 
         $product = new Products();
         $product->name = $request->name;
-        $product->image = $request-> image;
+        $product->image = $request->image;
         $product->user_id = $request->user_id;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
@@ -67,10 +67,9 @@ class ProductsController extends Controller
         $product->save();
 
         return response()->json([
-           'message' => 'create successfully',
-            'product'=>$product
+            'message' => 'create successfully',
+            'product' => $product
         ]);
-
     }
 
     /**
@@ -85,7 +84,6 @@ class ProductsController extends Controller
                 return $product;
             }
         };
-
     }
 
     /**
@@ -107,8 +105,15 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Products $products)
+    public function destroy(string $id)
     {
-        //
+
+        $products = Products::find($id);
+        $products->delete();
+        // $products->save();
+        return response([
+            'success' => true,
+            'message' => 'delete successfully'
+        ]);
     }
 }

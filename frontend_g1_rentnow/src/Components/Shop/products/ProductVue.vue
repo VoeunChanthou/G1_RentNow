@@ -21,7 +21,7 @@
       <template #default="scope">
         <el-button type="primary" :icon="Edit" circle />
         <el-button type="primary" :icon="View" circle />
-        <el-button type="danger" @click="handleDelete()" :icon="Delete" circle />
+        <el-button type="danger" @click="deletePro(scope.row.id)" :icon="Delete" circle />
       </template>
     </el-table-column>
   </el-table>
@@ -63,8 +63,22 @@ const handleEdit = (index: number, row: Product) => {
   console.log(index, row)
 }
 
-const handleDelete = (index: number, row: Product) => {
-  // console.log(index, row)
+// const handleDelete = (index: number, row: Product) => {
+
+
+
+// }
+
+async function deletePro(id: string) {
+  const confirm = window.confirm('Are you sure you want to delete this item?')
+  if (confirm) {
+    try {
+    const response = await axiosInstance.delete(`http://127.0.0.1:8000/api/delete/product/${id}`);
+    console.log(response)
+  } catch (error) {
+    console.error(error)
+  }
+}
 }
 </script>
 
