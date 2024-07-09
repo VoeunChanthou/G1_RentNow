@@ -1,69 +1,4 @@
-<!-- <template>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="120">
-        <template #default>
-          <el-button link type="primary" size="small" @click="handleClick">
-            Detail
-          </el-button>
-          <el-button link type="primary" size="small">Edit</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </template>
-  
-  <script lang="ts" setup>
-  const handleClick = () => {
-    console.log('click')
-  }
-  
-  const tableData = [
-    {
-      date: '2016-05-03',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-02',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-  ]
-  </script> -->
-  
-
-  <template>
+<template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
     <el-container>
@@ -105,8 +40,8 @@
                       class="rounded-circle img-fluid"
                       style="width: 150px"
                     />
-                    <h5 class="my-3">Chanthou Voeun</h5>
-                    <p class="text-muted mb-1">user@gmail.com</p>
+                    <h5 class="my-3">{{ first_name }} {{ last_name }}</h5>
+                    <p class="text-muted mb-1">{{ email }}</p>
                     <div class="d-flex justify-content-center mb-2">
                       <button
                         type="button"
@@ -136,7 +71,7 @@
                         <p class="mb-0">Full Name</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">Chanthou Voeun</p>
+                        <p class="text-muted mb-0">{{ first_name }} {{ last_name }}</p>
                       </div>
                     </div>
                     <hr />
@@ -145,7 +80,7 @@
                         <p class="mb-0">First Name</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">Chanthou</p>
+                        <p class="text-muted mb-0">{{ first_name }}</p>
                       </div>
                     </div>
                     <hr />
@@ -154,7 +89,7 @@
                         <p class="mb-0">Last Name</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">Voeun</p>
+                        <p class="text-muted mb-0">{{ last_name }}</p>
                       </div>
                     </div>
                     <hr />
@@ -164,7 +99,7 @@
                         <p class="mb-0">Email</p>
                       </div>
                       <div class="col-sm-9">
-                        <p class="text-muted mb-0">chanthou@example.com</p>
+                        <p class="text-muted mb-0">{{ email }}</p>
                       </div>
                     </div>
                     <hr />
@@ -191,21 +126,34 @@
             </div>
           </div>
         </section>
-        <!-- {{ members.members }} -->
       </el-main>
     </el-container>
   </el-container>
 </template>
-      
-      <script lang="ts" setup>
+<script lang="ts" setup>
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
-import type { UploadInstance } from 'element-plus'
-import { memberStore } from '@/stores/member-list.ts'
+import axiosInstance from '@/plugins/axios'
+import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
-const members = memberStore()
+const first_name = ref();
+const last_name = ref();
+const email = ref();
+const route = useRoute();
 
-const memberList = members.fetchMemberStore()
+async function fetchMemberData() {
+  try {
+    const response = await axiosInstance.get(`/detail/user/${route.params.id}`)
+    first_name.value = response.data.first_name;
+    last_name.value = response.data.last_name;
+    email.value = response.data.email;
+  } catch (error) {
+    console.error(error)
+  }
+}
+fetchMemberData()
+
 </script>
       
     <style scoped>

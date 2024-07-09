@@ -8,6 +8,7 @@ use Spatie\Permission\Models\role;
 use App\Models\Shop;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\ShopResource;
+use App\Models\User;
 
 
 class MemberController extends Controller
@@ -77,17 +78,34 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Member $member)
+    public function show(String $id)
     {
-        //
+        return MemberResource::make(Member::find($id));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function listUser()
     {
-        //
+        $listUser = [];
+        $users = User::all();
+        foreach ($users as $user){
+            $permissions = $user->getAllPermissions();
+            $roles = $user->getRoleNames();
+            if($user->roles[0]->name == 'user'){
+                array_push($listUser, $user);
+            }
+        }
+        return $listUser;
+    }
+    public function detailUser(String $id)
+    {
+        $user = User::find($id);
+        $permissions = $user->getAllPermissions();
+        $roles = $user->getRoleNames();
+            
+        return $user;
     }
 
     /**
@@ -101,8 +119,15 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Member $member)
+    public function destroy(String $id)
     {
-        //
+        $member = Member::where('id', $id)->first();
+        $member->delete();
+
+        return response()->json(
+            [
+               'message' => 'Member deleted successfully',
+            ]
+        );
     }
 }

@@ -112,7 +112,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/view/profile',
+      path: '/view/profile/:id',
       name: 'viewProfile',
       component: () => import('../views/Shop/member/DetailUser.vue'),
       meta: {
@@ -121,7 +121,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/view/member/profile',
+      path: '/view/member/profile/:id',
       name: 'viewMemberProfile',
       component: () => import('../views/Shop/member/DetailMember.vue'),
       meta: {

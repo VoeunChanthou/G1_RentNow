@@ -94,21 +94,21 @@
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
         <div style="width: 100%; display: flex; justify-content: end; margin-bottom: 20px"></div>
-        <el-table :data="members.members" style="width: 100%">
-          <el-table-column prop="member.id" label="ID" width="100" />
-          <el-table-column prop="member.first_name" label="First Name" width="250" />
-          <el-table-column prop="member.last_name" label="Last Name" width="250" />
-          <el-table-column prop="member.email" label="Email" width="250" />
+        <el-table :data="userList" style="width: 100%">
+          <el-table-column prop="id" label="ID" width="100" />
+          <el-table-column prop="first_name" label="First Name" width="250" />
+          <el-table-column prop="last_name" label="Last Name" width="250" />
+          <el-table-column prop="email" label="Email" width="250" />
 
           <el-table-column fixed="right" label="Operations" min-width="200">
-            <template #default>
+            <template #default="scope">
                 <!-- <el-button type="primary" :icon="View" circle /> -->
-                <el-button  type="primary" ><el-link :icon="View" href="/view/profile" style="color: white;"></el-link></el-button>
-              <el-button type="success" :icon="Plus" />
+                <el-button  type="primary" ><el-link :icon="View" :href="`/view/profile/${scope.row.id}`" style="color: white;"></el-link></el-button>
+              <el-button type="success" :icon="Plus" @click="submitForm(scope.row.id)" />
             </template>
           </el-table-column>
         </el-table>
-
+<!-- {{userList}} -->
         <!-- {{ members.members }} -->
       </el-main>
     </el-container>
@@ -119,11 +119,35 @@
 import { Search, Plus, Setting, View } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
-import { memberStore } from '@/stores/member-list.ts'
+import axiosInstance from '@/plugins/axios'
+import { reactive, ref } from 'vue'
 
-const members = memberStore()
 
-const memberList = members.fetchMemberStore()
+
+
+const userList = ref()
+async function fetchData() {
+  try {
+    const response = await axiosInstance.get('/list/user')
+    userList.value = response.data
+    // console.log(response.data)
+    // console.log(response.data.data.member)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+fetchData()
+
+async function submitForm(user_id: string){
+  const response = await axiosInstance.post('/add/member', {
+    user_id: user_id,
+  })
+
+  console.log(response)
+}
+
+
 </script>
       
     <style scoped>

@@ -1,69 +1,4 @@
-<!-- <template>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="120">
-        <template #default>
-          <el-button link type="primary" size="small" @click="handleClick">
-            Detail
-          </el-button>
-          <el-button link type="primary" size="small">Edit</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </template>
-  
-  <script lang="ts" setup>
-  const handleClick = () => {
-    console.log('click')
-  }
-  
-  const tableData = [
-    {
-      date: '2016-05-03',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-02',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-  ]
-  </script> -->
-  
-
-  <template>
+<template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
     <el-container>
@@ -131,89 +66,21 @@
                 <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
               </td>
             </tr>
-            <tr>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img
-                    src="https://mdbootstrap.com/img/new/avatars/6.jpg"
-                    class="rounded-circle"
-                    alt=""
-                    style="width: 45px; height: 45px"
-                  />
-                  <div class="ms-3">
-                    <p class="fw-bold mb-1">Alex Ray</p>
-                    <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="fw-normal mb-1">Consultant</p>
-                <p class="text-muted mb-0">Finance</p>
-              </td>
-              <td>
-                <span class="badge badge-primary rounded-pill d-inline">Onboarding</span>
-              </td>
-              <td>Junior</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-link btn-rounded btn-sm fw-bold"
-                  data-mdb-ripple-color="dark"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex align-items-center">
-                  <img
-                    src="https://mdbootstrap.com/img/new/avatars/7.jpg"
-                    class="rounded-circle"
-                    alt=""
-                    style="width: 45px; height: 45px"
-                  />
-                  <div class="ms-3">
-                    <p class="fw-bold mb-1">Kate Hunington</p>
-                    <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <p class="fw-normal mb-1">Designer</p>
-                <p class="text-muted mb-0">UI/UX</p>
-              </td>
-              <td>
-                <span class="badge badge-warning rounded-pill d-inline">Awaiting</span>
-              </td>
-              <td>Senior</td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-link btn-rounded btn-sm fw-bold"
-                  data-mdb-ripple-color="dark"
-                >
-                  Edit
-                </button>
-              </td>
-            </tr>
           </tbody>
         </table>
-        <!-- {{ members.members }} -->
       </el-main>
     </el-container>
   </el-container>
 </template>
           
-          <script lang="ts" setup>
+<script lang="ts" setup>
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
-import { memberStore } from '@/stores/member-list.ts'
 
-const members = memberStore()
 
-const memberList = members.fetchMemberStore()
+
+
 </script>
           
         <style scoped>

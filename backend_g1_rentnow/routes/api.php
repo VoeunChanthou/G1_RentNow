@@ -72,6 +72,11 @@ Route::get('/product/{id}', [ProductsController::class,'show']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/add/member', [MemberController::class, 'create']);
     Route::get('/members', [MemberController::class, 'index']);
+    Route::get('/show/member/{id}', [MemberController::class, 'show']);
+    Route::get('/list/user', [MemberController::class, 'listUser']);
+    Route::get('/detail/user/{id}', [MemberController::class, 'detailUser']);
+
+    Route::delete('/remove/{id}', [MemberController::class, 'destroy']);
 
 });
 

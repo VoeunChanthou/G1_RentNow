@@ -103,9 +103,9 @@
           <el-table-column prop="member.email" label="Email" width="250" />
 
           <el-table-column fixed="right" label="Operations" min-width="200">
-            <template #default>
-              <el-button  type="primary" ><el-link :icon="View" href="/view/member/profile" style="color: white;"></el-link></el-button>
-              <el-button  type="danger" :icon="Delete" ></el-button>
+            <template #default="scope">
+              <el-button  type="primary" ><el-link :icon="View" :href="`/view/member/profile/${scope.row.id}`" style="color: white;"></el-link></el-button>
+              <el-button  type="danger" :icon="Delete" @click="deleteMember(scope.row.id)" ></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -122,7 +122,7 @@ import axiosInstance from '@/plugins/axios'
 import { reactive, ref } from 'vue'
 
 
-// import { memberStore } from '@/stores/member-list.ts'
+
 
 const members = ref()
 async function fetchData() {
@@ -133,7 +133,16 @@ async function fetchData() {
   } catch (error) {
     console.error(error)
   }
-}
+};
+
+async function deleteMember(id: string){
+  try {
+    const response = await axiosInstance.delete(`/remove/${id}`);
+    console.log(response.data)
+  } catch (error) {
+    console.error(error)
+  }
+};
 
 fetchData()
 
