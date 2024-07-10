@@ -1,68 +1,63 @@
 <template>
-  <div class="map-container">
-    <div ref="mapContainer" class="map"></div>
+  <div class="map-wrap mt-4">
+    <div class="map" ref="mapContainer"></div>
   </div>
 </template>
 
-<script>
-import { Map, Marker } from 'maplibre-gl';
-import { onMounted, onUnmounted, ref } from 'vue';
+<script setup>
+import { Map, MapStyle, Marker, config } from '@maptiler/sdk';
+import { shallowRef, onMounted, onUnmounted, markRaw } from 'vue';
+import '@maptiler/sdk/dist/maptiler-sdk.css';
 
-export default {
-  name: 'CambodiaMap',
-  setup() {
-    const mapContainer = ref(null);
-    let map = null;
-    let marker = null;
+const mapContainer = shallowRef(null);
+const map = shallowRef(null);
 
-    onMounted(() => {
-      initMap();
-    });
+const markers = [
+  { lng: 104.901151, lat: 11.557119, color: '#FF0000' },
+  { lng: 104.920249, lat: 12.659354, color: '#00FF00' },
+  { lng: 104.920151, lat: 11.577119, color: '#0000FF' },
+];
 
-    onUnmounted(() => {
-      if (map) {
-        map.remove();
-      }
-    });
+onMounted(() => {
+  config.apiKey = 'Bz939GMBh1SFnqLzUeE3';
 
-    const initMap = () => {
-      const apiKey = 'Bz939GMBh1SFnqLzUeE3';
+  const initialState = { lng: 104.910151, lat: 11.567119, zoom: 8 };
 
-      map = new Map({
-        container: mapContainer.value,
-        style: `https://api.maptiler.com/maps/streets-v2/style.json?key=${apiKey}`,
-        center: [104.8920, 11.5464], // Angkor Wat, Cambodia
-        zoom: 7,
-      });
+  map.value = markRaw(
+    new Map({
+      container: mapContainer.value,
+      style: MapStyle.STREETS,
+      center: [initialState.lng, initialState.lat],
+      zoom: initialState.zoom
+    })
+  );
 
-      addLocationMarker();
-    };
+  markers.forEach(({ lng, lat, color }) => {
+    new Marker({ color })
+      .setLngLat([lng, lat])
+      .addTo(map.value);
+  });
+});
 
-    const addLocationMarker = () => {
-      const angkorWat = [104.8920, 11.5464]; // Angkor Wat, Cambodia
-
-      marker = new Marker({
-        color: '#f44336', // Red marker
-      })
-        .setLngLat(angkorWat)
-        .addTo(map);
-    };
-
-    return {
-      mapContainer,
-    };
-  },
-};
+onUnmounted(() => {
+  map.value?.remove();
+});
 </script>
 
 <style scoped>
-.map-container {
+.map-wrap {
+  /* position: relative; */
   width: 100%;
-  height: 500px;
+  height: 100vh;
+
+  padding: 0%;
+  /* height: calc(100vh - 77px); calculate height of the screen minus the heading */
 }
 
 .map {
+  /* position: absolute; */
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 </style>

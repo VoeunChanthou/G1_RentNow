@@ -78,6 +78,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::delete('/remove/{id}', [MemberController::class, 'destroy']);
 
+    //shop categories//
+    Route::get('/shop/categories', [ProductsController::class, 'getCateShop']);
 });
 
 

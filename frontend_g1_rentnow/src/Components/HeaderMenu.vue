@@ -25,9 +25,8 @@
           <template #title>
             <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Categories
           </template>
-            <el-menu-item index="2-1">Bike</el-menu-item>
-            <el-menu-item index="2-2">Party</el-menu-item>
-            <el-menu-item index="2-2">Baby</el-menu-item>
+            <el-menu-item v-for=" cate in categories" :key="cate.id" :index="2-1">{{ cate.name }}</el-menu-item>
+            
         </el-sub-menu>
         <el-sub-menu index="3">
           <template #title>
@@ -58,6 +57,8 @@
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+import axiosInstance from '@/plugins/axios'
+
 
 const item = {
   date: '2016-05-02',
@@ -66,6 +67,20 @@ const item = {
 }
 const tableData = ref(Array.from({ length: 20 }).fill(item))
 const url = '@/assets/image 62.png'
+
+
+const categories = ref()
+async function fetchData() {
+  try {
+    const response = await axiosInstance.get('/shop/categories')
+    categories.value = response.data
+    // console.log(response.data)
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+fetchData()
 </script>
 
 <style scoped>

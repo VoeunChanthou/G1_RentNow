@@ -88,27 +88,23 @@ class ProductsController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Products $products)
-    {
-        //
+    public function getCateShop(Request $request){
+        $userId = $request->user()->id;
+        $shop = Shop::where('user_id', $userId)->first();
+        $products = ProductResource::collection(Products::where('shop_id', $shop->id)->get());
+        $categories = [];
+        foreach ($products as $product){
+            if(count($categories) >= 1){
+            foreach($categories as $cate){
+                if($cate->id != $product->category->id){
+                    array_push($categories, $product->category);
+                }
+            }
+        }
+        else{
+            array_push($categories, $product->category);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Products $products)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Products $products)
-    {
-        //
+    return $categories;
     }
 }

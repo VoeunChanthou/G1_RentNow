@@ -156,6 +156,15 @@ const router = createRouter({
         role: 'user'
       }
     },
+    {
+      path: '/shop/:id',
+      name: 'shop',
+      component: () => import('../views/Web/Shop/ProductShop.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
 
   ]
 })

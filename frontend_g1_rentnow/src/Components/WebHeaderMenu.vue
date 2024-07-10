@@ -87,8 +87,8 @@ const onSubmit = (async () => {
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: white; border-bottom: 2px solid black;">
   <div class="container-fluid px-5 py-2">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="width: 30%; display: flex; justify-content: space-between; align-items: center;">
-        <li class="nav-item"><a href="/">Home</a></li>
-        <li class="nav-item"><a href="/service">Service</a></li>
+        <li class="nav-item"><a href="/home">Home</a></li>
+        <li class="nav-item"><a href="/service">Products</a></li>
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
     <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#"><Icon icon="ri:heart-fill" width="40" height="40"  style="color: #940065" /></a></li>

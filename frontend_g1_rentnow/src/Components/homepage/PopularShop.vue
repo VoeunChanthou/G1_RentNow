@@ -5,7 +5,7 @@
       <!-- <template> -->
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
-            <a href="#">
+            <a href="/shop/1">
               <div class="content-overlay"></div>
               <img class="content-image" src="../../assets/purple-shop.jpg" />
               <div class="content-details fadeIn-bottom">
