@@ -15,6 +15,7 @@ export const productStore = defineStore('product', {
       try {
         const response = await axiosInstance.get('/product');
         this.productList = response.data;
+        console.log(response.data)
       } catch (error) {
         console.error('Error fetching posts:', error);
       }

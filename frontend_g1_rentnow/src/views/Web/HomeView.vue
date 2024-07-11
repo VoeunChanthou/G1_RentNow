@@ -12,8 +12,12 @@ import VideoWork from '@/Components/homepage/VideoWork.vue'
 import PeopleSay from '@/Components/homepage/PeopleSay.vue'
 import ProductShow from '@/Components/homepage/ProductShow.vue'
 import FooterMenuVue from '../../Components/homepage/FooterMenu.vue'
+import {productStore} from '@/stores/product-list.ts'
 
 const AuthUSer = useAuthStore()
+const products = productStore()
+const product = products.fetchProductStore()
+
 </script>
 
 <template>
@@ -78,17 +82,19 @@ const AuthUSer = useAuthStore()
     </div>
 
     <div class="components">
+      <!-- {{ products.productList }} -->
     <!-- register popup  -->
     <PopupRegisterVue></PopupRegisterVue>
 
     <!-- login form -->
     <WebLoginVue></WebLoginVue>
 
+
     <!-- category show -->
     <CategoryShow></CategoryShow>
 
     <!-- ProductShow -->
-    <ProductShow></ProductShow>
+    <ProductShow :products="products.productList"></ProductShow>
 
     <!-- PopularShop -->
     <PopularShopVue></PopularShopVue>

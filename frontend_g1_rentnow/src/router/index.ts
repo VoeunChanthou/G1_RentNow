@@ -165,6 +165,15 @@ const router = createRouter({
         role: 'user'
       }
     },
+    {
+      path: '/test',
+      name: 'test',
+      component: () => import('../views/Web/Shop/TestProduct.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
 
   ]
 })

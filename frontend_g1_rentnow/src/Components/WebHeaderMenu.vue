@@ -35,10 +35,10 @@ const onSubmit = (async () => {
             All location
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Phnom Penh</a></li>
-            <li><a class="dropdown-item" href="#">Kompong Thom</a></li>
-            <li><a class="dropdown-item" href="#">Kompong Cham</a></li>
-            <li><a class="dropdown-item" href="#">Kampot</a></li>
+            <li><a class="dropdown-item" href="/shop/1">Phnom Penh</a></li>
+            <li><a class="dropdown-item" href="/shop/2">Kompong Thom</a></li>
+            <li><a class="dropdown-item" href="/shop/3">Kompong Cham</a></li>
+            <li><a class="dropdown-item" href="/shop/4">Kampot</a></li>
           </ul>
         </li>
       </ul>
@@ -50,8 +50,8 @@ const onSubmit = (async () => {
       
       <div class="dropdown ms-1 ms-lg-0 " v-if="AuthUSer.user" >
         <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-          <h6 class="text-warning">Hi_</h6>
-          <h6> {{ AuthUSer.user.first_name  }}</h6>
+          <h4 class="text-warning">Hi_</h4>
+          <h4> {{ AuthUSer.user.first_name  }}</h4>
 					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -91,7 +91,10 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/service">Products</a></li>
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
-    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#"><Icon icon="ri:heart-fill" width="40" height="40"  style="color: #940065" /></a></li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#">
+      <img src="../assets/notLove.png" alt="" />
+
+    </a></li>
     <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;"><a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a></li>
   </div>
 </nav>

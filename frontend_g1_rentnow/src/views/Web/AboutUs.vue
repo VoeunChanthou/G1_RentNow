@@ -77,7 +77,7 @@
               <div class="card-body text-center ">
                 <img src="../../assets/telegtam.png" class="img-rounded rounded" style="width: 60" alt="Cinque Terre Hollywood Sign on The Hill" height="60" />
                 <h4 class="card-title"><B>Telegram</B></h4>
-                <a href="#" style="text-decoration: none;">RentMe</a>
+                <a href="https://t.me/+NcRbgAOat282MGE1" style="text-decoration: none;">RentMe</a>
               </div>
             </div>
             <div class="card shadow" style=" width: 260px; height: 180px; background: linear-gradient(120deg, #c49be9 30%, #f4e065); border-radius: 15px;">
