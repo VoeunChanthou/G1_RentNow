@@ -1,17 +1,16 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Validation\Rule;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-
-
 class UserController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -32,9 +31,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user= User::latest()->get();
+        $users = User::latest()->get();
 
-        return view('setting.user.index',['users'=>$user]);
+        return view('setting.user.index', compact('users'));
     }
 
     /**
@@ -45,7 +44,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::get();
-        return view('setting.user.new',['roles'=>$roles]);
+        return view('setting.user.new', compact('roles'));
     }
 
     /**
@@ -56,17 +55,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $request->validate([
-            'name'=>'required',
-            'email' => 'required|email|unique:users',
-            'password'=>'required|confirmed'
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'email|unique:users',
+            'password' => 'required',
+            'phone_number' => 'required|unique:users'
         ]);
+
         $user = User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=> bcrypt($request->password),
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'phone_number' => $request->phone_number
         ]);
+
         $user->syncRoles($request->roles);
         return redirect()->back()->withSuccess('User created !!!');
     }
@@ -85,39 +89,40 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function edit(User $user)
     {
-        $role = Role::get();
-        $user->roles;
-       return view('setting.user.edit',['user'=>$user,'roles' => $role]);
+        $roles = Role::get();
+        $user->loadMissing('roles');
+        return view('setting.user.edit', compact('user', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name'=>'required',
-            'email' => 'required|email|unique:users,email,'.$user->id.',id',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => ['required', 'email', Rule::unique('users', 'email')->ignore($user->id)],
         ]);
-
-        if($request->password != null){
+    
+        if ($request->password != null) {
             $request->validate([
                 'password' => 'required|confirmed'
             ]);
             $validated['password'] = bcrypt($request->password);
         }
-
+    
         $user->update($validated);
-
+    
         $user->syncRoles($request->roles);
         return redirect()->back()->withSuccess('User updated !!!');
     }
@@ -125,12 +130,12 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy(User $user)
     {
-        $role->delete();
-        return redirect()->back()->withSuccess('Role deleted !!!');
+        $user->delete();
+        return redirect()->back()->withSuccess('User deleted !!!');
     }
 }
