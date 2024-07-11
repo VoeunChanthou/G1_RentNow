@@ -30,25 +30,8 @@ class ShopController extends Controller
     public function create(Request $request)
     {
 
-        // return $request->user();
-        // return "hello";
-        // return Permission::all();
-        // return role::all();
+       
         $role = RoleResource::collection(model_has_role::all());
-        // $role = role_has_permissions::all();
-        // $roleOfuser = [];
-        // foreach ($role as $key => $value) {
-        //     if ($role[$key]->model_id == $request->user()->id) {
-        //         $roleId = role_has_permissions::all();
-        //         foreach ($roleId as $key2 => $value2) {
-        //             if($role[$key]->role_id === $roleId[$key2]->role_id){
-        //                 array_push($roleOfuser, $roleId[$key2]);
-        //             }
-        //         };
-        //     }
-        // }
-        // return $roleOfuser;
-
         $isAdmin = 'null';
         foreach ($role as $key => $value){
             if($role[$key]->model_id == $request->user()->id){
