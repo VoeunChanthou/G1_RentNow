@@ -119,13 +119,14 @@
             <div class="form-container">
               <form>
                 <div class="form-group">
-                  <label for="card-name">Card Name</label>
-                  <input type="text" id="card-name" name="card-name" placeholder="Card Name" />
+                  <label for="card-name">Card Name {{ cardName }}</label>
+                  <input v-model="cardName" type="text" id="card-name" name="card-name" placeholder="Card Name" />
                 </div>
 
                 <div class="form-group">
-                  <label for="card-number">Card Number</label>
+                  <label for="card-number">Card Number {{ cardNumber }}</label>
                   <input
+                    v-model="cardNumber"
                     type="number"
                     id="card-number"
                     name="card-number"
@@ -135,22 +136,22 @@
 
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="expiration">Expiration</label>
-                    <input type="number" id="expiration" name="expiration" placeholder="MM/YYYY" />
+                    <label for="expiration">Expiration {{ expiration }}</label>
+                    <input v-model="expiration" type="number" id="expiration" name="expiration" placeholder="MM/YYYY" />
                   </div>
 
                   <div class="form-group">
-                    <label for="cvv">CVV</label>
-                    <input type="number" id="cvv" name="cvv" placeholder="" />
+                    <label for="cvv">CVV {{ cvv }}</label>
+                    <input v-model="cvv" type="number" id="cvv" name="cvv" placeholder="" />
                   </div>
 
                 </div>
                 <div class="form-group">
-                  <label for="date">Date</label>
-                  <input type="date" id="date" name="date" placeholder="mm/dd/yy" />
+                  <label for="date">Date {{ date }}</label>
+                  <input v-model="date" type="date" id="date" name="date" placeholder="mm/dd/yy" />
                 </div>
 
-                <button type="button" class="btn-pay"><b>Pay Secure</b></button>
+                <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
 
               </form>
             </div>
@@ -177,7 +178,14 @@ export default {
     return {
       product: {},
       shop: {},
-      image: {}
+      image: {},
+
+      // =========== payment =========
+      cardName: "",
+      cardNumber:"",
+      expiration:"",
+      cvv:"",
+      date:""
     }
   },
   mounted() {
