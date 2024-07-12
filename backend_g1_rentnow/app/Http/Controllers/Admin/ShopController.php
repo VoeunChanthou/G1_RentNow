@@ -82,7 +82,8 @@ class ShopController extends Controller
             };
 
         }
-        return redirect()->back()->withSuccess("Successfully created");
+        $shops= Shop::all();
+        return view('shop.index',['shops'=>$shops]);
 
         // return response()->json(["message"=>"you are not allowed", "success"=>false]);
         
@@ -117,11 +118,6 @@ class ShopController extends Controller
     //  * @param  int  $id
     //  * @return \Illuminate\Http\Response
     //  */
-    // public function update(Request $request)
-    // {
-    //     // $shop->update($request->all());
-    //     return redirect()->back()->withSuccess('Post updated !!!');
-    // }
 
     /**
      * Remove the specified resource from storage.
@@ -132,16 +128,14 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         $shop->delete();
-        return redirect()->back()->withSuccess('Post deleted !!!');
+        $shops= Shop::all();
+        return view('shop.index',['shops'=>$shops]);
     }
 
     public function update(Request $request, String $id){
         $shop = Shop::find($id);
         $shop->update($request->all());
-        // return redirect()->back()->withSuccess('shop updated');
         $shops= Shop::all();
-
         return view('shop.index',['shops'=>$shops]);
-
     }
 }
