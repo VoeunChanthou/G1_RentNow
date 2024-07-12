@@ -107,21 +107,21 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-       return view('post.edit',['post' => $shop]);
+       return view('shop.edit',['shop' => $shop]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Shop $shop)
-    {
-        $shop->update($request->all());
-        return redirect()->back()->withSuccess('Post updated !!!');
-    }
+    // /**
+    //  * Update the specified resource in storage.
+    //  *
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @param  int  $id
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function update(Request $request)
+    // {
+    //     // $shop->update($request->all());
+    //     return redirect()->back()->withSuccess('Post updated !!!');
+    // }
 
     /**
      * Remove the specified resource from storage.
@@ -133,5 +133,15 @@ class ShopController extends Controller
     {
         $shop->delete();
         return redirect()->back()->withSuccess('Post deleted !!!');
+    }
+
+    public function update(Request $request, String $id){
+        $shop = Shop::find($id);
+        $shop->update($request->all());
+        // return redirect()->back()->withSuccess('shop updated');
+        $shops= Shop::all();
+
+        return view('shop.index',['shops'=>$shops]);
+
     }
 }
