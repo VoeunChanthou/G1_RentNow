@@ -24,7 +24,7 @@
             </el-carousel-item>
             <el-carousel-item v-for="item in image" :key="item.id">
               <div class="product-slide-show">
-                <img :src="item.image" width="60%" height="50%"  alt="" />
+                <img :src="item.image" width="60%" height="50%" alt="" />
               </div>
             </el-carousel-item>
           </el-carousel>
@@ -78,7 +78,16 @@
 
           <div class="button-action">
             <button class="btn-comment">Comment</button>
-            <button class="btn-rent">Rent Now</button>
+
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn-rent"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Rent Now
+            </button>
           </div>
         </div>
       </div>
@@ -92,8 +101,81 @@
     </div>
 
     </div>
+    <!--==================== payment popup ========================= -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <img src="../../../assets/visa-image.png" alt="" />
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body1">
+            <img src="../../../assets/pay-image.png" alt="" />
+            <h3 class="pay-price">$ 300</h3>
+            <h4>Credit Card Details</h4>
+          </div>
+
+          <div class="modal-body2">
+            <div class="form-container">
+              <form>
+                <div class="form-group">
+                  <label for="card-name">Card Name {{ cardName }}</label>
+                  <input v-model="cardName" type="text" id="card-name" name="card-name" placeholder="Card Name" />
+                </div>
+
+                <div class="form-group">
+                  <label for="card-number">Card Number {{ cardNumber }}</label>
+                  <input
+                    v-model="cardNumber"
+                    type="number"
+                    id="card-number"
+                    name="card-number"
+                    placeholder="12334455667"
+                  />
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="expiration">Expiration {{ expiration }}</label>
+                    <input v-model="expiration" type="number" id="expiration" name="expiration" placeholder="MM/YYYY" />
+                  </div>
+
+                  <div class="form-group">
+                    <label for="cvv">CVV {{ cvv }}</label>
+                    <input v-model="cvv" type="number" id="cvv" name="cvv" placeholder="" />
+                  </div>
+
+                </div>
+                <div class="form-group">
+                  <label for="date">Date {{ date }}</label>
+                  <input v-model="date" type="date" id="date" name="date" placeholder="mm/dd/yy" />
+                </div>
+
+                <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
+     
   </WebLayout>
-  
 </template>
 
 <script>
@@ -112,7 +194,14 @@ export default {
     return {
       product: {},
       shop: {},
-      image: {}
+      image: {},
+
+      // =========== payment =========
+      cardName: "",
+      cardNumber:"",
+      expiration:"",
+      cvv:"",
+      date:""
     }
   },
   mounted() {
@@ -120,13 +209,14 @@ export default {
   },
   methods: {
     getProductDetail() {
-      axiosInstance.get(`product/${this.$route.params.id}`)
-       .then((response) => {
+      axiosInstance
+        .get(`product/${this.$route.params.id}`)
+        .then((response) => {
           this.product = response.data.data
           this.shop = response.data.data.shop
           this.image = response.data.data.detail
         })
-       .catch((error) => {
+        .catch((error) => {
           console.log(error)
         });
       }
@@ -267,4 +357,81 @@ export default {
   background: #691ba5;
   color: white;
 }
+
+/* ============= payment popup style ============= */
+.modal-body2{
+  display: flex;
+}
+
+.modal-content{
+  width: 650px;
+  display: flex;
+  justify-content: center;
+}
+.pay-price {
+  color: #691ba5;
+}
+.modal-body1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-header img {
+  width: 120px;
+}
+.modal-body1 img {
+  width: 150px;
+}
+
+/* ============= form styel========== */
+.form-container {
+  margin: auto;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #6200ee;
+}
+
+.form-group .error {
+  color: red;
+  font-size: 12px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-row .form-group {
+  width: 48%;
+}
+
+/* ========== pay button style ========= */
+.btn-pay{
+  background: #691ba5;
+  border: none;
+  padding: 10px;
+  color: white;
+  border-radius: 6px;
+  width: 480px;
+  margin: auto;
+}
+
 </style>

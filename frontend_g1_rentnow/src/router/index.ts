@@ -183,6 +183,15 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/receipt',
+      name: 'receipt',
+      component: () => import('../views/Web/Service/ReceiptVue.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
   ]
 })
 
