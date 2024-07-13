@@ -3,12 +3,14 @@
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ProductDtailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
+// use App\Http\Controllers\MemberController;
 
 
 
@@ -47,6 +49,10 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
+    Route::post('/create/product', [ProductsController::class,'create']);
+    Route::post('/shop/create/product', [ProductsController::class, 'store']);
+
+    Route::get('/product/shop', [ShopController::class, 'showProduct']);
 
 });
 
@@ -60,3 +66,26 @@ Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
+
+
+//shop owner//
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/add/member', [MemberController::class, 'create']);
+    Route::get('/members', [MemberController::class, 'index']);
+    Route::get('/show/member/{id}', [MemberController::class, 'show']);
+    Route::get('/list/user', [MemberController::class, 'listUser']);
+    Route::get('/detail/user/{id}', [MemberController::class, 'detailUser']);
+
+    Route::delete('/remove/{id}', [MemberController::class, 'destroy']);
+
+    //shop categories//
+    Route::get('/shop/categories', [ProductsController::class, 'getCateShop']);
+
+
+    Route::post('/create/product/detail/{id}', [ProductDtailController::class, 'putDetail']);
+    Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
+});
+
+
+Route::get('/get/shop/{id}', [ShopController::class, 'show']);
+

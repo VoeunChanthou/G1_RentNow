@@ -20,8 +20,6 @@ const onSubmit = (async () => {
 <template>
   <!-- Button trigger modal -->
 <!-- Modal -->
-{{ AuthUSer }}
-
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
@@ -36,10 +34,10 @@ const onSubmit = (async () => {
             All location
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="#">Phnom Penh</a></li>
-            <li><a class="dropdown-item" href="#">Kompong Thom</a></li>
-            <li><a class="dropdown-item" href="#">Kompong Cham</a></li>
-            <li><a class="dropdown-item" href="#">Kampot</a></li>
+            <li><a class="dropdown-item" href="/shop/1">Phnom Penh</a></li>
+            <li><a class="dropdown-item" href="/shop/2">Kompong Thom</a></li>
+            <li><a class="dropdown-item" href="/shop/3">Kompong Cham</a></li>
+            <li><a class="dropdown-item" href="/shop/4">Kampot</a></li>
           </ul>
         </li>
       </ul>
@@ -51,8 +49,8 @@ const onSubmit = (async () => {
       
       <div class="dropdown ms-1 ms-lg-0 " v-if="AuthUSer.user" >
         <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-          <h6 class="text-warning">Hi_</h6>
-          <h6> {{ AuthUSer.user.first_name  }}</h6>
+          <h4 class="text-warning">Hi_</h4>
+          <h4> {{ AuthUSer.user.first_name  }}</h4>
 					<img class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -71,7 +69,7 @@ const onSubmit = (async () => {
 						<hr>
 					</li>
 					<!-- Links -->
-					<li><a class="dropdown-item" href="#"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
+					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
@@ -88,11 +86,14 @@ const onSubmit = (async () => {
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: white; border-bottom: 2px solid black;">
   <div class="container-fluid px-5 py-2">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="width: 30%; display: flex; justify-content: space-between; align-items: center;">
-        <li class="nav-item"><a href="/">Home</a></li>
-        <li class="nav-item"><a href="/service">Service</a></li>
+        <li class="nav-item"><a href="/home">Home</a></li>
+        <li class="nav-item"><a href="/service">Products</a></li>
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
-    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#"><Icon icon="ri:heart-fill" width="40" height="40"  style="color: #940065" /></a></li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#">
+      <img src="../assets/notLove.png" alt="" />
+
+    </a></li>
     <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;"><a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a></li>
   </div>
 </nav>

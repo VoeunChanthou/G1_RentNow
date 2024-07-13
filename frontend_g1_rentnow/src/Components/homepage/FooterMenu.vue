@@ -28,10 +28,10 @@
       <div class="links">
         <h2>Our Page</h2>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Services</a></li>
-          <li><a href="#">About us</a></li>
-          <li><a href="#">Message</a></li>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/service">products</a></li>
+          <li><a href="/aboutUs">About us</a></li>
+          <li><a href="/message">Message</a></li>
         </ul>
       </div>
       <div class="services">

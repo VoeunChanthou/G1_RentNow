@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Products;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
 
@@ -18,12 +19,23 @@ class ProductsController extends Controller
         return ProductResource::collection(Products::all());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function create(Request $request)
     {
-        //
+        $product = new Products();
+        $product->name = $request->name;
+        $product->shop_id = $request->shop_id;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->image = 'data:image/jpeg;base64,'. base64_encode(file_get_contents($request->image->path()));
+        $product->save();
+
+        return response()->json([
+            'message' => 'create successfully',
+            'product'=>$product
+        ]);
+        // return $shop;
+
     }
 
     public function search(Request $request)
@@ -42,7 +54,23 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $shop = Shop::where('user_id', $request->user()->id)->first();
+
+        $product = new Products();
+        $product->name = $request->name;
+        $product->image = $request-> image;
+        $product->user_id = $request->user_id;
+        $product->price = $request->price;
+        $product->category_id = $request->category_id;
+        $product->shop_id = $shop->id;
+
+        $product->save();
+
+        return response()->json([
+           'message' => 'create successfully',
+            'product'=>$product
+        ]);
+
     }
 
     /**
@@ -60,27 +88,23 @@ class ProductsController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Products $products)
-    {
-        //
+    public function getCateShop(Request $request){
+        $userId = $request->user()->id;
+        $shop = Shop::where('user_id', $userId)->first();
+        $products = ProductResource::collection(Products::where('shop_id', $shop->id)->get());
+        $categories = [];
+        foreach ($products as $product){
+            if(count($categories) >= 1){
+            foreach($categories as $cate){
+                if($cate->id != $product->category->id){
+                    array_push($categories, $product->category);
+                }
+            }
+        }
+        else{
+            array_push($categories, $product->category);
+        }
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Products $products)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Products $products)
-    {
-        //
+    return $categories;
     }
 }

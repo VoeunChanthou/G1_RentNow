@@ -55,6 +55,8 @@
             </template>
           </el-table-column>
         </el-table>
+        <CalendarVue/>
+        <MapVue/>
       </el-main>
     </el-container>
   </el-container>
@@ -66,6 +68,9 @@ import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import ChartComponent from '@/Components/Shop/dashboard/ChartComponent.vue'
 import PolarArea from '@/Components/Shop/dashboard/PolarArea.vue'
 import StatisticCard from '@/Components/Shop/dashboard/StatisticCard.vue'
+import CalendarVue from '@/Components/Shop/dashboard/CalendarVue.vue'
+import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
+
 
 import { computed, ref } from 'vue'
 

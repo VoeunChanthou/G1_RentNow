@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Categories;
+use App\Models\Products;
+use App\Models\Member;
 
 class Shop extends Model
 {
@@ -27,5 +29,13 @@ class Shop extends Model
 
     public function categories(){
         return $this->belongsTo(Categories::class);
+    }
+
+    public function products(){
+        return $this->hasMany(Products::class);
+    }
+
+    public function members(){
+        return $this->hasMany(Member::class);
     }
 }

@@ -15,8 +15,8 @@ class Detail extends Model
         'product_id'
     ];
 
-    public function Detail(){
-        return $this->belongsTo(Categories::class);
-    }
+    // public function Detail(){
+    //     return $this->belongsTo(Categories::class);
+    // }
 
 }

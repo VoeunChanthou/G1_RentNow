@@ -12,38 +12,41 @@
       <el-image src="../../../src/assets/image62.png" style="width: 150px"></el-image>
     </el-header>
     <el-scrollbar>
-      <el-menu :default-openeds="['1', '3']">
-        <el-menu-item><el-icon><Icon icon="material-symbols:team-dashboard-outline"></Icon></el-icon><el-link href="/shop/dashboard">Dashboard</el-link></el-menu-item>
+      <el-menu :default-openeds="['1', '4']">
+        <el-menu-item><el-icon><Icon icon="material-symbols:team-dashboard-outline"></Icon></el-icon><el-link href="/">Dashboard</el-link></el-menu-item>
         <el-sub-menu index="1">
           <template #title>
             <el-icon><Icon icon="icon-park-outline:ad-product" width="20" height="20"></Icon></el-icon>Product
           </template>
             <el-menu-item><el-link href="/shop/product">All products</el-link></el-menu-item>
+            <el-menu-item><el-link href="/imgdetail">Detial</el-link></el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2">
           <template #title>
             <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Categories
           </template>
-            <el-menu-item index="2-1">Bike</el-menu-item>
-            <el-menu-item index="2-2">Party</el-menu-item>
-            <el-menu-item index="2-2">Baby</el-menu-item>
+            <el-menu-item v-for=" cate in categories" :key="cate.id" :index="2-1">{{ cate.name }}</el-menu-item>
+            
         </el-sub-menu>
         <el-sub-menu index="3">
+          <template #title>
+            <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Member
+          </template>
+            <el-menu-item index="2-1"><el-link href="/shop/member">Members</el-link> </el-menu-item>
+        </el-sub-menu>
+        <el-sub-menu index="4">
           <template #title>
             <el-icon><message /></el-icon>Messages
           </template>
           <el-menu-item-group>
-            <template #title>Group 1</template>
-            <el-menu-item index="3-1">Option 1</el-menu-item>
-            <el-menu-item index="3-2">Option 2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="Group 2">
-            <el-menu-item index="3-3">Option 3</el-menu-item>
+            <el-menu-item index="3-1">To admin</el-menu-item>
+            <el-menu-item index="3-2">From client</el-menu-item>
           </el-menu-item-group>
           <el-sub-menu index="3-4">
-            <template #title>Option 4</template>
-            <el-menu-item index="3-4-1">Option 4-1</el-menu-item>
+            <template #title>Feedback</template>
+            <el-menu-item index="3-4-1"><el-link href="/feedback">My feedback</el-link></el-menu-item>
+            
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>
@@ -55,6 +58,8 @@
 import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+import axiosInstance from '@/plugins/axios'
+
 
 const item = {
   date: '2016-05-02',
@@ -63,6 +68,20 @@ const item = {
 }
 const tableData = ref(Array.from({ length: 20 }).fill(item))
 const url = '@/assets/image 62.png'
+
+
+const categories = ref()
+async function fetchData() {
+  try {
+    const response = await axiosInstance.get('/shop/categories')
+    categories.value = response.data
+    // console.log(response.data)
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+fetchData()
 </script>
 
 <style scoped>

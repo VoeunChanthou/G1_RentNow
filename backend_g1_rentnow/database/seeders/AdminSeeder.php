@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use App\Models\Shop;
+use App\Models\Categories;
 
 
 class AdminSeeder extends Seeder
@@ -70,6 +72,19 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Mail access']);
         $permission = Permission::create(['name' => 'Mail edit']);
 
+        $category = Shop::create([
+            'name'=>'Electronics',
+            'user_id'=> 3,
+            'Country'=>'Cambodia',
+            'Province'=>'Kompong Thom',
+            'street'=>'371',
+            'latitude'=>'03843.34',
+            'longitude'=>'4532424'
+        ]);
+
+        $category = Categories::create([
+            'name'=>'Laptop',
+        ]);
 
 
         $admin->assignRole($admin_role);

@@ -1,6 +1,7 @@
 <template>
   <WebLayout>
-    <div class="content px-5">
+    <div class="main">
+    <div class="content px-5 bg-white">
       <!-- back button -->
       <div class="back-button" @click="$router.go(-1)">
         <i><img src="../../../assets/backButton.png" alt="backButton" /></i>
@@ -16,6 +17,11 @@
 
           <!-- product slide show product -->
           <el-carousel indicator-position="outside">
+            <el-carousel-item>
+              <div class="product-slide-show">
+                <img :src="product.image" width="60%" height="50%" alt="" />
+              </div>
+            </el-carousel-item>
             <el-carousel-item v-for="item in image" :key="item.id">
               <div class="product-slide-show">
                 <img :src="item.image" width="60%" height="50%"  alt="" />
@@ -77,6 +83,15 @@
         </div>
       </div>
     </div>
+
+    <div class="map-location px-5 py-2 bg-white" style="height: auto; display: grid; grid-template-columns: 63% 36%; gap: 1%;">
+      <div class="left-side shadow bg-white" ></div>
+      <div class="right-side shadow bg-white" style="height: 60vh; align-self: flex-end;">
+        <ShopMap/>
+      </div>
+    </div>
+
+    </div>
   </WebLayout>
   
 </template>
@@ -85,11 +100,13 @@
 import WebLayout from '../../../Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
+import ShopMap from '@/Components/service/ShopMap.vue';
 
 export default {
   components: {
     WebLayout,
-    Icon
+    Icon,
+    ShopMap
   },
   data() {
     return {
@@ -111,8 +128,8 @@ export default {
         })
        .catch((error) => {
           console.log(error)
-        })
-    }
+        });
+      }
   }
 }
 </script>
