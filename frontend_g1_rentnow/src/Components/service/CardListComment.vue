@@ -1,4 +1,5 @@
 <template>
+  <div class="main">
      <LoadingVies v-if="!CommentList.data" />
      <div v-for="comment in CommentList.data" :key="comment">
          <div class="row justify-content-center mb-3">
@@ -42,7 +43,8 @@
              </div>
            </div>
          </div>
-     </div>
+         </div>
+  </div>
 </template>
 <script>
 import LoadingVies from "../loading/LoadingView.vue"
