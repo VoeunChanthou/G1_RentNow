@@ -68,7 +68,7 @@
               <hr class="mt-5 mb-4 border-secondary-subtle" />
               <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
                 <a href="#!" class="link-secondary text-decoration-none">Create new account</a>
-                <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
+                <a href="#!" class="link-secondary text-decoration-none" data-bs-target="#forgotpassword" data-bs-toggle="modal" data-bs-dismiss="modal" >Forgot password</a>
               </div>
             </div>
           </div>
@@ -113,11 +113,13 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts">
+
 import axiosInstance from '@/plugins/axios'
-import { useField, useForm } from 'vee-validate'
+import { useField, useForm } from 'vee-validate' 
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
 

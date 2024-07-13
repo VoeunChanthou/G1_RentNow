@@ -1,7 +1,7 @@
 <template>
-  <WebLayout>
-    <div class="main">
-    <div class="content px-5 bg-white">
+  <WebLayout><div class="bg-white">
+    <CommentProduct />
+    <div class="content px-5">
       <!-- back button -->
       <div class="back-button" @click="$router.go(-1)">
         <i><img src="../../../assets/backButton.png" alt="backButton" /></i>
@@ -36,7 +36,7 @@
               <h4>{{ product.name }}</h4>
               <p style="color: red">{{ shop.name }}</p>
             </div>
-            <h1 style="color: red">{{ product.days }} Days</h1>
+            <h1 style="color: red">{{ product.days }} {{product.id}} Days</h1>
           </div>
 
           <p>
@@ -77,9 +77,10 @@
           </div>
 
           <div class="button-action">
-            <button class="btn-comment">Comment</button>
+  
 
             <!-- Button trigger modal -->
+            <button class="btn-rent" data-bs-toggle="modal" data-bs-target="#formfeedback" data-bs-whatever="@getbootstrap">Comment</button>
             <button
               type="button"
               class="btn-rent"
@@ -88,13 +89,17 @@
             >
               Rent Now
             </button>
+      
           </div>
         </div>
       </div>
     </div>
 
     <div class="map-location px-5 py-2 bg-white" style="height: auto; display: grid; grid-template-columns: 63% 36%; gap: 1%;">
-      <div class="left-side shadow bg-white" ></div>
+      <div class="left-side shadow bg-white" >
+    <CardListComponent />
+
+      </div>
       <div class="right-side shadow bg-white" style="height: 60vh; align-self: flex-end;">
         <ShopMap/>
       </div>
@@ -184,11 +189,15 @@ import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
 import ShopMap from '@/Components/service/ShopMap.vue';
 
+import CommentProduct from '@/Components/service/CommentProduct.vue';
+import CardListComponent from '@/Components/service/CardListComment.vue'
 export default {
   components: {
     WebLayout,
     Icon,
-    ShopMap
+    ShopMap,
+    CommentProduct,
+    CardListComponent
   },
   data() {
     return {

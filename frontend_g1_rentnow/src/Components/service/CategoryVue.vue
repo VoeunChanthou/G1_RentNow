@@ -85,7 +85,7 @@ export default {
     fetchProduct() {
       this.products.fetchProduct()
     },
-    fetchShop() {
+    fetchShop() { 
       this.shop.fetchShop()
     },
     // fetchProductStore() {

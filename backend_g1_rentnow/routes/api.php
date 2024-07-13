@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\API\feedbackcontroller;
+use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
@@ -53,8 +57,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/shop/create/product', [ProductsController::class, 'store']);
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
+    Route::post('/comment', [feedbackcontroller::class, 'create']);
 
+    Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
+    Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
+    Route::post('/reset', [PasswordResetLinkController::class, "store"]);
 });
+route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
 
 
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();

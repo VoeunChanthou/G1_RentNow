@@ -52,6 +52,7 @@
       <CardBorrowVue></CardBorrowVue>
     </form>
   </div>
+  
 </template>
     
 <script>
@@ -59,7 +60,7 @@ import CardBorrowVue from './CardBorrowVue.vue'
 export default {
   name: 'CardVue',
   components: {
-    CardBorrowVue
+    CardBorrowVue,
   },
   props: ['product'],
   data() {

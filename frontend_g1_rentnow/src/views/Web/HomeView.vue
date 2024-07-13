@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import CommentProduct from "@/Components/service/CommentProduct.vue"
+import ForForgotpassword from '@/Components/homepage/ForForgotpassword.vue'
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'

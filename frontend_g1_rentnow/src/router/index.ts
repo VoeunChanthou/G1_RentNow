@@ -10,7 +10,7 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../views/Web/HomeView.vue'),
+      component: () => import('../views/Web/HomeView.vue')
     },
     {
       path: '/service',
@@ -196,7 +196,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to, from, next) => {
-  var publicPages = ['/home']
+  const publicPages = ['/home']
   const authRequired = !publicPages.includes(to.path)
   const store = useAuthStore()
 
@@ -206,10 +206,10 @@ router.beforeEach(async (to, from, next) => {
     store.isAuthenticated = true
     store.user = data.data
 
-    
+    // console.log(data.dat);
     store.permissions = data.data.permissions.map((item: any) => item.name)
     store.roles = data.data.roles.map((item: any) => item.name)
-    
+
     const rules = () =>
       defineAclRules((setRule) => {
         store.permissions.forEach((permission: string) => {
@@ -218,27 +218,16 @@ router.beforeEach(async (to, from, next) => {
       })
 
     simpleAcl.rules = rules()
-
   } catch (error) {
     /* empty */
   }
-
-
-  
-
-  // if(store.roles.includes('shop owner')){
-  //   console.log('hello')
-  // }
-
-
 
   if (authRequired && !store.isAuthenticated) {
     next('/home')
   } else if (to.meta.role && !store.roles.includes(to.meta.role)) {
     // Redirect to home page if user doesn't have the required role
     next('/home')
-  }
-  else {
+  }else {
     next()
   }
 })

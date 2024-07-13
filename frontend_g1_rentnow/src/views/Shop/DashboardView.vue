@@ -28,17 +28,16 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <StatisticCard/>
-        <el-row :gutter="16" style="margin-top: 20px;">
+        <StatisticCard />
+        <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
-            <ChartComponent/>
+            <ChartComponent />
           </el-col>
           <el-col :span="12">
-            <PolarArea/>
+            <PolarArea />
           </el-col>
-        
         </el-row>
-        <el-table :data="filterTableData" style="width: 100%; margin-top: 20px;">
+        <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
           <el-table-column label="Date" prop="date" />
           <el-table-column label="Name" prop="name" />
           <el-table-column align="right">
