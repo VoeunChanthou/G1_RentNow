@@ -68,7 +68,7 @@ const router = createRouter({
     },
     {
       path: '/',
-      name: 'shop',
+      name: 'shopDashboard',
       component: () => import('../views/Shop/DashboardView.vue'),
       meta: {
         requiresAuth: true,
@@ -166,14 +166,24 @@ const router = createRouter({
       }
     },
     {
-      path: '/test',
-      name: 'test',
-      component: () => import('../views/Web/Shop/TestProduct.vue'),
+      path: '/imgdetail',
+      name: 'imagedetailshop',
+      component: () => import('../views/Shop/product/ImageDetail.vue'),
       meta: {
         requiresAuth: true,
-        role: 'user'
+        role: 'shop owner'
       }
     },
+    {
+      path: '/uploadimagedetail/:id',
+      name: 'uploadimagedetail',
+      component: () => import('../views/Shop/product/UploadImage.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    
 
   ]
 })

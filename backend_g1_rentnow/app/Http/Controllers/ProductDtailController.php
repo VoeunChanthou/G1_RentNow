@@ -9,20 +9,31 @@ use App\Models\Detail;
 
 class ProductDtailController extends Controller
 {
-    public function putDetail(Request $request)
+    public function putDetail(Request $request, $id)
     {
-        // return $request;
-        $imgagName = Str::random(32) . "." . $request->img->getClientOriginalExtension();
-        Storage::disk('images')->put($imgagName, file_get_contents($request->img));
+        try {
+            $detail = new Detail();
+            $detail->product_id = $id;
+            $detail->image = "data:image/jpeg;base64,".$request->input('image');
+            $detail->save();
+    
+            return response()->json([
+                'success' => true,
+                'data' => $detail
+            ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->getMessage()
+            ], 500);
+        }
+    }
 
-        // You can now save the image path or other relevant data in your database
-        $detail = new Detail();
-        $detail->product_id = $request->product_id;
-        $detail->image = $imgagName;
-        $detail->save();
-        
-
-        return $detail;
-
+    public function ShowDetail(String $id){
+        $detail = Detail::where('product_id', $id)->get();
+        return response()->json([
+            'message' => 'get detail successfully',
+            'detail' => $detail
+        ]);
     }
 }

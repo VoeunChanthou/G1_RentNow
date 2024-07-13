@@ -80,6 +80,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     //shop categories//
     Route::get('/shop/categories', [ProductsController::class, 'getCateShop']);
+
+
+    Route::post('/create/product/detail/{id}', [ProductDtailController::class, 'putDetail']);
+    Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
 });
 
 

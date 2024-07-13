@@ -19,6 +19,7 @@
             <el-icon><Icon icon="icon-park-outline:ad-product" width="20" height="20"></Icon></el-icon>Product
           </template>
             <el-menu-item><el-link href="/shop/product">All products</el-link></el-menu-item>
+            <el-menu-item><el-link href="/imgdetail">Detial</el-link></el-menu-item>
         </el-sub-menu>
 
         <el-sub-menu index="2">

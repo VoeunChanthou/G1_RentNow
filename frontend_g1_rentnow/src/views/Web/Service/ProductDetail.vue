@@ -25,7 +25,6 @@
             <el-carousel-item v-for="item in image" :key="item.id">
               <div class="product-slide-show">
                 <img :src="item.image" width="60%" height="50%"  alt="" />
-                <img :src="product.image" width="60%" height="50%" alt="" />
               </div>
             </el-carousel-item>
           </el-carousel>
