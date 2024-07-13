@@ -183,8 +183,6 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
-    
-
   ]
 })
 
