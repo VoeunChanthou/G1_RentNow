@@ -19,3 +19,20 @@ export const useShopStore = defineStore('get', {
     }
   }
 });
+
+
+export const getShopStore = defineStore('id', {
+  state: () => ({
+    shop: [],
+  }),
+  actions: {
+    async fetchShopSpecific(shopId: number) {
+      try {
+        const response = await axiosInstance.get(`/get/shop/${shopId}`);
+        this.shop = response.data;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  }
+});

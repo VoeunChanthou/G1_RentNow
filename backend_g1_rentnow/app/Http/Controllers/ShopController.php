@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Products;
 use Spatie\Permission\Models\role;
 use Spatie\Permission\Models\Permission;
 use App\Models\model_has_role;
 use App\Models\role_has_permissions;
 use App\Http\Resources\RoleResource;
+use App\Http\Resources\ShopResource;
 
 class ShopController extends Controller
 {
@@ -96,10 +98,23 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Shop $shop)
+    public function show(String $id)
     {
-        //
+        return Shop::where('user_id', $id)->first();
+
     }
+
+    public function showProduct(Request $request)
+{
+    $userId = $request->user()->id;
+    $shop = Shop::where('user_id', $userId)->first();
+
+    if ($shop) {
+        return response()->json(ShopResource::make($shop), 200);
+    } else {
+        return response()->json(['message' => 'Shop not found'], 404);
+    }
+}
 
     /**
      * Show the form for editing the specified resource.

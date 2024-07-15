@@ -138,6 +138,24 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/view/profile/user',
+      name: 'proUser',
+      component: () => import('../views/Web/Profile/ViewProfile.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
+    {
+      path: '/create/product/test',
+      name: 'creteProd',
+      component: () => import('../views/Shop/CreateProduct.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
 
   ]
 })

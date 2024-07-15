@@ -96,7 +96,7 @@
         <div style="width: 100%; display: flex; justify-content: end; margin-bottom: 20px;">
           <el-button  type="primary" :icon="Plus"><el-link href="/add/member" style="color: white;">add member</el-link></el-button>
         </div>
-        <el-table :data="members.members" style="width: 100%">
+        <el-table :data="members" style="width: 100%">
           <el-table-column prop="member.id" label="ID" width="100" />
           <el-table-column prop="member.first_name" label="First Name" width="250" />
           <el-table-column prop="member.last_name" label="Last Name" width="250" />
@@ -109,8 +109,6 @@
             </template>
           </el-table-column>
         </el-table>
-
-        <!-- {{ members.members }} -->
       </el-main>
     </el-container>
   </el-container>
@@ -120,9 +118,24 @@
 import { Search, Plus, Setting, View, Delete } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
-import { memberStore } from '@/stores/member-list.ts'
+import axiosInstance from '@/plugins/axios'
+import { reactive, ref } from 'vue'
 
-const members = memberStore()
+
+// import { memberStore } from '@/stores/member-list.ts'
+
+const members = ref()
+async function fetchData() {
+  try {
+    const response = await axiosInstance.get('/members')
+    members.value = response.data.data.member
+    // console.log(response.data.data.member)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+fetchData()
 
 const memberList = members.fetchMemberStore()
 </script>

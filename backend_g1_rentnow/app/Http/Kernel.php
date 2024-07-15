@@ -23,6 +23,8 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
+
+
     /**
      * The application's route middleware groups.
      *
@@ -66,4 +68,6 @@ class Kernel extends HttpKernel
         'front'  => \App\Http\Middleware\FrontMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
     ];
+
+
 }

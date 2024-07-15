@@ -30,7 +30,6 @@
     "vue-router": "^4.3.0",
     "vue-simple-acl": "^2.0.2",
     "vue3-google-login": "^2.0.26",
-    "vuelidate": "^0.7.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {
