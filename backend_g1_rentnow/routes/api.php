@@ -38,6 +38,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
 Route::middleware('auth:sanctum')->group(function () {
+
 });
 
 // logout route
@@ -63,6 +64,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
     Route::post('/comment', [feedbackcontroller::class, 'create']);
+    Route::delete('/delete/product/{id}', [ProductsController::class, 'destroy']);
+    Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 
     Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
     Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
@@ -77,6 +80,7 @@ Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
+
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);

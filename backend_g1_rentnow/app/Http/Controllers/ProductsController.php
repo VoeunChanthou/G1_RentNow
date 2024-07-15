@@ -19,7 +19,7 @@ class ProductsController extends Controller
         return ProductResource::collection(Products::all());
     }
 
-    
+
     public function create(Request $request)
     {
         $product = new Products();
@@ -27,12 +27,12 @@ class ProductsController extends Controller
         $product->shop_id = $request->shop_id;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
-        $product->image = 'data:image/jpeg;base64,'. base64_encode(file_get_contents($request->image->path()));
+        $product->image = 'data:image/jpeg;base64,' . base64_encode(file_get_contents($request->image->path()));
         $product->save();
 
         return response()->json([
             'message' => 'create successfully',
-            'product'=>$product
+            'product' => $product
         ]);
         // return $shop;
 
@@ -41,11 +41,11 @@ class ProductsController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('name');
-    
+
         $products = Products::query()
             ->where('name', 'like', '%' . $query . '%')
             ->get();
-    
+
         return ProductResource::collection($products);
     }
 
@@ -58,7 +58,7 @@ class ProductsController extends Controller
 
         $product = new Products();
         $product->name = $request->name;
-        $product->image = $request-> image;
+        $product->image = $request->image;
         $product->user_id = $request->user_id;
         $product->price = $request->price;
         $product->category_id = $request->category_id;
@@ -67,10 +67,9 @@ class ProductsController extends Controller
         $product->save();
 
         return response()->json([
-           'message' => 'create successfully',
-            'product'=>$product
+            'message' => 'create successfully',
+            'product' => $product
         ]);
-
     }
 
     /**
@@ -85,7 +84,6 @@ class ProductsController extends Controller
                 return $product;
             }
         };
-
     }
 
     public function getCateShop(Request $request){
@@ -106,5 +104,48 @@ class ProductsController extends Controller
         }
     }
     return $categories;
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, String $id)
+    {
+        $product = Products::find($id);
+        if ($product) {
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->image = $request->image;
+            $product->save();
+            return response()->json([
+                'message' => 'Updated successfully',
+                'product' => $product
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        $products = Products::find($id);
+
+        if ($products) {
+            $products->delete();
+            return response([
+                'success' => true,
+                'message' => 'Deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
     }
 }
