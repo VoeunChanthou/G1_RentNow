@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 use App\Models\Mailsetting;
@@ -17,8 +18,8 @@ class MailSettingController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Mail access|Mail edit', ['only' => ['index']]);
-        $this->middleware('role_or_permission:Mail edit', ['only' => ['update']]);
+        $this->middleware('role_or_permission:Mail access|Comment show', ['only' => ['index']]);
+        $this->middleware('role_or_permission:Comment show', ['only' => ['show']]);
     }
 
     /**
@@ -28,26 +29,23 @@ class MailSettingController extends Controller
      */
     public function index()
     {
-        $mail= Mailsetting::find(1);
+        $comment= Comment::latest()->get();
 
-        return view('setting.setting.mail',['mail'=>$mail]);
+        return view('setting.setting.comment',['comment'=>$comment]);
     }
 
-    public function update(Request $request, Mailsetting $mailsetting)
-    {
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
 
-        $data = $request->validate([
-            'mail_transport'  =>'required',
-            'mail_host'       =>'required',
-            'mail_port'       =>'required',
-            'mail_username'   =>'required',
-            'mail_password'   =>'required',
-            'mail_encryption' =>'required',
-            'mail_from'       =>'required',
-        ]);
-
-        $mailsetting->update($data);
-        return redirect()->back()->withSuccess('Mail updated !!!');
-    }
+     public function show($id)
+     {
+         $this->authorize('show', Comment::class);
+         $comment = Comment::findOrFail($id);
+         return view('admin.comments.show', compact('comment'));
+     }
+ 
 
 }
