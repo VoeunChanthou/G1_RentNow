@@ -91,10 +91,15 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
     <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#">
-      <img src="../assets/notLove.png" alt="" />
+      <img src="../assets/image 23.png" alt="" />
 
     </a></li>
-    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;"><a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a></li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;">
+      <!-- <a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a> -->
+      <a href="/message">
+        <img src="../assets/photo_2024-07-15_08-28-51-removebg-preview.png" width="65" alt="">
+      </a>
+    </li>
   </div>
 </nav>
 </div>

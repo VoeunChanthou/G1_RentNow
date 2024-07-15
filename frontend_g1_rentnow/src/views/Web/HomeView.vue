@@ -16,6 +16,7 @@ import ProductShow from '@/Components/homepage/ProductShow.vue'
 import FooterMenuVue from '../../Components/homepage/FooterMenu.vue'
 import {productStore} from '@/stores/product-list.ts'
 
+
 const AuthUSer = useAuthStore()
 const products = productStore()
 const product = products.fetchProductStore()
@@ -96,6 +97,7 @@ const product = products.fetchProductStore()
     <CategoryShow></CategoryShow>
 
     <!-- ProductShow -->
+    
     <ProductShow :products="products.productList"></ProductShow>
 
     <!-- PopularShop -->

@@ -1,3 +1,4 @@
+
 <template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
@@ -32,12 +33,13 @@
           action="#"
           list-type="picture-card"
           :auto-upload="false"
+          :on-change="handleUploadChange"
         >
           <el-icon><Plus /></el-icon>
         </el-upload>
 
-        <div class="image-grid">
-          <div v-for="(image, index) in getImg" :key="index" class="image-item">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+          <div v-for="(image, index) in getImg" :key="index" class="image-item" style="width: 100%; height: 100%;">
             <img :src="image.image" alt="Uploaded Image" />
             <div class="image-actions">
               <span
