@@ -20,7 +20,7 @@
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
                 <el-dropdown-item>
-                  <button @click="onSubmit">Logout</button>
+                  <button @click="onSubmit" style="border: none; background: none; margin-right: 30px;">Logout</button>
                 </el-dropdown-item>
               </el-dropdown-menu>
             </template>

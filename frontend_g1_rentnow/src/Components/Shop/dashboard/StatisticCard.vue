@@ -2,10 +2,10 @@
   <el-row :gutter="16">
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="98500">
+        <el-statistic :value="13">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              Daily active users
+              Members
               <el-tooltip
                 effect="dark"
                 content="Number of users who logged into the product in one day"
@@ -33,10 +33,10 @@
     </el-col>
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="693700">
+        <el-statistic :value="2">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              Monthly Active Users
+              Product
               <el-tooltip
                 effect="dark"
                 content="Number of users who logged into the product in one month"
@@ -64,10 +64,10 @@
     </el-col>
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="72000" title="New transactions today">
+        <el-statistic :value="6" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              New transactions today
+              Income
             </div>
           </template>
         </el-statistic>
@@ -91,10 +91,10 @@
     </el-col>
     <el-col :span="6">
         <div class="statistic-card">
-        <el-statistic :value="72000" title="New transactions today">
+        <el-statistic :value="2" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              New transactions today
+              Borrow
             </div>
           </template>
         </el-statistic>
