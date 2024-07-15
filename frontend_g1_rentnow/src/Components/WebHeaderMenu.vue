@@ -94,7 +94,7 @@ const onSubmit = (async () => {
         <li class="nav-item"><a href="/service">Products</a></li>
         <li class="nav-item"><a href="/aboutUs">About Us</a></li>
     </ul>
-    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="#">
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none; margin-right: 10px;"><a href="/favorite">
       <img src="../assets/image 23.png" alt="" />
 
     </a></li>

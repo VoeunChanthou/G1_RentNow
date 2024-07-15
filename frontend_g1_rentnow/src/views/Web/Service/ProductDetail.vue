@@ -96,7 +96,9 @@
     </div>
 
     <div class="map-location px-5 py-2 bg-white" style="height: auto; display: grid; grid-template-columns: 63% 36%; gap: 1%;">
-      <div class="left-side shadow bg-white" >
+      <div class="left-side shadow bg-white" style="margin-bottom: 20px;" >
+        <h2 style="margin: 20px;">Comments</h2>
+        
     <CardListComponent />
 
       </div>

@@ -1,20 +1,18 @@
 <!-- 
 
 <template>
-  
   <id id="app" v-if="product != ''">
+    <div v-if="isCancel" class="alert alert-success alert-dismissible fade show" style="position: absolute; top: 90%; left: 70%;" role="alert">
+      You add <strong>{{ product.name }}</strong> to favorite.
+      <button type="button" @click="unMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>                          
+    </div>
     <div class="cards" style="height: 18rem; width: 12rem">
       <div class="card-1">
         <div class="icon">
           <p class="day">200 day</p>
-          <v-btn @click="isFavorite = !isFavorite">
-            <i
-              class="material-icons"
-              :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }"
-              ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i
-            >
-         
-          </v-btn>
+          <v-btn @click="favoSubmit(product.id)" style="cursor: pointer;">
+            <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i >
+        </v-btn>        
         </div>
         <img :src="product.image" class="card-img-top" alt="..." style="height: 9rem" />
       </div>
@@ -47,16 +45,11 @@
       </div>
     </div>
   </id>
-  <div class="card_button" v-if="showNewForm">
-    <form style="width: 25rem" @submit.prevent="handleSubmitNewForm">
-      <CardBorrowVue></CardBorrowVue>
-    </form>
-  </div>
-  
 </template>
     
 <script>
 import CardBorrowVue from './CardBorrowVue.vue'
+import axiosInstance from '@/plugins/axios';
 export default {
   name: 'CardVue',
   components: {
@@ -66,7 +59,9 @@ export default {
   data() {
     return {
       showNewForm: false,
-      isFavorite: false
+      isFavorite: false,
+      isFavo: '',
+      isCancel: false,
     }
   },
   methods: {
@@ -84,7 +79,26 @@ export default {
     },
     toggleIcon() {
       this.isFavorite === !this.isFavorite
-    }
+    },
+
+    favoSubmit(value){
+      axiosInstance.post('/favorite', { product_id: value })
+       .then(response => {
+          console.log(response)
+        })
+       .catch(error => {
+          console.error(error)
+        })
+        this.isCancel = true
+        this.isFavorite = true
+      // console.log(value)
+    },
+    unMessage(){
+      
+        this.isCancel = false
+      console.log(value)
+    },
+    
   }
 }
 </script>
@@ -154,11 +168,18 @@ form {
 
     <!-- promotion-card -->
     <div class="product-card" style="height: auto;">
+      <div v-if="isCancel" class="alert alert-success alert-dismissible fade show" style="position: absolute; top: 90%; left: 70%;" role="alert">
+      You add <strong>{{ product.name }}</strong> to favorite.
+      <button type="button" @click="unMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
       <div class="prodcut-card-top-promotion">
         <div class="btn-promotion">
           <h4 style="font-size: 16px;"><b>60% OFF</b></h4>
         </div>
-        <img src="../../assets/notLove.png" alt="" width="25" height="25" />
+        <v-btn @click="favoSubmit(product.id)" style="cursor: pointer;">
+          <img src="../../assets/notLove.png" alt="" width="25" height="25" />
+            <!-- <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i > -->
+        </v-btn>
       </div>
 
       <div class="product-card-center">
@@ -173,6 +194,8 @@ form {
 </template>
 
 <script>
+import CardBorrowVue from './CardBorrowVue.vue'
+import axiosInstance from '@/plugins/axios';
 
 export default {
   name: 'CardVue',
@@ -180,7 +203,9 @@ export default {
   data() {
     return {
       showNewForm: false,
-      isFavorite: false
+      isFavorite: false,
+      isFavo: '',
+      isCancel: false,
     }
   },
   methods: {
@@ -198,6 +223,23 @@ export default {
     },
     toggleIcon() {
       this.isFavorite === !this.isFavorite
+    },
+    favoSubmit(value){
+      axiosInstance.post('/favorite', { product_id: value })
+       .then(response => {
+          console.log(response)
+        })
+       .catch(error => {
+          console.error(error)
+        })
+        this.isCancel = true
+        this.isFavorite = true
+      // console.log(value)
+    },
+    unMessage(){
+      
+        this.isCancel = false
+      console.log(value)
     }
   }
 }

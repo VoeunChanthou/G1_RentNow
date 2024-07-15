@@ -16,6 +16,8 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 // use App\Http\Controllers\MemberController;
+use App\Http\Controllers\FavoriteController;
+
 
 
 /*
@@ -70,6 +72,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
     Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
     Route::post('/reset', [PasswordResetLinkController::class, "store"]);
+    Route::get('/favorites', [FavoriteController::class, 'index']);
+    Route::post('/favorite', [FavoriteController::class, 'create']);
+    Route::delete('/unfavorite/{id}', [FavoriteController::class, 'destroy']);   
 });
 route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
 
