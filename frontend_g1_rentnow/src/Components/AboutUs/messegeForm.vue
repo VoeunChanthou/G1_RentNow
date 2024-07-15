@@ -93,13 +93,9 @@ export default {
 
 <style>
 .comment {
-  color: #691BA5;
-}
-
-.comment:hover {
   color: #FFD800;
-
 }
+
 .btn {
   color: #0095ff;
   background-color: #fff;

@@ -1,5 +1,5 @@
 <template>
-  <WebLayout>
+  <WebLayout style="background:gainsboro;">
     <div class="col-md-12 ">
       <img
         src="../../assets/contactUs.jpg"
@@ -18,15 +18,15 @@
     <div class="container">
       <div class="row">
         <div>
-          <div class="d-flex justify-content-spece-between mt-15">
+          <div class="d-flex justify-content-spece-between mt-10">
             <div class=" mr-5" style="width: 35%;">
               <div class="image-hover-effect mr-20 mt-5">
                 <img src="../../assets/140bcad4fc8ce3d82ccd6ee20a478e1a.jpg" class="img-fluid" alt="Image" style="width: 100%; height: 40vh; border-radius: 10px;">
               </div>
             </div>
             <div  style="width: 65%;">
-              <div class="content mt-5" style="width: 100%; display: flex; justify-content: center">
-                <h2 class="about" style="font-weight: bold">About Us</h2>
+              <div class="content mb-3" style="width: 100%; display: flex; justify-content: center">
+                <h2 class="about mt-20" style="font-weight: bold">About Us</h2>
               </div>
               <span><b>RentMe</b> is a website that allows us to rent all kinds of things that can provide
               convenience, for those who travel far away without having to spend a lot of money to
@@ -37,11 +37,11 @@
             
           </div>
         </div>
-        <div class="mb-35">
-          <div class="d-flex justify-content-spece-between mt-20">
+        <div class="mb-27">
+          <div class="d-flex justify-content-spece-between mt-10">
             <div  style="width: 65%;">
-              <div class="content mt-5" style="width: 100%; display: flex; justify-content: center">
-                <h2 class="about" style="font-weight: bold">Why RentMe?</h2>
+              <div class="content mb-3" style="width: 100%; display: flex; justify-content: center">
+                <h2 class="about mt-20" style="font-weight: bold">Why RentMe?</h2>
               </div>
               <span>  <b>RentMe</b> has many benefits for all users who use​websites ​such as easily to borrow items
               like bikes, motorcycles, cars, and book online or something else, essentially giving you
@@ -59,7 +59,7 @@
           </div>
         </div>
         
-        <div class="shadow mb-10" style="background: #ffff;">
+        <div class="shadow mb-5" style="background: #F2F2F0;">  
           <div class="content mt-5" style="width: 100%; display: flex; justify-content: center">
             <h2 class="about mb-3" style="font-weight: bold">Get In Touch</h2>
           </div>
@@ -143,12 +143,9 @@ export default {
 
 <style>
 .about {
-  color: #691BA5;
-}
-
-.about:hover {
   color: #FFD800;
 }
+
 
 .mainImg {
   box-shadow: 5px 10px #e8e8e8;
