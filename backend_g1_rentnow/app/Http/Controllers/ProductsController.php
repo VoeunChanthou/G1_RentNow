@@ -97,9 +97,23 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Products $products)
+    public function update(Request $request, String $id)
     {
-        //
+        $product = Products::find($id);
+        if ($product) {
+            $product->name = $request->name;
+            $product->price = $request->price;
+            $product->image = $request->image;
+            $product->save();
+            return response()->json([
+                'message' => 'Updated successfully',
+                'product' => $product
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
     }
 
     /**
@@ -107,13 +121,18 @@ class ProductsController extends Controller
      */
     public function destroy(string $id)
     {
-
         $products = Products::find($id);
-        $products->delete();
-        // $products->save();
-        return response([
-            'success' => true,
-            'message' => 'delete successfully'
-        ]);
+
+        if ($products) {
+            $products->delete();
+            return response([
+                'success' => true,
+                'message' => 'Deleted successfully'
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Product not found'
+            ], 404);
+        }
     }
 }
