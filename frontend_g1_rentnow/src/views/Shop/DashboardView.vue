@@ -19,7 +19,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
+                <el-dropdown-item>
+                  <button @click="onSubmit">Logout</button>
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -69,6 +71,9 @@ import PolarArea from '@/Components/Shop/dashboard/PolarArea.vue'
 import StatisticCard from '@/Components/Shop/dashboard/StatisticCard.vue'
 import CalendarVue from '@/Components/Shop/dashboard/CalendarVue.vue'
 import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
+import axiosInstance from '@/plugins/axios'
+import { useRouter } from 'vue-router'
+
 
 
 import { computed, ref } from 'vue'
@@ -79,10 +84,14 @@ interface User {
   address: string
 }
 
+const router = useRouter()
+
 const search = ref('')
 const filterTableData = computed(() =>
   tableData.filter(
-    (data) => !search.value || data.name.toLowerCase().includes(search.value.toLowerCase())
+    (data) =>
+      !search.value ||
+      data.name.toLowerCase().includes(search.value.toLowerCase())
   )
 )
 const handleEdit = (index: number, row: User) => {
@@ -96,24 +105,36 @@ const tableData: User[] = [
   {
     date: '2016-05-03',
     name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
   },
   {
     date: '2016-05-02',
     name: 'John',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
   },
   {
     date: '2016-05-04',
     name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles'
+    address: 'No. 189, Grove St, Los Angeles',
   },
   {
     date: '2016-05-01',
     name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles'
-  }
+    address: 'No. 189, Grove St, Los Angeles',
+  },
 ]
+
+
+const onSubmit = (async () => {
+  try {
+    const { data } = await axiosInstance.post('/logout')
+    localStorage.setItem('access_token', data.access_token)
+    location.reload()
+    router.push('/home')
+  } catch (error) {
+    console.warn('Error')
+  }
+})
 </script>
   
   <style scoped>

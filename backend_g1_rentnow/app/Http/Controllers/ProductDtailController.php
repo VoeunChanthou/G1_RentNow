@@ -36,4 +36,13 @@ class ProductDtailController extends Controller
             'detail' => $detail
         ]);
     }
+
+    public function delete(String $id){
+        $detail = Detail::where('id', $id)->first();
+        $detail->delete();
+        // $detail->save();
+        return response()->json([
+           'message' => 'delete detail successfully'
+        ]);
+    }
 }

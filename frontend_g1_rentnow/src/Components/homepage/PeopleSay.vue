@@ -1,4 +1,4 @@
-z<template>
+<template>
   <div class="container">
     <h2><B>WHAT PEOPLE SAYS !!</B></h2>
     <div class="row g-2">

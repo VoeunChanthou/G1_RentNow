@@ -1,5 +1,5 @@
 <template>
-  <footer class="footer">
+  <footer class="footer" style="z-index: 99;">
     <div class="footer-content">
       <div class="impact">
         <div class="logo-footer">

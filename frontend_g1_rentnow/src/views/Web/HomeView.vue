@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import CommentProduct from "@/Components/service/CommentProduct.vue"
+import ForForgotpassword from '@/Components/homepage/ForForgotpassword.vue'
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
@@ -34,7 +36,7 @@ const product = products.fetchProductStore()
         "
       >
         <div
-          class="content-right px-5"
+          class="content-right"
           style="
             width: 80%;
             height: 45vh;
@@ -94,6 +96,7 @@ const product = products.fetchProductStore()
     <CategoryShow></CategoryShow>
 
     <!-- ProductShow -->
+    
     <ProductShow :products="products.productList"></ProductShow>
 
     <!-- PopularShop -->

@@ -1,6 +1,11 @@
 <?php
 
+use App\Http\Controllers\API\feedbackcontroller;
+use App\Http\Controllers\API\borrowcontrpller;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MemberController;
@@ -11,7 +16,6 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductsController;
 // use App\Http\Controllers\MemberController;
-
 
 
 /*
@@ -43,18 +47,28 @@ Route::post('/logout', [RegisteredUserController::class, 'logout']);
     Route::put('/update/product', [PostController::class, 'update']);
     Route::get('/get/products', [PostController::class, 'index']);
 
-
+// ----product admin---
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/create_product_admin', [ProductController::class, 'create']);
+    
+});
 
 //--shop------
 Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/create_product', [ProductsController::class, 'create']);
     Route::post('/create/shop', [ShopController::class, 'create']);
     Route::post('/create/category', [CategoriesController::class, 'create']);
     Route::post('/create/product', [ProductsController::class,'create']);
     Route::post('/shop/create/product', [ProductsController::class, 'store']);
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
+    Route::post('/comment', [feedbackcontroller::class, 'create']);
 
+    Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
+    Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
+    Route::post('/reset', [PasswordResetLinkController::class, "store"]);
 });
+route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
 
 
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
@@ -84,6 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/create/product/detail/{id}', [ProductDtailController::class, 'putDetail']);
     Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
+    Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
 });
 
 

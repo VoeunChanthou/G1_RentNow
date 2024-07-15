@@ -6,7 +6,7 @@
         display: flex;
         justify-content: start;
         align-items: center;
-        background: linear-gradient(90deg, #722cb3 30%, #c49be9);
+        background: #722cb3;
       "
     >
       <el-image src="../../../src/assets/image62.png" style="width: 150px"></el-image>
@@ -31,7 +31,7 @@
         </el-sub-menu>
         <el-sub-menu index="3">
           <template #title>
-            <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Member
+            <Icon icon="fluent:people-community-28-regular" width="24" height="24"  style="color: #1f1f1f; margin-right: 9px; "></Icon>Member
           </template>
             <el-menu-item index="2-1"><el-link href="/shop/member">Members</el-link> </el-menu-item>
         </el-sub-menu>
@@ -59,6 +59,8 @@ import { ref } from 'vue'
 import { Icon } from '@iconify/vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 import axiosInstance from '@/plugins/axios'
+
+
 
 
 const item = {
