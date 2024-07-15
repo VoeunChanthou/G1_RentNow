@@ -3,11 +3,6 @@
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
-<<<<<<< HEAD
-import WebLoginVue from '@/Components/homepage/WebLogin.vue';
-import type { componentSizeMap } from 'element-plus';
-import {useAuthStore} from '@/stores/auth-store.ts'
-=======
 import WebLoginVue from '@/Components/homepage/WebLogin.vue'
 import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue'
 import type { componentSizeMap } from 'element-plus'
@@ -16,7 +11,6 @@ import PopularShopVue from '@/Components/homepage/PopularShop.vue'
 import VideoWork from '@/Components/homepage/VideoWork.vue'
 import PeopleSay from '@/Components/homepage/PeopleSay.vue'
 import ProductShow from '@/Components/homepage/ProductShow.vue'
->>>>>>> feat/redesign-home-page
 const AuthUSer = useAuthStore()
 </script>
 
@@ -79,19 +73,6 @@ const AuthUSer = useAuthStore()
       <div class="head-left" style="height: 100%; width: 50%; display: flex; align-items: center">
         <img src="../../assets/image-removebg-preview.png" alt="" style="width: 70%" />
       </div>
-<<<<<<< HEAD
-      </div>
-      </WebLayout>
-
-  <!-- login form -->
-  <WebLoginVue></WebLoginVue>
-
-  <!-- category show -->
-  <CategoryShow></CategoryShow>
-
-</template>
-
-=======
     </div>
 
     <div class="components">
@@ -126,5 +107,4 @@ const AuthUSer = useAuthStore()
 }
 </style>
 
->>>>>>> feat/redesign-home-page
 

@@ -6,7 +6,7 @@
         <p>
           Skilline’s school management software helps traditional and online schools manage scheduling. Skilline’s school management software helps traditional and online schools manage scheduling.
         </p>
-        <button class="read-more"><b>Read More</b></button>
+        <a href="/rentDetail"><button class="read-more"><b>Read More</b></button></a>
       </div>
       <div class="video-section">
         <iframe

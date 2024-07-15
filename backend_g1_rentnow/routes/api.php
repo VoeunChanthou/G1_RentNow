@@ -3,11 +3,13 @@
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ProductDtailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +31,7 @@ Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:san
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
 Route::middleware('auth:sanctum')->group(function () {
-<<<<<<< HEAD
+
 });
 
 // logout route
@@ -55,18 +57,12 @@ Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
-<<<<<<< HEAD
-=======
-    // logout route
-});
+
 Route::post('/logout', [RegisteredUserController::class, 'logout']);
 
 //Comment on poste 
 Route::get('/comments', [CommentController::class, 'index']);
 Route::post('/comment', [CommentController::class, 'createComment']);
->>>>>>> aboutUs
-=======
 
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
->>>>>>> bed99dd3c40fa4d919897643d5036f4502503d82

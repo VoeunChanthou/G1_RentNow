@@ -62,6 +62,15 @@ const router = createRouter({
     //   name: 'register',
     //   component: () => import('../views/Admin/Auth/RegisterView.vue')
     // }
+
+    // Rent Detail
+    {
+      path: '/rentDetail',
+      name: 'rentDetail',
+      component: () => import('../views/Web/RentDetail.vue')
+
+    },
+
   ]
 })
 
