@@ -7,7 +7,7 @@
         <div class="icon">
           <p class="day">200 day</p>
           <v-btn @click="unfavoSubmit(id)" style="cursor: pointer;">
-            <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i >
+            <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" style=" color: purple;"><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }} </v-icon></i >
           </v-btn>
         </div>
         <img
@@ -110,13 +110,6 @@ p,
   vertical-align: middle;
 }
 
-.isFavorite {
-  color: purple;
-}
-
-.not-favorite {
-  color: rgb(124, 124, 124);
-}
 form {
   border: 1px solid black;
   border-radius: 10px;

@@ -2,13 +2,17 @@
 
 <template>
   <id id="app" v-if="product != ''">
+    <div v-if="isCancel" class="alert alert-success alert-dismissible fade show" style="position: absolute; top: 90%; left: 70%;" role="alert">
+      You add <strong>{{ product.name }}</strong> to favorite.
+      <button type="button" @click="unMessage" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>                          
+    </div>
     <div class="cards" style="height: 18rem; width: 12rem">
       <div class="card-1">
         <div class="icon">
           <p class="day">200 day</p>
           <v-btn @click="favoSubmit(product.id)" style="cursor: pointer;">
             <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i >
-          </v-btn>
+        </v-btn>        
         </div>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazjG1jTiHXRqdd7f4pNP1_K_PzyRuLXNIYw&usqp=CAU" class="card-img-top" alt="..." style="height: 9rem" />
       </div>
@@ -56,7 +60,8 @@ export default {
     return {
       showNewForm: false,
       isFavorite: false,
-      isFavo: ''
+      isFavo: '',
+      isCancel: false,
     }
   },
   methods: {
@@ -84,7 +89,14 @@ export default {
        .catch(error => {
           console.error(error)
         })
+        this.isCancel = true
+        this.isFavorite = true
       // console.log(value)
+    },
+    unMessage(){
+      
+        this.isCancel = false
+      console.log(value)
     },
     
   }
