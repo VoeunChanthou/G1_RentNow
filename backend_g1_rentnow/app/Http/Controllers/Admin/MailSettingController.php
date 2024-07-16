@@ -18,7 +18,7 @@ class MailSettingController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Mail access|Comment show', ['only' => ['index']]);
+        $this->middleware('role_or_permission:Comment access|Comment show', ['only' => ['index']]);
         $this->middleware('role_or_permission:Comment show', ['only' => ['show']]);
     }
 
@@ -28,11 +28,10 @@ class MailSettingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $comment= Comment::latest()->get();
-
-        return view('setting.setting.comment',['comment'=>$comment]);
-    }
+{
+    $comments = Comment::all();
+    return view('setting.comment.index', compact('comments'));
+}
 
     /**
      * Show the form for creating a new resource.
