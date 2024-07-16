@@ -4,7 +4,7 @@
             <Header />
             <CardHistory v-for="product in listhistory.histories.data" :key="product.id" :product = "product" @idproduct ="iddelete" />
             <div v-if="!listhistory.histories.data == [] ">
-              <h4 class="text-center text-danger">Your are not History ! </h4>
+              <h4 class="text-center text-danger">You don't have the history ! </h4>
             </div>
             <h2 v-if="!listhistory.histories.data" >
                 <LoadingView />

@@ -177,7 +177,6 @@
         </div>
       </div>
     </div>
-    <h1>{{ commentshow.comment }}</h1>
     <!-- Modal -->
   </WebLayout>
 </template>
