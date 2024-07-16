@@ -86,8 +86,6 @@ Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
-
-
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
 
