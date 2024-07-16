@@ -53,9 +53,6 @@ Route::get('/admin/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/get', [PermissionController::class,'index']);
-Route::get('/get/user', [UserController::class,'index']);
-
 
 
 

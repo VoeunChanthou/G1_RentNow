@@ -1,20 +1,31 @@
 <template>
   <div class="main">
-     <LoadingVies v-if="!CommentList.data" />
-     <div v-for="comment in CommentList.data" :key="comment">
+     <LoadingVies v-if="!Comments.data" />
+     <div v-for="comment in Comments.data" :key="comment">
          <div class="row justify-content-center mb-3">
            <div class="col-md-12 col-xl-11">
              <div class="card shadow-0 border rounded-3">
                <div>
                  <div class="row">
-                   <div class="col-md-8 col-lg-8 col-xl-10">
+                   <div>
                     <div class="d-flex align-items-center">
                     <div class="avatar me-3">
-                            <img class="avatar-img rounded-circle shadow m-2" src="../../assets/3135715.png" alt="avatar" height="70">
-							</div>
+                            <img class="avatar-img rounded-circle shadow m-2" src="../../assets/3135715.png" alt="avatar" height="50">
+							      </div>
                     <div class="card-body">
-                        <h5>{{comment.user.first_name}} {{comment.user.last_name}}</h5>
-                        <span>{{comment.user.email}}</span>
+                      <div class="d-flex justify-content-between">
+                        <div>
+                          <h5>{{comment.user.first_name}} {{comment.user.last_name}}</h5>
+                          <span>{{comment.user.email}}</span>
+                        </div>
+                        <div class="dropdown" v-if="comment.user.email == AuthUSer.user.email">
+                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">More</a>
+                            <ul class="dropdown-menu p-2" aria-labelledby="dropdownMenuLink">
+                              <li><button class="btn btn-info w-100 " @click="this.$emit('updatecomment',comment.id)" data-bs-toggle="modal" data-bs-target="#UpdateComment" data-bs-whatever="@getbootstrap" style="margin-bottom: 9px;">Edit</button></li>
+                              <li><button class="btn btn-danger w-100" @click="this.$emit('deletecomment',comment.id)">Delete</button></li>
+                            </ul>
+                      </div>
+                      </div>
                     </div>
                     </div>
                     <div class="card-footer">
@@ -22,21 +33,6 @@
                           {{comment.comment}}
                         </p>
                     </div>
-                   </div>
-                   <div class="col-md-3 col-lg-3 col-xl-2 border-sm-start-none border-start">
-                     <div class="d-flex flex-row align-items-center mb-1">
-                        <div class="d-flex flex-row">
-                       <div class="text-danger mb-1 me-2">
-                         <i class="fa fa-star"></i>
-                         <i class="fa fa-star"></i>
-                         <i class="fa fa-star"></i>
-                         <i class="fa fa-star"></i>
-                       </div>
-                       <span>310</span>
-                     </div>
-                     </div>
-                     <h6 class="text-success">Free shipping</h6>
-                     
                    </div>
                  </div>
                </div>
@@ -48,31 +44,18 @@
 </template>
 <script>
 import LoadingVies from "../loading/LoadingView.vue"
-import axiosInstance from '@/plugins/axios'
+import {useAuthStore} from '@/stores/auth-store.ts'
 export default {
     components: {
-        LoadingVies
-    },
-    props: ['id'],
-    data () {
-        return  {
-            CommentList : []
-        }
-    },
-    created () {
-        this.fetchComments()
-    },
-    methods: {
-        async fetchComments () {
-            try {
-                const response = await axiosInstance.get('list/comment/'+ this.$route.params.id)
-                this.CommentList = response.data
-            } catch (error) {
-                console.error(error)
-            }
-        }
+        LoadingVies,
+      },
+      data (){
+        return{
+        AuthUSer : useAuthStore()
 
-    }
+      }
+    },
+    props: ['Comments']
 }
 </script>
 

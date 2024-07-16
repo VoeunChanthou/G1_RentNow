@@ -27,4 +27,28 @@ class feedbackcontroller extends Controller
             'history_count' =>$Feedback->count()
         ], 200);
        }
+       public function deleteComment (Request $request, $id){
+        Feedback::destroy($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Feedback deleted successfully',
+        ], 200);
+       }
+       public function updateComment(Request $request, $id){
+        $comment = Feedback::find($id);
+        $comment->comment = $request->comment;
+        $comment->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Feedback updated successfully',
+        ], 200);
+       }
+       public function show(Request $request, $id){
+        $feedback = Feedback::find($id);
+        return response()->json([
+            'success' => true,
+            'data' => $feedback
+        ], 200);
+       }
+
 }

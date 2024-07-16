@@ -28,18 +28,30 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <el-alert title="Success alert" type="success" center show-icon v-if="showSuccessAlert" />
+        
+        <!-- <el-form title="Success alert" type="success" center show-icon v-if="showSuccessAlert">
+          <p slot="descrip">You Create Success.</p>
+        </el-form> -->
+        <el-alert
+          v-if="showSuccessAlert"
+          title="Success"
+          type="success"
+          description="You have successfully created a product."
+          show-icon
+          center
+          @close="showSuccessAlert = false"
+        />
         <el-form
           @submit.prevent="submitForm"
           style="max-width: 100%; background: white; padding: 20px"
         >
           <el-form-item prop="name">
-            <el-label>Name of product</el-label>
+            <el-label>Name of ruleForm</el-label>
             <el-input v-model="ruleForm.name" />
           </el-form-item>
           <el-form-item prop="price">
             <el-label>Price</el-label>
-            <el-input v-model="ruleForm.price" />
+            <el-input type="number" v-model="ruleForm.price" />
           </el-form-item>
           <el-form-item prop="region">
             <el-label>Select category</el-label>

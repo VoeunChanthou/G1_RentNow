@@ -119,4 +119,3 @@ const product = products.fetchProductStore()
 }
 </style>
 
-

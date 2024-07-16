@@ -129,7 +129,6 @@ async function fetchData() {
   try {
     const response = await axiosInstance.get('/members')
     members.value = response.data.data.member
-    // console.log(response.data.data.member)
   } catch (error) {
     console.error(error)
   }

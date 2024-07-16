@@ -35,19 +35,11 @@ class AdminSeeder extends Seeder
             'email'=>'user@gmail.com',
             'password'=>bcrypt('password')
         ]);
-        $shop = User::create([
-            'first_name'=>'Sothea',
-            'last_name'=>'Voeun',
-            'phone_number'=>'0979030443',
-            'email'=>'sothea@gmail.com',
-            'password'=>bcrypt('password')
-        ]);
         
 
 
         $admin_role = Role::create(['name' => 'admin']);
         $writer_role = Role::create(['name' => 'user']);
-        $shopowner_role = Role::create(['name' => 'shop owner']);
 
         $permission = Permission::create(['name' => 'Post access']);
         $permission = Permission::create(['name' => 'Post edit']);
@@ -89,7 +81,6 @@ class AdminSeeder extends Seeder
 
         $admin->assignRole($admin_role);
         $writer->assignRole($writer_role);
-        $shop->assignRole($shopowner_role);
 
 
         $admin_role->givePermissionTo(Permission::all());
