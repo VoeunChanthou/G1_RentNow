@@ -10,9 +10,14 @@
 
       <div class="product-detail">
         <div class="product-detail-left">
-          <div class="not-love">
+          <!-- <div class="not-love">
             <img src="../../../assets/notLove.png" alt="" />
-          </div>
+          </div> -->
+          <v-btn @click="favoSubmit(product.id)" style="cursor: pointer;">
+            <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i >
+              {{ favoSubmit(product.id) }}
+          </v-btn> 
+          
 
           <!-- product slide show product -->
           <el-carousel indicator-position="outside">
@@ -112,7 +117,19 @@ export default {
        .catch((error) => {
           console.log(error)
         })
-    }
+    },
+    favoSubmit(value){
+      axiosInstance.post('/favorite', { product_id: value })
+       .then(response => {
+          console.log(response)
+        })
+       .catch(error => {
+          console.error(error)
+        })
+        this.isCancel = true
+        this.isFavorite = true
+      // console.log(value)
+    },
   }
 }
 </script>
@@ -140,10 +157,14 @@ export default {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.135);
 }
 
-.not-love {
-  display: flex;
-  justify-content: end;
+
+.isFavorite {
+  color: purple;
 }
+
+/* .not-favorite {
+  color: rgb(124, 124, 124);
+} */
 /* =========== Right =============== */
 .product-detail-right {
   display: flex;

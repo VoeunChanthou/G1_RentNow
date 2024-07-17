@@ -8,6 +8,7 @@
           <p class="day">200 day</p>
           <v-btn @click="unfavoSubmit(id)" style="cursor: pointer;">
             <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" style=" color: purple;"><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }} </v-icon></i >
+              {{ favoSubmit(product.id) }}
           </v-btn>
         </div>
         <img
@@ -58,6 +59,18 @@ export default {
       .catch(error => {
         console.error(error)
       })
+    },
+    favoSubmit(value){
+      axiosInstance.post('/favorite', { product_id: value })
+       .then(response => {
+          console.log(response)
+        })
+       .catch(error => {
+          console.error(error)
+        })
+        this.isCancel = true
+        this.isFavorite = true
+      // console.log(value)
     },
   }
 }
