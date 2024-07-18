@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div v-if="items" class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
     <div class="row" >
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
