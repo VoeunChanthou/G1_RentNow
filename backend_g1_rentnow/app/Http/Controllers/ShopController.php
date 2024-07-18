@@ -21,7 +21,8 @@ class ShopController extends Controller
     public function index()
     {
         $shop = Shop::all();
-        return $shop;
+        // return $shop;
+        return response()->json(['data' => $shop]);
     }
 
     /**

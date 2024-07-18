@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductsController;
 // use App\Http\Controllers\MemberController;
 use App\Http\Controllers\FavoriteController;
 
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -67,7 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
     Route::post('/comment', [feedbackcontroller::class, 'create']);
-    Route::get('/get/comment/shop', [FeedbackController::class, 'getcommentbyshop']);
+    Route::get('/get/comment/shop', [feedbackcontroller::class, 'getcommentbyshop']);
     Route::delete('/delete/product/{id}', [ProductsController::class, 'destroy']);
     Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 

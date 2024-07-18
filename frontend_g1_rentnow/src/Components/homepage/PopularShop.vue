@@ -6,16 +6,16 @@
           <div class="content">
             <a href="/shop/1">
               <div class="content-overlay"></div>
-              <img class="content-image" src="../../assets/purple-shop.jpg" />
+              <img class="content-image" :src="item.image" />
               <div class="content-details fadeIn-bottom">
-                <h3 class="content-title">Battambong</h3>
+                <h3 class="content-title">{{ item.name }}</h3>
                 <button type="button" class="btn"><b> Visit Shop</b></button>
               </div>
             </a>
           </div>
           <div class="popular-shop-detail">
-            <h3>Battambong</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ullam quidem delectus voluptates nihil! Consequatur delectus quod expedita voluptate facere?</p>
+            <h3>{{ item.name }}</h3>
+            <p>{{ item.description }}</p>
           </div>
         </div>
     </div>
@@ -23,12 +23,21 @@
 </template>
   
   <script>
+import axiosInstance from '@/plugins/axios'
+
 export default {
     data(){
         return {
-           items: [1, 1, 1]
+           items: null
            
         }
+    },
+    async created(){
+      const data = await axiosInstance.get('/shop')
+      // console.log(this.items.data.data);
+      this.items = data.data.data;
+  
+      
     }
 }
 </script>
@@ -60,12 +69,10 @@ export default {
   margin: auto;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.427);
-  /* border-radius: 20px; */
 }
 .content .content-overlay {
   background: rgba(0, 0, 0, 0.7);
   position: absolute;
-  /* border-radius: 20px; */
   left: 0;
   top: 0;
   bottom: 0;
@@ -84,7 +91,6 @@ export default {
 }
 img {
   box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.1);
-  /* border-radius: 20px; */
 }
 .content-details {
   position: absolute;
