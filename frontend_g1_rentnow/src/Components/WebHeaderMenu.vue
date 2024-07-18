@@ -1,23 +1,6 @@
-<script setup lang="ts">
-import { Icon } from '@iconify/vue'
-import axiosInstance from '@/plugins/axios'
-import { useRouter } from 'vue-router'
 
-import {useAuthStore} from '@/stores/auth-store.ts'
-const AuthUSer = useAuthStore()
-const router = useRouter()
-const onSubmit = (async () => {
-  try {
-    const { data } = await axiosInstance.post('/logout')
-    localStorage.setItem('access_token', data.access_token)
-    location.reload()
-    router.push('/')
-  } catch (error) {
-    console.warn('Error')
-  }
-})
-</script>
 <template>
+  <PopupRegisterVue @rigisterForm = "RegisterAcount"></PopupRegisterVue>
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
@@ -70,7 +53,7 @@ const onSubmit = (async () => {
 					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
 					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
-					<li><button class="dropdown-item bg-danger-soft-hover" @click ="onSubmit"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
+					<li><button class="dropdown-item bg-danger-soft-hover" @click ="LogUot"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
 					<li> <hr class="dropdown-divider"></li>
 					<!-- Dark mode switch START -->
 					<li>
@@ -107,8 +90,51 @@ const onSubmit = (async () => {
   </div>
 </nav>
 </div>
-
+{{ User }}
 </template>
+<script >
+import { Icon } from '@iconify/vue'
+import axiosInstance from '@/plugins/axios'
+import { useRouter } from 'vue-router'
+import {useAuthStore} from '@/stores/auth-store.ts'
+import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue'
+import { User } from '@element-plus/icons-vue'
+export default {
+  components : {
+      PopupRegisterVue
+  },
+  data (){
+    return {
+      AuthUSer: useAuthStore(), 
+      router : useRouter()
+
+    }
+  },
+  methods : {
+    async RegisterAcount(data) {
+      try {
+        const  response  = await axiosInstance.post('/register', data);
+        localStorage.setItem('access_token', response.data.access_token)
+        this.router.push('/')
+      } catch (error) {
+        alert (error.message)
+        console.error("Error creating category:", error);
+      }
+    },
+    async LogUot(){
+      try {
+        const  response  = await axiosInstance.post('/logout');
+        localStorage.setItem('access_token', response.data.access_token)
+        location.reload()
+      } catch (error) {
+        alert (error.message)
+        console.error("Error creating category:", error);
+      }
+    }
+  }
+}
+
+</script>
 
 <style scoped>
 a{
