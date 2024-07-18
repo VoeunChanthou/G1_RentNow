@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Products;
 use Auth;
+use PharIo\Manifest\Author;
+
 class PostController extends Controller
 {
     /**
@@ -16,8 +19,8 @@ class PostController extends Controller
     {
         $this->middleware('role_or_permission:Post access|Post create|Post edit|Post delete', ['only' => ['index','show']]);
         $this->middleware('role_or_permission:Post create', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Post edit', ['only' => ['edit','update']]);
-        $this->middleware('role_or_permission:Post delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Product edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Product delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -27,9 +30,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $Post= Post::paginate(4);
+        $product= Products::latest()->get();
 
-        return view('post.index',['posts'=>$Post]);
+        return view('product.index',['products'=>$product]);
     }
 
     /**
@@ -39,7 +42,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.new');
+        return view('product.new');
     }
 
     /**
@@ -50,10 +53,22 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $data= $request->all();
-        $data['user_id'] = Auth::user()->id;
-        $Post = Post::create($data);
-        return redirect()->back()->withSuccess('Post created !!!');
+       // validation 
+    //    $request->validate([
+    //     'name'=>'required',
+    //     'price'=>'required',
+    //     'category_id'=>'required',
+    //     'shop_id'=>'required',
+        
+   
+    // ]);
+    // $product = Product::create([
+    //     'name'=>$request->name,
+    //     'price'=>$request->price,
+    //     'category_id'=>$request->category_id,
+    //     'shop_id'=>$request->shop_id,
+    // ]);
+    return redirect()->back()->withSuccess('Product created !!!');
     }
 
     /**
@@ -67,15 +82,15 @@ class PostController extends Controller
         //
     }
 
-    /**
+     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Product $product)
     {
-       return view('post.edit',['post' => $post]);
+       return view('product.edit',['product' => $product]);
     }
 
     /**
@@ -85,10 +100,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, Products $product)
     {
-        $post->update($request->all());
-        return redirect()->back()->withSuccess('Post updated !!!');
+        $product->update([
+            'name'=>$request->name,
+            'price'=>$request->price,
+            'category_id'=>$request->category_id,
+            'shop_id'=>$request->shop_id,]);
+        return redirect()->back()->withSuccess('Product updated !!!');
     }
 
     /**
@@ -97,9 +116,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Products $product)
     {
-        $post->delete();
-        return redirect()->back()->withSuccess('Post deleted !!!');
+        $product->delete();
+        return redirect()->back()->withSuccess('Product deleted !!!');
     }
 }

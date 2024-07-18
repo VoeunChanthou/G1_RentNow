@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Comment;
+use App\Models\Shop;
+use App\Models\Favorite;
+use App\Models\Member;
 
 class User extends Authenticatable
 {
@@ -73,4 +76,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
     
+    public function favorites(){
+        return $this->hasMany(Favorite::class);
+    }
+
+    public function members(){
+        return $this->belongsToMany(Member::class,'user_id');
+    }
 }

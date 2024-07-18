@@ -37,3 +37,41 @@ export const searchProductStore = defineStore('search', {
     }
   }
 });
+
+
+export const CreateProductStore = defineStore('create', {
+  state: () => ({
+    // productList: [] as Array<{ id: number, name: string, price: number, days: number, category_id: number, shop_id: number, created_at: string, updated_at: string}>
+    createProduct: [],
+  }),
+  actions: {
+    async createProductShop(product:Object) {
+      try {
+        const response = await axiosInstance.post('/shop/create/product', product);
+        console.log(response)
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  }
+});
+
+
+export const getProductInShop = defineStore('shoppro', {
+  state: () => ({
+    // productList: [] as Array<{ id: number, name: string, price: number, days: number, category_id: number, shop_id: number, created_at: string, updated_at: string}>
+    products: [],
+  }),
+  actions: {
+    async fetchProductShop() {
+      try {
+        const response = await axiosInstance.get("/product/shop");
+        this.products = response.data;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  }
+});
+
+

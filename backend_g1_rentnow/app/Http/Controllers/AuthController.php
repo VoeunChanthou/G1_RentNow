@@ -43,11 +43,22 @@ class AuthController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        // $permissions = $user->getAllPermissions();
-        // $roles = $user->getRoleNames();
+        $permissions = $user->getAllPermissions();
+        $roles = $user->getRoleNames();
         return response()->json([
             'message' => 'Login success',
             'data' =>$user,
+        ]);
+    }
+
+    public function uplaodImgPl(Request $request){
+        $profile = User::find($request->id);
+        $profile->profile = $request->image;
+        $profile->save();
+
+        return response()->json([
+           'message' => 'Profile Image updated successfully',
+            'data' => $profile,
         ]);
     }
 }

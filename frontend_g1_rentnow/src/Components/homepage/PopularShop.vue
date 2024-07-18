@@ -1,11 +1,10 @@
 <template>
-  <div class="px-5" >
+  <div class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
-    <div class="row">
-      <!-- <template> -->
-        <div v-for="(item, indext) in items" :key="indext" class="col-md-4">
+    <div class="row" >
+        <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
-            <a href="#">
+            <a href="/shop/1">
               <div class="content-overlay"></div>
               <img class="content-image" :src="item.image" />
               <div class="content-details fadeIn-bottom">
@@ -19,8 +18,6 @@
             <p>{{ item.description }}</p>
           </div>
         </div>
-      <!-- </template> -->
-
     </div>
   </div>
 </template>
@@ -31,7 +28,7 @@ import axiosInstance from '@/plugins/axios'
 export default {
     data(){
         return {
-           items: [1, 1, 1]
+           items: null
            
         }
     },
@@ -47,8 +44,15 @@ export default {
   <style scoped >
 @import url(https://fonts.googleapis.com/css?family=Raleway);
 
+.container {
+  /* background-color: gainsboro; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+}
  .h2 {
-  margin: 50px 20px 50px 20px;
+  margin: 50px 0px 100px 0px;
   color: #691BA5;
 }
 

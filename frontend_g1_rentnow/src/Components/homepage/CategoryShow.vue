@@ -53,11 +53,6 @@ import { Icon } from '@iconify/vue'
   }
 }
 
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    height: 100%;
-    outline: black;
-    color: black;
-    background-color: rgba(0, 0, 0, 0.3);
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
   height: 100%;

@@ -3,9 +3,8 @@
   <div
     class="modal fade"
     id="exampleModal"
-    tabindex="-1"
     aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
+    aria-hidden="false"
   >
     <div class="modal-dialog">
       <div class="modal-content">
@@ -69,7 +68,7 @@
               <hr class="mt-5 mb-4 border-secondary-subtle" />
               <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
                 <a href="#!" class="link-secondary text-decoration-none">Create new account</a>
-                <a href="#!" class="link-secondary text-decoration-none">Forgot password</a>
+                <a href="#!" class="link-secondary text-decoration-none" data-bs-target="#forgotpassword" data-bs-toggle="modal" data-bs-dismiss="modal" >Forgot password</a>
               </div>
             </div>
           </div>
@@ -114,11 +113,13 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script setup lang="ts">
+
 import axiosInstance from '@/plugins/axios'
-import { useField, useForm } from 'vee-validate'
+import { useField, useForm } from 'vee-validate' 
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
 
@@ -142,7 +143,6 @@ const onSubmit = handleSubmit(async (values) => {
     const { data } = await axiosInstance.post('/login', values)
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
-    location.reload()
   } catch (error) {
     alert('You password is wrong !')
   }

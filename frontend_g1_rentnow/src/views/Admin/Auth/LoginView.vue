@@ -24,6 +24,9 @@
       </el-form>
     </el-card>
   </div>
+
+
+
 </template>
 
 <script setup lang="ts">
@@ -54,7 +57,6 @@ const onSubmit = handleSubmit(async (values) => {
     localStorage.setItem('access_token', data.access_token)
     router.push('/')
   } catch (error) {
-    // console.warn('Error')
     console.log('hello');
   }
 })
@@ -68,3 +70,6 @@ const { value: email, errorMessage: emailError } = useField('email')
   min-height: 100vh;
 }
 </style>
+
+
+

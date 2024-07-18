@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
+    <div class="content px-5 py-5">
       <div class="text-section">
         <h2><B>SEE HOW IT WORK ?</B></h2>
         <!-- <h2><span class="highlight"><b>SEE</b></span> <b>HOW IT WORK</b> <span class="highlight"><b>?</b></span></h2> -->
         <p>
-          Skilline’s school management software helps traditional and online schools manage scheduling. Skilline’s school management software helps traditional and online schools manage scheduling.
-        </p>
+          Skilline’s school management software helps traditional and online schools manage scheduling.
+          </p>
         <button class="read-more"><b>Read More</b></button>
       </div>
       <div class="video-section">
@@ -23,12 +23,19 @@
   </script>
   
   <style scoped>
-  .container {
+  /* body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+   */
+  .content {
     display: flex;
     align-items: center;
     padding: 30px;
     background-color:#eaeaea83;
-    margin-top: 100px;
+    margin: 80px 34px;
     /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.176); */
   }
   

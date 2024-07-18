@@ -1,76 +1,54 @@
-
-
 <template>
-  
-  <id id="app" v-if="product != ''">
-    <div class="cards" style="height: 18rem; width: 12rem">
-      <div class="card-1">
-        <div class="icon">
-          <p class="day">200 day</p>
-          <v-btn @click="isFavorite = !isFavorite">
-            <i
-              class="material-icons"
-              :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }"
-              ><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon></i
-            >
-            <!-- <span
-              class="material-symbols-outlined"
-              :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }"
-            >
-              <v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }}</v-icon>
-            </span> -->
-          </v-btn>
-        </div>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQazjG1jTiHXRqdd7f4pNP1_K_PzyRuLXNIYw&usqp=CAU" class="card-img-top" alt="..." style="height: 9rem" />
-      </div>
-      <div class="card-body">
-        <div class="title">
-          <p class="card-name" style="font-weight: bold; color: black;">{{ product.name }}</p>
-          <p class="card-price text-danger" style="font-weight: bold;">{{ product.price }}</p>
-        </div>
-        <p style="color: black;">{{ product.shop.name }}</p>
-        <div class="button_card">
-          <a
-            type="button"
-            class="btn btn-light"
-            style="background: #f4e065"
-            :href="/detail/+product.id"
-          >
-            Detail
-        </a>
+  <!-- promotion-card -->
+  <div
+          v-if="isCancel"
+          class="alert alert-success alert-dismissible fade show"
+          style="position: absolute; top: 90%; left: 70%"
+          role="alert"
+        >
+          You add <strong>{{ product.name }}</strong> to favorite.
           <button
             type="button"
-            class="btn btn-light"
-            style="background: #a083d5"
-            @click="ButtonBorrow()"
-          >
-            Borrow
-          </button>
-          <!-- <button><router-link to="/" exact>Borrow</router-link></button> -->
-          <!-- <button><router-link to="/CardBorrowVue" exact>Borrow</router-link></button> -->
+            @click="unMessage"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+  <div class="product-card" style="position: relative; overflow: hidden">
+   
+    <div class="product-card-center" style="position: relative">
+      <div class="content-overlay">
+        
+        <div class="prodcut-card-top-promotion">
+          <v-btn @click="favoSubmit(product.id)" style="cursor: pointer">
+            <img src="../../assets/notLove.png" alt="" width="25" height="25" />
+          </v-btn>
         </div>
       </div>
+      <img :src="product.image" style="width: 100%; height: 100%" alt="" />
     </div>
-  </id>
-  <div class="card_button" v-if="showNewForm">
-    <form style="width: 25rem" @submit.prevent="handleSubmitNewForm">
-      <CardBorrowVue></CardBorrowVue>
-    </form>
+    <div class="product-card-buttom">
+      <img src="../../assets/star.png" alt="" />
+      <h4>{{ product.name }}</h4>
+      <a :href="/detail/ + product.id">Rent - ${{ product.price }}</a>
+    </div>
   </div>
 </template>
-    
+
 <script>
 import CardBorrowVue from './CardBorrowVue.vue'
+import axiosInstance from '@/plugins/axios'
+
 export default {
   name: 'CardVue',
-  components: {
-    CardBorrowVue
-  },
   props: ['product'],
   data() {
     return {
       showNewForm: false,
-      isFavorite: false
+      isFavorite: false,
+      isFavo: '',
+      isCancel: false
     }
   },
   methods: {
@@ -88,67 +66,94 @@ export default {
     },
     toggleIcon() {
       this.isFavorite === !this.isFavorite
+    },
+    favoSubmit(value) {
+      axiosInstance
+        .post('/favorite', { product_id: value })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+      this.isCancel = true
+      this.isFavorite = true
+    },
+    unMessage() {
+      this.isCancel = false
+      console.log(value)
     }
   }
 }
 </script>
-  <style scoped>
-.cards {
-  /* border: 1px solid black; */
-  border-radius: 10px;
-  margin-bottom: 50px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.144);
-}
-p,
-.btn {
-  color: White;
+
+<style scoped>
+.product-card {
+  /* display: flex;
+  gap: 35px;
+  flex-direction: column; */
+  display: grid;
+  gap: 5px;
+  grid-template-rows: 70% 25%;
+  padding: 10px;
+  background: white;
+  width: 230px;
+  height: 340px;
+  box-shadow: 0 0 10px rgba(59, 59, 59, 0.354);
 }
 
-.icon {
-  width: 100%;
-  padding: 10px;
-  position: absolute;
-}
-.borrow,
-.icon,
-.button_card,
-.title {
+.prodcut-card-top {
   display: flex;
-  flex-direction: row;
+  justify-content: end;
+}
+.prodcut-card-top-promotion {
+  display: flex;
   justify-content: space-between;
 }
-.card-body {
-  margin: 10px;
-}
-.day {
-  background: rgba(0, 0, 0, 0.37);
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 5px 5px 2px rgba(0, 0, 0, 0.144);
+
+.btn-promotion {
+  color: red;
+  font-size: 20px;
 }
 
-.card-1 {
-  width: 100%;
-  border-radius: 10px;
-  /* box-shadow: 0 5px 2px rgba(0, 0, 0, 0.144); */
-  position: relative;
-  overflow: hidden;
+.product-card-center {
+  display: flex;
+  justify-content: center;
 }
 
-.material-symbols-outlined {
-  vertical-align: middle;
+.product-card-buttom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.isFavorite {
-  color: purple;
+.product-card-buttom a {
+  text-decoration: none;
+  text-align: center;
+  padding: 6px;
+  color: white;
+  background-color: #722cb3;
+  border: none;
+  width: 200px;
+  border-radius: 30px;
 }
-
-.not-favorite {
-  color: rgb(124, 124, 124);
+.content-overlay {
+  padding: 5px;
+  display: flex;
+  justify-content: end;
+  background: rgba(216, 216, 216, 0.7);
+  position: absolute;
+  /* border-radius: 20px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
 }
-form {
-  border: 1px solid black;
-  border-radius: 10px;
-  box-shadow: 10px 10px 2px rgba(0, 0, 0, 0.144);
+.content-overlay:hover {
+  opacity: 1;
 }
 </style>

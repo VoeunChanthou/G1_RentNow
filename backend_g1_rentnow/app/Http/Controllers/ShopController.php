@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Products;
 use Spatie\Permission\Models\role;
 use Spatie\Permission\Models\Permission;
 use App\Models\model_has_role;
 use App\Models\role_has_permissions;
 use App\Http\Resources\RoleResource;
+use App\Http\Resources\ShopResource;
 
 class ShopController extends Controller
 {
@@ -28,26 +30,7 @@ class ShopController extends Controller
      */
     public function create(Request $request)
     {
-
-        // return $request->user();
-        // return "hello";
-        // return Permission::all();
-        // return role::all();
         $role = RoleResource::collection(model_has_role::all());
-        // $role = role_has_permissions::all();
-        // $roleOfuser = [];
-        // foreach ($role as $key => $value) {
-        //     if ($role[$key]->model_id == $request->user()->id) {
-        //         $roleId = role_has_permissions::all();
-        //         foreach ($roleId as $key2 => $value2) {
-        //             if($role[$key]->role_id === $roleId[$key2]->role_id){
-        //                 array_push($roleOfuser, $roleId[$key2]);
-        //             }
-        //         };
-        //     }
-        // }
-        // return $roleOfuser;
-
         $isAdmin = 'null';
         foreach ($role as $key => $value){
             if($role[$key]->model_id == $request->user()->id){
@@ -97,10 +80,23 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Shop $shop)
+    public function show(Request $request)
     {
-        //
+        $userId = $request->user()->id;
+        return ShopResource::make(Shop::where('user_id', $userId)->first());
     }
+
+    public function showProduct(Request $request)
+{
+    $userId = $request->user()->id;
+    $shop = Shop::where('user_id', $userId)->first();
+
+    if ($shop) {
+        return response()->json(ShopResource::make($shop), 200);
+    } else {
+        return response()->json(['message' => 'Shop not found'], 404);
+    }
+}
 
     /**
      * Show the form for editing the specified resource.
@@ -125,4 +121,6 @@ class ShopController extends Controller
     {
         //
     }
+
+
 }

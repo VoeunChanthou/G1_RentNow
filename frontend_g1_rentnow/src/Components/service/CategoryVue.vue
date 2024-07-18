@@ -1,5 +1,5 @@
 <template>
-  <div class="search-bar shadow p-5 mb-5 bg-white rounded" style="height: 82%;">
+  <div class="search-bar shadow p-5 mb-5 bg-white rounded" style="height: 100%; z-index: 0;">
     <div class="search" style="padding-left: 30px">
       <el-input v-model="product" style="width: 100%" size="large" placeholder="Please Input" @input="handleSomeEvent" />
     </div>
@@ -85,7 +85,7 @@ export default {
     fetchProduct() {
       this.products.fetchProduct()
     },
-    fetchShop() {
+    fetchShop() { 
       this.shop.fetchShop()
     },
     // fetchProductStore() {

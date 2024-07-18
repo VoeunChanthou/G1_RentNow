@@ -1,5 +1,7 @@
 <script setup lang="ts">
 // import $ from 'jquery'
+import CommentProduct from "@/Components/service/CommentProduct.vue"
+import ForForgotpassword from '@/Components/homepage/ForForgotpassword.vue'
 import axiosInstance from '@/plugins/axios'
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryShow from '@/Components/homepage/CategoryShow.vue'
@@ -11,7 +13,13 @@ import PopularShopVue from '@/Components/homepage/PopularShop.vue'
 import VideoWork from '@/Components/homepage/VideoWork.vue'
 import PeopleSay from '@/Components/homepage/PeopleSay.vue'
 import ProductShow from '@/Components/homepage/ProductShow.vue'
+import FooterMenuVue from '../../Components/homepage/FooterMenu.vue'
+import {productStore} from '@/stores/product-list.ts'
+
 const AuthUSer = useAuthStore()
+const products = productStore()
+const product = products.fetchProductStore()
+
 </script>
 
 <template>
@@ -30,7 +38,7 @@ const AuthUSer = useAuthStore()
         <div
           class="content-right"
           style="
-            width: 75%;
+            width: 80%;
             height: 45vh;
             display: flex;
             flex-direction: column;
@@ -76,17 +84,20 @@ const AuthUSer = useAuthStore()
     </div>
 
     <div class="components">
+      <!-- {{ products.productList }} -->
     <!-- register popup  -->
     <PopupRegisterVue></PopupRegisterVue>
 
     <!-- login form -->
     <WebLoginVue></WebLoginVue>
 
+
     <!-- category show -->
     <CategoryShow></CategoryShow>
 
     <!-- ProductShow -->
-    <ProductShow></ProductShow>
+    
+    <ProductShow :products="products.productList"></ProductShow>
 
     <!-- PopularShop -->
     <PopularShopVue></PopularShopVue>
@@ -98,6 +109,7 @@ const AuthUSer = useAuthStore()
     <PeopleSay></PeopleSay>
   </div>
   </WebLayout>
+  <FooterMenuVue></FooterMenuVue>
 </template>
 
 <style>
@@ -106,5 +118,4 @@ const AuthUSer = useAuthStore()
   padding: 30px;
 }
 </style>
-
 
