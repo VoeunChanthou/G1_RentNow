@@ -245,7 +245,7 @@ async function deletePro(id: string) {
   if (confirm) {
     try {
       const response = await axiosInstance.delete(`http://127.0.0.1:8000/api/delete/product/${id}`)
-      console.log(response)
+      fetchData()
     } catch (error) {
       console.error(error)
     }

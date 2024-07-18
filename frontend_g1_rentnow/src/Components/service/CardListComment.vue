@@ -50,7 +50,7 @@
           <div class="card-body">
             <div class="d-flex flex-start">
               <img class="rounded-circle shadow-1-strong me-3"
-                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp" alt="avatar" width="40"
+                :src="comment.user.profile" alt="avatar" width="40"
                 height="40" />
               <div class="w-100">
                 <div class="d-flex justify-content-between align-items-center mb-3">

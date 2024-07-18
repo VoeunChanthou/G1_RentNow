@@ -67,6 +67,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
     Route::post('/comment', [feedbackcontroller::class, 'create']);
+    Route::get('/get/comment/shop', [FeedbackController::class, 'getcommentbyshop']);
     Route::delete('/delete/product/{id}', [ProductsController::class, 'destroy']);
     Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 

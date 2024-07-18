@@ -166,10 +166,6 @@
                   </div>
 
                 </div>
-                <div class="form-group">
-                  <label for="date">Date {{ date }}</label>
-                  <input v-model="date" type="date" id="date" name="date" placeholder="mm/dd/yy" />
-                </div>
 
                 <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
 
@@ -181,15 +177,16 @@
     </div>
     <!-- Modal -->
      
+    <FooterMenuVue/>
   </WebLayout>
 </template>
 
 <script>
-import WebLayout from '../../../Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
 import ShopMap from '@/Components/service/ShopMap.vue';
-
+import FooterMenuVue from '../../../Components/homepage/FooterMenu.vue'
 import CommentProduct from '@/Components/service/CommentProduct.vue';
 import CardListComponent from '@/Components/service/CardListComment.vue'
 export default {
@@ -198,7 +195,8 @@ export default {
     Icon,
     ShopMap,
     CommentProduct,
-    CardListComponent
+    CardListComponent,
+    FooterMenuVue
   },
   data() {
     return {

@@ -76,7 +76,7 @@ class AdminSeeder extends Seeder
         $category = Shop::create([
             'name'=>'Electronics',
             'user_id'=> 3,
-            'Country'=>'Cambodia',
+            'Country'=>'Cambodia', 
             'Province'=>'Phnom penh',
             'street'=>'371',
             'latitude'=>'11.550857',
