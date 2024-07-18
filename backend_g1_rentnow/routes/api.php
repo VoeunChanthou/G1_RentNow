@@ -114,5 +114,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get/shop', [ShopController::class, 'show']);
 });
 
-
+Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
 

@@ -300,8 +300,8 @@ import { useRoute } from 'vue-router'
 
 const first_name = ref();
 const last_name = ref();
-const email = ref();
 const route = useRoute();
+const email = ref();
 
 async function fetchMemberData() {
   try {

@@ -4,7 +4,7 @@
     <div class="row" >
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
-            <a href="/shop/1">
+            <a :href="`/shop/${item.id}`">
               <div class="content-overlay"></div>
               <img class="content-image" :src="item.image" />
               <div class="content-details fadeIn-bottom">
