@@ -18,11 +18,11 @@ import axiosInstance from '@/plugins/axios'
 <template>
 
 
-        <div class="top shadow search-bar shadowp p-3 bg-white rounded" style="height: 82%;display: flex; ">
-      <div class="right mt-0" style="width: 100%; height: 100%; display: flex; flex-direction: column;">
+        <div class="top shadow search-bar shadowp p-3 bg-white rounded" style="height: 82%; ">
+      <div class="right mt-0" style="width: 100%; height: 100vh; display: flex; flex-direction: column;">
         <img class="mt-0" src="../../assets/buy.jpg" alt="">
         <h2 class="acc" style="display: flex; justify-content: center;"><b>Account</b></h2>
-        <div class="ml-10 mt-3" style="height: 70%; display: flex; flex-direction: column; gap: 5px;">
+        <div class="ml-10 mt-3" style="height: auto; gap: 5px;">
           <a class="dropdown-item" style="color: gray;" href="/history"><p>My Borrow</p></a>
           <a class="dropdown-item" style="color: gray;" href="/message"><p>Message</p></a>
           <a class="dropdown-item" style="color: gray;" href="/favorite"><p>Favorite List</p></a>
