@@ -114,5 +114,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
 });
 
-
+Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
 

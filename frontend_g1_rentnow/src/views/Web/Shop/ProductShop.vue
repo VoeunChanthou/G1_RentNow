@@ -12,8 +12,29 @@ import type { componentSizeMap } from 'element-plus'
 import { ref } from 'vue'
 import type { Service } from '@element-plus/icons-vue'
 import { useAuthStore } from '@/stores/auth-store.ts'
+import { useRoute } from 'vue-router'
+import axiosInstance from '@/plugins/axios';
+
+
+
+const route = useRoute();
 
 const AuthUSer = useAuthStore()
+
+const shopInfo = ref()
+
+async function fetchMemberData() {
+  try {
+    const response = await axiosInstance.get(`/web/shop/${route.params.id}`)
+    shopInfo.value = response.data
+  } catch (error) {
+    console.error(error)
+  }
+}
+fetchMemberData()
+
+
+
 </script>
 
 <template>
@@ -36,14 +57,14 @@ const AuthUSer = useAuthStore()
           style="height: 70vh; background: rgb(208, 208, 208)"
         >
           <div class="image shadow rounded" style="height: 40vh">
-            <img src="../../../assets/purple-shop.jpg" alt="" style="width: 100%; height: 100%" />
+            <img :src="shopInfo.data.image" alt="" style="width: 100%; height: 100%" />
           </div>
           <div class="info" style="height: 27vh; margin-top: 5px; padding-top: 10px">
-            <h5>Shop: FAFA Shop</h5>
-            <h5>Owner: Sothea</h5>
-            <h5>Address: phnom penh</h5>
-            <h5>Phone: 987654</h5>
-            <h5>Email: sothea@gmail.com</h5>
+            <h5>Shop: {{shopInfo.data.name}}</h5>
+            <h5>Owner: {{shopInfo.data.ownership.first_name}} {{shopInfo.data.ownership.last_name}}</h5>
+            <h5>Address: {{shopInfo.data.Country}} {{shopInfo.data.Province}} {{shopInfo.data.street}}</h5>
+            <h5>Phone: {{shopInfo.data.ownership.phone_number}}</h5>
+            <h5>Email: {{shopInfo.data.ownership.email}}</h5>
           </div>
         </div>
 
@@ -54,13 +75,13 @@ const AuthUSer = useAuthStore()
           <ShopMap />
         </div>
       </div>
-
+      <!-- {{ shopInfo.data }} -->
       <div style="height: 100%; display: grid; grid-template-rows: 10% 98%; gap: 20px">
         <div
           class="top shadow p-3 px-5 rounded bg-white"
           style="display: flex; justify-content: space-between; align-items: center"
         >
-          <h3>FAFA Shop</h3>
+          <h3>{{shopInfo.data.name}}</h3>
           <div class="search" style="padding-left: 30px">
             <el-input
               v-model="product"
@@ -94,8 +115,8 @@ const AuthUSer = useAuthStore()
     <PopupRegisterVue></PopupRegisterVue>
 
     <!-- footer -->
+    <FooterMenu></FooterMenu>
   </WebLayout>
-  <FooterMenu></FooterMenu>
 </template>
 
 <style>

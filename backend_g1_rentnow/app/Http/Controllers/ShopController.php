@@ -122,5 +122,14 @@ class ShopController extends Controller
         //
     }
 
+    public function getShopById(String $id){
+        $shop = Shop::find($id);
+        if($shop){
+            return ShopResource::make($shop);
+            // return $shop;
+        }
+        return response()->json(['message' => 'Shop not found'], 404);
+    }
+
 
 }
