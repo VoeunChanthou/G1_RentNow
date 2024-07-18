@@ -79,17 +79,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/favorite', [FavoriteController::class, 'create']);
     Route::delete('/unfavorite/{id}', [FavoriteController::class, 'destroy']);   
 });
+Route::put('/comment/update/{id}', [feedbackcontroller::class, "updateComment"]);
 route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
-
-
+Route::delete('comment/delete/{id}', [FeedbackController::class, "deleteComment"]);
+Route::get ('comment/{id}', [FeedbackController::class, "show"]);
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
 Route::get('/product', [ProductsController::class, 'index']);
 Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
-
-
 Route::post('/detail', [ProductDtailController::class,'putDetail']);
 Route::get('/product/{id}', [ProductsController::class,'show']);
 
@@ -112,6 +111,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create/product/detail/{id}', [ProductDtailController::class, 'putDetail']);
     Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
     Route::get('/get/shop', [ShopController::class, 'show']);
+    Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
 });
 
 

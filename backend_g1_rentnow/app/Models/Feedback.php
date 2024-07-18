@@ -31,4 +31,5 @@ class Feedback extends Model
         $user = self::where('product_id', $product_id)->get();
         return $user;
     }
+
 }

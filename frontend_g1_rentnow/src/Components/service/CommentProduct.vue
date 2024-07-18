@@ -9,7 +9,7 @@
         <h5 class="modal-title text-white" id="exampleModalLabel" >Comment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form @submit.prevent="createcomment">
+      <form >
       <div class="modal-body">
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Comment:</label>
@@ -17,7 +17,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="submit" class="btn btn-info w-100">Send Comment</button>
+          <button v-if=" ConditionComment " type="button" class="btn btn-info w-100 " @click="this.$emit('createcomment',comments)"  data-bs-dismiss="modal" aria-label="Close">Send</button>
         </div>
       </form>
     </div>
@@ -25,13 +25,7 @@
 </div>
 </template>
 <script>
-import axiosInstance from '@/plugins/axios'
-import LoadingView from "../../Components/loading/LoadingPopup.vue"
 export default {
-  components :{
-    LoadingView
-  },
-  name : "App",
   data (){
     return {
       loading : null,
@@ -41,19 +35,13 @@ export default {
       }
     }
   },
-  methods :{
-    async createcomment() {
-      try {
-         this.loading = true;
-        const response = await axiosInstance.post( '/comment', this.comments );
-        this.loading = false;
-        this.comments.comment = ""
-      } catch (error) {
-        console.error("Error creating category:", error);
+  computed :{
+    ConditionComment (){
+      if (this.comments.comment.length > 0) {
+        return true;
       }
-    },
-
+    }
   }
-}
 
+}
 </script>

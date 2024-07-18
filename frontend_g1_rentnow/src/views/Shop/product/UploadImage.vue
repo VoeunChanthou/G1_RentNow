@@ -38,30 +38,30 @@
           <el-icon><Plus /></el-icon>
         </el-upload>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; margin-top: 20px;">
           <div v-for="(image, index) in getImg" :key="index" class="image-item" style="width: 100%; height: 100%;">
             <img :src="image.image" alt="Uploaded Image" />
             <div class="image-actions">
               <span
                 class="el-upload-list__item-preview"
-                @click="handlePictureCardPreview(image)"
+                @click="handlePictureCardPreview(image.image)"
               >
                 <el-icon><zoom-in /></el-icon>
               </span>
               <span
-                v-if="!disabled"
-                class="el-upload-list__item-delete"
-                @click="handleDownload(image)"
-              >
-                <el-icon><Download /></el-icon>
-              </span>
-              <span
-                v-if="!disabled"
-                class="el-upload-list__item-delete"
-                @click="handleRemove(image)"
+                class="el-upload-list__item-preview"
+                @click="handleRemove(image.id)"
               >
                 <el-icon><Delete /></el-icon>
               </span>
+              <span
+                class="el-upload-list__item-preview"
+                @click="handlePictureCardPreview(image.image)"
+              >
+                <el-icon><Download /></el-icon>
+              </span>
+              
+              
             </div>
           </div>
         </div>
@@ -92,12 +92,15 @@ const imageBase = ref('')
 const route = useRoute()
 const getImg = ref([])
 
-const handleRemove = (file: any) => {
-  console.log(file)
+const handleRemove = async (id: any) => {
+  const response = await axiosInstance.delete(`/delete/product/detail/${id}`);
+  console.log(response);
+  location.reload()
+  
 }
 
 const handlePictureCardPreview = (file: any) => {
-  dialogImageUrl.value = `data:image/jpeg;base64,${file.image}`
+  dialogImageUrl.value = file
   dialogVisible.value = true
 }
 
@@ -120,6 +123,7 @@ const getProduct = async () => {
     image: imageBase.value,
   })
   console.log(response)
+  location.reload()
 }
 
 const getAllImg = async () => {

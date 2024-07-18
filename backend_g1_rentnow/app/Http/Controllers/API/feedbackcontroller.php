@@ -32,9 +32,35 @@ class feedbackcontroller extends Controller
         ], 200);
        }
 
+
     public function getcommentbyshop(Request $request){
         $shopId = Shop::where('user_id', $request->user()->id)->first();
         $products = Products::where('shop_id', $shopId->id)->get();
         return ProductResource::collection($products);
     }
+
+       public function deleteComment (Request $request, $id){
+        Feedback::destroy($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Feedback deleted successfully',
+        ], 200);
+       }
+       public function updateComment(Request $request, $id){
+        $comment = Feedback::find($id);
+        $comment->comment = $request->comment;
+        $comment->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Feedback updated successfully',
+        ], 200);
+       }
+       public function show(Request $request, $id){
+        $feedback = Feedback::find($id);
+        return response()->json([
+            'success' => true,
+            'data' => $feedback
+        ], 200);
+       }
+
 }

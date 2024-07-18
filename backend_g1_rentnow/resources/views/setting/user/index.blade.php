@@ -12,7 +12,9 @@
                 <table class="text-left w-full border-collapse">
                   <thead>
                     <tr>
+                      <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Profile</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">User Name</th>
+                      <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Phone Number</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light">Role</th>
                       <th class="py-4 px-6 bg-grey-lightest font-bold text-sm text-grey-dark border-b border-grey-light text-right">Actions</th>
                     </tr>
@@ -22,7 +24,13 @@
                     @can('User access')
                       @foreach($users as $user)
                       <tr class="hover:bg-grey-lighter">
+                        <td class="py-4 px-6 border-b border-grey-light">		
+                         
+                <img class="avatar-img rounded-circle shadow" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="avatar" style="height: 60px; border-radius: 10px;">
+							
+                    </td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->first_name }} {{$user->last_name}}</td>
+                        <td class="py-4 px-6 border-b border-grey-light">{{ $user->phone_number }} </td>
                         <td class="py-4 px-6 border-b border-grey-light">
                             @foreach($user->roles as $role)
                               <span class="inline-flex items-center justify-center px-2 py-1 mr-2 text-xs font-bold leading-none text-white bg-gray-500 rounded-full">{{ $role->name }}</span>

@@ -1,6 +1,7 @@
 <template>
   <WebLayout><div class="bg-white">
-    <CommentProduct />
+    <PopupDelete  :massage = "commentshow.comment" @updatecomment = "updateById" />
+    <CommentProduct @createcomment = "createcomment" />
     <div class="content px-5">
       <!-- back button -->
       <div class="back-button" @click="$router.go(-1)">
@@ -8,13 +9,11 @@
         <i><img src="../../../assets/removeBack.png" alt="backButton" /></i>
       </div>
       <!-- back button -->
-
       <div class="product-detail">
         <div class="product-detail-left">
           <div class="not-love">
             <img src="../../../assets/notLove.png" alt="" />
           </div>
-
           <!-- product slide show product -->
           <el-carousel indicator-position="outside">
             <el-carousel-item>
@@ -102,7 +101,7 @@
       <div class="left-side shadow bg-white" style="margin-bottom: 20px;" >
         <h2 style="margin: 25px;">Comments</h2>
         
-    <CardListComponent />
+    <CardListComponent  :Comments = "CommentList"  @deletecomment = "deleteById"  @updatecomment = "showComment"/>
 
       </div>
       <div class="right-side shadow bg-white" style="height: 60vh;">
@@ -169,9 +168,7 @@
                   </div>
 
                 </div>
-
                 <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
-
               </form>
             </div>
           </div>
@@ -183,7 +180,6 @@
     <FooterMenuVue/>
   </WebLayout>
 </template>
-
 <script>
 import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
@@ -192,6 +188,7 @@ import ShopMap from '@/Components/service/ShopMap.vue';
 import FooterMenuVue from '../../../Components/homepage/FooterMenu.vue'
 import CommentProduct from '@/Components/service/CommentProduct.vue';
 import CardListComponent from '@/Components/service/CardListComment.vue'
+import PopupDelete from '@/Components/service/PopupUpdate.vue'
 export default {
   components: {
     WebLayout,
@@ -199,14 +196,17 @@ export default {
     ShopMap,
     CommentProduct,
     CardListComponent,
-    FooterMenuVue
+    FooterMenuVue,
+    PopupDelete
   },
   data() {
     return {
       product: {},
       shop: {},
       image: {},
-
+      CommentList : [],
+      commentshow  : {},
+      idComment : null,
       // =========== payment =========
       cardName: "",
       cardNumber:"",
@@ -217,7 +217,8 @@ export default {
     }
   },
   mounted() {
-    this.getProductDetail()
+    this.getProductDetail(),
+    this.fetchComments()
   },
   methods: {
     getProductDetail() {
@@ -231,7 +232,49 @@ export default {
         .catch((error) => {
           console.log(error)
         });
+      },
+      async fetchComments () {
+            try {
+                const response = await axiosInstance.get('list/comment/'+ this.$route.params.id)
+                this.CommentList = response.data
+            } catch (error) {
+                console.error(error)
+            }
+        },
+      async createcomment(data) {
+      try {
+        const response = await axiosInstance.post( '/comment', data );
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error creating category:", error);
       }
+    },
+    async showComment(id){
+      try {
+        this.idComment = id;
+        const response = await axiosInstance.get(`/comment/${id}`);
+        this.commentshow = response.data.data
+      } catch (error) {
+        console.error("Error getting category:", error);
+      }
+    },
+    async updateById(data) {
+      try {
+        await axiosInstance.put('/comment/update/'+ this.idComment, { comment : data} );
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error updating category:", error);
+      }
+    },
+    async deleteById(id) {
+      try {
+
+        await axiosInstance.delete(`/comment/delete/${id}`);
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error deleting category:", error);
+      }
+    }
   }
 }
 </script>

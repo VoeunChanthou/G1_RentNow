@@ -21,7 +21,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
+                <el-dropdown-item>
+                  <button @click="onSubmit">Logout</button>
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -74,7 +76,6 @@ interface User {
   phone_number: string
   email: string
 }
-
 
 const handleEdit = (index: number, row: User) => {
   console.log(index, row)
