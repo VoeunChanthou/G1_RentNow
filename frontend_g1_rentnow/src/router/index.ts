@@ -142,6 +142,11 @@ const router = createRouter({
       path: '/view/profile/user',
       name: 'proUser',
       component: () => import('../views/Web/Profile/ViewProfile.vue'),
+    },
+    {
+      path: '/favorite',
+      name: 'favorite',
+      component: () => import('../views/Web/FavoritePage.vue'),
       meta: {
         requiresAuth: true,
         role: 'user'
@@ -187,6 +192,15 @@ const router = createRouter({
       path: '/receipt',
       name: 'receipt',
       component: () => import('../views/Web/Service/ReceiptVue.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
+    {
+      path: '/my/product',
+      name: 'myproduct',
+      component: () => import('../views/Web/Myborrow/MyborrowView.vue'),
       meta: {
         requiresAuth: true,
         role: 'user'

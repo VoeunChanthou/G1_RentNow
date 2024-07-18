@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\model_has_role;
 use App\Models\Product;
-// use App\Models\Products;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -32,9 +32,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product= Product::latest()->get();
+        $products= Products::latest()->get();
 
-        return view('product.index',['product'=>$product]);
+        return view('product.index',['products'=>$products]);
     }
 
     /**
@@ -91,9 +91,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit(Products $product)
     {
-       return view('product_admin.edit',['product' => $product]);
+       return view('product.edit',['product' => $product]);
     }
 
     /**
@@ -103,7 +103,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Products $product)
     {
         $product->update(['name'=>$request->name]);
         return redirect()->back()->withSuccess('Product updated !!!');
@@ -115,10 +115,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $permission)
+    public function destroy(Products $product)
     {
-        $permission->delete();
-        return redirect()->back()->withSuccess('Product deleted !!!');
+        $product->delete();
+        return redirect()->back()->withSuccess('delete successfully');
     }
 
 

@@ -16,7 +16,7 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@fawmi/vue-google-maps": "^0.9.79",
-    "@maptiler/sdk": "^2.2.0",
+    "@maptiler/sdk": "^2.2.1",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vue-stripe/vue-stripe": "^4.5.0",
     "axios": "^1.7.2",
@@ -34,9 +34,11 @@
     "vue-chartjs": "^5.3.1",
     "vue-gates": "^2.1.2",
     "vue-html2canvas": "^0.0.4",
+    "vue-inject": "^2.1.1",
     "vue-router": "^4.3.0",
     "vue-simple-acl": "^2.0.2",
     "vue3-google-login": "^2.0.26",
+    "vue3-google-oauth2": "^1.0.7",
     "yup": "^1.4.0"
   },
   "devDependencies": {

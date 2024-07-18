@@ -1052,6 +1052,13 @@
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+>>>>>>> create_form_reset_password
             "version": "v10.48.15",
             "source": {
                 "type": "git",
@@ -1062,6 +1069,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/1723e038c9ec99b434e5bed9c27f044bd50a4ffb",
                 "reference": "1723e038c9ec99b434e5bed9c27f044bd50a4ffb",
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "version": "v10.48.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "2c6816d697a4362c09c066118addda251b70b98a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2c6816d697a4362c09c066118addda251b70b98a",
+                "reference": "2c6816d697a4362c09c066118addda251b70b98a",
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
@@ -1255,7 +1280,19 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-07-02T18:01:24+00:00"
+=======
+            "time": "2024-06-18T16:46:35+00:00"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+            "time": "2024-07-02T18:01:24+00:00"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+            "time": "2024-07-02T18:01:24+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "laravel/prompts",
@@ -3353,6 +3390,7 @@
         {
             "name": "symfony/css-selector",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -3375,6 +3413,8 @@
 <<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> create_form_reset_password
             "version": "v6.4.8",
             "source": {
                 "type": "git",
@@ -3385,6 +3425,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/4b61b02fe15db48e3687ce1c45ea385d1780fe08",
                 "reference": "4b61b02fe15db48e3687ce1c45ea385d1780fe08",
+<<<<<<< HEAD
 >>>>>>> develop
 <<<<<<< HEAD
 =======
@@ -3392,10 +3433,12 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.2"
+                "php": ">=8.1"
             },
             "type": "library",
             "autoload": {
@@ -3428,6 +3471,7 @@
             "homepage": "https://symfony.com",
             "support": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/css-selector/tree/v7.1.1"
 =======
 <<<<<<< HEAD
@@ -3450,6 +3494,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+                "source": "https://github.com/symfony/css-selector/tree/v6.4.8"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -3466,6 +3513,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-05-31T14:57:53+00:00"
 =======
 <<<<<<< HEAD
@@ -3488,6 +3536,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "time": "2024-05-31T14:49:08+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -3634,6 +3685,7 @@
         {
             "name": "symfony/event-dispatcher",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -3656,6 +3708,8 @@
 <<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> create_form_reset_password
             "version": "v6.4.8",
             "source": {
                 "type": "git",
@@ -3666,6 +3720,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/8d7507f02b06e06815e56bb39aa0128e3806208b",
                 "reference": "8d7507f02b06e06815e56bb39aa0128e3806208b",
+<<<<<<< HEAD
 >>>>>>> develop
 <<<<<<< HEAD
 =======
@@ -3673,14 +3728,16 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.2",
+                "php": ">=8.1",
                 "symfony/event-dispatcher-contracts": "^2.5|^3"
             },
             "conflict": {
-                "symfony/dependency-injection": "<6.4",
+                "symfony/dependency-injection": "<5.4",
                 "symfony/service-contracts": "<2.5"
             },
             "provide": {
@@ -3689,13 +3746,13 @@
             },
             "require-dev": {
                 "psr/log": "^1|^2|^3",
-                "symfony/config": "^6.4|^7.0",
-                "symfony/dependency-injection": "^6.4|^7.0",
-                "symfony/error-handler": "^6.4|^7.0",
-                "symfony/expression-language": "^6.4|^7.0",
-                "symfony/http-foundation": "^6.4|^7.0",
+                "symfony/config": "^5.4|^6.0|^7.0",
+                "symfony/dependency-injection": "^5.4|^6.0|^7.0",
+                "symfony/error-handler": "^5.4|^6.0|^7.0",
+                "symfony/expression-language": "^5.4|^6.0|^7.0",
+                "symfony/http-foundation": "^5.4|^6.0|^7.0",
                 "symfony/service-contracts": "^2.5|^3",
-                "symfony/stopwatch": "^6.4|^7.0"
+                "symfony/stopwatch": "^5.4|^6.0|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -3724,6 +3781,7 @@
             "homepage": "https://symfony.com",
             "support": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/event-dispatcher/tree/v7.1.1"
 =======
 <<<<<<< HEAD
@@ -3746,6 +3804,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+                "source": "https://github.com/symfony/event-dispatcher/tree/v6.4.8"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -3762,6 +3823,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-05-31T14:57:53+00:00"
 =======
 <<<<<<< HEAD
@@ -3784,6 +3846,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "time": "2024-05-31T14:49:08+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -5221,6 +5286,7 @@
         {
             "name": "symfony/string",
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v7.1.2",
 =======
 <<<<<<< HEAD
@@ -5231,13 +5297,17 @@
             "version": "v7.1.1",
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "version": "v6.4.9",
+>>>>>>> create_form_reset_password
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "14221089ac66cf82e3cf3d1c1da65de305587ff8"
+                "reference": "76792dbd99690a5ebef8050d9206c60c59e681d7"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/symfony/string/zipball/14221089ac66cf82e3cf3d1c1da65de305587ff8",
                 "reference": "14221089ac66cf82e3cf3d1c1da65de305587ff8",
@@ -5288,10 +5358,14 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+                "url": "https://api.github.com/repos/symfony/string/zipball/76792dbd99690a5ebef8050d9206c60c59e681d7",
+                "reference": "76792dbd99690a5ebef8050d9206c60c59e681d7",
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.2",
+                "php": ">=8.1",
                 "symfony/polyfill-ctype": "~1.8",
                 "symfony/polyfill-intl-grapheme": "~1.0",
                 "symfony/polyfill-intl-normalizer": "~1.0",
@@ -5301,12 +5375,11 @@
                 "symfony/translation-contracts": "<2.5"
             },
             "require-dev": {
-                "symfony/emoji": "^7.1",
-                "symfony/error-handler": "^6.4|^7.0",
-                "symfony/http-client": "^6.4|^7.0",
-                "symfony/intl": "^6.4|^7.0",
+                "symfony/error-handler": "^5.4|^6.0|^7.0",
+                "symfony/http-client": "^5.4|^6.0|^7.0",
+                "symfony/intl": "^6.2|^7.0",
                 "symfony/translation-contracts": "^2.5|^3.0",
-                "symfony/var-exporter": "^6.4|^7.0"
+                "symfony/var-exporter": "^5.4|^6.0|^7.0"
             },
             "type": "library",
             "autoload": {
@@ -5346,6 +5419,7 @@
             ],
             "support": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/string/tree/v7.1.2"
 =======
 <<<<<<< HEAD
@@ -5368,6 +5442,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+                "source": "https://github.com/symfony/string/tree/v6.4.9"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -5383,6 +5460,7 @@
                     "type": "tidelift"
                 }
             ],
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2024-06-28T09:27:18+00:00"
 =======
@@ -5406,6 +5484,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "time": "2024-06-28T09:25:38+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "symfony/translation",
@@ -6263,6 +6344,13 @@
         },
         {
             "name": "laravel/sail",
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+>>>>>>> create_form_reset_password
             "version": "v1.30.1",
             "source": {
                 "type": "git",
@@ -6273,6 +6361,24 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/sail/zipball/8ba049b6c06e0330b6aa1fb7af2746fb4da445e4",
                 "reference": "8ba049b6c06e0330b6aa1fb7af2746fb4da445e4",
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            "version": "v1.29.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/sail.git",
+                "reference": "e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5",
+                "reference": "e35b3ffe1b9ea598246d7e99197ee8799f6dc2e5",
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
@@ -6322,7 +6428,19 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-07-01T20:55:03+00:00"
+=======
+            "time": "2024-06-12T16:24:41+00:00"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+            "time": "2024-07-01T20:55:03+00:00"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+=======
+            "time": "2024-07-01T20:55:03+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "mockery/mockery",
@@ -7005,8 +7123,18 @@
         {
             "name": "phpunit/phpunit",
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+>>>>>>> develop2
             "version": "10.5.25",
 =======
 <<<<<<< HEAD
@@ -7015,6 +7143,9 @@
 <<<<<<< HEAD
             "version": "10.5.21",
 >>>>>>> feedbackform_product
+=======
+            "version": "10.5.25",
+>>>>>>> create_form_reset_password
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
@@ -7023,8 +7154,10 @@
             "dist": {
                 "type": "zip",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/831bf82312be6037e811833ddbea0b8de60ea314",
                 "reference": "831bf82312be6037e811833ddbea0b8de60ea314",
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> develop2
@@ -7074,7 +7207,31 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+<<<<<<< HEAD
 >>>>>>> develop2
+=======
+=======
+<<<<<<< HEAD
+=======
+            "version": "10.5.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sebastianbergmann/phpunit.git",
+                "reference": "12826591cc32fa0959b7e7577a90c3f527e377b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/12826591cc32fa0959b7e7577a90c3f527e377b2",
+                "reference": "12826591cc32fa0959b7e7577a90c3f527e377b2",
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+>>>>>>> develop2
+=======
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/831bf82312be6037e811833ddbea0b8de60ea314",
+                "reference": "831bf82312be6037e811833ddbea0b8de60ea314",
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
@@ -7147,8 +7304,12 @@
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.24"
 =======
+=======
+>>>>>>> develop2
 <<<<<<< HEAD
                 "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.25"
 =======
@@ -7172,7 +7333,23 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+<<<<<<< HEAD
 >>>>>>> develop2
+=======
+=======
+<<<<<<< HEAD
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.25"
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.23"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.25"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+>>>>>>> develop2
+=======
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.25"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -7189,8 +7366,12 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-06-20T13:09:54+00:00"
 =======
+=======
+>>>>>>> develop2
 <<<<<<< HEAD
             "time": "2024-07-03T05:49:17+00:00"
 =======
@@ -7214,7 +7395,23 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+<<<<<<< HEAD
 >>>>>>> develop2
+=======
+=======
+<<<<<<< HEAD
+            "time": "2024-07-03T05:49:17+00:00"
+=======
+            "time": "2024-06-20T07:29:28+00:00"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+            "time": "2024-07-03T05:49:17+00:00"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+>>>>>>> develop2
+=======
+            "time": "2024-07-03T05:49:17+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "sebastian/cli-parser",
@@ -8198,6 +8395,11 @@
         {
             "name": "spatie/error-solutions",
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> shop_owner_dashboard
             "version": "1.0.4",
 =======
 <<<<<<< HEAD
@@ -8208,6 +8410,9 @@
             "version": "1.0.0",
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "version": "1.0.4",
+>>>>>>> create_form_reset_password
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/error-solutions.git",
@@ -8215,10 +8420,11 @@
             },
             "dist": {
                 "type": "zip",
-<<<<<<< HEAD
                 "url": "https://api.github.com/repos/spatie/error-solutions/zipball/264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
                 "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
+<<<<<<< HEAD
 =======
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/spatie/error-solutions/zipball/264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
                 "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
@@ -8265,6 +8471,29 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "version": "1.0.0",
+=======
+            "version": "1.0.4",
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/error-solutions.git",
+                "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b"
+            },
+            "dist": {
+                "type": "zip",
+<<<<<<< HEAD
+                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/202108314a6988ede156fba1b3ea80a784c1734a",
+                "reference": "202108314a6988ede156fba1b3ea80a784c1734a",
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+                "url": "https://api.github.com/repos/spatie/error-solutions/zipball/264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
+                "reference": "264a7eef892aceb2fd65e206127ad3af4f3a2d6b",
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
@@ -8318,6 +8547,8 @@
             "support": {
                 "issues": "https://github.com/spatie/error-solutions/issues",
 <<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/spatie/error-solutions/tree/1.0.4"
 =======
 <<<<<<< HEAD
@@ -8340,6 +8571,19 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+<<<<<<< HEAD
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.4"
+=======
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.0"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.4"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+=======
+                "source": "https://github.com/spatie/error-solutions/tree/1.0.4"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -8347,6 +8591,8 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
+<<<<<<< HEAD
 <<<<<<< HEAD
             "time": "2024-06-28T13:33:04+00:00"
 =======
@@ -8370,6 +8616,19 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+<<<<<<< HEAD
+            "time": "2024-06-28T13:33:04+00:00"
+=======
+            "time": "2024-06-12T14:49:54+00:00"
+>>>>>>> ce9a868464250cd6e4611a34670d0482e6937275
+=======
+            "time": "2024-06-28T13:33:04+00:00"
+>>>>>>> c6251299b324f7a7ac1328d1b5150bfabf07398b
+>>>>>>> shop_owner_dashboard
+=======
+            "time": "2024-06-28T13:33:04+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "spatie/flare-client-php",
@@ -8617,6 +8876,7 @@
         {
             "name": "symfony/yaml",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 <<<<<<< HEAD
 =======
@@ -8639,6 +8899,8 @@
 <<<<<<< HEAD
 =======
 =======
+=======
+>>>>>>> create_form_reset_password
             "version": "v6.4.8",
             "source": {
                 "type": "git",
@@ -8649,6 +8911,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/yaml/zipball/52903de178d542850f6f341ba92995d3d63e60c9",
                 "reference": "52903de178d542850f6f341ba92995d3d63e60c9",
+<<<<<<< HEAD
 >>>>>>> develop
 <<<<<<< HEAD
 =======
@@ -8656,17 +8919,20 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+>>>>>>> create_form_reset_password
                 "shasum": ""
             },
             "require": {
-                "php": ">=8.2",
+                "php": ">=8.1",
+                "symfony/deprecation-contracts": "^2.5|^3",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "symfony/console": "<6.4"
+                "symfony/console": "<5.4"
             },
             "require-dev": {
-                "symfony/console": "^6.4|^7.0"
+                "symfony/console": "^5.4|^6.0|^7.0"
             },
             "bin": [
                 "Resources/bin/yaml-lint"
@@ -8698,6 +8964,7 @@
             "homepage": "https://symfony.com",
             "support": {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "source": "https://github.com/symfony/yaml/tree/v7.1.1"
 =======
 <<<<<<< HEAD
@@ -8720,6 +8987,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+                "source": "https://github.com/symfony/yaml/tree/v6.4.8"
+>>>>>>> create_form_reset_password
             },
             "funding": [
                 {
@@ -8736,6 +9006,7 @@
                 }
             ],
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2024-05-31T14:57:53+00:00"
 =======
 <<<<<<< HEAD
@@ -8758,6 +9029,9 @@
 >>>>>>> origin/footer
 >>>>>>> shop_owner_dashboard
 >>>>>>> feedbackform_product
+=======
+            "time": "2024-05-31T14:49:08+00:00"
+>>>>>>> create_form_reset_password
         },
         {
             "name": "theseer/tokenizer",

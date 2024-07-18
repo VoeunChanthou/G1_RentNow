@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <div class="container">
-      <!-- simple-card -->
       <div
         v-for="product in shopPro"
         :key="product.id"
@@ -21,33 +20,9 @@
         <div class="product-card-buttom">
           <img src="../../assets/star.png" alt="" />
           <h4>{{ product.name }}</h4>
-          <!-- <button>Rent - $135</button> -->
         <a :href="/detail/+product.id">Rent - ${{ product.price }}</a>
-
         </div>
       </div>
-
-      <!-- simple-card -->
-
-      <!-- promotion-card -->
-      <!-- <div class="product-card">
-      <div class="prodcut-card-top-promotion">
-        <div class="btn-promotion">
-          <h4><b>60% OFF</b></h4>
-        </div>
-        <img src="../../assets/notLove.png" alt="" />
-      </div>
-
-      <div class="product-card-center">
-        <img src="../../assets/camera.png" alt="" />
-      </div>
-      <div class="product-card-buttom">
-        <img src="../../assets/star.png" alt="" />
-        <h4>Bianchi magma 9s</h4>
-        <button>Rent - $135</button>
-      </div>
-    </div> -->
-      <!-- promotion-card -->
     </div>
     <div
       v-if="isShow"

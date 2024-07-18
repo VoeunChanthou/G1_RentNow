@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('borrows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id') -> on('users')->onDelete('cascade');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
+            // $table->foreignId('user_id')->references('id') -> on('users')->onDelete('cascade');
+            // $table->foreignId('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('user_id');
+            $table->string('product_id');
             $table->date('borrow_date');
             $table->date('return_date');
             $table->string('borrow_status');

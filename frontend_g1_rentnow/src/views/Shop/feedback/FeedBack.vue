@@ -39,7 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr v-for="index in feedback" :key="index.id">
               <td>
                 <div class="d-flex align-items-center">
                   <img
@@ -65,6 +65,7 @@
               <td>
                 <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
               </td>
+              {{ index.feedback }}
             </tr>
           </tbody>
         </table>
@@ -77,9 +78,21 @@
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
+import axiosInstance from '@/plugins/axios';
+import { computed, ref } from 'vue'
 
 
+const feedback = ref();
+async function fetchFeedback() {
+  try {
+    const response = await axiosInstance.get('/get/comment/shop')
+    feedback.value = response.data.data;
+  } catch (error) {
+    console.error(error)
+  }
+}
 
+fetchFeedback()
 
 </script>
           

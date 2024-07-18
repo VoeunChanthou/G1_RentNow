@@ -1,6 +1,7 @@
 <template>
   <WebLayout><div class="bg-white">
-    <CommentProduct />
+    <PopupDelete  :massage = "commentshow.comment" @updatecomment = "updateById" />
+    <CommentProduct @createcomment = "createcomment" />
     <div class="content px-5">
       <!-- back button -->
       <div class="back-button" @click="$router.go(-1)">
@@ -8,13 +9,11 @@
         <i><img src="../../../assets/removeBack.png" alt="backButton" /></i>
       </div>
       <!-- back button -->
-
       <div class="product-detail">
         <div class="product-detail-left">
           <div class="not-love">
             <img src="../../../assets/notLove.png" alt="" />
           </div>
-
           <!-- product slide show product -->
           <el-carousel indicator-position="outside">
             <el-carousel-item>
@@ -36,7 +35,6 @@
               <h4>{{ product.name }}</h4>
               <p style="color: red">{{ shop.name }}</p>
             </div>
-            <h1 style="color: red">{{ product.days }} {{product.id}} Days</h1>
           </div>
 
           <p>
@@ -47,11 +45,16 @@
           <div class="price-detail">
             <h1 style="color: red">$ {{ product.price }}</h1>
             <span>Stock: 10</span>
-            <button class="btn">
-              <Icon icon="codicon:dash" style="color: #eb0f0f" />
+            <div class="btn">
+              <button>
+
+                <Icon icon="codicon:dash" style="color: #eb0f0f" />
+              </button>
               <span>1</span>
-              <Icon icon="heroicons:plus" />
-            </button>
+              <button>
+                <Icon icon="heroicons:plus" />
+              </button>
+            </div>
           </div>
 
           <div class="date-detail">
@@ -60,17 +63,16 @@
                 <div class="date-label"><b>Rent Date</b></div>
                 <div class="date-picker">
                   <span>Select a day:</span>
-                  <input type="date" id="date-input" value="2024-10-09" />
+                  <input type="date" id="date-input" v-model="start_date" />
                 </div>
               </div>
             </div>
-
             <div class="rent-date">
               <div class="date-input">
                 <div class="date-label"><b>Pay Day</b></div>
                 <div class="date-picker">
                   <span>Select a day:</span>
-                  <input type="date" id="date-input" value="2024-10-09" />
+                  <input type="date" id="date-input" v-model="return_date" />
                 </div>
               </div>
             </div>
@@ -96,15 +98,16 @@
     </div>
 
     <div class="map-location px-5 py-2 bg-white" style="height: auto; display: grid; grid-template-columns: 63% 36%; gap: 1%;">
-      <div class="left-side shadow bg-white" >
-    <CardListComponent />
+      <div class="left-side shadow bg-white" style="margin-bottom: 20px;" >
+        <h2 style="margin: 25px;">Comments</h2>
+        
+    <CardListComponent  :Comments = "CommentList"  @deletecomment = "deleteById"  @updatecomment = "showComment"/>
 
       </div>
-      <div class="right-side shadow bg-white" style="height: 60vh; align-self: flex-end;">
+      <div class="right-side shadow bg-white" style="height: 60vh;">
         <ShopMap/>
       </div>
     </div>
-
     </div>
     <!--==================== payment popup ========================= -->
 
@@ -138,12 +141,12 @@
             <div class="form-container">
               <form>
                 <div class="form-group">
-                  <label for="card-name">Card Name {{ cardName }}</label>
+                  <label for="card-name">Card Name</label>
                   <input v-model="cardName" type="text" id="card-name" name="card-name" placeholder="Card Name" />
                 </div>
 
                 <div class="form-group">
-                  <label for="card-number">Card Number {{ cardNumber }}</label>
+                  <label for="card-number">Card Number</label>
                   <input
                     v-model="cardNumber"
                     type="number"
@@ -155,8 +158,8 @@
 
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="expiration">Expiration {{ expiration }}</label>
-                    <input v-model="expiration" type="number" id="expiration" name="expiration" placeholder="MM/YYYY" />
+                    <label for="expiration">Expiration</label>
+                    <input v-model="expiration" type="text" id="expiration" name="expiration" placeholder="MM/YYYY" />
                   </div>
 
                   <div class="form-group">
@@ -165,13 +168,7 @@
                   </div>
 
                 </div>
-                <div class="form-group">
-                  <label for="date">Date {{ date }}</label>
-                  <input v-model="date" type="date" id="date" name="date" placeholder="mm/dd/yy" />
-                </div>
-
                 <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
-
               </form>
             </div>
           </div>
@@ -180,41 +177,48 @@
     </div>
     <!-- Modal -->
      
+    <FooterMenuVue/>
   </WebLayout>
 </template>
-
 <script>
-import WebLayout from '../../../Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
 import ShopMap from '@/Components/service/ShopMap.vue';
-
+import FooterMenuVue from '../../../Components/homepage/FooterMenu.vue'
 import CommentProduct from '@/Components/service/CommentProduct.vue';
 import CardListComponent from '@/Components/service/CardListComment.vue'
+import PopupDelete from '@/Components/service/PopupUpdate.vue'
 export default {
   components: {
     WebLayout,
     Icon,
     ShopMap,
     CommentProduct,
-    CardListComponent
+    CardListComponent,
+    FooterMenuVue,
+    PopupDelete
   },
   data() {
     return {
       product: {},
       shop: {},
       image: {},
-
+      CommentList : [],
+      commentshow  : {},
+      idComment : null,
       // =========== payment =========
       cardName: "",
       cardNumber:"",
       expiration:"",
       cvv:"",
-      date:""
+      start_date:"",
+      return_date:""
     }
   },
   mounted() {
-    this.getProductDetail()
+    this.getProductDetail(),
+    this.fetchComments()
   },
   methods: {
     getProductDetail() {
@@ -228,7 +232,49 @@ export default {
         .catch((error) => {
           console.log(error)
         });
+      },
+      async fetchComments () {
+            try {
+                const response = await axiosInstance.get('list/comment/'+ this.$route.params.id)
+                this.CommentList = response.data
+            } catch (error) {
+                console.error(error)
+            }
+        },
+      async createcomment(data) {
+      try {
+        const response = await axiosInstance.post( '/comment', data );
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error creating category:", error);
       }
+    },
+    async showComment(id){
+      try {
+        this.idComment = id;
+        const response = await axiosInstance.get(`/comment/${id}`);
+        this.commentshow = response.data.data
+      } catch (error) {
+        console.error("Error getting category:", error);
+      }
+    },
+    async updateById(data) {
+      try {
+        await axiosInstance.put('/comment/update/'+ this.idComment, { comment : data} );
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error updating category:", error);
+      }
+    },
+    async deleteById(id) {
+      try {
+
+        await axiosInstance.delete(`/comment/delete/${id}`);
+        this.fetchComments()
+      } catch (error) {
+        console.error("Error deleting category:", error);
+      }
+    }
   }
 }
 </script>

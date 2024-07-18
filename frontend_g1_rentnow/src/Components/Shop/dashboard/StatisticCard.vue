@@ -2,7 +2,11 @@
   <el-row :gutter="16">
     <el-col :span="6">
       <div class="statistic-card">
+<<<<<<< HEAD
         <el-statistic :value="13">
+=======
+        <el-statistic :value="$props.infomation.countMember">
+>>>>>>> develop2
           <template #title>
             <div style="display: inline-flex; align-items: center">
               Members
@@ -36,7 +40,11 @@
         <el-statistic :value="2">
           <template #title>
             <div style="display: inline-flex; align-items: center">
+<<<<<<< HEAD
               Product
+=======
+              Borrowed
+>>>>>>> develop2
               <el-tooltip
                 effect="dark"
                 content="Number of users who logged into the product in one month"
@@ -91,10 +99,17 @@
     </el-col>
     <el-col :span="6">
         <div class="statistic-card">
+<<<<<<< HEAD
         <el-statistic :value="2" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
               Borrow
+=======
+        <el-statistic :value="$props.infomation.product" title="New transactions today">
+          <template #title>
+            <div style="display: inline-flex; align-items: center">
+              Product
+>>>>>>> develop2
             </div>
           </template>
         </el-statistic>
@@ -120,12 +135,23 @@
 </template>
 
 <script lang="ts" setup>
+import { defineProps } from 'vue'
 import {
   ArrowRight,
   CaretBottom,
   CaretTop,
   Warning,
 } from '@element-plus/icons-vue'
+
+const props = defineProps({
+  infomation: {
+    type: Object,
+    required: true
+  }
+})
+
+// You can now use the `information` prop in your component's logic
+
 </script>
 
 <style scoped>

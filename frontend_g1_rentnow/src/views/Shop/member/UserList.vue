@@ -1,69 +1,4 @@
-<!-- <template>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column fixed prop="date" label="Date" width="150" />
-      <el-table-column prop="name" label="Name" width="120" />
-      <el-table-column prop="state" label="State" width="120" />
-      <el-table-column prop="city" label="City" width="120" />
-      <el-table-column prop="address" label="Address" width="600" />
-      <el-table-column prop="zip" label="Zip" width="120" />
-      <el-table-column fixed="right" label="Operations" min-width="120">
-        <template #default>
-          <el-button link type="primary" size="small" @click="handleClick">
-            Detail
-          </el-button>
-          <el-button link type="primary" size="small">Edit</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
-  </template>
-  
-  <script lang="ts" setup>
-  const handleClick = () => {
-    console.log('click')
-  }
-  
-  const tableData = [
-    {
-      date: '2016-05-03',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-02',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-    {
-      date: '2016-05-04',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Home',
-    },
-    {
-      date: '2016-05-01',
-      name: 'Tom',
-      state: 'California',
-      city: 'Los Angeles',
-      address: 'No. 189, Grove St, Los Angeles',
-      zip: 'CA 90036',
-      tag: 'Office',
-    },
-  ]
-  </script> -->
-  
-
-  <template>
+<template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
     <el-container>
@@ -93,6 +28,10 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
+        <div v-if="isMember === true" class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> This user is add to member successfully
+  <button type="button" class="btn-close" @click="onAdd"></button>
+</div>
         <div style="width: 100%; display: flex; justify-content: end; margin-bottom: 20px"></div>
         <el-table :data="userList" style="width: 100%">
           <el-table-column prop="id" label="ID" width="100" />
@@ -102,14 +41,17 @@
 
           <el-table-column fixed="right" label="Operations" min-width="200">
             <template #default="scope">
-                <!-- <el-button type="primary" :icon="View" circle /> -->
-                <el-button  type="primary" ><el-link :icon="View" :href="`/view/profile/${scope.row.id}`" style="color: white;"></el-link></el-button>
+              <el-button type="primary"
+                ><el-link
+                  :icon="View"
+                  :href="`/view/profile/${scope.row.id}`"
+                  style="color: white"
+                ></el-link
+              ></el-button>
               <el-button type="success" :icon="Plus" @click="submitForm(scope.row.id)" />
             </template>
           </el-table-column>
         </el-table>
-<!-- {{userList}} -->
-        <!-- {{ members.members }} -->
       </el-main>
     </el-container>
   </el-container>
@@ -122,16 +64,12 @@ import type { UploadInstance } from 'element-plus'
 import axiosInstance from '@/plugins/axios'
 import { reactive, ref } from 'vue'
 
-
-
-
 const userList = ref()
+const isMember = ref();
 async function fetchData() {
   try {
     const response = await axiosInstance.get('/list/user')
     userList.value = response.data
-    // console.log(response.data)
-    // console.log(response.data.data.member)
   } catch (error) {
     console.error(error)
   }
@@ -139,14 +77,19 @@ async function fetchData() {
 
 fetchData()
 
-async function submitForm(user_id: string){
+async function submitForm(user_id: string) {
   const response = await axiosInstance.post('/add/member', {
-    user_id: user_id,
-  })
+    user_id: user_id
+  });
+  if(response){
+    isMember.value = true;
+    fetchData()
+  }
+};
 
-  console.log(response)
+function onAdd(){
+  isMember.value = false;
 }
-
 
 </script>
       

@@ -21,3 +21,21 @@ export const memberStore = defineStore('member', {
     }
   }
 });
+
+export const MememberStore = defineStore('me', {
+  state: () => ({
+    // productList: [] as Array<{ id: number, name: string, price: number, days: number, category_id: number, shop_id: number, created_at: string, updated_at: string}>
+    partner: [],
+  }),
+  actions: {
+    async fetchMemember() {
+      try {
+        const response = await axiosInstance.get('/my/product');
+        this.partner = response.data;
+        console.log(this.partner);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    }
+  }
+});
