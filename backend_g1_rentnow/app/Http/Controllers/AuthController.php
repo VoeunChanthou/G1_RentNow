@@ -50,4 +50,15 @@ class AuthController extends Controller
             'data' =>$user,
         ]);
     }
+
+    public function uplaodImgPl(Request $request){
+        $profile = User::find($request->id);
+        $profile->profile = $request->image;
+        $profile->save();
+
+        return response()->json([
+           'message' => 'Profile Image updated successfully',
+            'data' => $profile,
+        ]);
+    }
 }

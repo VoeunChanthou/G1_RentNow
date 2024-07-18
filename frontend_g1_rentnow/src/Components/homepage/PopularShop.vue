@@ -2,7 +2,6 @@
   <div class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
     <div class="row" >
-      <!-- <template> -->
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
             <a href="/shop/1">
@@ -19,8 +18,6 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ullam quidem delectus voluptates nihil! Consequatur delectus quod expedita voluptate facere?</p>
           </div>
         </div>
-      <!-- </template> -->
-
     </div>
   </div>
 </template>

@@ -9,6 +9,7 @@ use App\Models\Shop;
 use Spatie\Permission\Models\role;
 use App\Models\model_has_role;
 use App\Http\Resources\RoleResource;
+use App\Models\User;
 
 use function Laravel\Prompts\alert;
 
@@ -21,10 +22,10 @@ class ShopController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role_or_permission:Post access|Post create|Post edit|Post delete', ['only' => ['index','show']]);
-        $this->middleware('role_or_permission:Post create', ['only' => ['create','store']]);
-        $this->middleware('role_or_permission:Post edit', ['only' => ['edit','update']]);
-        $this->middleware('role_or_permission:Post delete', ['only' => ['destroy']]);
+        $this->middleware('role_or_permission:Shop access|Shop create|Shop edit|Product delete', ['only' => ['index','show']]);
+        $this->middleware('role_or_permission:Shop create', ['only' => ['create','store']]);
+        $this->middleware('role_or_permission:Shop edit', ['only' => ['edit','update']]);
+        $this->middleware('role_or_permission:Shop delete', ['only' => ['destroy']]);
     }
 
     /**
@@ -36,7 +37,7 @@ class ShopController extends Controller
     {
         $shops= Shop::all();
 
-        return view('shop.index',['shops'=>$shops]);
+        return view('setting.shop.index',['shops'=>$shops]);
 
     }
 
@@ -47,7 +48,7 @@ class ShopController extends Controller
      */
     public function create()
     {
-        return view('shop.new');
+        return view('setting.shop.new');
     }
 
     /**
@@ -83,7 +84,7 @@ class ShopController extends Controller
 
         }
         $shops= Shop::all();
-        return view('shop.index',['shops'=>$shops]);
+        return view('setting.shop.index',['shops'=>$shops]);
 
         // return response()->json(["message"=>"you are not allowed", "success"=>false]);
         
@@ -108,7 +109,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-       return view('shop.edit',['shop' => $shop]);
+       return view('setting.shop.edit',['shop' => $shop, 'users' => User::all()]);
     }
 
     // /**
@@ -128,14 +129,17 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         $shop->delete();
-        $shops= Shop::all();
-        return view('shop.index',['shops'=>$shops]);
+        // $shops= Shop::all();
+        // return view('setting.shop.index',['shops'=>$shops]);
+        return redirect()->back()->withSuccess('Shop deleted !!!');
+        
     }
 
     public function update(Request $request, String $id){
         $shop = Shop::find($id);
         $shop->update($request->all());
         $shops= Shop::all();
-        return view('shop.index',['shops'=>$shops]);
+        return view('setting.shop.index',['shops'=>$shops]);
+        // return redirect()->back()->withSuccess($request->user_id);
     }
 }

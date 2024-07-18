@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->references('id')->on('products');
-            $table->foreignId('user_id')->references('id')->on('users');
+            // $table->foreignId('product_id')->references('id')->on('products');
+            // $table->foreignId('user_id')->references('id')->on('users');
+            $table->string('product_id');
+            $table->string('user_id');
             $table->timestamps();
         });
     }

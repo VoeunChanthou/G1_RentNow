@@ -1,8 +1,8 @@
 <template>
   <div class="main">
      <LoadingVies v-if="!CommentList.data" />
-     <div v-for="comment in CommentList.data" :key="comment">
-         <div class="row justify-content-center mb-3">
+     <div v-for="comment in CommentList.data" :key="comment" class="px-5">
+         <!-- <div class="row justify-content-center mb-3">
            <div class="col-md-12 col-xl-11">
              <div class="card shadow-0 border rounded-3">
                <div>
@@ -31,6 +31,7 @@
                          <i class="fa fa-star"></i>
                          <i class="fa fa-star"></i>
                          <i class="fa fa-star"></i>
+                         
                        </div>
                        <span>310</span>
                      </div>
@@ -41,10 +42,44 @@
                  </div>
                </div>
              </div>
-           </div>
-         </div>
-         </div>
-  </div>
+           </div> -->
+         <!-- </div> -->
+         
+
+      <div class="card mb-3">
+          <div class="card-body">
+            <div class="d-flex flex-start">
+              <img class="rounded-circle shadow-1-strong me-3"
+                src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(26).webp" alt="avatar" width="40"
+                height="40" />
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h6 class="text-black fw-bold mb-0">
+                    {{ comment.user.first_name }} {{ comment.user.last_name }} <br>
+                    <span class="text-primary" style="font-size: 12px;">{{ comment.user.email }}</span>
+                  </h6>
+                  <p class="mb-0">2 days ago</p>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                  <!-- <p class="small mb-0" style="color: #aaa;">
+                    <a href="#!" class="link-grey">Remove</a> •
+                    <a href="#!" class="link-grey">Reply</a> •
+                    <a href="#!" class="link-grey">Translate</a>
+                  </p> -->
+                  <span class="text-body ms-2">{{ comment.comment }}</span>
+                  <div class="d-flex flex-row">
+                    <i class="fas fa-star text-warning me-2"></i>
+                    <i class="far fa-check-circle" style="color: #aaa;"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+</div>
+</div>
 </template>
 <script>
 import LoadingVies from "../loading/LoadingView.vue"
@@ -59,9 +94,12 @@ export default {
             CommentList : []
         }
     },
-    created () {
-        this.fetchComments()
-    },
+    mounted() {
+    this.fetchComments()
+  },
+    // created () {
+    //     this.fetchComments()
+    // },
     methods: {
         async fetchComments () {
             try {
@@ -71,7 +109,6 @@ export default {
                 console.error(error)
             }
         }
-
     }
 }
 </script>

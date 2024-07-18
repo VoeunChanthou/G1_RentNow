@@ -2,7 +2,7 @@
   <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
     <div class="container mx-auto px-6 py-2">
       <div class="text-right mb-4">
-        @can('Post create')
+        @can('Product create')
           <a href="{{ route('admin.products.create') }}" class="bg-blue-500 text-white font-bold px-2 py-1 rounded focus:outline-none shadow hover:bg-blue-600 transition-colors">
             Add Product
           </a>
@@ -20,7 +20,7 @@
             </tr>
           </thead>
           <tbody>
-            @can('Post access')
+            @can('Product access')
               @foreach ($products as $product)
                 <tr class="hover:bg-gray-100">
                   <td class="py-4 px-6 border-b border-gray-200" aria-label="name">{{$product->name}}</td>

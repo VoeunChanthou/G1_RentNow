@@ -1,23 +1,31 @@
 <template>
-    <web-layout>
-        
+  <web-layout>
     <div class="content bg-white px-5 py-5">
-		<div class="main-body">
-			<div class="row">
-				<div class="col-lg-4">
-					<div class="card">
-						<div class="card-body">
-							<div class="d-flex flex-column align-items-center text-center">
-								<img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
-								<div class="mt-3">
-									<h4>{{ authStore.user.first_name }} {{ authStore.user.last_name }}</h4>
-									<p class="text-secondary mb-1">{{ authStore.user.email }}</p>
-									<p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
-									<button class="btn btn-outline-primary">Change Profile</button>
-								</div>
-							</div>
-							<hr class="my-4">
-							<ul class="list-group list-group-flush">
+      <div class="main-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img
+                    :src="authStore.user.profile"
+                    alt="Admin"
+                    class="rounded-circle p-1 bg-primary"
+                    width="110"
+                  />
+                  <div class="mt-3">
+                    <h4>{{ authStore.user.first_name }} {{ authStore.user.last_name }}</h4>
+                    <p class="text-secondary mb-1">{{ authStore.user.email }}</p>
+                    <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                    <input
+                      type="file"
+                      class="btn btn-outline-primary w-40"
+                      @change="previewImage"
+                    />
+                  </div>
+                </div>
+                <hr class="my-4" />
+                <ul class="list-group list-group-flush">
 								<li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
 									<h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe me-2 icon-inline"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>Website</h6>
 									<span class="text-secondary">https://bootdey.com</span>
@@ -39,10 +47,10 @@
 									<span class="text-secondary">bootdey</span>
 								</li>
 							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-8">
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
 					<div class="card">
 						<div class="card-body">
 							<div class="row mb-3">
@@ -115,32 +123,64 @@
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+        </div>
+      </div>
+    </div>
     <footer-menu></footer-menu>
-</web-layout>
+  </web-layout>
 </template>
-
 
 <script>
 import FooterMenu from "@/Components/homepage/FooterMenu.vue";
-import WebLayout from "@/Components/Layouts/WebLayout.vue"
-import {useAuthStore} from '@/stores/auth-store.ts'
+import WebLayout from "@/Components/Layouts/WebLayout.vue";
+import { useAuthStore } from "@/stores/auth-store.ts";
+import axiosInstance from '@/plugins/axios'
 
 
 export default {
-  components: { WebLayout, FooterMenu},
+  components: { WebLayout, FooterMenu },
 
   setup() {
-    const authStore = useAuthStore()
-    return { authStore }
-  }
+    const authStore = useAuthStore();
+    return { authStore };
+  },
 
-}
+  data() {
+    return {
+      imagePreview: null,
+    };
+  },
 
-</script
-    FooterMenu>
+  methods: {
+    previewImage(event) {
+      const file = event.target.files?.[0];
+      if (file) {
+        this.convertImageToBase64(file);
+      }
+    },
+
+    convertImageToBase64(file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        this.imagePreview = reader.result;
+        this.uploadProfile(); // Call your upload function here.
+      };
+      reader.readAsDataURL(file);
+
+    },
+
+    async uploadProfile(){
+      try{
+      const response = await axiosInstance.post('/upload/profile', {'image': this.imagePreview, 'id': this.authStore.user.id});
+      console.log(response);
+      }catch(error){
+        console.log(error);
+      }
+    } 
+  },
+};
+</script>
+
 
 <style scoped>
 

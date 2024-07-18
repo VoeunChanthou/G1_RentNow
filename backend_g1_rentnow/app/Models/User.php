@@ -14,6 +14,7 @@ use Spatie\Permission\Traits\HasRoles;
 use App\Models\Comment;
 use App\Models\Shop;
 use App\Models\Favorite;
+use App\Models\Member;
 
 class User extends Authenticatable
 {
@@ -77,5 +78,9 @@ class User extends Authenticatable
     
     public function favorites(){
         return $this->hasMany(Favorite::class);
+    }
+
+    public function members(){
+        return $this->belongsToMany(Member::class,'user_id');
     }
 }

@@ -2,33 +2,28 @@
 
 <template>
   <id id="app" v-if="product != ''">
-    <div class="product-card" style="height: auto;">
-      <div class="prodcut-card-top-promotion">
-        <div class="btn-promotion">
-          <h4 style="font-size: 16px;"><b>60% OFF</b></h4>
-        </div>
-        <v-btn @click="unfavoSubmit(id)" style="cursor: pointer;">
-            <!-- <i class="material-icons" :class="{ 'not-favorite': !isFavorite, isFavorite: 'isFavorite' }" style=" color: purple;"><v-icon>{{ !isFavorite ? 'favorite_border' : 'favorite' }} </v-icon></i > -->
+    <div class="product-card" style="position: relative; overflow: hidden">
+      <div class="product-card-center" style="position: relative">
+        <div class="content-overlay">
+          <div class="prodcut-card-top-promotion">
+            <v-btn @click="unfavoSubmit(id)" style="cursor: pointer">
               <img src="../../assets/notLove.png" alt="" width="25" height="25" />
-          </v-btn>
-      </div>
-
-      <div class="product-card-center">
-        <img :src="product.image" alt="" width="200" height="100" />
+            </v-btn>
+          </div>
+        </div>
+        <img :src="product.image" style="width: 100%; height: 100%" alt="" />
       </div>
       <div class="product-card-buttom">
         <img src="../../assets/star.png" alt="" />
         <h4>{{ product.name }}</h4>
-        <button><a :href="/detail/+product.id">Rent - ${{ product.price }}</a></button>
+        <a :href="/detail/ + product.id">Rent - ${{ product.price }}</a>
       </div>
     </div>
-    
   </id>
 </template>
   <script>
-import axiosInstance from '@/plugins/axios';
+import axiosInstance from '@/plugins/axios'
 
-  
 export default {
   name: 'CardVue',
   props: ['product', 'id'],
@@ -36,24 +31,24 @@ export default {
     return {
       showNewForm: false,
       isFavorite: false,
-      isFavo: '',
+      isFavo: ''
     }
   },
 
   methods: {
     // ... other methods
     unfavoSubmit(value) {
-      axiosInstance.delete(`/unfavorite/${value}`)
-      .then(response => {
-        location.reload();
-      })
-      .catch(error => {
-        console.error(error)
-      })
-    },
+      axiosInstance
+        .delete(`/unfavorite/${value}`)
+        .then((response) => {
+          location.reload()
+        })
+        .catch((error) => {
+          console.error(error)
+        })
+    }
   }
 }
-
 </script>
     <!-- <style scoped>
 .cards {
@@ -110,15 +105,18 @@ form {
 </style> -->
 
 <style scoped>
-
 .product-card {
-  display: flex;
+  /* display: flex;
   gap: 35px;
-  flex-direction: column;
-  padding: 30px;
+  flex-direction: column; */
+  display: grid;
+  gap: 5px;
+  grid-template-rows: 70% 25%;
+  padding: 10px;
   background: white;
   width: 230px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.285);
+  height: 340px;
+  box-shadow: 0 0 10px rgba(59, 59, 59, 0.354);
 }
 
 .prodcut-card-top {
@@ -131,8 +129,8 @@ form {
 }
 
 .btn-promotion {
-    color: red;
-    font-size: 20px;
+  color: red;
+  font-size: 20px;
 }
 
 .product-card-center {
@@ -146,7 +144,9 @@ form {
   align-items: center;
 }
 
-.product-card-buttom button {
+.product-card-buttom a {
+  text-decoration: none;
+  text-align: center;
   padding: 6px;
   color: white;
   background-color: #722cb3;
@@ -154,9 +154,23 @@ form {
   width: 200px;
   border-radius: 30px;
 }
-
-a{
-  color: white;
-  text-decoration: none;
+.content-overlay {
+  padding: 5px;
+  display: flex;
+  justify-content: end;
+  background: rgba(216, 216, 216, 0.7);
+  position: absolute;
+  /* border-radius: 20px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+.content-overlay:hover {
+  opacity: 1;
 }
 </style>

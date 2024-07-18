@@ -1,7 +1,9 @@
 <template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
+    <!-- {{ information.product }} -->
     <el-container>
+      <!-- {{ information.shopInfo }} -->
       <el-header
         style="
           text-align: right;
@@ -26,36 +28,18 @@
           <span>Tom</span>
         </div>
       </el-header>
-
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <StatisticCard />
+        <StatisticCard v-if="information.shopInfo.length!=0" :infomation="information"/>
         <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
-            <ChartComponent />
+            <ChartComponent v-if="information.shopInfo.length !=0" :numberOfpro="information.product" />
           </el-col>
           <el-col :span="12">
-            <PolarArea />
+            <PolarArea v-if="information.shopInfo.length !=0" :info="information.product" />
           </el-col>
         </el-row>
-        <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
-          <el-table-column label="Date" prop="date" />
-          <el-table-column label="Name" prop="name" />
-          <el-table-column align="right">
-            <template #header>
-              <el-input v-model="search" size="small" placeholder="Type to search" />
-            </template>
-            <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
-                Edit
-              </el-button>
-              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
-                Delete
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-        <CalendarVue/>
-        <MapVue/>
+        <CalendarVue v-if="information.shopInfo.length !=0"/>
+        <MapVue v-if="myShopOwner.ownshop.data" :lat="myShopOwner.ownshop.data.latitude" :long="myShopOwner.ownshop.data.longitude"/>
       </el-main>
     </el-container>
   </el-container>
@@ -69,24 +53,29 @@ import PolarArea from '@/Components/Shop/dashboard/PolarArea.vue'
 import StatisticCard from '@/Components/Shop/dashboard/StatisticCard.vue'
 import CalendarVue from '@/Components/Shop/dashboard/CalendarVue.vue'
 import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
+import { useShopDashboard, useMyshop } from '@/stores/shop-list.ts';
+import axiosInstance from '@/plugins/axios';
+import {useAuthStore} from '@/stores/auth-store.ts'
 
 
 import { computed, ref } from 'vue'
 
+const information = useShopDashboard();
+const myShopOwner = useMyshop();
+
+const ss = myShopOwner.fetchMyShop()
+const info = information.fetchShopInfor();
+const AuthUSer = useAuthStore()
+
 interface User {
-  date: string
-  name: string
-  address: string
+  id: number
+  last_name: string
+  first_name: string
+  phone_number: string
+  email: string
 }
 
-const search = ref('')
-const filterTableData = computed(() =>
-  tableData.filter(
-    (data) =>
-      !search.value ||
-      data.name.toLowerCase().includes(search.value.toLowerCase())
-  )
-)
+
 const handleEdit = (index: number, row: User) => {
   console.log(index, row)
 }
@@ -94,28 +83,6 @@ const handleDelete = (index: number, row: User) => {
   console.log(index, row)
 }
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'John',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
 </script>
   
   <style scoped>

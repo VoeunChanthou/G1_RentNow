@@ -17,6 +17,7 @@ class MemberResource extends JsonResource
         return [
             'id'=>$this->id,
             'member'=>$this->user,
+            // 'shop'=>$this->shop
         ];
     }
 }

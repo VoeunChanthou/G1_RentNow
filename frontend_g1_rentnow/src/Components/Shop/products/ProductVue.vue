@@ -1,6 +1,5 @@
 <template>
   <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
-    <el-table-column label="ID" prop="id" />
     <el-table-column label="Product Image">
       <template #default="scope">
         <img :src="scope.row.image" alt="Product Image" style="max-width: 50px; max-height: 50px" />
@@ -9,7 +8,6 @@
     <el-table-column label="Name" prop="name" />
     <el-table-column label="Price" prop="price" />
     <el-table-column label="Category" prop="category.name" />
-    <el-table-column label="Created" prop="created.name" />
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />

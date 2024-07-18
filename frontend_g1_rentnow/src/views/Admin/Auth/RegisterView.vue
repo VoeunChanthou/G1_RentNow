@@ -72,7 +72,7 @@
     try {
       const { data } = await axiosInstance.post('/register', values)
       localStorage.setItem('access_token', data.access_token)
-      router.push('/')
+      router.push('/home')
     } catch (error) {
       console.warn('Error')
     }

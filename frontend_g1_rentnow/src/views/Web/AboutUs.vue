@@ -113,13 +113,10 @@
 import FooterMenu from "@/Components/homepage/FooterMenu.vue";
 import messegeForm from "../../Components/AboutUs/messegeForm.vue"
 import WebLayout from "../../Components/Layouts/WebLayout.vue"
-<<<<<<< HEAD
 import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
 
-=======
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios'
->>>>>>> shop_owner_dashboard
 export default {
   components: { messegeForm, WebLayout, FooterMenu, MapVue},
   name: 'App',
