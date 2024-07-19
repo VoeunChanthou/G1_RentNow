@@ -30,4 +30,27 @@ class borrowcontrpller extends Controller
      ], 200);
    }
 
+   public function createBorrow(Request $request){
+    $userId = $request->user()->id;
+    $borrow = Borrow::create([
+      'user_id' => $userId,
+      'product_id'=>$request->product_id,
+      'borrow_date' => $request->borrow_date,
+      'return_date' => $request->return_date,
+      'price'=>$request->price,
+      'quantity'=>$request->quantity,
+      'borrow_status'=>$request->borrow_status
+    ]);
+
+    return response()->json([
+       'success' => true,
+       'message' => 'Borrow created successfully',
+        'data' => $borrow
+    ]);
+
+  
+
+      
+      }
+
 }

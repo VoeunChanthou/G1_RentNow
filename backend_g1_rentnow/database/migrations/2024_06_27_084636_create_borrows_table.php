@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('borrow_date');
             $table->date('return_date');
             $table->string('borrow_status');
+            $table->integer('quantity');
+            $table->integer('amount');
             $table->timestamps();
         });
     }

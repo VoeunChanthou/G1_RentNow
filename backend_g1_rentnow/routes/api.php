@@ -19,6 +19,8 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\FavoriteController;
 
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\StripePaymentController;
+
 
 
 /*
@@ -81,7 +83,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::put('/comment/update/{id}', [feedbackcontroller::class, "updateComment"]);
 route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
-Route::delete('comment/delete/{id}', [FeedbackController::class, "deleteComment"]);
+Route::delete('comment/delete/{id}', [feedbackcontroller::class, "deleteComment"]);
 Route::get ('comment/{id}', [FeedbackController::class, "show"]);
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
 Route::get('/product', [ProductsController::class, 'index']);
@@ -112,7 +114,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
     Route::get('/get/shop', [ShopController::class, 'show']);
     Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
+
+    Route::post('/borrow/product', [borrowcontrpller::class, 'createBorrow']);
 });
 
 Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
 
+Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);

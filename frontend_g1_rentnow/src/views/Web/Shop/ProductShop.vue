@@ -61,10 +61,10 @@ fetchMemberData()
           </div>
           <div class="info" style="height: 27vh; margin-top: 5px; padding-top: 10px">
             <h5>Shop: {{shopInfo.data.name}}</h5>
-            <h5>Owner: {{shopInfo.data.ownership.first_name}} {{shopInfo.data.ownership.last_name}}</h5>
+            <h5 v-if="shopInfo.data.ownership" >Owner: {{shopInfo.data.ownership.first_name}} {{shopInfo.data.ownership.last_name}}</h5>
             <h5>Address: {{shopInfo.data.Country}} {{shopInfo.data.Province}} {{shopInfo.data.street}}</h5>
-            <h5>Phone: {{shopInfo.data.ownership.phone_number}}</h5>
-            <h5>Email: {{shopInfo.data.ownership.email}}</h5>
+            <h5 v-if="shopInfo.data.ownership">Phone: {{shopInfo.data.ownership.phone_number}}</h5>
+            <h5 v-if="shopInfo.data.ownership">Email: {{shopInfo.data.ownership.email}}</h5>
           </div>
         </div>
 
@@ -72,7 +72,7 @@ fetchMemberData()
           class="div-third shadow py-2 px-2 bg-white rounded"
           style="height: 40vh; background: rgb(208, 208, 208)"
         >
-          <ShopMap />
+          <ShopMap v-if="shopInfo.data.latitude" :lat="shopInfo.data.latitude" :long="shopInfo.data.longitude" />
         </div>
       </div>
       <!-- {{ shopInfo.data }} -->
