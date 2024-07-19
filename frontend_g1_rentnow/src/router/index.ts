@@ -84,6 +84,15 @@ const router = createRouter({
         role: 'shop owner'
       }
     },
+    {
+      path: '/shop/location',
+      name: 'location',
+      component: () => import('../views/Shop/Location/ShopLocationView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
 
   ]
 })

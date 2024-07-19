@@ -23,6 +23,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+// Route::get('/map', function () {
+//     return view('map');
+// });
+
 
 Route::get('/test-mail',function(){
 
