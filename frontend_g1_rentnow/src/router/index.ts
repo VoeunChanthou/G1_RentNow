@@ -206,6 +206,15 @@ const router = createRouter({
         role: 'user'
       }
     },
+    {
+      path: '/my/product/detail/:id',
+      name: 'myproduct/detail',
+      component: () => import('../views/Web/Myborrow/detail.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
   ]
 })
 

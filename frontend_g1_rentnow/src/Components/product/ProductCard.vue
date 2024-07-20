@@ -31,8 +31,8 @@
                   <h4 class="mb-1 me-1">${{ product.price }}</h4>
                   <span class="text-danger">${{ product.price / 2 }}</span>
                 </div>
-                <div class="d-flex flex-column mt-4">
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" type="button">Details</button>
+                <div class="d-flex flex-column mt-12">
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm" type="button"><a :href="`/my/product/detail/${product.id}`" style="text-decoration: none; color: white;">Details</a></button>
                 </div>
               </div>
             </div>

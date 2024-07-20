@@ -21,13 +21,19 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 const AuthUSer = useAuthStore()
 const myProduct = MememberStore();
+const id = ref()
 
 const Mepartner = myProduct.fetchMemember();
+
+const fectCard=(data:any)=>{
+  id.value = data;
+}
 
 </script>
 
 <template>
   <WebLayout>
+
     <div class="px-5" style=" height: 100vh; display: grid; grid-template-columns: 25% 74%; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #f4f2f2;">
     <SibarVue :product="myProduct.partner.data"/>
 
@@ -37,7 +43,7 @@ const Mepartner = myProduct.fetchMemember();
         </div>
        
         <div class="top shadow p-3 form_Card" style="height: 80%; gap: 20px; overflow-y: scroll;">
-            <ProductCardVue v-for="(i, index) in myProduct.partner.products" :key="index" :product="i" />
+            <ProductCardVue v-for="(i, index) in myProduct.partner.products" :key="index" :product="i" @detail="fectCard"/>
         </div>
       </div>
     </div>
@@ -45,6 +51,8 @@ const Mepartner = myProduct.fetchMemember();
 
     <!-- login -->
     <WebLoginVue></WebLoginVue>
+
+    
 
     <!-- register -->
     <PopupRegisterVue></PopupRegisterVue>
