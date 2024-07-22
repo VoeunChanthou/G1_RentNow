@@ -40,25 +40,37 @@ fetchData()
 
 <template>
   <WebLayout> 
-    {{ detail }} 
-      <div class="px-5" style=" height: 60vh; display: flex; justify-content: center; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #f4f2f2;">
+      <div class="px-5" style=" height: 60vh; display: flex; justify-content: center; gap: 20px; padding-top: 20px; padding-bottom: 20px; background: #f4f2f2;">
           
-        <div class="card" style="width: 80%;">
-            <h3 class="card-header" style="display: flex; justify-content: center; align-items: center; height: 8vh; color: #ffd800 ;">{{ detail.name }}</h3>
-            <div class="card-body" style="display: flex; padding-top: 10px; padding-bottom: 20px;">
-                <div style="width: 60%;">
-                    <p class="card-title"><b>Price: </b> {{ detail.price }}$</p>
-                    <p class="card-title"><b>Shop Name: </b> {{ detail.shop.name }} </p>
-                    <p class="card-title"><b>Shop Country: </b> {{ detail.shop.Country }}</p>
-                    <p class="card-title"><b>ខ្ចីម៉ាណដង: </b> {{ detail.shop.Country }}</p>
-                </div>
+        <div class="card" style="width: 60%; padding-bottom: 20px;">
+            <div class="card-header" style="display: flex;  align-items: center; height: 8vh; color: #ffd800;">
+              <a href="/my/product" style=" color: black; margin-right: 46%;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8"/>
+              </svg></a>
+              <h1>{{ detail.name }}</h1>
+              
+            </div>
+            <div class="card-body" style="display: flex; padding: 4%;">
                 <div style="width: 40%;">
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>  
+                    <p class="card-title"><b>Price: </b> {{ detail.price }}$</p>
+                    <p class="card-title"><b>Shop Country: </b> {{ detail.shop.Country }}</p>
+                    <p class="card-title"><b>Category type: </b> {{ detail.category.name }}</p>
+                    <p class="card-title"><b>Shop Name: </b> {{ detail.shop.name }} </p>
+                    <p class="card-title"><b>Post on: </b> {{ detail.shop.created_at }}</p>
+                    <p class="card-title"><b>Total borrowed: </b> 1</p>
+                    <div style="display: flex; gap: 15px;">
+                      <p><b>Status: </b></p>
+                      <p style="color: greenyellow;">Available</p>
+                      <p style="color: red;">Borrowed</p>
+                    </div>
+                </div>
+                <div style="width: 60%; display: flex; justify-content: end; left: 50%;">
+                    <img :src="detail.image" style="width: 60%; height: 80%;">
                 </div>
             </div>
-            <a href="/my/product" class="btn btn-primary">Back</a>
         </div>
-    </div>
+      </div>
     <!-- {{ myProduct.partner.member }} -->
 
     <!-- login -->
