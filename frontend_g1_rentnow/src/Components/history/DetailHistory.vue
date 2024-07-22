@@ -1,4 +1,5 @@
 <template>
+    
     <div class="offcanvas offcanvas-end" tabindex="-1" id="detailhistory" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel"> Detial history</h5>
@@ -22,7 +23,8 @@
                 </div>
               </div>
               <div class="col-md-6 col-lg-5 col-xl-5">
-                <h6>Quant trident</h6>
+                <h6>{{ DetailProps.name}}</h6>
+                <p>{{ DetailProps.Province}}</p>
               </div>
               <div class="col-md-6 col-lg-4 col-xl-4 border-sm-start-none border-start ">
                 <div class="d-flex flex-column  ">
@@ -37,13 +39,12 @@
         </div>
       </div>
       <div class="offcanvas-body">
-        <div  >
-          
+        <div >
           <div class="card-body pb-0">
             <div class="d-flex justify-content-between">
               <div>
-                <p><a href="#!" class="text-dark">Dell Xtreme 270</a></p>
-                <p class="small text-muted">Laptops</p>
+                <p><a href="#!" class="text-dark">{{ DetailBorrow.name }}</a></p>
+                <p class="small text-muted">${{ DetailBorrow.price }}</p>
               </div>
               <div>
                 <div class="d-flex flex-row justify-content-end mt-1 mb-4 text-danger">
@@ -68,10 +69,15 @@
           <div class="card-body">
             <div class="card-body pb-0">
             <div class="d-flex justify-content-between">
-              <p><a href="#!" class="text-dark">$3,999</a></p>
-              <p class="text-dark">date</p>
             </div>
-            <p class="small text-muted">VISA Platinum</p>
+            <p class="text-dark">Name Shop : {{ DetailProps.name }}</p>
+            <p class="text-dark">Name Product : {{ DetailBorrow.name }}</p>
+            <div>
+                <p><a href="#!" class="text-dark"> Borrow Date : {{ detailll.Borrow_date }}</a></p>
+                <p><a href="#!" class="text-dark"> Borrow Date : {{ detailll.Return_date }}</a></p>
+                <p><a href="#!" class="text-dark"> Total Price : $ {{ DetailBorrow.price }}</a></p>
+              </div>
+            <p class="small text-muted">Status :  {{ detailll.borrow_status }}</p>
           </div>
           </div>
         </div>
@@ -88,7 +94,7 @@
                 <div class="d-flex justify-content-between align-items-center mb-3">
                   <h6 class="text-primary fw-bold mb-0">
                     lara_stewart
-                    <span class="text-body ms-2">Hmm, This poster looks cool</span>
+                    <span class="text-body ms-2"></span>
                   </h6>
                   <p class="mb-0">2 days ago</p>
                 </div>
@@ -99,3 +105,8 @@
       </div>
     </div>
 </template>
+<script>
+export default{
+  props : ['DetailProps', 'DetailBorrow', 'detailll'],
+}
+</script>

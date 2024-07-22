@@ -43,7 +43,7 @@
 							</div>
 							<div>
 								<a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
-								<p class="small m-0">{{ AuthUSer.user.eamil }}</p>
+								<p class="small m-0">{{ AuthUSer.user.email }}</p>
 							</div>
 						</div>
 						<hr>
@@ -51,8 +51,8 @@
 					<!-- Links -->
 					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
+					<!-- <li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li> -->
+					<!-- <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li> -->
 					<li><button class="dropdown-item bg-danger-soft-hover" @click ="LogUot"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
 					<li> <hr class="dropdown-divider"></li>
 					<!-- Dark mode switch START -->
@@ -61,7 +61,6 @@
 							<div class="modeswitch-item">
 								<div class="modeswitch-icon"></div>
 							</div>
-							<span>Dark mode</span>
 						</div>
 					</li> 
           <!-- Dark mode switch END -->

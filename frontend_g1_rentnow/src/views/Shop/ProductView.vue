@@ -2,32 +2,11 @@
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
     <el-container>
-      <el-header
-        style="
-          text-align: right;
-          font-size: 12px;
-          background: linear-gradient(90deg, #722cb3 30%, #c49be9);
-          height: 80px;
-        "
-      >
-        <div class="toolbar">
-          <el-dropdown>
-            <el-icon style="margin-right: 8px; margin-top: 1px; font-size: 30px">
-              <setting />
-            </el-icon>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>View</el-dropdown-item>
-                <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-          <span>Tom</span>
-        </div>
-      </el-header>
-
+      
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
+        <div style=" margin: -45px 0 20px -45px;">
+          <NavbarShopOwner ></NavbarShopOwner>
+        </div>
         <div style="width: 100%; display: flex; justify-content: end;">
           <el-button  type="primary" :icon="Plus"><el-link href="/create/product" style="color: white;">Create</el-link></el-button>
         </div>
@@ -37,12 +16,12 @@
   </el-container>
 </template>
     
-    <script lang="ts" setup>
-
+<script lang="ts" setup>
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import ProductVue from '@/Components/Shop/products/ProductVue.vue'
 import CreateProduct from './product/CreateProduct.vue';
 import { Search, Plus, Setting } from '@element-plus/icons-vue'
+import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
 
 </script>
     
