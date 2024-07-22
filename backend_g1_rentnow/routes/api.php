@@ -55,6 +55,7 @@ Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware(
 Route::get('/product', [ProductsController::class, 'index']);
 Route::get('/category', [CategoriesController::class, 'index']);
 Route::get('/shop', [ShopController::class, 'index']);
+Route::get('/shop/locations', [ShopController::class, 'getLocations']);
 Route::get('/search', [ProductsController::class, 'search']);
 Route::get('/category/select', [CategoriesController::class, 'searchCate']);
 

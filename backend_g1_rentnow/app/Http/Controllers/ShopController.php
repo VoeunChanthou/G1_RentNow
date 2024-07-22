@@ -16,11 +16,29 @@ class ShopController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $locations = Shop::all(['latitude', 'longitude']); 
+    //     return $locations;
+    //     return view('shop', ['locations' => $locations]);
+    // }
+
     public function index()
     {
-        $shop = Shop::all();
-        return $shop;
+        // This will load the main view with the map
+        return view('shop');
     }
+
+    public function getLocations()
+    {
+        // Fetch the locations from the database
+        $locations = Shop::all(['latitude', 'longitude']);
+        // return $locations;
+        
+        // Return locations as a JSON response
+        return response()->json($locations);
+    }
+
 
     /**
      * Show the form for creating a new resource.
