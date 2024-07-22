@@ -4,9 +4,8 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\ListCommentResource;
 
-class ProductResource extends JsonResource
+class BorrowResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +16,14 @@ class ProductResource extends JsonResource
     {
         return [
             'id'=>$this->id,
-            'name'=> $this->name,
+            'start_date'=>$this->borrow_date,
+            'return_date'=>$this->return_date,
+            'borrow_status'=>$this->borrow_status,
+            'quantity'=>$this->quantity,
             'price'=>$this->price,
             'status'=>$this->status,
-            'image'=>$this->image,
-            'shop'=>$this->shop,
-            'category'=>$this->category,
-            'detail'=>$this->detail,
-            'feedback'=>ListCommentResource::collection($this->feedback)
+            'user'=>$this->user,
+            'product'=>$this->product,
         ];
     }
 }

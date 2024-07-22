@@ -1,7 +1,10 @@
 <template>
-  <div v-if="items" class="container">
+  <div  class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
-    <div class="row" >
+    <div class="row" v-if="!items">
+      <LoadingShop/>
+    </div>
+    <div class="row" v-if="items">
         <div v-for="(item, indext) in items" :key="indext" class="col-4">
           <div class="content">
             <a :href="`/shop/${item.id}`">
@@ -24,8 +27,12 @@
   
   <script>
 import axiosInstance from '@/plugins/axios'
+import LoadingShop from '@/Components/loading/LoadingShop.vue'
+
+
 
 export default {
+  components: {LoadingShop},
     data(){
         return {
            items: null

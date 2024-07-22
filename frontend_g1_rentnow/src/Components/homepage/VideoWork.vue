@@ -4,9 +4,9 @@
         <h2><B>SEE HOW IT WORK ?</B></h2>
         <!-- <h2><span class="highlight"><b>SEE</b></span> <b>HOW IT WORK</b> <span class="highlight"><b>?</b></span></h2> -->
         <p>
-          Skilline’s school management software helps traditional and online schools manage scheduling.
-          </p>
-        <button class="read-more"><b>Read More</b></button>
+          Skilline’s school management software helps traditional and online schools manage scheduling. Skilline’s school management software helps traditional and online schools manage scheduling.
+        </p>
+        <a href="/rentDetail"><button class="read-more"><b>Read More</b></button></a>
       </div>
       <div class="video-section">
         <iframe

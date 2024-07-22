@@ -26,9 +26,9 @@ class ShopResource extends JsonResource
             'latitude'=>$this->latitude,
             'longitude'=>$this->longitude,
             'ownership'=>$this->user,
-            'products'=>$this->products
-            // 'products'=>ProductResource::collection($this->products),
-            // 'member'=>MemberResource::collection($this->members)
+            // 'products'=>$this->products
+            'products'=>ProductResource::collection($this->products),
+            'member'=>MemberResource::collection($this->members)
         ];
     }
 }

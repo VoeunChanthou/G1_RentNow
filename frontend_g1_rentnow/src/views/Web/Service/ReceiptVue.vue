@@ -7,22 +7,22 @@
           <div class="col-md-6">
             <img src="@/assets/logo2.png" alt="Company Logo">
             <p>1234 Street Address, City, State, ZIP</p>
-            <p>Email: info@company.com</p>
+            <p>Email: </p>
           </div>
           <div class="col-md-6 text-right">
             <h4>Payment Receipt</h4>
-            <p>Receipt #: 12345</p>
-            <p>Rent Date: 10 July 2024</p>
-            <p>Pay Date: 20 July 2024</p>
+            <p>Receipt #: {{ product.id }}</p>
+            <p>Rent Date: {{ receipt.start_date }}</p>
+            <p>Pay Date: {{ receipt.return_date }}</p>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-md-12">
             <h5>Bill To:</h5>
-            <p>Customer Name</p>
+            <p>Customer Name: {{ user.first_name }} {{ user.last_name }}</p>
             <p>5678 Another Address, City, State, ZIP</p>
-            <p>Email: customer@example.com</p>
+            <p>Email: {{ user.email }}</p>
           </div>
         </div>
         <hr>
@@ -39,22 +39,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Product 1</td>
-                  <td>2</td>
-                  <td>$10.00</td>
-                  <td>$20.00</td>
-                </tr>
-                <tr>
-                  <td>Product 2</td>
-                  <td>1</td>
-                  <td>$15.00</td>
-                  <td>$15.00</td>
-                </tr>
-                <tr>
-                  <td>Service 1</td>
-                  <td>1</td>
-                  <td>$50.00</td>
-                  <td>$50.00</td>
+                  <td>{{ product.name }}</td>
+                  <td>{{ receipt.quantity }}</td>
+                  <td>${{ product.price }}</td>
+                  <td>${{ receipt.price }}</td>
                 </tr>
               </tbody>
               <tfoot>
@@ -83,6 +71,7 @@
       </div>
       <div class="text-center mt-4">
         <button class="btn btn-primary" @click="downloadPDF">Download PDF</button>
+        <button class="btn btn-secondary ml-2" @click="$router.go(-1)">Okay</button>
       </div>
     </div>
     </div>
@@ -93,10 +82,21 @@
 import WebLayout from '@/Components/Layouts/WebLayout.vue';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import axiosInstance from '@/plugins/axios';
 
 export default {
   components: {
     WebLayout
+  },
+  data() {
+    return {
+      receipt: {},
+      product: {},
+      user: {}
+    };
+  },
+  mounted(){
+    this.getReceipt()
   },
   methods: {
     downloadPDF() {
@@ -110,6 +110,12 @@ export default {
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save('receipt.pdf');
       });
+    },
+    async getReceipt(){
+      const response = await axiosInstance.get(`borrow/get/receipt/${this.$route.params.id}`);
+      this.receipt = response.data.data;
+      this.product = response.data.data.product;
+      this.user = response.data.data.user;
     }
   }
 };

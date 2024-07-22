@@ -1,6 +1,6 @@
 <template>
   <PopupDelete />
-    <div class="row justify-content-center mb-2 bg-white">
+    <div v-if="product.borrow_status == 'true'" class="row justify-content-center mb-2 bg-white">
       <div class="col-md-12 col-xl-11">
         <div class="card shadow-0 border rounded-3 ">
           <div class="card-body">

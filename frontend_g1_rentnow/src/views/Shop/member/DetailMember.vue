@@ -36,7 +36,7 @@
                 <div class="card mb-4">
                   <div class="card-body text-center">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                      :src="profile"
                       alt="avatar"
                       class="rounded-circle img-fluid"
                       style="width: 150px"
@@ -302,6 +302,7 @@ const first_name = ref();
 const last_name = ref();
 const route = useRoute();
 const email = ref();
+const profile = ref();
 
 async function fetchMemberData() {
   try {
@@ -309,6 +310,7 @@ async function fetchMemberData() {
     first_name.value = response.data.data.member.first_name
     last_name.value = response.data.data.member.last_name
     email.value = response.data.data.member.email
+    profile.value = response.data.data.member.profile
   } catch (error) {
     console.error(error)
   }

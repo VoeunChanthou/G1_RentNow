@@ -17,6 +17,7 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('user_id')->nullable();
             $table->longText('image');
+            $table->string('status');
             $table->foreignId('category_id')->references('id')->on('categories');
             $table->foreignId('shop_id')->references('id')->on('shops');
             $table->timestamps();

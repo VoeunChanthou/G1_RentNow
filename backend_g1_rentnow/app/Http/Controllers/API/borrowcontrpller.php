@@ -7,6 +7,9 @@ use App\Http\Resources\LishistoryResource;
 use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\BorrowResource;
+use App\Models\Shop;
+use App\Models\Products;
 
 class borrowcontrpller extends Controller
 {
@@ -21,13 +24,16 @@ class borrowcontrpller extends Controller
         'history_count' =>$historyUser->count()
     ], 200);
    }
-   public function delete (Request $request, $id){
-    $history = Borrow::where('user_id', $request->user()->id)->where("id", $id )->get();
-    $history = $history? $history[0]->delete() : false;
+   public function deleteStory(Request $request, $id){
+    $history = Borrow::where('user_id', $request->user()->id)->where("id", $id )->first();
+    // $history = $history? $history[0]->delete() : false;
+    $history->borrow_status = 'false';
+    $history->save();
      return response()->json([
        'success' => true,
        'message' => 'Borrow deleted successfully',
      ], 200);
+    // return $history->borrow_status;
    }
 
    public function createBorrow(Request $request){
@@ -42,6 +48,10 @@ class borrowcontrpller extends Controller
       'borrow_status'=>$request->borrow_status
     ]);
 
+    $product = Products::find($request->product_id);
+    $product->status = 'borrowed';
+    $product->save();
+
     return response()->json([
        'success' => true,
        'message' => 'Borrow created successfully',
@@ -53,4 +63,22 @@ class borrowcontrpller extends Controller
       
       }
 
+      public function show(Request $request, String $id){
+        $history = Borrow::where('user_id', $request->user()->id)->where("product_id", $id )->first();
+        return BorrowResource::make($history);
+      }
+
+
+      public function getBorrowbyshop(Request $request){
+        $shop = Shop::where('user_id', $request->user()->id)->first();
+        $borrows = BorrowResource::collection(Borrow::all());
+        $list = [];
+        foreach ($borrows as $borrow) {
+          if ($borrow->product->shop_id == $shop->id) {
+
+            array_push($list, $borrow);
+          }
+        }
+        return $list;
+      }
 }

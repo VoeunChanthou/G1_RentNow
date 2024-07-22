@@ -75,7 +75,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 
     Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
-    Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
+    Route::get('/delete/{id}', [borrowcontrpller::class, "deleteStory"]);
     Route::post('/reset', [PasswordResetLinkController::class, "store"]);
     Route::get('/favorites', [FavoriteController::class, 'index']);
     Route::post('/favorite', [FavoriteController::class, 'create']);
@@ -115,7 +115,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/get/shop', [ShopController::class, 'show']);
     Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
 
+
+    ///borrow//
     Route::post('/borrow/product', [borrowcontrpller::class, 'createBorrow']);
+    Route::get('/borrow/get/receipt/{id}',[borrowcontrpller::class, 'show'] );
+    Route::get('/get/borrow/shop', [borrowcontrpller::class, 'getBorrowbyshop']);
 });
 
 Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);

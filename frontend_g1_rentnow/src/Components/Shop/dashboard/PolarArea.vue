@@ -19,15 +19,15 @@ ChartJS.register(ArcElement, Tooltip, Legend)
     components: {
     Pie
   },
-  props: ['info'],
+  props: ['info', 'incom', 'countBorrow'],
   data() {
     return {
       chartData: {
-        labels: ['baby', 'bike', 'party', 'sport'],
+        labels: ['incom', 'borrowed', 'product', 'member'],
         datasets: [
           {
-            data: [2, 4, 5, 2, 4],
-            backgroundColor: ['#FF69B4', '#808080', '#FFA500', '#800080', '#00FFFF']
+            data: [this.incom, this.countBorrow, this.info.product, this.info.countMember],
+            backgroundColor: ['#FF69B4', '#808080', '#FFA500', '#800080']
           }
         ]
       },

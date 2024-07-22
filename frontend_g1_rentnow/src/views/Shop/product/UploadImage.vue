@@ -54,12 +54,6 @@
               >
                 <el-icon><Delete /></el-icon>
               </span>
-              <span
-                class="el-upload-list__item-preview"
-                @click="handlePictureCardPreview(image.image)"
-              >
-                <el-icon><Download /></el-icon>
-              </span>
               
               
             </div>
@@ -94,8 +88,7 @@ const getImg = ref([])
 
 const handleRemove = async (id: any) => {
   const response = await axiosInstance.delete(`/delete/product/detail/${id}`);
-  console.log(response);
-  location.reload()
+  getAllImg();
   
 }
 
@@ -122,8 +115,8 @@ const getProduct = async () => {
   const response = await axiosInstance.post(`/create/product/detail/${route.params.id}`, {
     image: imageBase.value,
   })
+  getAllImg();
   console.log(response)
-  location.reload()
 }
 
 const getAllImg = async () => {

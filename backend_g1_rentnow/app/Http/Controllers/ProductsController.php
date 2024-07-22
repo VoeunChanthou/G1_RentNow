@@ -34,6 +34,10 @@ class ProductsController extends Controller
             'message' => 'create successfully',
             'product' => $product
         ]);
+
+        if(!$product){
+            return response()->json(['error' => 'create failed'], 500);
+        }
         // return $shop;
 
     }
@@ -61,6 +65,7 @@ class ProductsController extends Controller
         $product->image = $request->image;
         $product->user_id = $request->user_id;
         $product->price = $request->price;
+        $product->status = 'can_borrow';
         $product->category_id = $request->category_id;
         $product->shop_id = $shop->id;
 

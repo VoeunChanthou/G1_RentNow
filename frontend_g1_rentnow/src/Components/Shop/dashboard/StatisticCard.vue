@@ -33,7 +33,7 @@
     </el-col>
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="693700">
+        <el-statistic :value="$props.countBorrow">
           <template #title>
             <div style="display: inline-flex; align-items: center">
               Borrowed
@@ -64,7 +64,7 @@
     </el-col>
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="72000" title="New transactions today">
+        <el-statistic :value="$props.icome + ' $'" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
               Income
@@ -131,6 +131,14 @@ import {
 const props = defineProps({
   infomation: {
     type: Object,
+    required: true
+  },
+  countBorrow: {
+    type: Number,
+    required: true
+  },
+  icome: {
+    type: Number,
     required: true
   }
 })

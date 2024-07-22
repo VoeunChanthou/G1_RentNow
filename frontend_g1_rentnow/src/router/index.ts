@@ -189,7 +189,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/receipt',
+      path: '/receipt/:id',
       name: 'receipt',
       component: () => import('../views/Web/Service/ReceiptVue.vue'),
       meta: {
@@ -206,6 +206,30 @@ const router = createRouter({
         role: 'user'
       }
     },
+    // {
+    //   path: '/register',
+    //   name: 'register',
+    //   component: () => import('../views/Admin/Auth/RegisterView.vue')
+    // }
+
+    // Rent Detail
+    {
+      path: '/rentDetail',
+      name: 'rentDetail',
+      component: () => import('../views/Web/RentDetail.vue'),
+
+    },
+    {
+      path: '/product/feedback/shop/:id',
+      name: 'productFeedbackShop',
+      component: () => import('../views/Shop/feedback/ProductFeedback.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+
+    },
+
   ]
 })
 

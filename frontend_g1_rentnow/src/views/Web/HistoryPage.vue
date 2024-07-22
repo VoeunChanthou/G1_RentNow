@@ -1,13 +1,13 @@
 <template>
     <WebLayout >
-      <div class="px-5" style=" height: 100vh; display: grid; grid-template-columns: 25% 74%; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #ffffff;">
+      <div class="px-5" style=" height: auto; display: grid; grid-template-columns: 25% 74%; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #ffffff;">
         <SibarVue/>
       <div style="height: 100%;">
         
         <DeletePopup @Deletehistory = "Deletehistory" />
         <Header />
         <CardHistory v-for="product in listhistory.histories.data" :key="product.id" :product = "product" @idproduct ="iddelete" />
-        <div v-if="!listhistory.histories.data == [] ">
+        <div v-if="listhistory.histories.data == [] ">
           <h4 class="text-center text-danger">Your are not History ! </h4>
         </div>
         <h2 v-if="!listhistory.histories.data" >
@@ -15,8 +15,8 @@
         </h2>
       </div>
     </div>
-    <FooterMenuVue/>
   </WebLayout>
+  <FooterMenuVue/>
 </template>
 <script setup lang = "ts">
 import DeletePopup from '@/Components/history/PopupDelete.vue'
@@ -40,10 +40,11 @@ const iddelete = (async (productid) => {
    id = productid
 })
 const Deletehistory = (async () => {
-    console.log(id);
+
     try {
-    await axiosInstance.delete('/delete/' + id)
-    location.reload();
+    await axiosInstance.get('/delete/' + id);
+    const listhistory = userHistory()
+const his = listhistory.fetchhistory()
   } catch (error) {
     console.warn('Error')
   }

@@ -2,10 +2,20 @@
 <template>
   <WebLayout>
     <serviceLoading v-if="!product.name"/>
-    <div v-if="!isPay" class="sp px-5" style="width: 100%; height: 100%; background: rgba(0, 0, 0, 0.244); position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 99; display: flex; align-items: center; justify-content: center;">
+    <div v-if="!isPay" class="sp px-5" style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      "
+    >
       <div class="spinner-border text-primary" role="status">
   <span class="visually-hidden">Loading...</span>
 </div>
@@ -15,27 +25,36 @@
    
       <!---alert-->
 
-    
-    <div
+      <div
       v-if="showModal"
-      style="background: rgba(0, 0, 0, 0.201); width: 100%; height: 100%; position: absolute; top: 0; left: 0; z-index: 4;"
+      style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
     >
-    <!-- <div class="card-erro" style="width: 300px; height: 300px;"> -->
-      <el-row style="display: flex; justify-content: center; margin-top: 15%;">
-      <el-col :sm="12" :lg="6" style="background: white;">
-        <el-result
-          icon="error"
-          title="Error Tip"
-          sub-title="Please follow the instructions"
-        >
-          <template #extra>
-            <el-button type="primary" @click="cancelModal">OK</el-button>
-          </template>
-        </el-result>
-      </el-col> 
-    </el-row>
-    <!-- </div> -->
+      <el-row>
+        <el-col style="width: 300px; height: 300px; background: white;">
+          <el-result
+            icon="error"
+            title="Error Tip"
+            sub-title="Please follow the instructions"
+          >
+            <template #extra>
+              <el-button type="primary" @click="cancelModal">OK</el-button>
+            </template>
+          </el-result>
+        </el-col>
+      </el-row>
     </div>
+    
 
     <!--------->
 
@@ -293,6 +312,11 @@ export default {
     });
     this.getProductDetail()
     this.fetchComments()
+
+    if (this.showModal) {
+      document.body.classList.add('no-scroll');
+    }
+    
   },
   
   methods: {
@@ -382,6 +406,8 @@ export default {
           const displayError = document.getElementById('card-errors');
           displayError.textContent = error.message;
           this.isPay = true;
+        this.showModal=true;
+
         } else {
           if (paymentIntent.status === 'succeeded') {
             console.log('Payment succeeded:', paymentIntent);
@@ -389,9 +415,13 @@ export default {
             this.paymentData();
           }
         }
+        this.showModal=true;
+
       } catch (error) {
         console.error('Error creating payment intent:', error);
       this.isPay = true;
+      this.showModal=true;
+
       }
     },
 
@@ -403,11 +433,12 @@ export default {
           'price': this.amount,
           'quantity': this.quantity,
           'return_date': this.return_date,
-          'borrow_status': this.borrow_status
+          'borrow_status': this.borrow_status,
+          'status': 'borrowed'
         });
-        this.router.push('/receipt')
+        this.router.push(`/receipt/${this.$route.params.id}`)
         this.isPay = true;
-        console.log('hello');
+        this.showModal = false;
       }else{
 
         this.isPay = true;
@@ -418,15 +449,27 @@ export default {
 
       cancelModal(){
         this.showModal = false;
+        this.isPay = true;
+        document.body.classList.remove('no-scroll');
       }
-    }
+    },
+    watch: {
+    showModal(value) {
+        document.body.classList.add('no-scroll');
+    },
+  },
   }
+  
 
 </script>
 
 
 
 <style scoped>
+.no-scroll {
+  overflow: hidden;
+  background: pink;
+}
 /* ============= back button style ============= */
 .back-button {
   margin-top: 50px;

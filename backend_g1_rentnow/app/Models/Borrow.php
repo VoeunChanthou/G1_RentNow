@@ -11,7 +11,7 @@ class Borrow extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'product_id', 'borrow_date', 'return_date', 'price', 'quantity', 'borrow_status'
+        'user_id', 'product_id', 'borrow_date', 'return_date', 'price', 'quantity', 'borrow_status', 'status'
     ];
 
     public function product(){
