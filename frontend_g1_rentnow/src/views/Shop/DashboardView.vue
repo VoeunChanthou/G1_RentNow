@@ -3,12 +3,12 @@
     <AdminLayout />
     <!-- {{ information.product }} -->
     <el-container>
+      <!-- {{ information.shopInfo }} -->
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
         <div style=" margin: -45px 0 20px -45px;">
-          
           <NavbarShopOwner ></NavbarShopOwner>
         </div>
-        <StatisticCard />
+        <StatisticCard v-if="information.shopInfo.length!=0" :infomation="information"/>
         <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
             <ChartComponent v-if="information.shopInfo.length !=0" :numberOfpro="information.product" />
@@ -25,6 +25,7 @@
 </template>
   
   <script lang="ts" setup>
+  import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import ChartComponent from '@/Components/Shop/dashboard/ChartComponent.vue'
@@ -32,9 +33,11 @@ import PolarArea from '@/Components/Shop/dashboard/PolarArea.vue'
 import StatisticCard from '@/Components/Shop/dashboard/StatisticCard.vue'
 import CalendarVue from '@/Components/Shop/dashboard/CalendarVue.vue'
 import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
-import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
-import axiosInstance from '@/plugins/axios'
-import { useRouter } from 'vue-router'
+import { useShopDashboard, useMyshop } from '@/stores/shop-list.ts';
+import axiosInstance from '@/plugins/axios';
+import {useAuthStore} from '@/stores/auth-store.ts'
+
+
 import { computed, ref } from 'vue'
 
 const information = useShopDashboard();
@@ -59,28 +62,6 @@ const handleDelete = (index: number, row: User) => {
   console.log(index, row)
 }
 
-const tableData: User[] = [
-  {
-    date: '2016-05-03',
-    name: 'Tom',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-02',
-    name: 'John',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-04',
-    name: 'Morgan',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-  {
-    date: '2016-05-01',
-    name: 'Jessy',
-    address: 'No. 189, Grove St, Los Angeles',
-  },
-]
 </script>
   
   <style scoped>
