@@ -35,16 +35,25 @@ class AdminSeeder extends Seeder
             'email'=>'user@gmail.com',
             'password'=>bcrypt('password')
         ]);
+
+        $shopOwner = User::create([
+            'first_name'=>'Sothea',
+            'last_name'=>'Voeun',
+            'phone_number'=>'090745423',
+            'email'=>'sothea@gmail.com',
+            'password'=>bcrypt('password')
+        ]);
         
 
 
         $admin_role = Role::create(['name' => 'admin']);
         $writer_role = Role::create(['name' => 'user']);
+        $shop_role = Role::create(['name' => 'Shop owner']);
 
-        $permission = Permission::create(['name' => 'Post access']);
-        $permission = Permission::create(['name' => 'Post edit']);
-        $permission = Permission::create(['name' => 'Post create']);
-        $permission = Permission::create(['name' => 'Post delete']);
+        $permission = Permission::create(['name' => 'Product access']);
+        $permission = Permission::create(['name' => 'Product edit']);
+        $permission = Permission::create(['name' => 'Product create']);
+        $permission = Permission::create(['name' => 'Product delete']);
 
         $permission = Permission::create(['name' => 'Role access']);
         $permission = Permission::create(['name' => 'Role edit']);
@@ -67,21 +76,40 @@ class AdminSeeder extends Seeder
         $category = Shop::create([
             'name'=>'Electronics',
             'user_id'=> 3,
-            'Country'=>'Cambodia',
-            'Province'=>'Kompong Thom',
+            'Country'=>'Cambodia', 
+            'Province'=>'Phnom penh',
             'street'=>'371',
-            'latitude'=>'03843.34',
-            'longitude'=>'4532424'
+            'latitude'=>'11.550857',
+            'longitude'=>'104.883260'
+        ]);
+        $category = Shop::create([
+            'name'=>'Siemreip Borrowing',
+            'Country'=>'Cambodia',
+            'Province'=>'Siem Reip Province',
+            'street'=>'6 street',
+            'latitude'=>'13.364271',
+            'longitude'=>'103.854685'
+        ]);
+        $category = Shop::create([
+            'name'=>'Kompongthom Borrowing',
+            'Country'=>'Cambodia',
+            'Province'=>'Khompong Thom',
+            'street'=>'6 street',
+            'latitude'=>'11.557119',
+            'longitude'=>'104.901151'
         ]);
 
         $category = Categories::create([
             'name'=>'Laptop',
         ]);
+        $category = Categories::create([
+            'name'=>'vichel',
+        ]);
 
 
         $admin->assignRole($admin_role);
         $writer->assignRole($writer_role);
-
+        $shopOwner->assignRole($shop_role);
 
         $admin_role->givePermissionTo(Permission::all());
     }

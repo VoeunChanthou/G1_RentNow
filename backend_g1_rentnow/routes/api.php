@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductsController;
 // use App\Http\Controllers\MemberController;
 use App\Http\Controllers\FavoriteController;
 
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -36,6 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/me', [AuthController::class, 'index'])->middleware('auth:sanctum');
+Route::post('/upload/profile', [AuthController::class, 'uplaodImgPl'])->middleware('auth:sanctum');
 Route::get('/post/list', [PostController::class, 'index'])->middleware('auth:sanctum');
 Route::post('/register', [RegisteredUserController::class, "register"]);
 Route::post('/loginuser', [RegisteredUserController::class, "Login"]);
@@ -66,6 +68,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/product/shop', [ShopController::class, 'showProduct']);
     Route::post('/comment', [feedbackcontroller::class, 'create']);
+    Route::get('/get/comment/shop', [feedbackcontroller::class, 'getcommentbyshop']);
     Route::delete('/delete/product/{id}', [ProductsController::class, 'destroy']);
     Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 
@@ -95,6 +98,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/add/member', [MemberController::class, 'create']);
     Route::get('/members', [MemberController::class, 'index']);
     Route::get('/show/member/{id}', [MemberController::class, 'show']);
+    Route::get('/my/product', [MemberController::class, 'Memember']);
     Route::get('/list/user', [MemberController::class, 'listUser']);
     Route::get('/detail/user/{id}', [MemberController::class, 'detailUser']);
 
@@ -106,9 +110,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/create/product/detail/{id}', [ProductDtailController::class, 'putDetail']);
     Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
+    Route::get('/get/shop', [ShopController::class, 'show']);
     Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
 });
 
 
-Route::get('/get/shop/{id}', [ShopController::class, 'show']);
 

@@ -9,6 +9,8 @@ use App\Models\Shop;
 use App\Http\Resources\MemberResource;
 use App\Http\Resources\ShopResource;
 use App\Models\User;
+use App\Models\Products;
+use App\Http\Resources\ProductResource;
 
 
 class MemberController extends Controller
@@ -80,7 +82,15 @@ class MemberController extends Controller
      */
     public function show(String $id)
     {
-        return MemberResource::make(Member::find($id));
+        if(Member::find($id)){
+            return MemberResource::make(Member::find($id));
+        }
+
+        return response()->json(
+            [
+               'message' => 'Member not found',
+            ], 404
+        );
     }
 
     /**
@@ -130,4 +140,20 @@ class MemberController extends Controller
             ]
         );
     }
+
+    public function Memember(Request $request){
+        $userId = $request->user()->id;
+        $members = Member::where('user_id', $userId)->first();
+        $products = Products::where('user_id', $userId)->get();
+        $shop = Shop::all();
+        return response()->json([
+            'message' => 'get members successfully',
+            'data' => MemberResource::make($members),
+            'products' => $products,
+        ]);
+        // return MemberResource::make($members);
+        // return ProductResource::make($products);
+        // return $products;
+    }
+    
 }

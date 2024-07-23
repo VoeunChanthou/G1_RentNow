@@ -5,11 +5,14 @@
     </div>
 </template>
 
-<script setup>
+<script lang="ts" setup>
+import { useShopDashboard } from '@/stores/shop-list.ts';
 import { ref, onMounted } from "vue";
-
 import Chart from 'primevue/chart';
+import { number } from 'yup';
 
+const information = useShopDashboard();
+const ds = information.fetchShopInfor();
 
 onMounted(() => {
     chartData.value = setChartData();
@@ -18,6 +21,16 @@ onMounted(() => {
 
 const chartData = ref();
 const chartOptions = ref();
+
+
+const props = defineProps({
+  numberOfpro:{
+    type: String,
+    required: true
+  }
+})
+console.log(props.numberOfpro)
+
         
 const setChartData = () => {
     const documentStyle = getComputedStyle(document.documentElement);
@@ -44,9 +57,9 @@ const setChartData = () => {
             },
             {
                 type: 'bar',
-                label: 'stock',
+                label: 'product',
                 backgroundColor: documentStyle.getPropertyValue('--p-cyan-500'),
-                data: [41, 52, 24, 74, 23, 21, 32]
+                data: [props.numberOfpro, 84, 24, 75, 37, 65, 34]
             }
         ]
     };

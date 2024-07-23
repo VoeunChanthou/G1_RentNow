@@ -19,6 +19,7 @@ ChartJS.register(ArcElement, Tooltip, Legend)
     components: {
     Pie
   },
+  props: ['info'],
   data() {
     return {
       chartData: {

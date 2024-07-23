@@ -2,10 +2,10 @@
   <el-row :gutter="16">
     <el-col :span="6">
       <div class="statistic-card">
-        <el-statistic :value="98500">
+        <el-statistic :value="$props.infomation.countMember">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              Daily active users
+              Members
               <el-tooltip
                 effect="dark"
                 content="Number of users who logged into the product in one day"
@@ -36,7 +36,7 @@
         <el-statistic :value="693700">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              Monthly Active Users
+              Borrowed
               <el-tooltip
                 effect="dark"
                 content="Number of users who logged into the product in one month"
@@ -67,7 +67,7 @@
         <el-statistic :value="72000" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              New transactions today
+              Income
             </div>
           </template>
         </el-statistic>
@@ -91,10 +91,10 @@
     </el-col>
     <el-col :span="6">
         <div class="statistic-card">
-        <el-statistic :value="72000" title="New transactions today">
+        <el-statistic :value="$props.infomation.product" title="New transactions today">
           <template #title>
             <div style="display: inline-flex; align-items: center">
-              New transactions today
+              Product
             </div>
           </template>
         </el-statistic>
@@ -120,12 +120,23 @@
 </template>
 
 <script lang="ts" setup>
+import { defineProps } from 'vue'
 import {
   ArrowRight,
   CaretBottom,
   CaretTop,
   Warning,
 } from '@element-plus/icons-vue'
+
+const props = defineProps({
+  infomation: {
+    type: Object,
+    required: true
+  }
+})
+
+// You can now use the `information` prop in your component's logic
+
 </script>
 
 <style scoped>

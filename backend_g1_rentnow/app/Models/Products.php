@@ -28,4 +28,8 @@ class Products extends Model
     public function favorite(){
         return $this->belongsTo(Favorite::class);
     }
+
+    public function feedback(){
+        return $this->hasMany(Feedback::class, 'product_id');
+    }
 }

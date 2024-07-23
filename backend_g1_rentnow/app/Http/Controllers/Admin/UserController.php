@@ -58,12 +58,16 @@ class UserController extends Controller
     {
 
         $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
+            'last_name'=>'required',
+            'phone_number'=>'required',
             'email' => 'required|email|unique:users',
             'password'=>'required|confirmed'
         ]);
         $user = User::create([
-            'name'=>$request->name,
+            'first_name'=>$request->first_name,
+            'last_name'=>$request->last_name,
+            'phone_number'=>$request->phone_number,
             'email'=>$request->email,
             'password'=> bcrypt($request->password),
         ]);
@@ -105,7 +109,7 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $validated = $request->validate([
-            'name'=>'required',
+            'first_name'=>'required',
             'email' => 'required|email|unique:users,email,'.$user->id.',id',
         ]);
 

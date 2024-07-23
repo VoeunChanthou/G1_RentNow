@@ -1,6 +1,7 @@
 <template>
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
+    <!-- {{ information.product }} -->
     <el-container>
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
         <div style=" margin: -45px 0 20px -45px;">
@@ -10,31 +11,14 @@
         <StatisticCard />
         <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
-            <ChartComponent />
+            <ChartComponent v-if="information.shopInfo.length !=0" :numberOfpro="information.product" />
           </el-col>
           <el-col :span="12">
-            <PolarArea />
+            <PolarArea v-if="information.shopInfo.length !=0" :info="information.product" />
           </el-col>
         </el-row>
-        <el-table :data="filterTableData" style="width: 100%; margin-top: 20px">
-          <el-table-column label="Date" prop="date" />
-          <el-table-column label="Name" prop="name" />
-          <el-table-column align="right">
-            <template #header>
-              <el-input v-model="search" size="small" placeholder="Type to search" />
-            </template>
-            <template #default="scope">
-              <el-button size="small" @click="handleEdit(scope.$index, scope.row)">
-                Edit
-              </el-button>
-              <el-button size="small" type="danger" @click="handleDelete(scope.$index, scope.row)">
-                Delete
-              </el-button>
-            </template>
-          </el-table-column>
-        </el-table>
-        <CalendarVue/>
-        <MapVue/>
+        <CalendarVue v-if="information.shopInfo.length !=0"/>
+        <MapVue v-if="myShopOwner.ownshop.data" :lat="myShopOwner.ownshop.data.latitude" :long="myShopOwner.ownshop.data.longitude"/>
       </el-main>
     </el-container>
   </el-container>
@@ -53,22 +37,21 @@ import axiosInstance from '@/plugins/axios'
 import { useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 
+const information = useShopDashboard();
+const myShopOwner = useMyshop();
+
+const ss = myShopOwner.fetchMyShop()
+const info = information.fetchShopInfor();
+const AuthUSer = useAuthStore()
+
 interface User {
-  date: string
-  name: string
-  address: string
+  id: number
+  last_name: string
+  first_name: string
+  phone_number: string
+  email: string
 }
 
-const router = useRouter()
-
-const search = ref('')
-const filterTableData = computed(() =>
-  tableData.filter(
-    (data) =>
-      !search.value ||
-      data.name.toLowerCase().includes(search.value.toLowerCase())
-  )
-)
 const handleEdit = (index: number, row: User) => {
   console.log(index, row)
 }

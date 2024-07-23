@@ -35,7 +35,6 @@
               <h4>{{ product.name }}</h4>
               <p style="color: red">{{ shop.name }}</p>
             </div>
-            <h1 style="color: red">{{ product.days }} {{product.id}} Days</h1>
           </div>
 
           <p>
@@ -46,11 +45,16 @@
           <div class="price-detail">
             <h1 style="color: red">$ {{ product.price }}</h1>
             <span>Stock: 10</span>
-            <button class="btn">
-              <Icon icon="codicon:dash" style="color: #eb0f0f" />
+            <div class="btn">
+              <button>
+
+                <Icon icon="codicon:dash" style="color: #eb0f0f" />
+              </button>
               <span>1</span>
-              <Icon icon="heroicons:plus" />
-            </button>
+              <button>
+                <Icon icon="heroicons:plus" />
+              </button>
+            </div>
           </div>
 
           <div class="date-detail">
@@ -59,17 +63,16 @@
                 <div class="date-label"><b>Rent Date</b></div>
                 <div class="date-picker">
                   <span>Select a day:</span>
-                  <input type="date" id="date-input" value="2024-10-09" />
+                  <input type="date" id="date-input" v-model="start_date" />
                 </div>
               </div>
             </div>
-
             <div class="rent-date">
               <div class="date-input">
                 <div class="date-label"><b>Pay Day</b></div>
                 <div class="date-picker">
                   <span>Select a day:</span>
-                  <input type="date" id="date-input" value="2024-10-09" />
+                  <input type="date" id="date-input" v-model="return_date" />
                 </div>
               </div>
             </div>
@@ -96,16 +99,15 @@
 
     <div class="map-location px-5 py-2 bg-white" style="height: auto; display: grid; grid-template-columns: 63% 36%; gap: 1%;">
       <div class="left-side shadow bg-white" style="margin-bottom: 20px;" >
-        <h2 style="margin: 20px;">Comments</h2>
+        <h2 style="margin: 25px;">Comments</h2>
         
     <CardListComponent  :Comments = "CommentList"  @deletecomment = "deleteById"  @updatecomment = "showComment"/>
 
       </div>
-      <div class="right-side shadow bg-white" style="height: 60vh; align-self: flex-end;">
+      <div class="right-side shadow bg-white" style="height: 60vh;">
         <ShopMap/>
       </div>
     </div>
-
     </div>
     <!--==================== payment popup ========================= -->
 
@@ -139,12 +141,12 @@
             <div class="form-container">
               <form>
                 <div class="form-group">
-                  <label for="card-name">Card Name {{ cardName }}</label>
+                  <label for="card-name">Card Name</label>
                   <input v-model="cardName" type="text" id="card-name" name="card-name" placeholder="Card Name" />
                 </div>
 
                 <div class="form-group">
-                  <label for="card-number">Card Number {{ cardNumber }}</label>
+                  <label for="card-number">Card Number</label>
                   <input
                     v-model="cardNumber"
                     type="number"
@@ -156,8 +158,8 @@
 
                 <div class="form-row">
                   <div class="form-group">
-                    <label for="expiration">Expiration {{ expiration }}</label>
-                    <input v-model="expiration" type="number" id="expiration" name="expiration" placeholder="MM/YYYY" />
+                    <label for="expiration">Expiration</label>
+                    <input v-model="expiration" type="text" id="expiration" name="expiration" placeholder="MM/YYYY" />
                   </div>
 
                   <div class="form-group">
@@ -165,10 +167,6 @@
                     <input v-model="cvv" type="number" id="cvv" name="cvv" placeholder="" />
                   </div>
 
-                </div>
-                <div class="form-group">
-                  <label for="date">Date {{ date }}</label>
-                  <input v-model="date" type="date" id="date" name="date" placeholder="mm/dd/yy" />
                 </div>
                 <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
               </form>
@@ -178,13 +176,16 @@
       </div>
     </div>
     <!-- Modal -->
+     
+    <FooterMenuVue/>
   </WebLayout>
 </template>
 <script>
-import WebLayout from '../../../Components/Layouts/WebLayout.vue'
+import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios';
 import ShopMap from '@/Components/service/ShopMap.vue';
+import FooterMenuVue from '../../../Components/homepage/FooterMenu.vue'
 import CommentProduct from '@/Components/service/CommentProduct.vue';
 import CardListComponent from '@/Components/service/CardListComment.vue'
 import PopupDelete from '@/Components/service/PopupUpdate.vue'
@@ -195,6 +196,7 @@ export default {
     ShopMap,
     CommentProduct,
     CardListComponent,
+    FooterMenuVue,
     PopupDelete
   },
   data() {
@@ -210,7 +212,8 @@ export default {
       cardNumber:"",
       expiration:"",
       cvv:"",
-      date:"",
+      start_date:"",
+      return_date:""
     }
   },
   mounted() {

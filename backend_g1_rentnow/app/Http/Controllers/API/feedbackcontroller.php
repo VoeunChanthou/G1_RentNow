@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\API;
 
+
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ListCommentResource;
 use App\Models\Feedback;
 use Illuminate\Http\Request;
+use App\Models\Shop;
+use App\Models\Products;
+use App\Http\Resources\ProductResource;
 
 class feedbackcontroller extends Controller
 {
@@ -27,6 +31,14 @@ class feedbackcontroller extends Controller
             'history_count' =>$Feedback->count()
         ], 200);
        }
+
+
+    public function getcommentbyshop(Request $request){
+        $shopId = Shop::where('user_id', $request->user()->id)->first();
+        $products = Products::where('shop_id', $shopId->id)->get();
+        return ProductResource::collection($products);
+    }
+
        public function deleteComment (Request $request, $id){
         Feedback::destroy($id);
         return response()->json([

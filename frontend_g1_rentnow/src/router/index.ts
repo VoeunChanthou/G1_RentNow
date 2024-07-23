@@ -197,6 +197,15 @@ const router = createRouter({
         role: 'user'
       }
     },
+    {
+      path: '/my/product',
+      name: 'myproduct',
+      component: () => import('../views/Web/Myborrow/MyborrowView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
   ]
 })
 

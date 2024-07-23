@@ -10,7 +10,9 @@ import DeletePopup from '@/Components/history/PopupDelete.vue'
 import axiosInstance from '@/plugins/axios'
 import LoadingView from "@/Components/loading/LoadingView.vue";
 import WebLayout from "@/Components/Layouts/WebLayout.vue"
+import FooterMenuVue from '@/Components/homepage/FooterMenu.vue';
 import Header from "@/Components/history/HeaderHistory.vue"
+import SibarVue from "@/Components/favorite/SibarVue.vue"
 import CardHistory from "@/Components/history/CardHistory.vue";
 import DetailHistory from '../../Components/history/DetailHistory.vue';
 export default {
