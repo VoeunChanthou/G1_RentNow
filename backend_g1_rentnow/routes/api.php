@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\feedbackcontroller;
+// use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -21,8 +23,6 @@ use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\MessageController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -138,3 +138,8 @@ Route::middleware('auth:sanctum')->group(function(){
 Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
 
 Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
+//Comment on poste 
+Route::get('/comments', [CommentController::class, 'index']);
+Route::post('/comment', [CommentController::class, 'createComment']);
+Route::get('users', [UserController::class, 'indexUser']);
+Route::get('/shop', [ShopController::class, 'index']);

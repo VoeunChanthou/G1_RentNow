@@ -5,7 +5,8 @@
       <LoadingShop/>
     </div>
     <div class="row" v-if="items">
-        <div v-for="(item, indext) in items" :key="indext" class="col-4">
+      <div v-for="(item, indext) in items" :key="indext" class="col-4">
+        <div v-if="indext < 3">
           <div class="content">
             <a :href="`/shop/${item.id}`">
               <div class="content-overlay"></div>
@@ -22,6 +23,7 @@
           </div>
         </div>
     </div>
+  </div>
   </div>
 </template>
   

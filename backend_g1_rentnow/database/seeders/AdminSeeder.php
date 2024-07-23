@@ -48,7 +48,7 @@ class AdminSeeder extends Seeder
 
         $admin_role = Role::create(['name' => 'admin']);
         $writer_role = Role::create(['name' => 'user']);
-        $shop_role = Role::create(['name' => 'Shop owner']);
+        $shop_role = Role::create(['name' => 'shop owner']);
 
         $permission = Permission::create(['name' => 'Product access']);
         $permission = Permission::create(['name' => 'Product edit']);
@@ -70,8 +70,8 @@ class AdminSeeder extends Seeder
         $permission = Permission::create(['name' => 'Permission create']);
         $permission = Permission::create(['name' => 'Permission delete']);
 
-        $permission = Permission::create(['name' => 'Mail access']);
-        $permission = Permission::create(['name' => 'Mail edit']);
+        $permission = Permission::create(['name' => 'Comment access']);
+        $permission = Permission::create(['name' => 'Comment show']);
 
         $category = Shop::create([
             'name'=>'Electronics',

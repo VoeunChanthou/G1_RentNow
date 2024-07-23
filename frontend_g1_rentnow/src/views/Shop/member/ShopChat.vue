@@ -52,7 +52,6 @@
                 />
                 <div>
                   <h5>{{ person.first_name }} {{ person.last_name }}</h5>
-                  <p>hello world</p>
                 </div>
               </div>
             </div>

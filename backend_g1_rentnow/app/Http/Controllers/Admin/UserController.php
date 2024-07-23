@@ -33,9 +33,16 @@ class UserController extends Controller
     public function index()
     {
         $user= User::latest()->get();
-
         return view('setting.user.index',['users'=>$user]);
     }
+
+    public function indexUser()
+    {
+        $users= User::all();
+        return $users;
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -96,6 +103,7 @@ class UserController extends Controller
     {
         $role = Role::get();
         $user->roles;
+        // return $user;
        return view('setting.user.edit',['user'=>$user,'roles' => $role]);
     }
 

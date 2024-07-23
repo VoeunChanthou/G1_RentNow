@@ -1,5 +1,6 @@
 
 <template>
+  <div style="position: sticky; top: 0; z-index: 99;">
   <PopupRegisterVue @rigisterForm = "RegisterAcount"></PopupRegisterVue>
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
@@ -58,7 +59,7 @@
     </div>
   </div>
 </header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: white; border-bottom: 2px solid black;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;background: white; box-shadow: 4px 16px 17px -19px rgba(0,0,0,0.45);">
   <div class="container-fluid px-5 py-2">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="width: 30%; display: flex; justify-content: space-between; align-items: center;">
         <li class="nav-item"><a href="/home">Home</a></li>
@@ -83,6 +84,7 @@
     </li>
   </div>
 </nav>
+</div>
 </div>
 </template>
 <script >
