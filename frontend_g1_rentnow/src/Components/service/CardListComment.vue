@@ -10,7 +10,8 @@
                    <div>
                     <div class="d-flex align-items-center">
                     <div class="avatar me-3">
-                            <img class="avatar-img rounded-circle shadow m-2" :src="comment.user.profile" alt="avatar" height="50">
+                            <img v-if="comment.user.profile != null" class="avatar-img rounded-circle shadow m-2" :src="comment.user.profile" alt="avatar" height="50">
+                            <img v-else class="avatar-img rounded-circle shadow m-2" src="../../assets/3135715.png" alt="avatar" height="50">
                     </div>
                     <div class="card-body">
                       <div class="d-flex justify-content-between">

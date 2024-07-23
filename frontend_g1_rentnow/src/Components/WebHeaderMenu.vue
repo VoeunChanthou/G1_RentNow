@@ -29,7 +29,7 @@
         <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
           <h4 class="text-warning">Hi_</h4>
           <h4> {{ AuthUSer.user.first_name  }}</h4>
-					<img v-if="AuthUSer.user.profile == 'null'" class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
+					<img v-if="AuthUSer.user.profile == null" class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
 					<img v-else class="avatar-img rounded-circle" :src="AuthUSer.user.profile" alt="avatar" height="60" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -38,12 +38,12 @@
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
 							<div class="avatar me-3">
-								<img v-if="AuthUSer.user.profile == 'null'" class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
+								<img v-if="AuthUSer.user.profile == null" class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
 								<img v-else class="avatar-img rounded-circle shadow" :src="AuthUSer.user.profile" alt="avatar" height="40">
 							</div>
 							<div>
 								<a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
-								<p class="small m-0">{{ AuthUSer.user.eamil }}</p>
+								<p class="small m-0">{{ AuthUSer.user.email }}</p>
 							</div>
 						</div>
 						<hr>

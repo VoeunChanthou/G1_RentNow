@@ -3,8 +3,11 @@ namespace App\Http\Controllers\API;
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\DetailHistoryownerResource;
+use App\Http\Resources\DetailHistoryResource;
 use App\Http\Resources\LishistoryResource;
 use App\Models\Borrow;
+use Egulias\EmailValidator\Result\Reason\DetailedReason;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\BorrowResource;
@@ -34,6 +37,14 @@ class borrowcontrpller extends Controller
        'message' => 'Borrow deleted successfully',
      ], 200);
     // return $history->borrow_status;
+   }
+   public function ShowDetail (Request $request, $id){
+    $borrow = Borrow::find($id);
+    return response()->json([
+       'success' => true,
+       'message' => 'Here is the borrow detail',
+       'data' =>  new DetailHistoryownerResource  ($borrow)
+    ], 200);
    }
 
    public function createBorrow(Request $request){

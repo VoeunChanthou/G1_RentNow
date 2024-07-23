@@ -60,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create_product_admin', [ProductController::class, 'create']);
     
 });
-
+Route::get ('/detail/history/{id}' , [borrowcontrpller::class, "ShowDetail"]);
 //--shop------
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create_product', [ProductsController::class, 'create']);

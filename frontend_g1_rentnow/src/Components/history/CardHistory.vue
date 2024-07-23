@@ -27,15 +27,13 @@
                   </div>
                 </div>
                 <div class="mt-1 mb-0 text-muted small">
-                  <span>Borrow Date : {{ product.Borrow_date }}</span>
-                  
+                  <!-- <span>Borrow Date : {{ product.Borrow_date }}</span> -->
                 </div>
                 <div class="mb-2 text-muted small">
-                  <span>Borrow Date : {{ product.Return_date }}</span>
-                 
+                  <span>Borrow Date : {{ product.Borrow_date }}</span>
                 </div>
                 <p class="text-truncate mb-4 mb-md-0 text-primary">
-                You are  {{ product.borrow_status }}
+                <!-- You are  {{ product.borrow_status }} -->
                 </p>
               </div>
               <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
@@ -45,8 +43,8 @@
                 </div>
                 <h6 class="text-success">{{ product.id }}</h6>
                 <div class="d-flex flex-column mt-4">
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-sm text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#detailhistory" aria-controls="offcanvasNavbar" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">Details</button>
-                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger btn-sm mt-2 " type="button" data-bs-toggle="modal" href="#exampleModalToggle" role="button" @click="this.$emit('idproduct', product.id)" >
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-sm text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#detailhistory" aria-controls="offcanvasNavbar" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);" @click="this.$emit('DetailHistory',product.id)" >Details</button>
+                  <button data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-danger btn-sm mt-2 " type="button" data-bs-toggle="modal" href="#exampleModalToggle" role="button" @click="this.$emit('deletehistory',product.id)"  >
                      Delete 
                   </button>
                 </div>
@@ -59,13 +57,7 @@
     <DetailHistory />
 </template>
 <script >
-import DetailHistory from "./DetailHistory.vue";
-import PopupDelete from "./PopupDelete.vue";
 export default {
-  components: {
-    DetailHistory,
-    PopupDelete
-  },
   props: ['product']
 }
 

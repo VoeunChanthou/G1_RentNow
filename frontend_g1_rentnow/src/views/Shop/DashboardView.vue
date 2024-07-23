@@ -4,34 +4,11 @@
     <!-- {{ information.product }} -->
     <el-container>
       <!-- {{ information.shopInfo }} -->
-      <el-header
-        style="
-          text-align: right;
-          font-size: 12px;
-          background: linear-gradient(90deg, #722cb3 30%, #c49be9);
-          height: 80px;
-        "
-      >
-        <div class="toolbar">
-          <el-dropdown>
-            <el-icon style="margin-right: 8px; margin-top: 1px; font-size: 30px">
-              <setting />
-            </el-icon>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>View</el-dropdown-item>
-                <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>
-                  <button @click="onSubmit">Logout</button>
-                </el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-          <span>Tom</span>
-        </div>
-      </el-header>
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <StatisticCard v-if="information.shopInfo.length!=0" :infomation="information" :countBorrow="borrows.countBorrow" :icome="borrows.incom"/>
+        <div style=" margin: -45px 0 20px -45px;">
+          <NavbarShopOwner ></NavbarShopOwner>
+        </div>
+        <StatisticCard v-if="information.shopInfo.length!=0" :infomation="information"/>
         <el-row :gutter="16" style="margin-top: 20px">
           <el-col :span="12">
             <ChartComponent v-if="information.shopInfo.length !=0" :numberOfpro="information.product" />
@@ -49,6 +26,7 @@
 </template>
   
   <script lang="ts" setup>
+  import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
 import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import ChartComponent from '@/Components/Shop/dashboard/ChartComponent.vue'

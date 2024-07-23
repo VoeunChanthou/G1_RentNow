@@ -25,9 +25,19 @@
                       @foreach($users as $user)
                       <tr class="hover:bg-grey-lighter">
                         <td class="py-4 px-6 border-b border-grey-light">		
-                         
+                        <?php
+                          if ($user->profile != null) {
+                          ?>
+                        <div >
+                    <img  class="avatar-img rounded-circle shadow" src="{{$user->profile}}" alt="{{$user->profile}}" style="height: 60px; border-radius: 10px;">
+                  </div>  
+                  <?php
+                      }else{
+                  ?> 
                 <img class="avatar-img rounded-circle shadow" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png" alt="avatar" style="height: 60px; border-radius: 10px;">
-							
+                        <?php 
+                      }
+                        ?>
                     </td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->first_name }} {{$user->last_name}}</td>
                         <td class="py-4 px-6 border-b border-grey-light">{{ $user->phone_number }} </td>
