@@ -47,16 +47,12 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <td colspan="3" class="text-right">Subtotal</td>
-                  <td>$85.00</td>
-                </tr>
-                <tr>
                   <td colspan="3" class="text-right">Tax (10%)</td>
                   <td>$8.50</td>
                 </tr>
                 <tr>
                   <td colspan="3" class="text-right">Total</td>
-                  <td>$93.50</td>
+                  <td>{{ product.price * receipt.quantity }}</td>
                 </tr>
               </tfoot>
             </table>

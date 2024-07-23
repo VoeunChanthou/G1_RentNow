@@ -64,8 +64,14 @@ class borrowcontrpller extends Controller
       }
 
       public function show(Request $request, String $id){
-        $history = Borrow::where('user_id', $request->user()->id)->where("product_id", $id )->first();
-        return BorrowResource::make($history);
+        // $history = Borrow::where('user_id', $request->user()->id)->where("product_id", $id )->latest();
+        // return BorrowResource::make($history);
+        $history = Borrow::where('user_id', $request->user()->id)
+                     ->where("product_id", $id)
+                     ->latest()
+                     ->first();
+
+    return BorrowResource::make($history);
       }
 
 
@@ -80,5 +86,20 @@ class borrowcontrpller extends Controller
           }
         }
         return $list;
+      }
+
+      public function updateBorrow(Request $request, String $id){
+        $borrow = Borrow::where('id', $id)->first();
+        $borrow->borrow_status = 'true';
+        $borrow->save();
+
+        $product = Products::find($borrow->product_id);
+        $product->status = 'can_borrow';
+        $product->save();
+
+        return response()->json([
+           'success' => true,
+           'message' => 'Borrow updated successfully'
+        ]);
       }
 }

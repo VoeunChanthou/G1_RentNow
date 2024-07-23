@@ -15,10 +15,7 @@
             All location
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="/shop/1">Phnom Penh</a></li>
-            <li><a class="dropdown-item" href="/shop/2">Kompong Thom</a></li>
-            <li><a class="dropdown-item" href="/shop/3">Kompong Cham</a></li>
-            <li><a class="dropdown-item" href="/shop/4">Kampot</a></li>
+            <li v-for="location in shopLocation" :key="location.id"><a class="dropdown-item" :href="`/shop/${location.id}`">{{ location.Province }}</a></li>
           </ul>
         </li>
       </ul>
@@ -53,20 +50,9 @@
 					<!-- Links -->
 					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
+					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
+					<li><a class="dropdown-item" href="/rentDetail"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
 					<li><button class="dropdown-item bg-danger-soft-hover" @click ="LogUot"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
-					<li> <hr class="dropdown-divider"></li>
-					<!-- Dark mode switch START -->
-					<li>
-						<div class="modeswitch-wrap" id="darkModeSwitch">
-							<div class="modeswitch-item">
-								<div class="modeswitch-icon"></div>
-							</div>
-							<span>Dark mode</span>
-						</div>
-					</li> 
-          <!-- Dark mode switch END -->
 				</ul>
 			</div>
     </div>
@@ -89,10 +75,15 @@
         <img src="../assets/photo_2024-07-15_08-28-51-removebg-preview.png" width="65" alt="">
       </a>
     </li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;">
+      <!-- <a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a> -->
+      <a href="/message">
+        <Icon icon="mingcute:notification-fill" width="40" height="40"  style="color: #a90475"></Icon>
+      </a>
+    </li>
   </div>
 </nav>
 </div>
-{{ User }}
 </template>
 <script >
 import { Icon } from '@iconify/vue'
@@ -108,9 +99,13 @@ export default {
   data (){
     return {
       AuthUSer: useAuthStore(), 
-      router : useRouter()
+      router : useRouter(),
+      shopLocation: []
 
     }
+  },
+  mounted() {
+    this.fectShopLocation()
   },
   methods : {
     async RegisterAcount(data) {
@@ -131,6 +126,15 @@ export default {
       } catch (error) {
         alert (error.message)
         console.error("Error creating category:", error);
+      }
+    },
+
+    async fectShopLocation(){
+      try {
+        const response = await axiosInstance.get('/shop');
+        this.shopLocation = response.data.data;
+      } catch (error) {
+        console.error("Error fetching shop location:", error);
       }
     }
   }

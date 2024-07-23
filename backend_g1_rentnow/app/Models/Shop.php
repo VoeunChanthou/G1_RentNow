@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Categories;
 use App\Models\Products;
 use App\Models\Member;
+use App\Models\Message;
 
 class Shop extends Model
 {
@@ -37,5 +38,8 @@ class Shop extends Model
 
     public function members(){
         return $this->hasMany(Member::class);
+    }
+    public function missage(){
+        return $this->hasMany(Message::class);
     }
 }

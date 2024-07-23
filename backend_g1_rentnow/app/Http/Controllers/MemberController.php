@@ -35,37 +35,39 @@ class MemberController extends Controller
         $roles = $user->getRoleNames();
 
         $shopId = Shop::where('user_id', $user->id)->first()->id;
+        $isUser = User::where('user_id', $user->id)->first()->id;
 
         if ($user->roles[0]->name === 'shop owner') {
-            if($shopId){
-                $member = new Member();
-            $member->user_id = $request->user_id;
-            $member->shop_id = $shopId;
+            if ($shopId) {
+                if (!$isUser) {
 
-            
-
-            $member->save();
-
-            return response()->json(
-                [
-                   'message' => 'Member created successfully',
-                   'member' => $member
-                ]
-                );
+                    $member = new Member();
+                    $member->user_id = $request->user_id;
+                    $member->shop_id = $shopId;
+                    $member->save();
+                    return response()->json(
+                        [
+                            'message' => 'Member created successfully',
+                            'member' => $member
+                        ]
+                    );
+                }
             }
 
             return response()->json(
                 [
-                   'message' => 'You are not a shop owner',
-                ], 403
+                    'message' => 'You are not a shop owner',
+                ],
+                403
             );
-            
+
         }
 
         return response()->json(
             [
-               'message' => 'You are not a shop owner',
-            ], 403
+                'message' => 'You are not a shop owner',
+            ],
+            403
         );
     }
 
@@ -80,16 +82,17 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(String $id)
+    public function show(string $id)
     {
-        if(Member::find($id)){
+        if (Member::find($id)) {
             return MemberResource::make(Member::find($id));
         }
 
         return response()->json(
             [
-               'message' => 'Member not found',
-            ], 404
+                'message' => 'Member not found',
+            ],
+            404
         );
     }
 
@@ -100,21 +103,21 @@ class MemberController extends Controller
     {
         $listUser = [];
         $users = User::all();
-        foreach ($users as $user){
+        foreach ($users as $user) {
             $permissions = $user->getAllPermissions();
             $roles = $user->getRoleNames();
-            if($user->roles[0]->name == 'user'){
+            if ($user->roles[0]->name == 'user') {
                 array_push($listUser, $user);
             }
         }
         return $listUser;
     }
-    public function detailUser(String $id)
+    public function detailUser(string $id)
     {
         $user = User::find($id);
         $permissions = $user->getAllPermissions();
         $roles = $user->getRoleNames();
-            
+
         return $user;
     }
 
@@ -129,19 +132,20 @@ class MemberController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(String $id)
+    public function destroy(string $id)
     {
         $member = Member::where('id', $id)->first();
         $member->delete();
 
         return response()->json(
             [
-               'message' => 'Member deleted successfully',
+                'message' => 'Member deleted successfully',
             ]
         );
     }
 
-    public function Memember(Request $request){
+    public function Memember(Request $request)
+    {
         $userId = $request->user()->id;
         $members = Member::where('user_id', $userId)->first();
         $products = Products::where('user_id', $userId)->get();
@@ -155,5 +159,5 @@ class MemberController extends Controller
         // return ProductResource::make($products);
         // return $products;
     }
-    
+
 }

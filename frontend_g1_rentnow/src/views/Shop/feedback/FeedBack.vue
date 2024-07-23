@@ -28,55 +28,68 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <div class="content-comment" style="background: white; height: 40px; display: flex; justify-content: center; align-items: center;">
+        <div
+          class="content-comment"
+          style="
+            background: white;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
           <h2>All comments</h2>
         </div>
         <table class="table align-middle mb-0 bg-white mt-4">
-  <thead class="bg-light">
-    <tr>
-      <th>#</th>
-      <th>Image</th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- {{ borrows }} -->
-    <tr v-for="product in feedback" :key="product.id">
-        <td>{{product.id}}</td>
-      <td>
-        <div class="d-flex align-items-center">
-          <img
-              :src="product.image"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-        </div>
-      </td>
-      <td>
-        <p class="fw-normal mb-1">{{ product.name }}</p>
-      </td>
-      <td>
-        <span class=" badge-success rounded-pill d-inline" style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px;">{{ product.status }}</span>
-      </td>
-      <td>${{ product.price }}.00</td>
-      <td><a :href="`/product/feedback/shop/${product.id}`">
-
-        <el-button
-          type="primary"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasView"
-          :icon="View"
-          circle
-        />
-      </a>
-    </td>
-    </tr>
-  </tbody>
-</table>
+          <thead class="bg-light">
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Status</th>
+              <th>Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- {{ borrows }} -->
+            <tr v-for="product in feedback" :key="product.id">
+              <td>{{ product.id }}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <img
+                    :src="product.image"
+                    alt=""
+                    style="width: 45px; height: 45px"
+                    class="rounded-circle"
+                  />
+                </div>
+              </td>
+              <td>
+                <p class="fw-normal mb-1">{{ product.name }}</p>
+              </td>
+              <td>
+                <span
+                  class="badge-success rounded-pill d-inline"
+                  style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px"
+                  >{{ product.status }}</span
+                >
+              </td>
+              <td>${{ product.price }}.00</td>
+              <td>
+                <a :href="`/product/feedback/shop/${product.id}`">
+                  <el-button
+                    type="primary"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasView"
+                    :icon="View"
+                    circle
+                  />
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </el-main>
     </el-container>
   </el-container>
@@ -86,22 +99,20 @@
 import { Search, Plus, Setting, View } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
-import axiosInstance from '@/plugins/axios';
+import axiosInstance from '@/plugins/axios'
 import { computed, ref } from 'vue'
 
-
-const feedback = ref();
+const feedback = ref()
 async function fetchFeedback() {
   try {
     const response = await axiosInstance.get('/get/comment/shop')
-    feedback.value = response.data.data;
+    feedback.value = response.data.data
   } catch (error) {
     console.error(error)
   }
 }
 
 fetchFeedback()
-
 </script>
           
         <style scoped>

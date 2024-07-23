@@ -41,7 +41,7 @@
           </template>
           <el-menu-item-group>
             <el-menu-item index="3-1">To admin</el-menu-item>
-            <el-menu-item index="3-2">From client</el-menu-item>
+            <el-menu-item index="3-2"><el-link href="/shop/chat">Chat</el-link></el-menu-item>
           </el-menu-item-group>
           <el-sub-menu index="3-4">
             <template #title>Feedback</template>

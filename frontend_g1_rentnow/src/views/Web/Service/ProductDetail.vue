@@ -148,6 +148,7 @@
               class="btn-rent"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
+              @click="calculateDate"
             >
               Rent Now
             </button>
@@ -193,7 +194,7 @@
 
           <div class="modal-body1">
             <img src="../../../assets/pay-image.png" alt="" />
-            <h3 class="pay-price">$ {{ amount }}</h3>
+            <h3 class="pay-price">$ {{ amount * numofdate}}</h3>
             <h4>Credit Card Details</h4>
           </div>
 
@@ -265,8 +266,9 @@ export default {
       // =========== payment =========
       start_date:"",
       return_date:"",
+      numofdate: 0,
       quantity: 1,
-      borrow_status: 'true',
+      borrow_status: 'borrowed',
 
       stripe: null,
       elements: null,
@@ -276,6 +278,10 @@ export default {
       isPay: true,
       showModal: false
     }
+  },
+
+  watch(){
+    this.calculateDate();
   },
   async mounted() {
     // Load Stripe
@@ -316,6 +322,7 @@ export default {
     if (this.showModal) {
       document.body.classList.add('no-scroll');
     }
+    this.calculateDate()
     
   },
   
@@ -331,7 +338,7 @@ export default {
           this.shop = response.data.data.shop
         })
         .catch((error) => {
-          console.log(error)
+          console.log('erro hx')
         });
       },
       async fetchComments () {
@@ -385,14 +392,23 @@ export default {
       }
     },
 
+    calculateDate(){
+      const start = new Date(this.start_date);
+      const end = new Date(this.return_date);
+      const diffInDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+      this.numofdate = diffInDays;
+    },
+
+
+
     async submitPayment() {
       this.isPay = false;
+      
       try {
         // Create a Payment Intent on the backend
         const { data } = await axiosInstance.post('/stripe/payment', {
-          amount: this.amount * 100, // Convert amount to cents
+          amount: (this.amount * this.numofdate) * 100, // Convert amount to cents
         });
-
         // Confirm the Card Payment
         const { error, paymentIntent } = await this.stripe.confirmCardPayment(data.clientSecret, {
           payment_method: {
@@ -430,7 +446,7 @@ export default {
         const response = await axiosInstance.post('/borrow/product',{
           'product_id': this.$route.params.id,
           'borrow_date': this.start_date,
-          'price': this.amount,
+          'price': this.numofdate * this.amount,
           'quantity': this.quantity,
           'return_date': this.return_date,
           'borrow_status': this.borrow_status,

@@ -1,25 +1,35 @@
 <template>
-  <WebHeaderMenu />
-  <div class="container-fluid h-100">
-    <div class="row h-100 align-items-center">
-      <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
-        <h1 class="display-3 text-primary font-weight-bold" style="font-weight: bold">
-          <span class="text-warning">We</span>come To
-          <span class="text-purple">Chat</span>
-        </h1>
-        <p class="lead">Connect with product owner and share your thoughts.</p>
-      </div>
-      <div class="col-md-6 d-flex justify-content-center align-items-center">
-        <img
-          src="../../assets/message.png"
-          alt=""
-          class="img-fluid w-75 animate__animated animate__pulse animate__infinite"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid px-5 mb-5">
+    <el-container class="layout-container-demo" style="height: 100vh">
+      <AdminLayout />
+      <el-container>
+        <el-header
+          style="
+            text-align: right;
+            font-size: 12px;
+            background: linear-gradient(90deg, #722cb3 30%, #c49be9);
+            height: 80px;
+          "
+        >
+          <div class="toolbar">
+            <el-dropdown>
+              <el-icon style="margin-right: 8px; margin-top: 1px; font-size: 30px">
+                <setting />
+              </el-icon>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>View</el-dropdown-item>
+                  <el-dropdown-item>Add</el-dropdown-item>
+                  <el-dropdown-item>Delete</el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+            <span>Tom</span>
+          </div>
+        </el-header>
+  
+        <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
+          
+            <div class="container-fluid mb-5">
     <div class="row">
       <div class="col-md-5">
         <div class="card">
@@ -36,12 +46,13 @@
               >
                 <img
                   class="avatar-img rounded-circle shadow mr-3"
-                  src="../../assets/3135715.png"
+                  :src="person.profile"
                   alt="avatar"
                   height="50"
                 />
                 <div>
                   <h5>{{ person.first_name }} {{ person.last_name }}</h5>
+                  <p>hello world</p>
                 </div>
               </div>
             </div>
@@ -55,7 +66,7 @@
               <div class="d-flex align-items-center mb-3" v-if="selectedMessage">
                 <img
                   class="avatar-img rounded-circle shadow mr-3"
-                  src="../../assets/3135715.png"
+                  :src="selectedMessage.profile"
                   alt="avatar"
                   height="50"
                 />
@@ -109,16 +120,21 @@
       </div>
     </div>
   </div>
-  <FooterMenuVue />
-</template>
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-import WebHeaderMenu from '@/Components/WebHeaderMenu.vue'
-import FooterMenuVue from '@/Components/homepage/FooterMenu.vue'
-import axiosInstance from '@/plugins/axios';
 
-
-// Define reactive variables
+        </el-main>
+      </el-container>
+    </el-container>
+  </template>
+          
+  <script lang="ts" setup>
+  import { Search, Plus, Setting } from '@element-plus/icons-vue'
+  import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
+  import axiosInstance from '@/plugins/axios'
+  import { ref, onMounted } from 'vue'
+  import { useRoute } from 'vue-router'
+  
+  
+const route = useRoute();
 const selectMessages = ref('messages')
 const selectedMessage = ref(null)
 const message=ref('');
@@ -152,6 +168,7 @@ async function sendMessages(id: string) {
     });
     message.value = ''
     fetchMessages(id);
+    console.log(response);
   } catch (error) {
     console.error(error)
   }
@@ -162,7 +179,7 @@ async function sendMessages(id: string) {
 
 async function fectShop(){
   try {
-    const response = await axiosInstance.get('/get/shop/user')
+    const response = await axiosInstance.get('/get/user/meessage/shop')
     people.value = response.data
   } catch (error) {
     console.error(error)
@@ -171,7 +188,32 @@ async function fectShop(){
 
 fectShop();
 
-</script>
 
-<style>
-</style>
+ 
+  
+  </script>
+          
+        <style scoped>
+  .layout-container-demo .el-header {
+    position: relative;
+    background-color: var(--el-color-primary-light-7);
+    color: var(--el-text-color-primary);
+  }
+  .layout-container-demo .el-aside {
+    color: var(--el-text-color-primary);
+    background: var(--el-color-primary-light-8);
+  }
+  .layout-container-demo .el-menu {
+    border-right: none;
+  }
+  .layout-container-demo .el-main {
+    padding: 0;
+  }
+  .layout-container-demo .toolbar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    right: 20px;
+  }
+  </style>

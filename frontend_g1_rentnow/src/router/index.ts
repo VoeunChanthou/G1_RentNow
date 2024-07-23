@@ -49,6 +49,15 @@ const router = createRouter({
       }
     },
     {
+      path: '/myborrow/page',
+      name: 'myborrowpage',
+      component: () => import('../views/Web/Myborrow.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
+    {
       path: '/message',
       name: 'message',
       component: () => import('../views/Web/MessageView.vue'),
@@ -79,6 +88,15 @@ const router = createRouter({
       path: '/shop/product',
       name: 'product',
       component: () => import('../views/Shop/ProductView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/shop/chat',
+      name: 'shopchat',
+      component: () => import('../views/Shop/member/ShopChat.vue'),
       meta: {
         requiresAuth: true,
         role: 'shop owner'

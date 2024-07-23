@@ -8,6 +8,7 @@ import WebLoginVue from '@/Components/homepage/WebLogin.vue'
 import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue'
 import FooterMenu from '@/Components/homepage/FooterMenu.vue'
 import ShopMap from '@/Components/service/ShopMap.vue'
+import CardVue from '@/Components/homepage/CardVue.vue'
 import type { componentSizeMap } from 'element-plus'
 import { ref } from 'vue'
 import type { Service } from '@element-plus/icons-vue'
@@ -22,11 +23,13 @@ const route = useRoute();
 const AuthUSer = useAuthStore()
 
 const shopInfo = ref()
+const products = ref()
 
 async function fetchMemberData() {
   try {
     const response = await axiosInstance.get(`/web/shop/${route.params.id}`)
     shopInfo.value = response.data
+    products.value = response.data.data.products
   } catch (error) {
     console.error(error)
   }
@@ -104,7 +107,11 @@ fetchMemberData()
             overflow-y: scroll;
             z-index: 0;
           "
-        ></div>
+        >
+
+        <CardVue v-for="product in products" :key="product.id" :product="product"/>
+
+      </div>
       </div>
     </div>
 

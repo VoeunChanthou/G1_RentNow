@@ -41,7 +41,6 @@ export default {
     },
     async created(){
       const data = await axiosInstance.get('/shop')
-      // console.log(this.items.data.data);
       this.items = data.data.data;
   
       

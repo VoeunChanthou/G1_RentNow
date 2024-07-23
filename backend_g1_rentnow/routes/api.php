@@ -20,6 +20,7 @@ use App\Http\Controllers\FavoriteController;
 
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\MessageController;
 
 
 
@@ -120,6 +121,18 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/borrow/product', [borrowcontrpller::class, 'createBorrow']);
     Route::get('/borrow/get/receipt/{id}',[borrowcontrpller::class, 'show'] );
     Route::get('/get/borrow/shop', [borrowcontrpller::class, 'getBorrowbyshop']);
+    Route::put('/update/borrow/{id}', [borrowcontrpller::class,'updateBorrow']);
+});
+
+
+//message//
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/add/message', [MessageController::class, 'create']);
+    Route::get('/get/shop/user', [MessageController::class, 'index']);
+    Route::get('/get/message/{id}', [MessageController::class, 'show']);
+    Route::get('/get/message/personal/{id}', [MessageController::class, 'allMissage']);
+
+    Route::get('/get/user/meessage/shop', [MessageController::class, 'getUser']);
 });
 
 Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
