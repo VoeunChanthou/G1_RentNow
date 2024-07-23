@@ -32,7 +32,7 @@
                         </path>
                     </svg>
     
-                    <span class="mx-3">Role</span>
+                    <span class="mx-3 text-white">Role</span>
                 </a>
                 @endcanany
                 @canany('Permission access','Permission add','Permission edit','Permission delete')
@@ -45,7 +45,7 @@
                         </path>
                     </svg>
     
-                    <span class="mx-3">Permission</span>
+                    <span class="mx-3 text-white">Permission</span>
                 </a>
                 @endcanany
                 
@@ -56,7 +56,7 @@
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                 </span>
     
-                    <span class="mx-3">User</span>
+                    <span class="mx-3 text-white">User</span>
                 </a>
                 @endcanany
                 
@@ -69,7 +69,7 @@
                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                         </path>
                     </svg>    
-                    <span class="mx-3">Post</span>
+                    <span class="mx-3 text-white">Post</span>
                 </a>
                 
                 @endcanany
@@ -82,7 +82,7 @@
                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                         </path>
                     </svg>
-                    <span class="mx-3">Comments</span>
+                    <span class="mx-3 text-white">Comments</span>
                 </a>
                 @endcanany
             </nav>

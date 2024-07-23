@@ -64,24 +64,24 @@
                 <p>70%</p>
             </div>
             <div class="earnings-overview dashboard-item">
-                <h2>All Users</h2>
+                <h2 class="mb-3 text-bold">All Users</h2>
                 <div>
                     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-                        <div class="container mx-auto px-6 py-2">
-                            <div class="bg-white shadow-md rounded my-6">
+                        <div class="container">
+                            <div class="bg-white shadow-md rounded">
                                 <table>
                                     <tbody id="user-table-body">
                                         <tr>
                                             <th
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Profile
                                             </th>
                                             <th
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Name
                                             </th>
                                             <th
-                                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                class="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Email
                                             </th>
                                         </tr>
@@ -107,12 +107,12 @@
                                                 const profileCell = document.createElement('td');
                                                 profileCell.classList.add('py-4', 'px-6');
                                                 if (user.profile && user.profile.trim() !== '') {
-                                                    profileCell.innerHTML = `<img src="${user.profile}">`;
+                                                    profileCell.innerHTML = `<img src="${user.profile}" alt="Default profile image" style="width: 40px; height: 40px; border-radius: 50%;">`;
                                                 } else {
                                                     const randomIndex = Math.floor(Math.random() * defaultProfileImages.length);
                                                     const randomDefaultImage = defaultProfileImages[randomIndex];
                                                     profileCell.innerHTML =
-                                                        `<img src="${randomDefaultImage}" alt="Default profile image" class="w-12 h-12 rounded-full">`;
+                                                        `<img src="${randomDefaultImage}" alt="Default profile image" class="w-12 h-12 rounded-full" style="width: 40px; height: 40px; border-radius: 50%;">`;
                                                 }
 
                                                 const name = document.createElement('td');
@@ -145,7 +145,7 @@
                         .then(data => {
                             data.forEach(user => {
                                 const shopElement = document.getElementById('shop');
-                                shopElement.classList.add('py-4', 'px-6');
+                                shopElement.classList.add('py-4', 'px-2');
                                 shopElement.innerHTML += `<h3>${user.id}  ${user.name}</h3>`;
                             });
                         });
