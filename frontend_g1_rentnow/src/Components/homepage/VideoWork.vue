@@ -4,7 +4,12 @@
         <h2><B>SEE HOW IT WORK ?</B></h2>
         <!-- <h2><span class="highlight"><b>SEE</b></span> <b>HOW IT WORK</b> <span class="highlight"><b>?</b></span></h2> -->
         <p>
-          Skilline’s school management software helps traditional and online schools manage scheduling.
+          Browse our wide selection of bikes, motorcycles, cars, 
+          and more using our search filters. Click on an item for details, 
+          select your rental dates, and make a reservation by filling in your details 
+          and completing the secure payment. When you're done, return the item and share your feedback. 
+          For more information or assistance, click here or contact our support team via email, phone, 
+          or online chat. Thank you for choosing Rent Now!
           </p>
         <button class="read-more"><b>Read More</b></button>
       </div>
