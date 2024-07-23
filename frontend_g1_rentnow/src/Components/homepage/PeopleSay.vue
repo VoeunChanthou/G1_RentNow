@@ -12,9 +12,9 @@
             <h5 class="mb-0">Bruce Hardy</h5>
             <!-- <span>Software Developer</span> -->
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              "Renting a bike for my weekend adventures has never been easier. 
+              Rent Now offers a great selection, and their customer service is exceptional. 
+              I love the flexibility and the seamless booking experience!"
             </p>
           </div>
 
@@ -37,9 +37,9 @@
             <h5 class="mb-0">Mark Smith</h5>
             <!-- <span>Web Developer</span> -->
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              "I rented a motorcycle for a spontaneous road trip and it was an incredible experience. 
+              The bike was in perfect condition, and the staff at Rent Now 
+              made sure I had all the gear I needed. Highly recommended!"
             </p>
           </div>
 
@@ -63,9 +63,9 @@
             <h5 class="mb-0">Veera Duncan</h5>
             <!-- <span>Software Architect</span> -->
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              "I needed a reliable car for a business trip and Rent Now delivered. 
+              The car was clean, well-maintained, and the pickup and drop-off process was quick and easy. 
+              I'll be using their services again for sure!"
             </p>
           </div>
 

@@ -44,7 +44,10 @@ export const useShopDashboard = defineStore('dash', {
     product: Number,
     countMember: Number,
     myShop: [],
-    members: []
+    members: [],
+    borrows: [],
+    countBorrow:Number,
+    incom: 0,
   }),
   actions: {
     async fetchShopInfor() {
@@ -54,6 +57,18 @@ export const useShopDashboard = defineStore('dash', {
         this.product = response.data.products.length;
         this.countMember = response.data.member.length;
         this.members = response.data.member;
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    },
+    async fetchBorrowShop() {
+      try {
+        const response = await axiosInstance.get('get/borrow/shop');
+        this.borrows = response.data;
+        this.countBorrow = response.data.length;
+        for (let i = 0; i < this.borrows.length; i++) {
+          this.incom += this.borrows[i].price
+        }
       } catch (error) {
         console.error('Error fetching posts:', error);
       }

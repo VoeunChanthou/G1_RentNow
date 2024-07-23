@@ -12,6 +12,7 @@
         <table class="text-left w-full border-collapse ">
           <thead>
             <tr>
+              <th class="py-4 px-6 bg-blue-600 font-bold text-sm  text-white" aria-label="name">image</th>
               <th class="py-4 px-6 bg-blue-600 font-bold text-sm  text-white" aria-label="name">Name</th>
               <th class="py-4 px-6 bg-blue-600 font-bold text-sm  text-white" aria-label="price">Price</th>
               <th class="py-4 px-6 bg-blue-600 font-bold text-sm  text-white" aria-label="category_id">Category ID</th>
@@ -23,6 +24,7 @@
             @can('Product access')
               @foreach ($products as $product)
                 <tr class="hover:bg-gray-100">
+                  <td class="py-4 px-6 border-b border-gray-200" aria-label="name"><img src="{{$product->image}}" alt="image product" style="height: 60px;" ></td>
                   <td class="py-4 px-6 border-b border-gray-200" aria-label="name">{{$product->name}}</td>
                   <td class="py-4 px-6 border-b border-gray-200 " aria-label="Price">{{ $product->price }}</td>
                   <td class="py-4 px-6 border-b border-gray-200 " aria-label="Category ID">{{ $product->category_id }}</td>

@@ -49,6 +49,15 @@ const router = createRouter({
       }
     },
     {
+      path: '/myborrow/page',
+      name: 'myborrowpage',
+      component: () => import('../views/Web/Myborrow.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'user'
+      }
+    },
+    {
       path: '/message',
       name: 'message',
       component: () => import('../views/Web/MessageView.vue'),
@@ -79,6 +88,15 @@ const router = createRouter({
       path: '/shop/product',
       name: 'product',
       component: () => import('../views/Shop/ProductView.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+    },
+    {
+      path: '/shop/chat',
+      name: 'shopchat',
+      component: () => import('../views/Shop/member/ShopChat.vue'),
       meta: {
         requiresAuth: true,
         role: 'shop owner'
@@ -189,7 +207,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/receipt',
+      path: '/receipt/:id',
       name: 'receipt',
       component: () => import('../views/Web/Service/ReceiptVue.vue'),
       meta: {
@@ -206,6 +224,30 @@ const router = createRouter({
         role: 'user'
       }
     },
+    // {
+    //   path: '/register',
+    //   name: 'register',
+    //   component: () => import('../views/Admin/Auth/RegisterView.vue')
+    // }
+
+    // Rent Detail
+    {
+      path: '/rentDetail',
+      name: 'rentDetail',
+      component: () => import('../views/Web/RentDetail.vue'),
+
+    },
+    {
+      path: '/product/feedback/shop/:id',
+      name: 'productFeedbackShop',
+      component: () => import('../views/Shop/feedback/ProductFeedback.vue'),
+      meta: {
+        requiresAuth: true,
+        role: 'shop owner'
+      }
+
+    },
+
   ]
 })
 

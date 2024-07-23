@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ListCommentResource;
 
 class ProductResource extends JsonResource
 {
@@ -18,12 +19,12 @@ class ProductResource extends JsonResource
             'id'=>$this->id,
             'name'=> $this->name,
             'price'=>$this->price,
-            'days'=>$this->days,
+            'status'=>$this->status,
             'image'=>$this->image,
             'shop'=>$this->shop,
             'category'=>$this->category,
             'detail'=>$this->detail,
-            'feedback'=>$this->feedback
+            'feedback'=>ListCommentResource::collection($this->feedback)
         ];
     }
 }

@@ -19,7 +19,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
+                <el-dropdown-item class="btn" @click="onSubmit"> <img src="https://cdn-icons-png.flaticon.com/512/4400/4400629.png" height="20px" style="margin-right: 5px; margin-left: 5px;"  alt="image View">
+                  Log out
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -28,44 +30,65 @@
       </el-header>
 
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        <table class="table align-middle mb-0 bg-white">
+        <div
+          class="content-comment"
+          style="
+            background: white;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          "
+        >
+          <h2>All comments</h2>
+        </div>
+        <table class="table align-middle mb-0 bg-white mt-4">
           <thead class="bg-light">
             <tr>
+              <th>#</th>
+              <th>Image</th>
               <th>Name</th>
-              <th>Title</th>
               <th>Status</th>
-              <th>Position</th>
-              <th>Actions</th>
+              <th>Price</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="index in feedback" :key="index.id">
+            <!-- {{ borrows }} -->
+            <tr v-for="product in feedback" :key="product.id">
+              <td>{{ product.id }}</td>
               <td>
                 <div class="d-flex align-items-center">
                   <img
-                    src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+                    :src="product.image"
                     alt=""
                     style="width: 45px; height: 45px"
                     class="rounded-circle"
                   />
-                  <div class="ms-3">
-                    <p class="fw-bold mb-1">John Doe</p>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                  </div>
                 </div>
               </td>
               <td>
-                <p class="fw-normal mb-1">Software engineer</p>
-                <p class="text-muted mb-0">IT department</p>
+                <p class="fw-normal mb-1">{{ product.name }}</p>
               </td>
               <td>
-                <span class="badge badge-success rounded-pill d-inline">Active</span>
+                <span
+                  class="badge-success rounded-pill d-inline"
+                  style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px"
+                  >{{ product.status }}</span
+                >
               </td>
-              <td>Senior</td>
+              <td>${{ product.price }}.00</td>
               <td>
-                <button type="button" class="btn btn-link btn-sm btn-rounded">Edit</button>
+                <a :href="`/product/feedback/shop/${product.id}`">
+                  <el-button
+                    type="primary"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasView"
+                    :icon="View"
+                    circle
+                  />
+                </a>
               </td>
-              {{ index.feedback }}
             </tr>
           </tbody>
         </table>
@@ -75,25 +98,23 @@
 </template>
           
 <script lang="ts" setup>
-import { Search, Plus, Setting } from '@element-plus/icons-vue'
+import { Search, Plus, Setting, View } from '@element-plus/icons-vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import type { UploadInstance } from 'element-plus'
-import axiosInstance from '@/plugins/axios';
+import axiosInstance from '@/plugins/axios'
 import { computed, ref } from 'vue'
 
-
-const feedback = ref();
+const feedback = ref()
 async function fetchFeedback() {
   try {
     const response = await axiosInstance.get('/get/comment/shop')
-    feedback.value = response.data.data;
+    feedback.value = response.data.data
   } catch (error) {
     console.error(error)
   }
 }
 
 fetchFeedback()
-
 </script>
           
         <style scoped>

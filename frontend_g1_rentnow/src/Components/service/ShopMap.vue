@@ -11,11 +11,21 @@
   
   const mapContainer = shallowRef(null);
   const map = shallowRef(null);
+
+  const props = defineProps({
+  lat: {
+    type: String,
+    required: true
+  },
+  long: {
+    type: String,
+    required: true
+  }});
   
   onMounted(() => {
     config.apiKey = 'Bz939GMBh1SFnqLzUeE3';
   
-    const initialState = { lng: 104.901151, lat: 11.557119, zoom: 14 };
+    const initialState = { lng: (props.long), lat: (props.lat), zoom: 14 };
   
     map.value = markRaw(
       new Map({

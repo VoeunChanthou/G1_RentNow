@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\API\feedbackcontroller;
+// use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\API\borrowcontrpller;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\API\PostController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -19,7 +21,8 @@ use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\FavoriteController;
 
 use App\Http\Controllers\CommentController;
-
+use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\MessageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create_product_admin', [ProductController::class, 'create']);
     
 });
-
+Route::get ('/detail/history/{id}' , [borrowcontrpller::class, "ShowDetail"]);
 //--shop------
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/create_product', [ProductsController::class, 'create']);
@@ -73,7 +76,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/update/product/{id}', [ProductsController::class, 'update']);
 
     Route::get('list/history', [borrowcontrpller::class, "gethistory"]);
-    Route::delete('/delete/{id}', [borrowcontrpller::class, "delete"]);
+    Route::get('/delete/{id}', [borrowcontrpller::class, "deleteStory"]);
     Route::post('/reset', [PasswordResetLinkController::class, "store"]);
     Route::get('/favorites', [FavoriteController::class, 'index']);
     Route::post('/favorite', [FavoriteController::class, 'create']);
@@ -81,7 +84,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::put('/comment/update/{id}', [feedbackcontroller::class, "updateComment"]);
 route::get ('/list/comment/{id}', [feedbackcontroller::class, "getcomment"]);
-Route::delete('comment/delete/{id}', [FeedbackController::class, "deleteComment"]);
+Route::delete('comment/delete/{id}', [feedbackcontroller::class, "deleteComment"]);
 Route::get ('comment/{id}', [FeedbackController::class, "show"]);
 Route::post('/logout', [RegisteredUserController::class, 'logout'])->middleware();
 Route::get('/product', [ProductsController::class, 'index']);
@@ -112,7 +115,31 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/image/detail/{id}', [ProductDtailController::class, 'showDetail']);
     Route::get('/get/shop', [ShopController::class, 'show']);
     Route::delete('/delete/product/detail/{id}', [ProductDtailController::class, 'delete']);
+
+
+    ///borrow//
+    Route::post('/borrow/product', [borrowcontrpller::class, 'createBorrow']);
+    Route::get('/borrow/get/receipt/{id}',[borrowcontrpller::class, 'show'] );
+    Route::get('/get/borrow/shop', [borrowcontrpller::class, 'getBorrowbyshop']);
+    Route::put('/update/borrow/{id}', [borrowcontrpller::class,'updateBorrow']);
 });
 
 
+//message//
+Route::middleware('auth:sanctum')->group(function(){
+    Route::post('/add/message', [MessageController::class, 'create']);
+    Route::get('/get/shop/user', [MessageController::class, 'index']);
+    Route::get('/get/message/{id}', [MessageController::class, 'show']);
+    Route::get('/get/message/personal/{id}', [MessageController::class, 'allMissage']);
 
+    Route::get('/get/user/meessage/shop', [MessageController::class, 'getUser']);
+});
+
+Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
+
+Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
+//Comment on poste 
+Route::get('/comments', [CommentController::class, 'index']);
+Route::post('/comment', [CommentController::class, 'createComment']);
+Route::get('users', [UserController::class, 'indexUser']);
+Route::get('/shop', [ShopController::class, 'index']);

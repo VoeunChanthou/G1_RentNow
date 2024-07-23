@@ -19,11 +19,14 @@ class ShopResource extends JsonResource
         return [
             'id'=>$this->id,
             'name'=>$this->name,
+            'image'=>$this->image,
             'Country'=>$this->Country,
             'Province'=>$this->Province,
             'street'=>$this->street,
             'latitude'=>$this->latitude,
             'longitude'=>$this->longitude,
+            'ownership'=>$this->user,
+            // 'products'=>$this->products
             'products'=>ProductResource::collection($this->products),
             'member'=>MemberResource::collection($this->members)
         ];

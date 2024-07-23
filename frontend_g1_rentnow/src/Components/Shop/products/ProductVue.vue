@@ -6,8 +6,14 @@
       </template>
     </el-table-column>
     <el-table-column label="Name" prop="name" />
-    <el-table-column label="Price" prop="price" />
+    <!-- <el-table-column label="Price" prop="price" /> -->
+    <el-table-column label="Price">
+  <template #default="scope">
+    ${{ scope.row.price.toFixed(2) }}
+  </template>
+</el-table-column>
     <el-table-column label="Category" prop="category.name" />
+    <el-table-column label="Status" prop="status"/>
     <el-table-column align="right">
       <template #header>
         <el-input v-model="search" size="small" placeholder="Type to search" />
@@ -92,7 +98,6 @@
         <el-form-item>
           <el-button type="primary" @click="updatePro"> Update </el-button>
         </el-form-item>
-        {{ shop_id }}
       </el-form>
     </el-main>
   </div>
@@ -102,6 +107,7 @@
     tabindex="-1"
     id="offcanvasView"
     aria-labelledby="offcanvasViewLabel"
+    style="background: white;"
   >
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="offcanvasViewLabel">Product View</h5>
@@ -157,7 +163,7 @@
           <div class="d-flex justify-content-between">
             <div>
               <p><a href="#!" class="text-dark">Price</a></p>
-              <p class="small text-muted">{{ price }}</p>
+              <p class="small text-muted">${{ price }}.00</p>
             </div>
           </div>
         </div>
@@ -262,7 +268,7 @@ async function updatePro() {
         category_id: category_id.value,
         image: proImg.value
       })
-      console.log(response)
+      fetchData()
       showSuccessAlert.value = true
     } catch (error) {
       console.error(error)

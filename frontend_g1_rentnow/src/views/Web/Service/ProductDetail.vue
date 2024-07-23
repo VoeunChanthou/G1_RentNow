@@ -1,5 +1,94 @@
+
 <template>
-  <WebLayout><div class="bg-white">
+  <WebLayout>
+    <serviceLoading v-if="!product.name"/>
+    <div v-if="!isPay" class="sp px-5" style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+      "
+    >
+      <div class="spinner-border text-primary" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+    </div>
+
+
+   
+      <!---alert-->
+
+      <div
+      v-if="showModal"
+      style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <el-row>
+        <el-col style="width: 300px; height: 300px; background: white;">
+          <el-result
+            icon="error"
+            title="Error Tip"
+            sub-title="Please follow the instructions"
+          >
+            <template #extra>
+              <el-button type="primary" @click="cancelModal">OK</el-button>
+            </template>
+          </el-result>
+        </el-col>
+      </el-row>
+    </div>
+
+      <div
+      v-if="success"
+      style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+    <el-col :sm="12" :lg="6" style="width: 300px; height: 300px; background: white;">
+      <el-result
+        icon="success"
+        title="Success Tip"
+        sub-title="Please follow the instructions"
+      >
+        <template #extra>
+          <el-button type="primary">Okay</el-button>
+        </template>
+      </el-result>
+    </el-col>
+    </div>
+    
+
+    
+
+    <!--------->
+
+    <div v-if=product.name class="bg-white">
     <PopupDelete  :massage = "commentshow.comment" @updatecomment = "updateById" />
     <CommentProduct @createcomment = "createcomment" />
     <div class="content px-5">
@@ -45,13 +134,14 @@
           <div class="price-detail">
             <h1 style="color: red">$ {{ product.price }}</h1>
             <span>Stock: 10</span>
+            {{ price }}
             <div class="btn">
-              <button>
+              <button @click="discrease">
 
                 <Icon icon="codicon:dash" style="color: #eb0f0f" />
               </button>
-              <span>1</span>
-              <button>
+              <span>{{ quantity }}</span>
+              <button @click="increase">
                 <Icon icon="heroicons:plus" />
               </button>
             </div>
@@ -88,6 +178,7 @@
               class="btn-rent"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
+              @click="calculateDate"
             >
               Rent Now
             </button>
@@ -105,7 +196,7 @@
 
       </div>
       <div class="right-side shadow bg-white" style="height: 60vh;">
-        <ShopMap/>
+        <ShopMap :lat="shop.latitude" :long="shop.longitude"/>
       </div>
     </div>
     </div>
@@ -133,13 +224,13 @@
 
           <div class="modal-body1">
             <img src="../../../assets/pay-image.png" alt="" />
-            <h3 class="pay-price">$ 300</h3>
+            <h3 class="pay-price">$ {{ amount * numofdate}}</h3>
             <h4>Credit Card Details</h4>
           </div>
 
           <div class="modal-body2">
             <div class="form-container">
-              <form>
+              <form @submit.prevent="submitPayment" id="payment-form">
                 <div class="form-group">
                   <label for="card-name">Card Name</label>
                   <input v-model="cardName" type="text" id="card-name" name="card-name" placeholder="Card Name" />
@@ -147,28 +238,12 @@
 
                 <div class="form-group">
                   <label for="card-number">Card Number</label>
-                  <input
-                    v-model="cardNumber"
-                    type="number"
-                    id="card-number"
-                    name="card-number"
-                    placeholder="12334455667"
-                  />
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group">
-                    <label for="expiration">Expiration</label>
-                    <input v-model="expiration" type="text" id="expiration" name="expiration" placeholder="MM/YYYY" />
-                  </div>
-
-                  <div class="form-group">
-                    <label for="cvv">CVV {{ cvv }}</label>
-                    <input v-model="cvv" type="number" id="cvv" name="cvv" placeholder="" />
-                  </div>
+                  <div id="card-element" class="form-control">
+        <!-- Stripe Card Element will be inserted here -->
+      </div>
 
                 </div>
-                <a href="/receipt"><button type="button" class="btn-pay"><b>Pay Secure</b></button></a>
+                <button type="submit" class="btn-pay" data-bs-dismiss="modal" aria-label="Close"><b>Pay Secure</b></button>
               </form>
             </div>
           </div>
@@ -189,6 +264,14 @@ import FooterMenuVue from '../../../Components/homepage/FooterMenu.vue'
 import CommentProduct from '@/Components/service/CommentProduct.vue';
 import CardListComponent from '@/Components/service/CardListComment.vue'
 import PopupDelete from '@/Components/service/PopupUpdate.vue'
+import serviceLoading from '@/Components/loading/serviceLoading.vue'
+import { loadStripe } from '@stripe/stripe-js';
+import { useRouter } from 'vue-router'
+
+
+
+
+
 export default {
   components: {
     WebLayout,
@@ -197,29 +280,83 @@ export default {
     CommentProduct,
     CardListComponent,
     FooterMenuVue,
-    PopupDelete
+    PopupDelete,
+    serviceLoading
   },
   data() {
     return {
+      router: useRouter(),
       product: {},
       shop: {},
       image: {},
       CommentList : [],
       commentshow  : {},
       idComment : null,
+      shop:{},
       // =========== payment =========
-      cardName: "",
-      cardNumber:"",
-      expiration:"",
-      cvv:"",
       start_date:"",
-      return_date:""
+      return_date:"",
+      numofdate: 0,
+      quantity: 1,
+      borrow_status: 'borrowed',
+
+      stripe: null,
+      elements: null,
+      cardElement: null,
+      amount: 0,
+
+      isPay: true,
+      showModal: false,
+      success: false
     }
   },
-  mounted() {
-    this.getProductDetail(),
-    this.fetchComments()
+
+  watch(){
+    this.calculateDate();
   },
+  async mounted() {
+    // Load Stripe
+    this.stripe = await loadStripe('pk_test_51Pc2fOKZk7gHGerhRYoYc86qicpwOW5BRIqT6Iq8vEldh1lbBTARwZP3hnnNaJbEknffCRKkwxqdhdI3rknxBJAa00OCtvG2nD'); // Replace with your publishable key
+
+    // Create an instance of Elements
+    this.elements = this.stripe.elements();
+
+    // Create a Card Element and mount it to the #card-element div
+    this.cardElement = this.elements.create('card', {
+      style: {
+        base: {
+          iconColor: '#666EE8',
+          color: '#31325F',
+          fontWeight: 400,
+          fontFamily: 'Helvetica Neue, Helvetica, Arial, sans-serif',
+          fontSize: '16px',
+          '::placeholder': {
+            color: '#CFD7E0',
+          },
+        },
+      },
+    });
+    this.cardElement.mount('#card-element');
+
+    // Handle real-time validation errors from the card Element
+    this.cardElement.on('change', (event) => {
+      const displayError = document.getElementById('card-errors');
+      if (event.error) {
+        displayError.textContent = event.error.message;
+      } else {
+        displayError.textContent = '';
+      }
+    });
+    this.getProductDetail()
+    this.fetchComments()
+
+    if (this.showModal) {
+      document.body.classList.add('no-scroll');
+    }
+    this.calculateDate()
+    
+  },
+  
   methods: {
     getProductDetail() {
       axiosInstance
@@ -228,9 +365,11 @@ export default {
           this.product = response.data.data
           this.shop = response.data.data.shop
           this.image = response.data.data.detail
+          this.amount = response.data.data.price
+          this.shop = response.data.data.shop
         })
         .catch((error) => {
-          console.log(error)
+          console.log('erro hx')
         });
       },
       async fetchComments () {
@@ -274,12 +413,111 @@ export default {
       } catch (error) {
         console.error("Error deleting category:", error);
       }
-    }
+    },
+    increase(){
+      this.quantity += 1;
+      totalPay()
+    },
+    discrease(){
+      if(this.quantity > 1){
+      }
+    },
+
+    calculateDate(){
+      const start = new Date(this.start_date);
+      const end = new Date(this.return_date);
+      const diffInDays = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+      this.numofdate = diffInDays;
+    },
+
+
+
+    async submitPayment() {
+      this.isPay = false;
+      
+      try {
+        // Create a Payment Intent on the backend
+        const { data } = await axiosInstance.post('/stripe/payment', {
+          amount: (this.amount * this.numofdate) * 100, // Convert amount to cents
+        });
+        // Confirm the Card Payment
+        const { error, paymentIntent } = await this.stripe.confirmCardPayment(data.clientSecret, {
+          payment_method: {
+            card: this.cardElement,
+          }
+        });
+
+        if (error) {
+          // Show error to your customer
+          console.error(error.message);
+          const displayError = document.getElementById('card-errors');
+          displayError.textContent = error.message;
+          this.isPay = true;
+        this.showModal=true;
+
+        } else {
+          if (paymentIntent.status === 'succeeded') {
+            console.log('Payment succeeded:', paymentIntent);
+            // Show a success message to your customer
+            this.showModal = false;
+            this.paymentData();
+
+          }
+        }
+      } catch (error) {
+        console.error('Error creating payment intent:', error);
+      this.isPay = true;
+      this.showModal=true;
+
+      }
+    },
+
+    async paymentData(){
+        if(this.start_date != '' && this.return_date != ''){
+        const response = await axiosInstance.post('/borrow/product',{
+          'product_id': this.$route.params.id,
+          'borrow_date': this.start_date,
+          'price': this.numofdate * this.amount,
+          'quantity': this.quantity,
+          'return_date': this.return_date,
+          'borrow_status': this.borrow_status,
+          'status': 'borrowed'
+        });
+        this.success = true;
+        this.router.push(`/receipt/${this.$route.params.id}`)
+        this.isPay = true;
+
+      }else{
+
+        this.isPay = true;
+        this.showModal=true;
+        console.log('Error');
+      }
+      },
+
+      cancelModal(){
+        this.showModal = false;
+        this.isPay = true;
+        document.body.classList.remove('no-scroll');
+      }
+    },
+    watch: {
+    showModal(value) {
+        document.body.classList.add('no-scroll');
+    },
+  },
   }
-}
+  
+
 </script>
 
+
+
 <style scoped>
+.no-scroll {
+  overflow: hidden;
+  background: pink;
+}
 /* ============= back button style ============= */
 .back-button {
   margin-top: 50px;
@@ -321,7 +559,7 @@ export default {
   gap: 40px;
   align-items: center;
 }
-.price-detail button {
+.price-detail .btn {
   border: 1px solid #ffd800;
   border-radius: 20px;
   width: 100px;
@@ -329,6 +567,10 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+}
+.price-detail .btn button {
+  background: none;
+  border: none;
 }
 
 .header-right-detail {
@@ -452,7 +694,7 @@ export default {
 }
 
 .form-group input {
-  width: calc(100% - 20px);
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -486,6 +728,18 @@ export default {
   color: white;
   border-radius: 6px;
   width: 480px;
+  margin: auto;
+}
+
+
+/* ========== payment style ========= */
+#card-element {
+  border: 1px solid #ced4da;
+  padding: 10px;
+  border-radius: 4px;
+}
+#payment-form {
+  max-width: 500px;
   margin: auto;
 }
 

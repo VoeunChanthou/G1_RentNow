@@ -56,7 +56,8 @@
               </div>
               <div class="col-12">
                 <div class="d-grid">
-                  <button class="btn bsb-btn-2xl btn-primary" :disabled="isSubmitting">
+                  <button class="btn bsb-btn-2xl btn-primary" :disabled="isSubmitting" data-bs-dismiss="modal"
+                  aria-label="Close">
                     Log in now
                   </button>
                 </div>
@@ -67,7 +68,7 @@
             <div class="col-12">
               <hr class="mt-5 mb-4 border-secondary-subtle" />
               <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-md-end">
-                <a href="#!" class="link-secondary text-decoration-none">Create new account</a>
+                <a href="#!" class="link-secondary text-decoration-none" >Create new account</a>
                 <a href="#!" class="link-secondary text-decoration-none" data-bs-target="#forgotpassword" data-bs-toggle="modal" data-bs-dismiss="modal" >Forgot password</a>
               </div>
             </div>
@@ -104,7 +105,7 @@
                       d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"
                     />
                   </svg>
-                  <span class="ms-2 fs-6 text-uppercase">Sign in With Facebook</span>
+                  <span class="ms-2 fs-6 text-uppercase" >Sign in With Facebook</span>
                 </a>
               </div>
             </div>
@@ -113,11 +114,8 @@
       </div>
     </div>
   </div>
-  
 </template>
-
 <script setup lang="ts">
-
 import axiosInstance from '@/plugins/axios'
 import { useField, useForm } from 'vee-validate' 
 import * as yup from 'yup'

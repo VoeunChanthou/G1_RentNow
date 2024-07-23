@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-      <MapVue style="margin-right: 70px;"/>
+      <Map style="margin-right: 60px;"/>
       <messege-form></messege-form>
       </div>
     </div>
@@ -113,12 +113,13 @@
 import FooterMenu from "@/Components/homepage/FooterMenu.vue";
 import messegeForm from "../../Components/AboutUs/messegeForm.vue"
 import WebLayout from "../../Components/Layouts/WebLayout.vue"
-import MapVue from '@/Components/Shop/dashboard/MapVue.vue';
+// import MapVue from '@/Components/AboutUs/Map.vue';
+import Map from '@/Components/AboutUs/Map.vue'
 
 import { Icon } from '@iconify/vue'
 import axiosInstance from '@/plugins/axios'
 export default {
-  components: { messegeForm, WebLayout, FooterMenu, MapVue},
+  components: { messegeForm, WebLayout, FooterMenu, Map},
   name: 'App',
   data() {
     return {

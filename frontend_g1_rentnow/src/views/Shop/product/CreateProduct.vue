@@ -2,36 +2,11 @@
   <el-container class="layout-container-demo" style="height: 100vh">
     <AdminLayout />
     <el-container>
-      <el-header
-        style="
-          text-align: right;
-          font-size: 12px;
-          background: linear-gradient(90deg, #722cb3 30%, #c49be9);
-          height: 80px;
-        "
-      >
-        <div class="toolbar">
-          <el-dropdown>
-            <el-icon style="margin-right: 8px; margin-top: 1px; font-size: 30px">
-              <setting />
-            </el-icon>
-            <template #dropdown>
-              <el-dropdown-menu>
-                <el-dropdown-item>View</el-dropdown-item>
-                <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
-              </el-dropdown-menu>
-            </template>
-          </el-dropdown>
-          <span>Tom</span>
-        </div>
-      </el-header>
-
       <el-main class="px-5 py-5" style="background-color: rgb(207, 207, 207)">
-        
-        <!-- <el-form title="Success alert" type="success" center show-icon v-if="showSuccessAlert">
-          <p slot="descrip">You Create Success.</p>
-        </el-form> -->
+        <div style=" margin: -45px 0 20px -45px;">
+          
+          <NavbarShopOwner ></NavbarShopOwner>
+        </div>
         <el-alert
           v-if="showSuccessAlert"
           title="Success"
@@ -85,6 +60,8 @@
           <el-form-item>
             <el-button type="primary" native-type="submit"> Create </el-button>
             <el-button @click="resetForm">Reset</el-button>
+            <el-button class="btn btn-secondary ml-2" @click="$router.go(-1)">Back</el-button>
+
           </el-form-item>
         </el-form>
       </el-main>
@@ -93,6 +70,8 @@
 </template>
 
 <script lang="ts" setup>
+import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
+import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import { reactive, ref } from 'vue'
 import { CreateProductStore } from '@/stores/product-list'
@@ -101,6 +80,7 @@ import { useAuthStore } from '@/stores/auth-store.ts'
 import { getShopStore } from '@/stores/shop-list.ts'
 import { useProductStore } from '@/stores/category-list.ts'
 import axiosInstance from '@/plugins/axios'
+import { useRouter } from 'vue-router'
 
 
 const AuthUser = useAuthStore()
@@ -170,5 +150,16 @@ async function fetchData() {
 }
 
 fetchData()
+
+const onSubmit = (async () => {
+  try {
+    const { data } = await axiosInstance.post('/logout')
+    localStorage.setItem('access_token', data.access_token)
+    location.reload()
+    router.push('/home')
+  } catch (error) {
+    console.warn('Error')
+  }
+})
 
 </script>

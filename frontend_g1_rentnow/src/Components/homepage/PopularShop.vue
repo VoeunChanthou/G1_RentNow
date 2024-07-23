@@ -1,10 +1,14 @@
 <template>
-  <div v-if="items" class="container">
+  <div  class="container">
     <h2 class="h2"><b>POPULAR SHOP</b></h2>
-    <div class="row" >
-        <div v-for="(item, indext) in items" :key="indext" class="col-4">
+    <div class="row" v-if="!items">
+      <LoadingShop/>
+    </div>
+    <div class="row" v-if="items">
+      <div v-for="(item, indext) in items" :key="indext" class="col-4">
+        <div v-if="indext < 3">
           <div class="content">
-            <a href="/shop/1">
+            <a :href="`/shop/${item.id}`">
               <div class="content-overlay"></div>
               <img class="content-image" :src="item.image" />
               <div class="content-details fadeIn-bottom">
@@ -20,12 +24,17 @@
         </div>
     </div>
   </div>
+  </div>
 </template>
   
   <script>
 import axiosInstance from '@/plugins/axios'
+import LoadingShop from '@/Components/loading/LoadingShop.vue'
+
+
 
 export default {
+  components: {LoadingShop},
     data(){
         return {
            items: null
@@ -34,7 +43,6 @@ export default {
     },
     async created(){
       const data = await axiosInstance.get('/shop')
-      // console.log(this.items.data.data);
       this.items = data.data.data;
   
       

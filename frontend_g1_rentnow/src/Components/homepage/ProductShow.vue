@@ -1,12 +1,15 @@
 <template>
   <div class="content">
-    <div class="container">
+    <div v-if="shopPro" class="container">
       <div
         v-for="product in shopPro"
         :key="product.id"
         class="product-card"
         style="position: relative; overflow: hidden"
       >
+      <div v-if="product.status == 'borrowed'" class="status">
+        <h4 style="text-align: center;">This product borrowed by other</h4>
+      </div>
         <a href="#" class="product-card-center" style="position: relative">
           <div class="content-overlay">
             <img
@@ -36,8 +39,14 @@
 
 <script>
 import axiosInstance from '@/plugins/axios'
+import LoadingShop from '@/Components/loading/LoadingShop.vue'
+
 
 export default {
+  components: {
+    LoadingShop
+  },
+  // propsData: {
   // props: ['products'],
   data() {
     return {
@@ -156,6 +165,22 @@ export default {
   -webkit-transition: all 0.4s ease-in-out 0s;
   -moz-transition: all 0.4s ease-in-out 0s;
   transition: all 0.4s ease-in-out 0s;
+}
+
+.status{
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.833);
+  z-index: 3;
+  position: absolute;
+  /* border-radius: 20px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }
 .content-overlay:hover {
   opacity: 1;

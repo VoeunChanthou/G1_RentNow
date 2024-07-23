@@ -19,7 +19,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
+                <el-dropdown-item class="btn" @click="onSubmit"> <img src="https://cdn-icons-png.flaticon.com/512/4400/4400629.png" height="20px" style="margin-right: 5px; margin-left: 5px;"  alt="image View">
+                  Log out
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -36,7 +38,7 @@
                 <div class="card mb-4">
                   <div class="card-body text-center">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                      :src="profile"
                       alt="avatar"
                       class="rounded-circle img-fluid"
                       style="width: 150px"
@@ -300,8 +302,9 @@ import { useRoute } from 'vue-router'
 
 const first_name = ref();
 const last_name = ref();
-const email = ref();
 const route = useRoute();
+const email = ref();
+const profile = ref();
 
 async function fetchMemberData() {
   try {
@@ -309,6 +312,7 @@ async function fetchMemberData() {
     first_name.value = response.data.data.member.first_name
     last_name.value = response.data.data.member.last_name
     email.value = response.data.data.member.email
+    profile.value = response.data.data.member.profile
   } catch (error) {
     console.error(error)
   }

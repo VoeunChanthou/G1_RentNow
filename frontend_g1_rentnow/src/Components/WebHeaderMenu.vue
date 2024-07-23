@@ -1,5 +1,6 @@
 
 <template>
+  <div style="position: sticky; top: 0; z-index: 99;">
   <PopupRegisterVue @rigisterForm = "RegisterAcount"></PopupRegisterVue>
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
@@ -15,10 +16,7 @@
             All location
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-            <li><a class="dropdown-item" href="/shop/1">Phnom Penh</a></li>
-            <li><a class="dropdown-item" href="/shop/2">Kompong Thom</a></li>
-            <li><a class="dropdown-item" href="/shop/3">Kompong Cham</a></li>
-            <li><a class="dropdown-item" href="/shop/4">Kampot</a></li>
+            <li v-for="location in shopLocation" :key="location.id"><a class="dropdown-item" :href="`/shop/${location.id}`">{{ location.Province }}</a></li>
           </ul>
         </li>
       </ul>
@@ -31,7 +29,7 @@
         <a class="avatar avatar-sm p-0 d-flex  align-items-center" href="#" id="profileDropdown" role="button" data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
           <h4 class="text-warning">Hi_</h4>
           <h4> {{ AuthUSer.user.first_name  }}</h4>
-					<img v-if="AuthUSer.user.profile == 'null'" class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
+					<img v-if="AuthUSer.user.profile == null" class="avatar-img rounded-circle" src="../assets/3135715.png" alt="avatar" height="60" style="margin: 8px;">
 					<img v-else class="avatar-img rounded-circle" :src="AuthUSer.user.profile" alt="avatar" height="60" style="margin: 8px;">
 				</a>
 				<ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3" aria-labelledby="profileDropdown">
@@ -40,12 +38,12 @@
 						<div class="d-flex align-items-center">
 							<!-- Avatar -->
 							<div class="avatar me-3">
-								<img v-if="AuthUSer.user.profile == 'null'" class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
+								<img v-if="AuthUSer.user.profile == null" class="avatar-img rounded-circle shadow" src="../assets/3135715.png" alt="avatar" height="40">
 								<img v-else class="avatar-img rounded-circle shadow" :src="AuthUSer.user.profile" alt="avatar" height="40">
 							</div>
 							<div>
 								<a class="h6" href="#">{{ AuthUSer.user.first_name }} {{ AuthUSer.user.last_name }}</a>
-								<p class="small m-0">{{ AuthUSer.user.eamil }}</p>
+								<p class="small m-0">{{ AuthUSer.user.email }}</p>
 							</div>
 						</div>
 						<hr>
@@ -53,26 +51,15 @@
 					<!-- Links -->
 					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-person fa-fw me-2"></i>Edit Profile</a></li>
 					<li><a class="dropdown-item" href="/history"><i class="bi bi-person fa-fw me-2"></i>My borrow</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-					<li><a class="dropdown-item" href="#"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
+					<li><a class="dropdown-item" href="/view/profile/user"><i class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
+					<li><a class="dropdown-item" href="/rentDetail"><i class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
 					<li><button class="dropdown-item bg-danger-soft-hover" @click ="LogUot"><i class="bi bi-power fa-fw me-2"></i>Sign Out</button></li>
-					<li> <hr class="dropdown-divider"></li>
-					<!-- Dark mode switch START -->
-					<li>
-						<div class="modeswitch-wrap" id="darkModeSwitch">
-							<div class="modeswitch-item">
-								<div class="modeswitch-icon"></div>
-							</div>
-							<span>Dark mode</span>
-						</div>
-					</li> 
-          <!-- Dark mode switch END -->
 				</ul>
 			</div>
     </div>
   </div>
 </header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light" style="background: white; border-bottom: 2px solid black;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light" style="height: 60px;background: white; box-shadow: 4px 16px 17px -19px rgba(0,0,0,0.45);">
   <div class="container-fluid px-5 py-2">
     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="width: 30%; display: flex; justify-content: space-between; align-items: center;">
         <li class="nav-item"><a href="/home">Home</a></li>
@@ -89,10 +76,16 @@
         <img src="../assets/photo_2024-07-15_08-28-51-removebg-preview.png" width="65" alt="">
       </a>
     </li>
+    <li v-if="AuthUSer.user" class="nav-item" style="list-style-type: none;">
+      <!-- <a href="/message"><Icon icon="wpf:message-outline" width="52" height="40"  style="color: #940065" /></a> -->
+      <a href="/message">
+        <Icon icon="mingcute:notification-fill" width="40" height="40"  style="color: #a90475"></Icon>
+      </a>
+    </li>
   </div>
 </nav>
 </div>
-{{ User }}
+</div>
 </template>
 <script >
 import { Icon } from '@iconify/vue'
@@ -108,9 +101,13 @@ export default {
   data (){
     return {
       AuthUSer: useAuthStore(), 
-      router : useRouter()
+      router : useRouter(),
+      shopLocation: []
 
     }
+  },
+  mounted() {
+    this.fectShopLocation()
   },
   methods : {
     async RegisterAcount(data) {
@@ -131,6 +128,15 @@ export default {
       } catch (error) {
         alert (error.message)
         console.error("Error creating category:", error);
+      }
+    },
+
+    async fectShopLocation(){
+      try {
+        const response = await axiosInstance.get('/shop');
+        this.shopLocation = response.data.data;
+      } catch (error) {
+        console.error("Error fetching shop location:", error);
       }
     }
   }

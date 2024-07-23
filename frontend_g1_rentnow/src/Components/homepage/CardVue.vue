@@ -15,7 +15,10 @@
             aria-label="Close"
           ></button>
         </div>
-  <div class="product-card" style="position: relative; overflow: hidden">
+        <div class="product-card" style="position: relative; overflow: hidden">
+          <div v-if="product.status == 'borrowed'" class="status">
+          <h4 style="text-align: center;">This product borrowed by other</h4>
+        </div>
    
     <div class="product-card-center" style="position: relative">
       <div class="content-overlay">
@@ -155,5 +158,21 @@ export default {
 }
 .content-overlay:hover {
   opacity: 1;
+}
+
+.status{
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background: rgba(0, 0, 0, 0.833);
+  z-index: 3;
+  position: absolute;
+  /* border-radius: 20px; */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }
 </style>
