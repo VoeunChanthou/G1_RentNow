@@ -7,9 +7,6 @@
           
           <NavbarShopOwner ></NavbarShopOwner>
         </div>
-        <!-- <el-form title="Success alert" type="success" center show-icon v-if="showSuccessAlert">
-          <p slot="descrip">You Create Success.</p>
-        </el-form> -->
         <el-alert
           v-if="showSuccessAlert"
           title="Success"
@@ -63,6 +60,8 @@
           <el-form-item>
             <el-button type="primary" native-type="submit"> Create </el-button>
             <el-button @click="resetForm">Reset</el-button>
+            <el-button class="btn btn-secondary ml-2" @click="$router.go(-1)">Back</el-button>
+
           </el-form-item>
         </el-form>
       </el-main>
@@ -71,6 +70,7 @@
 </template>
 
 <script lang="ts" setup>
+import { Menu as IconMenu, Message, Setting } from '@element-plus/icons-vue'
 import NavbarShopOwner from '@/Components/NavbarShopOwner.vue'
 import AdminLayout from '@/Components/Layouts/AdminLayout.vue'
 import { reactive, ref } from 'vue'
@@ -80,6 +80,7 @@ import { useAuthStore } from '@/stores/auth-store.ts'
 import { getShopStore } from '@/stores/shop-list.ts'
 import { useProductStore } from '@/stores/category-list.ts'
 import axiosInstance from '@/plugins/axios'
+import { useRouter } from 'vue-router'
 
 
 const AuthUser = useAuthStore()
@@ -149,5 +150,16 @@ async function fetchData() {
 }
 
 fetchData()
+
+const onSubmit = (async () => {
+  try {
+    const { data } = await axiosInstance.post('/logout')
+    localStorage.setItem('access_token', data.access_token)
+    location.reload()
+    router.push('/home')
+  } catch (error) {
+    console.warn('Error')
+  }
+})
 
 </script>

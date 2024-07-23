@@ -28,7 +28,7 @@ const Mepartner = myProduct.fetchMemember();
 
 <template>
   <WebLayout>
-    <div class="px-5" style=" height: 100vh; display: grid; grid-template-columns: 25% 74%; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #f4f2f2;">
+    <div class="px-5" style=" height: auto; display: grid; grid-template-columns: 25% 74%; gap: 20px; padding-top: 10px; padding-bottom: 20px; background: #f4f2f2;">
     <SibarVue :product="myProduct.partner.data"/>
 
       <div style="height: 100%; display: grid; grid-template-rows: 80px 100vh;">

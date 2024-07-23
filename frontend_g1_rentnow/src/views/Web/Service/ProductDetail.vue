@@ -54,6 +54,36 @@
         </el-col>
       </el-row>
     </div>
+
+      <div
+      v-if="success"
+      style="
+        background: rgba(0, 0, 0, 0.201);
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      "
+    >
+    <el-col :sm="12" :lg="6" style="width: 300px; height: 300px; background: white;">
+      <el-result
+        icon="success"
+        title="Success Tip"
+        sub-title="Please follow the instructions"
+      >
+        <template #extra>
+          <el-button type="primary">Okay</el-button>
+        </template>
+      </el-result>
+    </el-col>
+    </div>
+    
+
     
 
     <!--------->
@@ -276,7 +306,8 @@ export default {
       amount: 0,
 
       isPay: true,
-      showModal: false
+      showModal: false,
+      success: false
     }
   },
 
@@ -428,11 +459,11 @@ export default {
           if (paymentIntent.status === 'succeeded') {
             console.log('Payment succeeded:', paymentIntent);
             // Show a success message to your customer
+            this.showModal = false;
             this.paymentData();
+
           }
         }
-        this.showModal=true;
-
       } catch (error) {
         console.error('Error creating payment intent:', error);
       this.isPay = true;
@@ -452,9 +483,10 @@ export default {
           'borrow_status': this.borrow_status,
           'status': 'borrowed'
         });
+        this.success = true;
         this.router.push(`/receipt/${this.$route.params.id}`)
         this.isPay = true;
-        this.showModal = false;
+
       }else{
 
         this.isPay = true;

@@ -13,8 +13,8 @@
         </h2>
       </div>
     </div>
+    <FooterMenuVue/>
   </WebLayout>
-  <FooterMenuVue/>
 </template>
 <script setup lang = "ts">
 import DeletePopup from '@/Components/history/PopupDelete.vue'

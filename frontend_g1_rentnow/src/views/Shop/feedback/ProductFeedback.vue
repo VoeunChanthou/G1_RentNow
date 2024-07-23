@@ -19,7 +19,9 @@
               <el-dropdown-menu>
                 <el-dropdown-item>View</el-dropdown-item>
                 <el-dropdown-item>Add</el-dropdown-item>
-                <el-dropdown-item>Delete</el-dropdown-item>
+                <el-dropdown-item class="btn" @click="onSubmit"> <img src="https://cdn-icons-png.flaticon.com/512/4400/4400629.png" height="20px" style="margin-right: 5px; margin-left: 5px;"  alt="image View">
+                  Log out
+                </el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>

@@ -1,6 +1,6 @@
 <template>
   <WebHeaderMenu />
-  <div class="container-fluid h-100">
+  <div class="container-fluid h-100 bg-white">
     <div class="row h-100 align-items-center">
       <div class="col-md-6 d-flex flex-column justify-content-center align-items-center">
         <h1 class="display-3 text-primary font-weight-bold" style="font-weight: bold">
@@ -19,7 +19,7 @@
     </div>
   </div>
 
-  <div class="container-fluid px-5 mb-5">
+  <div class="container-fluid px-5 bg-white pb-5">
     <div class="row">
       <div class="col-md-5">
         <div class="card">
