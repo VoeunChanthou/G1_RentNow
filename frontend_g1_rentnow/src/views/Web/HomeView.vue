@@ -52,9 +52,9 @@ const product = products.fetchProductStore()
           </div>
           <div class="second-text">
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum tempore quam impedit
-              minus iure dolorum voluptatum quos molestias eligendi cumque, odio vero corporis
-              delectus fugiat unde quod deserunt similique aut.
+              Discover the ease and convenience of renting with us. At Rent Now,
+              we pride ourselves on offering a diverse range of rental options to suit all your needs. 
+              Whether you're looking to rent a bike, motorcycle, car, or even specialty items, we've can help you.
             </p>
           </div>
           <div class="input-group mb-3">
