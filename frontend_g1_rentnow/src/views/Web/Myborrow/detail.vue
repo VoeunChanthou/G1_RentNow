@@ -53,17 +53,19 @@ fetchData()
             </div>
             <div class="card-body" style="display: flex; padding: 4%;">
                 <div style="width: 40%;">
-                    <p class="card-title"><b>Price: </b> {{ detail.price }}$</p>
-                    <p class="card-title"><b>Shop Country: </b> {{ detail.shop.Country }}</p>
-                    <p class="card-title"><b>Category type: </b> {{ detail.category.name }}</p>
-                    <p class="card-title"><b>Shop Name: </b> {{ detail.shop.name }} </p>
-                    <p class="card-title"><b>Post on: </b> {{ detail.shop.created_at }}</p>
-                    <p class="card-title"><b>Total borrowed: </b> 1</p>
-                    <div style="display: flex; gap: 15px;">
-                      <p><b>Status: </b></p>
-                      <p style="color: greenyellow;">Available</p>
-                      <p style="color: red;">Borrowed</p>
-                    </div>
+                  <div style="display: flex;">
+                    <p class="card-title"><b>Price: </b> {{ detail.price }}$ / </p>
+                    <span class="text-danger"> ${{ detail.price / 2 }}</span>
+                  </div>
+                  <p class="card-title"><b>Shop Country: </b> {{ detail.shop.Country }}</p>
+                  <p class="card-title"><b>Category type: </b> {{ detail.category.name }}</p>
+                  <p class="card-title"><b>Shop Name: </b> {{ detail.shop.name }} </p>
+                  <p class="card-title"><b>Post on: </b> {{ detail.shop.created_at }}</p>
+                  <div style="display: flex; gap: 15px;">
+                    <p><b>Status: </b></p>
+                    <p style="color: greenyellow;">Available</p>
+                    <p style="color: red;">Borrowed</p>
+                  </div>
                 </div>
                 <div style="width: 60%; display: flex; justify-content: end; left: 50%;">
                     <img :src="detail.image" style="width: 60%; height: 80%;">

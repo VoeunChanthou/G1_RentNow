@@ -26,8 +26,8 @@
                   randomised words which don't look even slightly believable.
                 </p>
               </div>
-              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start">
-                <div class="d-flex flex-row align-items-center mb-1">
+              <div class="col-md-6 col-lg-3 col-xl-3 border-sm-start-none border-start" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div class="d-flex flex-row align-items-center mb-1" >
                   <h4 class="mb-1 me-1">${{ product.price }}</h4>
                   <span class="text-danger">${{ product.price / 2 }}</span>
                 </div>
