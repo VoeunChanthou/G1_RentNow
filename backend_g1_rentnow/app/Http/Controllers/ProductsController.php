@@ -16,7 +16,9 @@ class ProductsController extends Controller
     public function index()
     {
         // return Products::all();
-        return ProductResource::collection(Products::all());
+        // $products = Products::where('status', 'can_borrow')->get();
+        $products = Products::where('status', 'can_borrow')->get();
+        return ProductResource::collection($products);
     }
 
 

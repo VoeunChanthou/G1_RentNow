@@ -21,14 +21,6 @@
             <el-menu-item><el-link href="/shop/product">All products</el-link></el-menu-item>
             <el-menu-item><el-link href="/imgdetail">Detial</el-link></el-menu-item>
         </el-sub-menu>
-
-        <el-sub-menu index="2">
-          <template #title>
-            <el-icon><Icon icon="material-symbols:category-outline" width="20" height="20"></Icon></el-icon>Categories
-          </template>
-            <el-menu-item v-for=" cate in categories" :key="cate.id" :index="2-1">{{ cate.name }}</el-menu-item>
-            
-        </el-sub-menu>
         <el-sub-menu index="3">
           <template #title>
             <Icon icon="fluent:people-community-28-regular" width="24" height="24"  style="color: #1f1f1f; margin-right: 9px; "></Icon>Member
@@ -40,13 +32,11 @@
             <el-icon><message /></el-icon>Messages
           </template>
           <el-menu-item-group>
-            <el-menu-item index="3-1">To admin</el-menu-item>
             <el-menu-item index="3-2"><el-link href="/shop/chat">Chat</el-link></el-menu-item>
           </el-menu-item-group>
           <el-sub-menu index="3-4">
             <template #title>Feedback</template>
             <el-menu-item index="3-4-1"><el-link href="/feedback">My feedback</el-link></el-menu-item>
-            
           </el-sub-menu>
         </el-sub-menu>
       </el-menu>
