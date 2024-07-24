@@ -80,9 +80,10 @@ class borrowcontrpller extends Controller
         $borrows = BorrowResource::collection(Borrow::all());
         $list = [];
         foreach ($borrows as $borrow) {
-          if ($borrow->product->shop_id == $shop->id) {
-
-            array_push($list, $borrow);
+          if($borrow->product != null){
+            if ($borrow->product->shop_id == $shop->id) {
+              array_push($list, $borrow);
+            }
           }
         }
         return $list;
