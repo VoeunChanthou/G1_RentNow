@@ -61,7 +61,7 @@ const handleDayEvent = (data: any) => {
     >
       <CategoryVue @someEvent="handleSomeEvent" @CateEvent="handleCateEvent" @ShopEvent="handleShopEvent" @DayEvent="handleDayEvent"></CategoryVue>
 
-      <div style="height: 100%; display: grid; grid-template-rows: 10% 98%; gap: 20px;">
+      <div style="height: auto; display: grid; grid-template-rows: 10% 98%; gap: 20px;">
         <div class="top shadow p-3 px-5 rounded bg-white" style="display:flex; justify-content: space-between; align-items: center;">
           <h3>Result</h3>
           <div class="select-group">
@@ -78,7 +78,7 @@ const handleDayEvent = (data: any) => {
           </div>
         </div>
        
-        <div class="top shadow p-3 rounded form_Card" style="height: 90%; background: #f4f2f2;display: flex; flex-wrap: wrap; gap: 20px; overflow-y: scroll; z-index: 0;">
+        <div class="top shadow p-3 rounded form_Card" style="height: 120vh; background: #f4f2f2;display: flex; flex-wrap: wrap; gap: 20px; overflow-y: scroll; z-index: 0;">
      <LoadingViews v-if="!proList.productList.data"/>
 
           <div v-for="product in search.productSearch.data" :key="product.id">

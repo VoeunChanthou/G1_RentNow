@@ -83,6 +83,7 @@ async function submitForm(user_id: string) {
   const response = await axiosInstance.post('/add/member', {
     user_id: user_id
   });
+  console.log(response)
   if(response){
     isMember.value = true;
     fetchData()

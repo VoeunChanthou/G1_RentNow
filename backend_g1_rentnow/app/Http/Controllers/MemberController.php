@@ -30,16 +30,19 @@ class MemberController extends Controller
      */
     public function create(Request $request)
     {
+
         $user = $request->user();
         $permissions = $user->getAllPermissions();
         $roles = $user->getRoleNames();
-
+        
         $shopId = Shop::where('user_id', $user->id)->first()->id;
-        $isUser = User::where('user_id', $user->id)->first()->id;
+        // $isUser = User::where('id', $user->id)->first()->id;
 
+        
         if ($user->roles[0]->name === 'shop owner') {
             if ($shopId) {
-                if (!$isUser) {
+                // if (!$isUser) {
+                    // return $request;
 
                     $member = new Member();
                     $member->user_id = $request->user_id;
@@ -48,10 +51,10 @@ class MemberController extends Controller
                     return response()->json(
                         [
                             'message' => 'Member created successfully',
-                            'member' => $member
+                            // 'member' => $member
                         ]
                     );
-                }
+                // }
             }
 
             return response()->json(

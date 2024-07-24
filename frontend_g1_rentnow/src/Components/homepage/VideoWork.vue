@@ -11,7 +11,9 @@
           For more information or assistance, click here or contact our support team via email, phone, 
           or online chat. Thank you for choosing Rent Now!
           </p>
-        <button class="read-more"><b>Read More</b></button>
+        <a href="/rentDetail">
+          <button class="read-more"><b>Read More</b></button>
+        </a>
       </div>
       <div class="video-section">
         <iframe
