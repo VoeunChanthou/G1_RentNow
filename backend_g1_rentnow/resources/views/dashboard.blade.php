@@ -1,5 +1,13 @@
-<!-- <x-app-layout>
+<x-app-layout>
+    
     <head>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>{{ config('app.name', 'Laravel') }}</title>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
         <style>
             body {
                 font-family: 'Roboto', sans-serif;
@@ -44,6 +52,10 @@
 
             .revenue-sources {
                 height: auto;
+            }
+            #map {
+                height: 500px;
+                width: 90%;
             }
         </style>
     </head>
@@ -159,36 +171,8 @@
                 </script>
             </div>
         </div>
-    </body>
-</x-app-layout>
-
- -->
-
-
- <x-app-layout>
-    <!DOCTYPE html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-        <style>
-            #map {
-                height: 500px;
-                width: 100%;
-            }
-        </style>
-    </head>
-
-    <body class="font-sans antialiased">
         <div class="container">
-            <div id="map"></div>
+            <div style="margin: 20px 40px 20px 40px; " id="map"></div>
         </div>
 
         <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
@@ -213,8 +197,4 @@
             });
         </script>
     </body>
-
-    </html>
-
-
 </x-app-layout>

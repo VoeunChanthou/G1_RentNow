@@ -25,6 +25,18 @@ class ShopController extends Controller
         return response()->json(['data' => $shop]);
     }
 
+
+    public function getLocations()
+    {
+        // Fetch the locations from the database
+        $locations = Shop::all(['latitude', 'longitude']);
+        // return $locations;
+        
+        // Return locations as a JSON response
+        return response()->json($locations);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

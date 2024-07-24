@@ -143,6 +143,6 @@ Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
 // Route::post('/comment', [CommentController::class, 'createComment']);
 Route::get('users', [UserController::class, 'indexUser']);
 Route::get('/shop', [ShopController::class, 'index']);
-
+Route::get('/shop/locations', [ShopController::class, 'getLocations']);
 
 Route::get('/count', [CategoriesController::class, 'getCount']);
