@@ -65,6 +65,7 @@ export const useShopDashboard = defineStore('dash', {
       try {
         const response = await axiosInstance.get('get/borrow/shop');
         this.borrows = response.data;
+        console.log(response);
         this.countBorrow = response.data.length;
         for (let i = 0; i < this.borrows.length; i++) {
           this.incom += this.borrows[i].price
