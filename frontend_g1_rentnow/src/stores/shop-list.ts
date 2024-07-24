@@ -46,7 +46,7 @@ export const useShopDashboard = defineStore('dash', {
     myShop: [],
     members: [],
     borrows: [],
-    countBorrow:Number,
+    countBorrow: 0,
     incom: 0,
   }),
   actions: {
