@@ -11,6 +11,8 @@ use App\Models\model_has_role;
 use App\Models\role_has_permissions;
 use App\Http\Resources\RoleResource;
 use App\Http\Resources\CategoryResource;
+use App\Models\Products;
+use App\Models\Shop;
 
 class CategoriesController extends Controller
 {
@@ -91,5 +93,19 @@ class CategoriesController extends Controller
     public function destroy(Categories $categories)
     {
         //
+    }
+
+    public function getCount(){
+        $countCate = Categories::count();
+        $countShop = Shop::count();
+        $countUser = User::count();
+        $countProduct = Products::count();
+
+        return response()->json([
+            'countCate' => $countCate,
+            'countShop' => $countShop,
+            'countUser' => $countUser,
+            'countProduct'=> $countProduct
+        ]);
     }
 }

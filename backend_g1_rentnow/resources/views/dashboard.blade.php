@@ -52,7 +52,7 @@
         <div class="dashboard">
             <div class="dashboard-item">
                 <h2>PRODUCT</h2>
-                <p>1000 type</p>
+                <p class="product">23</p>
             </div>
             <div class="dashboard-item">
                 <h2>ALL SHOP</h2>
@@ -60,10 +60,10 @@
             </div>
             <div class="dashboard-item">
                 <h2>USER</h2>
-                <p>50K</p>
+                <p>50</p>
             </div>
             <div class="dashboard-item">
-                <h2>CUSTOMER</h2>
+                <h2>CATEGORIES</h2>
                 <p>70%</p>
             </div>
             <div class="earnings-overview dashboard-item">
@@ -146,13 +146,16 @@
                     fetch('http://127.0.0.1:8000/api/shop')
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data)
                             data.data.forEach(user => {
                                 const shopElement = document.getElementById('shop');
                                 shopElement.classList.add('py-4', 'px-2');
                                 shopElement.innerHTML += `<h3>${user.id}  ${user.name}</h3>`;
                             });
                         });
+                    fetch('http://127.0.0.1:8000/api/count').then(response => response.json()).then(data=>{
+                        const product = document.getElementById('product');
+                        product.textContent = data.product;
+                    })
                 </script>
             </div>
         </div>

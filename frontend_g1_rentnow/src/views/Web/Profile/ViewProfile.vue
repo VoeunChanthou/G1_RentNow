@@ -10,8 +10,7 @@
                   <img
                     :src="authStore.user.profile"
                     alt="Admin"
-                    class="rounded-circle p-1 bg-primary"
-                    width="110"
+                    style="width: 100px; height: 100px; border-radius: 50%;"
                   />
                   <div class="mt-3">
                     <h4>{{ authStore.user.first_name }} {{ authStore.user.last_name }}</h4>

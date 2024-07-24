@@ -6,7 +6,6 @@ import WebLayout from '@/Components/Layouts/WebLayout.vue'
 import CategoryVue from '@/Components/service/CategoryVue.vue'
 import CardVue from '@/Components/homepage/CardVue.vue'
 import WebLoginVue from '@/Components/homepage/WebLogin.vue';
-// import PopupRegisterVue from '@/Components/homepage/PopupRegister.vue';
 import FooterMenu from '@/Components/homepage/FooterMenu.vue';
 import type { componentSizeMap } from 'element-plus';
 import { ref } from 'vue';
@@ -85,9 +84,7 @@ const handleDayEvent = (data: any) => {
             <CardVue v-if="(product.category.name == cateData && cateData != '')" :product="product"></CardVue>
             <CardVue v-if="(product.shop.name == shopData && shopData != '' && cateData == '')" :product="product"></CardVue>
             <CardVue v-if="(cateData == '' && shopData == '')" :product="product"></CardVue>
-            <!-- <p v-else style="display: none; width: 0%;">hello</p> -->
           </div>
-          <!-- <CardVue  v-for="product in search.productSearch.data" :key="product.id" :product="product"></CardVue> -->
         </div>
       </div>
     </div>

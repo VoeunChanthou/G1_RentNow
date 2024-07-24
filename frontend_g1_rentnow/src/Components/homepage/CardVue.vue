@@ -3,7 +3,7 @@
   <div
           v-if="isCancel"
           class="alert alert-success alert-dismissible fade show"
-          style="position: absolute; top: 90%; left: 70%"
+          style="position: absolute; top: 30%; left: 70%; z-index: 99;"
           role="alert"
         >
           You add <strong>{{ product.name }}</strong> to favorite.

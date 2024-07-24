@@ -53,7 +53,7 @@
             <el-col :span="11">
               <el-label>user</el-label>
               <el-select v-model="ruleForm.user_id" placeholder="Select User">
-                <el-option v-for="member in memberData" :key="member.id" :label="member.member.first_name + member.member.last_name" value="1" />
+                <el-option v-for="member in memberData" :key="member.id" :label="member.member.first_name + member.member.last_name" :value="member.member.id" />
               </el-select>
             </el-col>
           </el-form-item>

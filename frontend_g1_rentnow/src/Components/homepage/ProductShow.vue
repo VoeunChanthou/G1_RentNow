@@ -10,7 +10,7 @@
       <div v-if="product.status == 'borrowed'" class="status">
         <h4 style="text-align: center;">This product borrowed by other</h4>
       </div>
-        <a href="#" class="product-card-center" style="position: relative">
+        <a href="#" class="product-card-center" style="position: relative;">
           <div class="content-overlay">
             <img
               src="../../assets/notLove.png"
@@ -18,7 +18,7 @@
               alt=""
             />
           </div>
-          <img :src="product.image" style="width: 100%; height: 100%" alt="" />
+          <img :src="product.image" style="width: 200px; height: 200px; margin: auto;"  alt="" />
         </a>
         <div class="product-card-buttom">
           <img src="../../assets/star.png" alt="" />

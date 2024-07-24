@@ -79,7 +79,7 @@ fetchMemberData()
         </div>
       </div>
       <!-- {{ shopInfo.data }} -->
-      <div style="height: 100%; display: grid; grid-template-rows: 10% 98%; gap: 20px">
+      <div style="height: auto; display: grid; grid-template-rows: 10% 98%; gap: 20px">
         <div
           class="top shadow p-3 px-5 rounded bg-white"
           style="display: flex; justify-content: space-between; align-items: center"
@@ -99,7 +99,7 @@ fetchMemberData()
         <div
           class="top shadow p-3 rounded form_Card"
           style="
-            height: 90%;
+            height: 120vh;
             background: #f4f2f2;
             display: flex;
             flex-wrap: wrap;

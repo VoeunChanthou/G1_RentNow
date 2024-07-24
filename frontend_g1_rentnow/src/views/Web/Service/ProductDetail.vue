@@ -483,6 +483,7 @@ export default {
           'borrow_status': this.borrow_status,
           'status': 'borrowed'
         });
+        console.log(response);
         this.success = true;
         this.router.push(`/receipt/${this.$route.params.id}`)
         this.isPay = true;

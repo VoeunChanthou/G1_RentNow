@@ -19,7 +19,8 @@
           </div>
           <div class="popular-shop-detail">
             <h3>{{ item.name }}</h3>
-            <p>{{ item.description }}</p>
+            <p v-if="item.description">{{ item.description }}</p>
+            <p v-else >This store likely offers borrowing or lending services, possibly related to financial or other products.</p>
           </div>
         </div>
     </div>

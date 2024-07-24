@@ -43,9 +43,6 @@
           </el-option-group>
         </el-select>
       </div>
-      <div class="select-group" style="margin-top: 20px">
-          <el-input type="number" v-model="day" style="width: 100%" size="large" placeholder="Day required" @input="handleDayEvent"/>
-      </div>
     </div>
   </div>
 </template>

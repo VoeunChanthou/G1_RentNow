@@ -72,7 +72,14 @@
               </td>
               <td>
                 <span
-                  class="badge-success rounded-pill d-inline"
+                  v-if="product.status == 'borrowed'"
+                  class="badge-danger  text-white rounded-pill d-inline"
+                  style="background: red; padding-left: 7px; padding-right: 7px"
+                  >{{ product.status }}</span
+                >
+                <span
+                  v-else
+                  class="badge-success text-white rounded-pill d-inline"
                   style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px"
                   >{{ product.status }}</span
                 >

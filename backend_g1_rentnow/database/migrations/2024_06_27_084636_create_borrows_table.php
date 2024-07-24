@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('return_date');
             $table->string('borrow_status');
             $table->integer('quantity');
-            $table->integer('amount');
+            $table->integer('price');
             $table->timestamps();
         });
     }

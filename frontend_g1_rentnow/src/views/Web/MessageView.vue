@@ -35,10 +35,11 @@
                 @click="showReplyForm(person)"
               >
                 <img
-                  class="avatar-img rounded-circle shadow mr-3"
+                  class="avatar-img shadow mr-3"
                   src="../../assets/3135715.png"
                   alt="avatar"
                   height="50"
+                  style="width: 50px; border-radius: 50%;"
                 />
                 <div>
                   <h5>{{ person.first_name }} {{ person.last_name }}</h5>
@@ -54,10 +55,11 @@
             <div class="d-flex flex-column align-items-start">
               <div class="d-flex align-items-center mb-3" v-if="selectedMessage">
                 <img
-                  class="avatar-img rounded-circle shadow mr-3"
+                  class="avatar-img shadow mr-3"
                   src="../../assets/3135715.png"
                   alt="avatar"
                   height="50"
+                  style="width: 50px; border-radius: 50%;"
                 />
                 <div>
                   <h5>{{ selectedMessage.first_name }} {{ selectMessages.last_name }}</h5>
@@ -72,20 +74,22 @@
               <div v-for="mess in allmessages" :key="mess.id" class="div">
               <div v-if="mess.user_id == selectedMessage.id" class="content-message py-2">
                 <img
-                  class="avatar-img rounded-circle shadow mr-3"
+                  class="avatar-img shadow mr-3"
                   :src="mess.user.profile"
                   alt="avatar"
                   height="50"
+                  style="width: 50px; border-radius: 50%;"
                 />
                 <span style="background: rgb(154, 218, 244); padding: 5px; border-radius: 10px; width: auto;">{{ mess.text }}</span>
               </div>
               <div v-else class="content-message py-2" style="display: flex; justify-content: end; align-items: center;">
                 <span style="background: rgb(154, 218, 244); padding: 5px; border-radius: 10px; width: auto; margin-right: 5px;">{{ mess.text }}</span>
                 <img
-                  class="avatar-img rounded-circle shadow mr-3"
+                  class="avatar-img shadow mr-3"
                   :src="mess.user.profile"
                   alt="avatar"
                   height="50"
+                  style="width: 50px; border-radius: 50%;"
                 />
               </div>
               </div>

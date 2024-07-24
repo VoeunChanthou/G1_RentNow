@@ -30,7 +30,8 @@
         <p class="fw-normal mb-1">{{ borrow.product.name }}</p>
       </td>
       <td>
-        <span class=" badge-success rounded-pill d-inline" style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px;">{{ borrow.product.status }}</span>
+        <span  v-if="borrow.product.status === 'borrowed'" class=" badge-danger text-white rounded-pill d-inline" style="background: red; padding-left: 7px; padding-right: 7px;">{{ borrow.product.status }}</span>
+        <span  v-else class=" badge-danger rounded-pill d-inline" style="background: rgb(140, 255, 73); padding-left: 7px; padding-right: 7px;">{{ borrow.product.status }}</span>
       </td>
       <td>${{ borrow.price }}.00</td>
       <td>
