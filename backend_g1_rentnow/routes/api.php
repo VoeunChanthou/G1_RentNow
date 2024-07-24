@@ -139,7 +139,7 @@ Route::get('/web/shop/{id}', [ShopController::class,'getShopById']);
 
 Route::post('/stripe/payment', [StripePaymentController::class, 'makePayment']);
 //Comment on poste 
-Route::get('/comments', [CommentController::class, 'index']);
-Route::post('/comment', [CommentController::class, 'createComment']);
+// Route::get('/comments', [CommentController::class, 'index']);
+// Route::post('/comment', [CommentController::class, 'createComment']);
 Route::get('users', [UserController::class, 'indexUser']);
 Route::get('/shop', [ShopController::class, 'index']);
