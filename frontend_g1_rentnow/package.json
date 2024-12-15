@@ -20,7 +20,7 @@
     "@stripe/stripe-js": "^4.1.0",
     "@vue-leaflet/vue-leaflet": "^0.10.1",
     "@vue-stripe/vue-stripe": "^4.5.0",
-    "axios": "^1.7.2",
+    "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
     "element-plus": "^2.7.6",

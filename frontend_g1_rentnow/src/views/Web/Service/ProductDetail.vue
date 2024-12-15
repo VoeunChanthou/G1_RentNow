@@ -292,7 +292,6 @@ export default {
       CommentList : [],
       commentshow  : {},
       idComment : null,
-      shop:{},
       // =========== payment =========
       start_date:"",
       return_date:"",
@@ -420,6 +419,8 @@ export default {
     },
     discrease(){
       if(this.quantity > 1){
+        this.quantity -= 1;
+        totalPay()
       }
     },
 
@@ -502,7 +503,7 @@ export default {
         document.body.classList.remove('no-scroll');
       }
     },
-    watch: {
+    Watch: {
     showModal(value) {
         document.body.classList.add('no-scroll');
     },

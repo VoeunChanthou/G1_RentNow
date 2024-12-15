@@ -1,7 +1,8 @@
 
 <template>
-  <div style="position: sticky; top: 0; z-index: 99;">
-  <PopupRegisterVue @rigisterForm = "RegisterAcount"></PopupRegisterVue>
+  <div>
+    <PopupRegisterVue @rigisterForm = "RegisterAcount"></PopupRegisterVue>
+    <div style="position: sticky; top: 0; z-index: 10;">
   <div class="content" style="width: 100%;">
   <header class="navbar navbar-expand-lg navbar-light bg-light" style="background: linear-gradient(90deg, #722CB3 30%, #C49BE9);">
   <div class="container-fluid px-5 py-2">
@@ -86,6 +87,7 @@
 </nav>
 </div>
 </div>
+  </div>
 </template>
 <script >
 import { Icon } from '@iconify/vue'
